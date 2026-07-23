@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initializeVideo();
 
-    initializeCoding();
+    
 
     initializeReward();
 
@@ -86,9 +86,7 @@ function initializeNavigation(){
 
         button.addEventListener("click",()=>{
 
-            currentSection = index;
-
-            showSection(currentSection);
+            showSection(index);
 
         });
 
@@ -101,22 +99,34 @@ function initializeNavigation(){
                 SHOW SECTION
 =========================================================*/
 
-function showSection(sectionId){
+function showSection(section){
 
-document.querySelectorAll(".lessonContent")
+    // If an index is passed
+    if(typeof section === "number"){
 
-.forEach(section=>{
+        currentSection = section;
 
-section.classList.remove("active");
+        section = sections[currentSection];
 
-});
+    }
 
-document.getElementById(sectionId)
+    document.querySelectorAll(".lessonContent")
+    .forEach(sec=>sec.classList.remove("active"));
 
-.classList.add("active");
+    document.getElementById(section)
+    .classList.add("active");
+
+    document.querySelectorAll(".navButton")
+    .forEach(btn=>btn.classList.remove("active"));
+
+    document.querySelectorAll(".navButton")[currentSection]
+    .classList.add("active");
+
+    updateProgress();
+
+    saveCurrentSection();
 
 }
-
 /*=========================================================
                 PREVIOUS SECTION
 =========================================================*/
@@ -258,33 +268,7 @@ function initializeVideo(){
                 CODING LAB
 =========================================================*/
 
-function initializeCoding(){
 
-    const run = document.getElementById("runCode");
-
-    if(!run) return;
-
-    run.onclick = function(){
-
-        const code =
-
-        document.getElementById("pythonCode").value;
-
-        document.getElementById("output").textContent =
-
-`Python Quest Coding Lab
-
----------------------------------------
-
-Pyodide integration will be added later.
-
----------------------------------------
-
-${code}`;
-
-    };
-
-}
 
 
 /*=========================================================
