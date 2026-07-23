@@ -1,6 +1,6 @@
 /*====================================================
-            PYTHON QUEST v2.0
-                WORLDS DATA
+                PYTHON QUEST
+                WORLDS DATABASE
 ====================================================*/
 
 "use strict";
@@ -8,7 +8,7 @@
 const worlds = [
 
 /*====================================================
-                    WORLD 1
+                1. PYTHON VILLAGE
 ====================================================*/
 
 {
@@ -20,27 +20,15 @@ const worlds = [
 
     folder:"python-village",
 
-    image:"assets/worlds/python-village.png",
+    image:"images/worlds/python-village.png",
 
-    guardian:"Master Pyro",
+    difficulty:"Beginner",
 
-    difficulty:"★☆☆☆☆",
-
-    rarity:"common",
-
-    progress:0,
-
-    xp:200,
-
-    coins:100,
-
-    badge:"Python Beginner",
-
-    unlocked:true
+    rarity:"common"
 },
 
 /*====================================================
-                    WORLD 2
+            2. VALLEY OF DECISIONS
 ====================================================*/
 
 {
@@ -48,31 +36,19 @@ const worlds = [
 
     name:"Valley of Decisions",
 
-    topic:"If • Else • Nested If",
+    topic:"If • Else",
 
-    folder:"valley-of-decisions",
+    folder:"decision-valley",
 
-    image:"assets/worlds/valley-of-decisions.png",
+    image:"images/worlds/decision-valley.png",
 
-    guardian:"Judge Owl",
+    difficulty:"Beginner",
 
-    difficulty:"★☆☆☆☆",
-
-    rarity:"common",
-
-    progress:0,
-
-    xp:250,
-
-    coins:120,
-
-    badge:"Decision Maker",
-
-    unlocked:true
+    rarity:"common"
 },
 
 /*====================================================
-                    WORLD 3
+                3. LOOPING FOREST
 ====================================================*/
 
 {
@@ -80,31 +56,19 @@ const worlds = [
 
     name:"Looping Forest",
 
-    topic:"For Loop • While Loop",
+    topic:"Loops",
 
     folder:"looping-forest",
 
-    image:"assets/worlds/looping-forest.png",
+    image:"images/worlds/looping-forest.png",
 
-    guardian:"Ranger Stag",
+    difficulty:"Beginner",
 
-    difficulty:"★★☆☆☆",
-
-    rarity:"rare",
-
-    progress:0,
-
-    xp:300,
-
-    coins:150,
-
-    badge:"Loop Explorer",
-
-    unlocked:true
+    rarity:"common"
 },
 
 /*====================================================
-                    WORLD 4
+            4. WIZARD'S FUNCTION TOWER
 ====================================================*/
 
 {
@@ -112,31 +76,19 @@ const worlds = [
 
     name:"Wizard's Function Tower",
 
-    topic:"Functions • Arguments • Return",
+    topic:"Functions",
 
     folder:"function-tower",
 
-    image:"assets/worlds/function-tower.png",
+    image:"images/worlds/function-tower.png",
 
-    guardian:"Functionius",
+    difficulty:"Intermediate",
 
-    difficulty:"★★☆☆☆",
-
-    rarity:"rare",
-
-    progress:0,
-
-    xp:350,
-
-    coins:180,
-
-    badge:"Spell Caster",
-
-    unlocked:true
+    rarity:"rare"
 },
 
 /*====================================================
-                    WORLD 5
+            5. TEMPLE OF PROTECTION
 ====================================================*/
 
 {
@@ -146,29 +98,17 @@ const worlds = [
 
     topic:"Exception Handling",
 
-    folder:"temple-of-protection",
+    folder:"exception-temple",
 
-    image:"assets/worlds/temple-of-protection.png",
+    image:"images/worlds/exception-temple.png",
 
-    guardian:"Guardian Phoenix",
+    difficulty:"Intermediate",
 
-    difficulty:"★★★☆☆",
-
-    rarity:"epic",
-
-    progress:0,
-
-    xp:400,
-
-    coins:220,
-
-    badge:"Error Defender",
-
-    unlocked:true
+    rarity:"rare"
 },
 
 /*====================================================
-                    WORLD 6
+        6. LIBRARY OF LIVING SCROLLS
 ====================================================*/
 
 {
@@ -178,29 +118,17 @@ const worlds = [
 
     topic:"Text File Handling",
 
-    folder:"library-of-living-scrolls",
+    folder:"text-file-library",
 
-    image:"assets/worlds/library-of-living-scrolls.png",
+    image:"images/worlds/text-file-library.png",
 
-    guardian:"Master Pyro",
+    difficulty:"Intermediate",
 
-    difficulty:"★★★☆☆",
-
-    rarity:"epic",
-
-    progress:0,
-
-    xp:450,
-
-    coins:250,
-
-    badge:"Scroll Keeper",
-
-    unlocked:true
+    rarity:"rare"
 },
 
 /*====================================================
-                    WORLD 7
+                7. CSV KINGDOM
 ====================================================*/
 
 {
@@ -208,31 +136,19 @@ const worlds = [
 
     name:"CSV Kingdom",
 
-    topic:"CSV File Handling",
+    topic:"CSV Files",
 
     folder:"csv-kingdom",
 
-    image:"assets/worlds/csv-kingdom.png",
+    image:"images/worlds/csv-kingdom.png",
 
-    guardian:"Master CSV",
+    difficulty:"Intermediate",
 
-    difficulty:"★★★★☆",
-
-    rarity:"legendary",
-
-    progress:0,
-
-    xp:500,
-
-    coins:300,
-
-    badge:"CSV Warrior",
-
-    unlocked:true
+    rarity:"rare"
 },
 
 /*====================================================
-                    WORLD 8
+                8. PANDAS FOREST
 ====================================================*/
 
 {
@@ -244,27 +160,15 @@ const worlds = [
 
     folder:"pandas-forest",
 
-    image:"assets/worlds/pandas-forest.png",
+    image:"images/worlds/pandas-forest.png",
 
-    guardian:"Mr. Panda",
+    difficulty:"Advanced",
 
-    difficulty:"★★★★☆",
-
-    rarity:"legendary",
-
-    progress:0,
-
-    xp:550,
-
-    coins:350,
-
-    badge:"Data Explorer",
-
-    unlocked:true
+    rarity:"epic"
 },
 
 /*====================================================
-                    WORLD 9
+            9. CRYSTAL CHART PEAKS
 ====================================================*/
 
 {
@@ -274,29 +178,17 @@ const worlds = [
 
     topic:"Matplotlib",
 
-    folder:"crystal-chart-peaks",
+    folder:"chart-peaks",
 
-    image:"assets/worlds/crystal-chart-peaks.png",
+    image:"images/worlds/chart-peaks.png",
 
-    guardian:"Chart Wizard",
+    difficulty:"Advanced",
 
-    difficulty:"★★★★☆",
-
-    rarity:"legendary",
-
-    progress:0,
-
-    xp:600,
-
-    coins:400,
-
-    badge:"Chart Master",
-
-    unlocked:true
+    rarity:"epic"
 },
 
 /*====================================================
-                    WORLD 10
+            10. NUMPY CRYSTAL CAVERNS
 ====================================================*/
 
 {
@@ -304,31 +196,19 @@ const worlds = [
 
     name:"NumPy Crystal Caverns",
 
-    topic:"NumPy Arrays",
+    topic:"NumPy",
 
-    folder:"numpy-crystal-caverns",
+    folder:"numpy-caverns",
 
-    image:"assets/worlds/numpy-crystal-caverns.png",
+    image:"images/worlds/numpy-caverns.png",
 
-    guardian:"Array Golem",
+    difficulty:"Advanced",
 
-    difficulty:"★★★★★",
-
-    rarity:"mythic",
-
-    progress:0,
-
-    xp:700,
-
-    coins:450,
-
-    badge:"Array Warrior",
-
-    unlocked:true
+    rarity:"epic"
 },
 
 /*====================================================
-                    WORLD 11
+            11. DRAGON SQL CITADEL
 ====================================================*/
 
 {
@@ -336,31 +216,19 @@ const worlds = [
 
     name:"Dragon SQL Citadel",
 
-    topic:"SQL & Database",
+    topic:"SQL",
 
-    folder:"dragon-sql-citadel",
+    folder:"dragon-sql",
 
-    image:"assets/worlds/dragon-sql-citadel.png",
+    image:"images/worlds/dragon-sql.png",
 
-    guardian:"Azure Dragon",
+    difficulty:"Expert",
 
-    difficulty:"★★★★★",
-
-    rarity:"mythic",
-
-    progress:0,
-
-    xp:800,
-
-    coins:500,
-
-    badge:"Database Guardian",
-
-    unlocked:true
+    rarity:"legendary"
 },
 
 /*====================================================
-                    WORLD 12
+            12. SPIDER WEB NEXUS
 ====================================================*/
 
 {
@@ -370,29 +238,17 @@ const worlds = [
 
     topic:"Computer Networks",
 
-    folder:"spider-web-nexus",
+    folder:"spider-web",
 
-    image:"assets/worlds/spider-web-nexus.png",
+    image:"images/worlds/spider-web.png",
 
-    guardian:"Web Weaver Spider",
+    difficulty:"Expert",
 
-    difficulty:"★★★★★",
-
-    rarity:"mythic",
-
-    progress:0,
-
-    xp:900,
-
-    coins:600,
-
-    badge:"Network Master",
-
-    unlocked:true
+    rarity:"legendary"
 },
 
 /*====================================================
-                    WORLD 13
+        13. PYTHON MASTER'S CASTLE
 ====================================================*/
 
 {
@@ -400,31 +256,15 @@ const worlds = [
 
     name:"Python Master's Castle",
 
-    topic:"Final Python Challenge",
+    topic:"Final Challenge",
 
-    folder:"python-masters-castle",
+    folder:"master-castle",
 
-    image:"assets/worlds/python-masters-castle.png",
+    image:"images/worlds/master-castle.png",
 
-    guardian:"Master Pyro",
+    difficulty:"Master",
 
-    difficulty:"★★★★★",
-
-    rarity:"divine",
-
-    progress:0,
-
-    xp:1500,
-
-    coins:1000,
-
-    badge:"Python Legend",
-
-    unlocked:true
+    rarity:"mythic"
 }
 
 ];
-
-/*====================================================
-                END OF FILE
-====================================================*/
