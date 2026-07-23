@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Python Quest Dashboard
+
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="css/style.css">
+
+<link rel="stylesheet"
+href="css/dashboard.css">
+
+</head>
+
+<body>
+
+<!--==========================================
+            HEADER
+===========================================-->
+
+<header>
+
+<div class="logo">
+
+<img src="assets/icons/logo.png">
+
+<h1>
+
+Python Quest
+
+</h1>
+
+</div>
+
+<div class="headerButtons">
+
+<button id="musicBtn">
+
+🎵
+
+</button>
+
+<button id="settingBtn">
+
+⚙
+
+</button>
+
+</div>
+
+</header>
+
+<!--==========================================
+        MASTER PYRO PANEL
+===========================================-->
+
+<section class="heroPanel">
+
+<div class="heroLeft">
+
+<img
+src="assets/characters/master-pyro.png"
+alt="Master Pyro">
+
+</div>
+
+<div class="heroRight">
+
+<h2>
+
+Welcome Explorer!
+
+</h2>
+
+<p>
+
+Every magical world teaches
+a new coding spell.
+
+Complete every kingdom,
+collect badges,
+defeat coding monsters
+and become the
+
+<b>Python Master.</b>
+
+</p>
+
+</div>
+
+</section>
+
+<!--==========================================
+        PLAYER PANEL
+===========================================-->
+
+<section class="playerPanel">
+
+<div class="playerCard">
+
+<h3>
+
+⭐ XP
+
+</h3>
+
+<p id="playerXP">
+
+0
+
+</p>
+
+</div>
+
+<div class="playerCard">
+
+<h3>
+
+🪙 Coins
+
+</h3>
+
+<p id="playerCoins">
+
+0
+
+</p>
+
+</div>
+
+<div class="playerCard">
+
+<h3>
+
+🏆 Badges
+
+</h3>
+
+<p id="playerBadges">
+
+0
+
+</p>
+
+</div>
+
+<div class="playerCard">
+
+<h3>
+
+🧙 Level
+
+</h3>
+
+<p id="playerLevel">
+
+1
+
+</p>
+
+</div>
+
+</section>
+
+<!--==========================================
+            PROGRESS
+===========================================-->
+
+<section class="progressSection">
+
+<h2>
+
+Overall Progress
+
+</h2>
+
+<div class="progress">
+
+<div
+id="overallProgress"
+class="progressBar">
+
+</div>
+
+</div>
+
+</section>
+
+<!--==========================================
+        WORLD CARDS
+===========================================-->
+
+<section class="worldSection">
+
+<h2>
+
+Choose Your Adventure
+
+</h2>
+
+<div class="worldGrid">
+
+<!-- Card 1 -->
+
+<div class="worldCard">
+
+<img
+src="assets/worlds/python-village.png">
+
+<h3>
+
+Python Village
+
+</h3>
+
+<p>
+
+Python Basics
+
+</p>
+
+<button
+onclick="openWorld('python-village')">
+
+Enter World
+
+</button>
+
+</div>
+
+<!-- Card 2 -->
+
+<div class="worldCard">
+
+<img
+src="assets/worlds/valley-of-decisions.png">
+
+<h3>
+
+Valley of Decisions
+
+</h3>
+
+<p>
+
+If • Else
+
+</p>
+
+<button
+onclick="openWorld('valley-of-decisions')">
+
+Enter World
+
+</button>
+
+</div>
+
+<!-- Card 3 -->
+
+<div class="worldCard">
+
+<img
+src="assets/worlds/looping-forest.png">
+
+<h3>
+
+Looping Forest
+
+</h3>
+
+<p>
+
+Loops
+
+</p>
+
+<button
+onclick="openWorld('looping-forest')">
+
+Enter World
+
+</button>
+
+</div>
+
+<!-- Card 4 -->
+
+<div class="worldCard">
+
+<img
+src="assets/worlds/function-tower.png">
+
+<h3>
+
+Wizard's Function Tower
+
+</h3>
+
+<p>
+
+Functions
+
+</p>
+
+<button
+onclick="openWorld('function-tower')">
+
+Enter World
+
+</button>
+
+</div>
+
+<!-- Card 5 -->
+
+<div class="worldCard">
+
+<img
+src="assets/worlds/temple-of-protection.png">
+
+<h3>
+
+Temple of Protection
+
+</h3>
+
+<p>
+
+Exceptions
+
+</p>
+
+<button
+onclick="openWorld('temple-of-protection')">
+
+Enter World
+
+</button>
+
+</div>
+
+<!-- Card 6 -->
+
+<div class="worldCard">
+
+<img
+src="assets/worlds/library-of-living-scrolls.png">
+
+<h3>
+
+Library of Living Scrolls
+
+</h3>
+
+<p>
+
+Text Files
+
+</p>
+
+<button
+onclick="openWorld('library-of-living-scrolls')">
+
+Enter World
+
+</button>
+
+</div>
+
+<!-- Continue similarly -->
+
+<div class="worldCard">
+<img src="assets/worlds/csv-kingdom.png">
+<h3>CSV Kingdom</h3>
+<p>CSV Files</p>
+<button onclick="openWorld('csv-kingdom')">Enter World</button>
+</div>
+
+<div class="worldCard">
+<img src="assets/worlds/pandas-forest.png">
+<h3>Pandas Forest</h3>
+<p>Pandas</p>
+<button onclick="openWorld('pandas-forest')">Enter World</button>
+</div>
+
+<div class="worldCard">
+<img src="assets/worlds/crystal-chart-peaks.png">
+<h3>Crystal Chart Peaks</h3>
+<p>Matplotlib</p>
+<button onclick="openWorld('crystal-chart-peaks')">Enter World</button>
+</div>
+
+<div class="worldCard">
+<img src="assets/worlds/numpy-crystal-caverns.png">
+<h3>NumPy Crystal Caverns</h3>
+<p>NumPy</p>
+<button onclick="openWorld('numpy-crystal-caverns')">Enter World</button>
+</div>
+
+<div class="worldCard">
+<img src="assets/worlds/dragon-sql-citadel.png">
+<h3>Dragon SQL Citadel</h3>
+<p>SQL</p>
+<button onclick="openWorld('dragon-sql-citadel')">Enter World</button>
+</div>
+
+<div class="worldCard">
+<img src="assets/worlds/spider-web-nexus.png">
+<h3>Spider Web Nexus</h3>
+<p>Computer Networks</p>
+<button onclick="openWorld('spider-web-nexus')">Enter World</button>
+</div>
+
+<div class="worldCard">
+<img src="assets/worlds/python-masters-castle.png">
+<h3>Python Master's Castle</h3>
+<p>Final Challenge</p>
+<button onclick="openWorld('python-masters-castle')">Enter World</button>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+Python Quest © 2026
+
+<br>
+
+Developed by Amit Yerpude
+
+</footer>
+
+<script src="js/app.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+
+</html>
