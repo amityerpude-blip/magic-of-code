@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initializeVideo();
 
-    
+    loadNotes();
 
     initializeReward();
 
