@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Magic of Code | Bug Monster Arena</title>
+
+<link rel="stylesheet" href="battle.css">
+
+</head>
+
+<body>
+
+<!-- ==========================================
+                AUDIO FILES
+=========================================== -->
+
+<audio id="bgMusic" loop>
+    <source src="assets/sounds/magic-ambience.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="spellSound">
+    <source src="assets/sounds/spell-cast.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="correctSound">
+    <source src="assets/sounds/spell-success.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="wrongSound">
+    <source src="assets/sounds/spell-fail.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="monsterAppear">
+    <source src="assets/sounds/monster-appear.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="monsterDefeat">
+    <source src="assets/sounds/monster-defeat.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="lifeLost">
+    <source src="assets/sounds/life-lost.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="victorySound">
+    <source src="assets/sounds/victory.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="buttonClick">
+    <source src="assets/sounds/click.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="buttonHover">
+    <source src="assets/sounds/hover.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ==========================================
+            MAIN CONTAINER
+=========================================== -->
+
+<div class="battleContainer">
+
+<!-- ==========================================
+                HEADER
+=========================================== -->
+
+<header class="battleHeader">
+
+<h1>
+
+🪄 Bug Monster Arena
+
+</h1>
+
+<p>
+
+Restore the corrupted magical scrolls by casting the correct Python spell.
+
+</p>
+
+<button id="musicButton">
+
+🔊 Music ON
+
+</button>
+
+</header>
+
+<!-- ==========================================
+            PLAYER STATUS
+=========================================== -->
+
+<section class="playerPanel">
+
+<div class="playerCard">
+
+❤️
+
+<h3 id="lifeCount">
+
+3
+
+</h3>
+
+<p>Lives</p>
+
+</div>
+
+<div class="playerCard">
+
+⭐
+
+<h3 id="xpCount">
+
+0
+
+</h3>
+
+<p>XP</p>
+
+</div>
+
+<div class="playerCard">
+
+🪙
+
+<h3 id="coinCount">
+
+0
+
+</h3>
+
+<p>Coins</p>
+
+</div>
+
+<div class="playerCard">
+
+🏆
+
+<h3 id="badgeCount">
+
+0
+
+</h3>
+
+<p>Badges</p>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+            MASTER PYRO
+=========================================== -->
+
+<section class="masterPanel">
+
+<div class="masterAvatar">
+
+🐍
+
+</div>
+
+<div class="masterSpeech">
+
+<h2>
+
+Master Pyro
+
+</h2>
+
+<p id="masterMessage">
+
+Young Wizard...
+
+A Bug Monster has corrupted another magical scroll.
+
+Choose the correct spell to purify it.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+            MONSTER AREA
+=========================================== -->
+
+<section class="monsterSection">
+
+<div id="monsterEmoji" class="monsterEmoji">
+
+🐛
+
+</div>
+
+<h2 id="monsterName">
+
+Bug Monster I
+
+</h2>
+
+<p id="monsterTitle">
+
+The Scroll Eater
+
+</p>
+
+<div class="healthContainer">
+
+<div id="monsterHealth"></div>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+            QUESTION PANEL
+=========================================== -->
+
+<section class="questionPanel">
+
+<h2>
+
+📜 Magical Challenge
+
+</h2>
+
+<p id="questionText">
+
+Loading Question...
+
+</p>
+
+</section>
+
+<!-- ==========================================
+            SPELL OPTIONS
+=========================================== -->
+
+<section id="spellArea" class="spellArea">
+
+<button class="spellButton">
+
+🪄 Cast Spell
+
+<span>
+
+Option 1
+
+</span>
+
+</button>
+
+<button class="spellButton">
+
+🪄 Cast Spell
+
+<span>
+
+Option 2
+
+</span>
+
+</button>
+
+<button class="spellButton">
+
+🪄 Cast Spell
+
+<span>
+
+Option 3
+
+</span>
+
+</button>
+
+<button class="spellButton">
+
+🪄 Cast Spell
+
+<span>
+
+Option 4
+
+</span>
+
+</button>
+
+</section>
+
+<!-- ==========================================
+            BATTLE MESSAGE
+=========================================== -->
+
+<section id="battleMessage" class="battleMessage">
+
+Waiting for your spell...
+
+</section>
+
+<!-- ==========================================
+            CONTINUE
+=========================================== -->
+
+<section class="continuePanel">
+
+<button id="continueButton">
+
+✨ Continue Journey
+
+</button>
+
+</section>
+
+<!-- ==========================================
+            TREASURE
+=========================================== -->
+
+<section id="treasurePanel" class="treasurePanel">
+
+<h2>
+
+🎁 Treasure Vault
+
+</h2>
+
+<p>
+
+The Bug Monster has dropped magical rewards.
+
+</p>
+
+<button id="claimReward">
+
+💎 Open Treasure Chest
+
+</button>
+
+</section>
+
+<!-- ==========================================
+            REWARD POPUP
+=========================================== -->
+
+<div id="rewardPopup" class="rewardPopup">
+
+<h2>
+
+⭐ Reward Earned
+
+</h2>
+
+<p>
+
++10 XP
+
+</p>
+
+</div>
+
+<!-- ==========================================
+            GAME OVER
+=========================================== -->
+
+<div id="gameOverScreen" class="gameOverScreen">
+
+<h1>
+
+💀 Game Over
+
+</h1>
+
+<p>
+
+The Bug Monsters have overpowered your magic.
+
+</p>
+
+<button id="restartBattle">
+
+🔄 Try Again
+
+</button>
+
+</div>
+
+<!-- ==========================================
+            VICTORY
+=========================================== -->
+
+<div id="victoryScreen" class="victoryScreen">
+
+<h1>
+
+👑 Victory!
+
+</h1>
+
+<p>
+
+The Library of Living Scrolls has been restored.
+
+</p>
+
+<button id="returnButton">
+
+🏰 Return to Kingdom
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ==========================================
+            JAVASCRIPT
+=========================================== -->
+
+<script src="monsters.js"></script>
+<script src="rewards.js"></script>
+<script src="audio.js"></script>
+<script src="battle.js"></script>
+
+</body>
+</html>
