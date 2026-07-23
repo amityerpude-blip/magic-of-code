@@ -1,0 +1,613 @@
+/*====================================================
+            PYTHON QUEST v2.0
+            Global Stylesheet
+            The Magical World of Coding
+====================================================*/
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/*====================================================
+                    RESET
+====================================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#071426;
+
+    color:#ffffff;
+
+    overflow-x:hidden;
+
+}
+
+/*====================================================
+                VARIABLES
+====================================================*/
+
+:root{
+
+    --primary:#6C63FF;
+    --secondary:#FFD54F;
+
+    --green:#00E676;
+
+    --red:#FF5252;
+
+    --blue:#29B6F6;
+
+    --purple:#9575CD;
+
+    --card:rgba(255,255,255,.08);
+
+    --glass:rgba(255,255,255,.06);
+
+    --text:#ffffff;
+
+    --textLight:#d6d6d6;
+
+    --radius:20px;
+
+    --shadow:0 15px 40px rgba(0,0,0,.35);
+
+}
+
+/*====================================================
+            BACKGROUND
+====================================================*/
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-2;
+
+    background:
+
+    radial-gradient(circle at top,#1B3558,#071426 70%);
+
+}
+
+.stars{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    background-image:
+    radial-gradient(white 1px,transparent 1px);
+
+    background-size:40px 40px;
+
+    opacity:.20;
+
+    animation:moveStars 80s linear infinite;
+
+}
+
+@keyframes moveStars{
+
+    from{
+
+        transform:translateY(0);
+
+    }
+
+    to{
+
+        transform:translateY(-400px);
+
+    }
+
+}
+
+.castle{
+
+    position:absolute;
+
+    bottom:0;
+
+    width:100%;
+
+    height:420px;
+
+    background:url("../assets/backgrounds/castle.png")
+    center bottom/contain no-repeat;
+
+    animation:floatCastle 6s ease-in-out infinite;
+
+}
+
+@keyframes floatCastle{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*====================================================
+                HEADER
+====================================================*/
+
+header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 6%;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    background:rgba(5,10,25,.65);
+
+    backdrop-filter:blur(18px);
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.logo img{
+
+    width:60px;
+
+}
+
+.logo h1{
+
+    font-family:'Cinzel',serif;
+
+    color:var(--secondary);
+
+    font-size:32px;
+
+}
+
+nav{
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+    font-weight:500;
+
+}
+
+nav a:hover{
+
+    color:var(--secondary);
+
+}
+
+/*====================================================
+                    HERO
+====================================================*/
+
+.hero{
+
+    min-height:90vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px;
+
+}
+
+.hero h2{
+
+    font-family:'Cinzel',serif;
+
+    font-size:68px;
+
+    color:#FFD54F;
+
+    margin-bottom:25px;
+
+}
+
+.hero p{
+
+    max-width:850px;
+
+    line-height:1.9;
+
+    font-size:20px;
+
+    color:var(--textLight);
+
+    margin-bottom:45px;
+
+}
+
+.heroButtons{
+
+    display:flex;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+}
+
+/*====================================================
+                BUTTONS
+====================================================*/
+
+.btn{
+
+    padding:16px 34px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    display:inline-block;
+
+}
+
+.primary{
+
+    background:#6C63FF;
+
+    color:white;
+
+}
+
+.secondary{
+
+    background:#FFD54F;
+
+    color:#111;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 25px rgba(0,0,0,.3);
+
+}
+
+/*====================================================
+            WELCOME
+====================================================*/
+
+.welcome{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:60px;
+
+    align-items:center;
+
+    width:90%;
+
+    max-width:1300px;
+
+    margin:100px auto;
+
+}
+
+.welcomeImage img{
+
+    width:100%;
+
+    max-width:450px;
+
+    animation:floatCharacter 3s ease-in-out infinite;
+
+}
+
+@keyframes floatCharacter{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-15px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.welcomeText h2{
+
+    font-family:'Cinzel';
+
+    font-size:46px;
+
+    color:#FFD54F;
+
+    margin-bottom:20px;
+
+}
+
+.welcomeText p{
+
+    font-size:18px;
+
+    line-height:2;
+
+}
+
+/*====================================================
+            SECTION TITLE
+====================================================*/
+
+section h2{
+
+    font-family:'Cinzel';
+
+    font-size:46px;
+
+    text-align:center;
+
+    color:#FFD54F;
+
+    margin-bottom:50px;
+
+}
+
+/*====================================================
+            MASTER CARDS
+====================================================*/
+
+.masterGrid{
+
+    width:90%;
+
+    max-width:1300px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+    gap:30px;
+
+}
+
+.masterCard{
+
+    background:var(--card);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    text-align:center;
+
+    transition:.4s;
+
+    box-shadow:var(--shadow);
+
+}
+
+.masterCard:hover{
+
+    transform:translateY(-12px);
+
+}
+
+.masterCard img{
+
+    width:170px;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+}
+
+/*====================================================
+            WORLD GRID
+====================================================*/
+
+.worldGrid{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:30px;
+
+    padding-bottom:80px;
+
+}
+
+.world{
+
+    background:var(--glass);
+
+    border-radius:25px;
+
+    padding:35px;
+
+    text-align:center;
+
+    backdrop-filter:blur(14px);
+
+    transition:.35s;
+
+    box-shadow:var(--shadow);
+
+    cursor:pointer;
+
+}
+
+.world:hover{
+
+    transform:translateY(-10px) scale(1.03);
+
+    border:2px solid #FFD54F;
+
+}
+
+.world{
+
+    font-size:65px;
+
+}
+
+.world h3{
+
+    margin-top:20px;
+
+    font-size:22px;
+
+}
+
+/*====================================================
+                FOOTER
+====================================================*/
+
+footer{
+
+    text-align:center;
+
+    padding:50px;
+
+    background:#050A15;
+
+    color:#cfcfcf;
+
+}
+
+/*====================================================
+            RESPONSIVE
+====================================================*/
+
+@media(max-width:900px){
+
+.hero h2{
+
+    font-size:48px;
+
+}
+
+.welcome{
+
+    grid-template-columns:1fr;
+
+    text-align:center;
+
+}
+
+nav{
+
+    display:none;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.hero h2{
+
+    font-size:36px;
+
+}
+
+.hero p{
+
+    font-size:17px;
+
+}
+
+.heroButtons{
+
+    flex-direction:column;
+
+}
+
+}
