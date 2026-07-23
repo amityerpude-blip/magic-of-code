@@ -10,19 +10,9 @@ content="width=device-width, initial-scale=1.0">
 
 <title>
 
-Python Quest Dashboard
+Python Quest | Dashboard
 
 </title>
-
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
 
 <link rel="stylesheet"
 href="css/style.css">
@@ -34,204 +24,366 @@ href="css/dashboard.css">
 
 <body>
 
-<!--==========================================
-            HEADER
-===========================================-->
+<!-- =========================================
+                HEADER
+========================================= -->
 
-<header>
+<header class="dashboardHeader">
 
 <div class="logo">
 
-<img src="assets/icons/logo.png">
-
-<h1>
-
-Python Quest
-
-</h1>
+🐍 Python Quest
 
 </div>
 
-<div class="headerButtons">
+<div class="headerRight">
 
-<button id="musicBtn">
+<div class="levelBox">
 
-🎵
+Level
 
-</button>
+<span id="playerLevel">
 
-<button id="settingBtn">
+1
 
-⚙
+</span>
 
-</button>
+</div>
 
 </div>
 
 </header>
 
-<!--==========================================
-        MASTER PYRO PANEL
-===========================================-->
+<!-- =========================================
+            MASTER PYRO HERO
+========================================= -->
 
-<section class="heroPanel">
+<section class="heroSection">
 
-<div class="heroLeft">
+<div class="heroText">
 
-<img
-src="assets/characters/master-pyro.png"
-alt="Master Pyro">
+<h1>
+
+Welcome Back, Explorer!
+
+</h1>
+
+<p>
+
+Master Pyro is waiting for you.
+
+Every magical world teaches a new Python power.
+
+Choose your next adventure and continue your journey.
+
+</p>
+
+<button
+class="continueButton">
+
+Continue Adventure
+
+</button>
 
 </div>
 
-<div class="heroRight">
+<div class="heroImage">
+
+<img
+
+src="images/master-pyro.png"
+
+alt="Master Pyro"
+
+>
+
+</div>
+
+</section>
+
+<!-- =========================================
+            ADVENTURE WORLDS
+========================================= -->
+
+<section class="worldSection">
+
+<div class="sectionHeading">
 
 <h2>
 
-Welcome Explorer!
+🌍 Adventure Worlds
 
 </h2>
 
 <p>
 
-Every magical world teaches
-a new coding spell.
-
-Complete every kingdom,
-collect badges,
-defeat coding monsters
-and become the
-
-<b>Python Master.</b>
+Choose any magical world to begin learning.
 
 </p>
+
+</div>
+
+<div
+
+id="worldGrid"
+
+class="worldGrid">
+
+<!-- Generated automatically
+     by dashboard.js -->
 
 </div>
 
 </section>
 
-<!--==========================================
-        PLAYER PANEL
-===========================================-->
+<!-- =========================================
+        PLAYER PROGRESS + DAILY MISSION
+========================================= -->
 
-<section class="playerPanel">
+<section class="dashboardInfo">
 
-<div class="playerCard">
+<!-- PLAYER -->
 
-<h3>
-
-⭐ XP
-
-</h3>
-
-<p id="playerXP">
-
-0
-
-</p>
-
-</div>
-
-<div class="playerCard">
-
-<h3>
-
-🪙 Coins
-
-</h3>
-
-<p id="playerCoins">
-
-0
-
-</p>
-
-</div>
-
-<div class="playerCard">
-
-<h3>
-
-🏆 Badges
-
-</h3>
-
-<p id="playerBadges">
-
-0
-
-</p>
-
-</div>
-
-<div class="playerCard">
-
-<h3>
-
-🧙 Level
-
-</h3>
-
-<p id="playerLevel">
-
-1
-
-</p>
-
-</div>
-
-</section>
-
-<!--==========================================
-            PROGRESS
-===========================================-->
-
-<section class="progressSection">
+<div class="infoCard">
 
 <h2>
 
-Overall Progress
+📈 Player Progress
+
+</h2>
+
+<div class="playerStats">
+
+<div class="statItem">
+
+⭐
+
+<h3 id="xp">
+
+0
+
+</h3>
+
+<p>
+
+XP
+
+</p>
+
+</div>
+
+<div class="statItem">
+
+🪙
+
+<h3 id="coins">
+
+0
+
+</h3>
+
+<p>
+
+Coins
+
+</p>
+
+</div>
+
+<div class="statItem">
+
+🏆
+
+<h3 id="badges">
+
+0
+
+</h3>
+
+<p>
+
+Badges
+
+</p>
+
+</div>
+
+<div class="statItem">
+
+📚
+
+<h3 id="completedWorlds">
+
+0 / 13
+
+</h3>
+
+<p>
+
+Worlds
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- DAILY MISSION -->
+
+<div class="infoCard">
+
+<h2>
+
+🎯 Daily Mission
+
+</h2>
+
+<ul class="missionList">
+
+<li>
+
+✅ Read 5 Comic Pages
+
+</li>
+
+<li>
+
+✅ Solve 3 Quiz Questions
+
+</li>
+
+<li>
+
+✅ Complete One Coding Challenge
+
+</li>
+
+</ul>
+
+<div class="missionReward">
+
+Reward
+
+⭐150 XP
+
+🪙50 Coins
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================================
+        BADGE + OVERALL PROGRESS
+========================================= -->
+
+<section class="dashboardInfo">
+
+<!-- BADGE -->
+
+<div class="infoCard">
+
+<h2>
+
+🏆 Latest Badge
+
+</h2>
+
+<div class="badgeBox">
+
+<img
+
+src="images/badges/python-beginner.png"
+
+alt="Badge"
+
+>
+
+<h3>
+
+Python Beginner
+
+</h3>
+
+<p>
+
+Awarded for completing
+
+Python Village.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- OVERALL -->
+
+<div class="infoCard">
+
+<h2>
+
+🌟 Overall Progress
 
 </h2>
 
 <div class="progress">
 
 <div
+
 id="overallProgress"
-class="progressBar">
+
+class="progress-bar">
 
 </div>
 
 </div>
 
-</section>
+<h3
 
-<!--==========================================
-        WORLD CARDS
-===========================================-->
+id="progressText">
 
-<section class="worldSection">
+0%
 
-    <h2>Choose Your Adventure</h2>
+Completed
 
-    <div
-        id="worldGrid"
-        class="worldGrid">
+</h3>
 
-    </div>
+</div>
 
 </section>
+
+<!-- =========================================
+                FOOTER
+========================================= -->
+
 <footer>
 
-Python Quest © 2026
+Python Quest
 
 <br>
 
-Developed by Amit Yerpude
+Developed by
+
+<b>
+
+Amit Yerpude
+
+</b>
 
 </footer>
 
+<!-- =========================================
+                JAVASCRIPT
+========================================= -->
+
 <script src="js/app.js"></script>
+
+<script src="js/worlds.js"></script>
+
 <script src="js/dashboard.js"></script>
 
 </body>
