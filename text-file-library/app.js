@@ -365,3 +365,39 @@ console.log(
     "📜 " + WORLD_ID + " Loaded Successfully"
 
 );
+// ==========================================
+// LOAD NOTES FROM NOTES.HTML
+// ==========================================
+
+async function loadNotes(){
+
+    try{
+
+        const response = await fetch("notes.html");
+
+        const data = await response.text();
+
+        document.getElementById("notesContainer").innerHTML = data;
+
+    }
+
+    catch(error){
+
+        console.error("Unable to load notes:", error);
+
+        document.getElementById("notesContainer").innerHTML =
+        `
+        <div class="noteCard">
+            <h3>⚠ Notes Not Found</h3>
+            <p>
+            Please check notes.html file location.
+            </p>
+        </div>
+        `;
+
+    }
+
+}
+
+
+loadNotes();
