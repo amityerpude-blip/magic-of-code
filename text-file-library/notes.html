@@ -1,112 +1,146 @@
 <!--==================================================
-            LIBRARY OF LIVING SCROLLS
-            TEXT FILE HANDLING NOTES
+        LIBRARY OF LIVING SCROLLS
+        TEXT FILE HANDLING NOTES
 ===================================================-->
 
-<div id="notesContainer">
 
-    <div class="noteCard">
+<div class="noteCard">
 
-        <h3>📜 What is a Text File?</h3>
+    <h3>📜 What is a Text File?</h3>
 
-        <p>
+    <p>
+        A text file is a collection of characters stored permanently
+        on secondary storage. Python can create, read, modify and
+        delete text files.
+    </p>
 
-            A text file is a collection of characters stored permanently
-            on secondary storage. Python can create, read, modify and
-            delete text files.
-
-        </p>
-
-    </div>
+</div>
 
 
-    <div class="noteCard">
 
-        <h3>✨ Opening a File</h3>
+<div class="noteCard">
+
+    <h3>✨ Opening a File</h3>
 
 <pre>
 file = open("demo.txt","r")
 </pre>
 
-        <p>
+    <p>
+        The <b>open()</b> function is used to open a file.
+        It can open an existing file or create a new file depending
+        on the selected mode.
+    </p>
 
-            The <b>open()</b> function opens an existing file or creates
-            a new one depending on the mode.
-
-        </p>
-
-    </div>
+</div>
 
 
-    <div class="noteCard">
 
-        <h3>📖 Read Modes</h3>
+
+<div class="noteCard">
+
+    <h3>📖 File Opening Modes</h3>
+
 
 <table>
 
 <tr>
-
-<th>Mode</th>
-
-<th>Description</th>
-
+    <th>Mode</th>
+    <th>Purpose</th>
 </tr>
+
 
 <tr>
-
-<td>r</td>
-
-<td>Read Only</td>
-
+    <td>r</td>
+    <td>Read data from file</td>
 </tr>
+
 
 <tr>
-
-<td>w</td>
-
-<td>Write</td>
-
+    <td>w</td>
+    <td>Write data into file (old data removed)</td>
 </tr>
+
 
 <tr>
-
-<td>a</td>
-
-<td>Append</td>
-
+    <td>a</td>
+    <td>Add new data at the end of file</td>
 </tr>
+
 
 <tr>
-
-<td>x</td>
-
-<td>Create New File</td>
-
+    <td>x</td>
+    <td>Create a new file</td>
 </tr>
+
 
 </table>
 
-    </div>
+
+</div>
 
 
-    <div class="noteCard">
 
-        <h3>📚 Reading Data</h3>
+
+
+<div class="noteCard">
+
+    <h3>📚 Reading Data From File</h3>
+
 
 <pre>
 file = open("demo.txt","r")
 
-print(file.read())
+data = file.read()
+
+print(data)
 
 file.close()
 </pre>
 
-    </div>
+
+<p>
+The <b>read()</b> function reads complete content of a text file.
+</p>
 
 
-    <div class="noteCard">
+</div>
 
-        <h3>✍ Writing Data</h3>
+
+
+
+
+<div class="noteCard">
+
+    <h3>📄 Reading Line By Line</h3>
+
+
+<pre>
+file = open("demo.txt","r")
+
+line = file.readline()
+
+print(line)
+
+file.close()
+</pre>
+
+
+<p>
+The <b>readline()</b> function reads one line at a time.
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="noteCard">
+
+    <h3>✍ Writing Data Into File</h3>
+
 
 <pre>
 file = open("demo.txt","w")
@@ -116,12 +150,23 @@ file.write("Welcome to Python Quest")
 file.close()
 </pre>
 
-    </div>
+
+<p>
+The write mode creates a new file or replaces existing content.
+</p>
 
 
-    <div class="noteCard">
+</div>
 
-        <h3>➕ Appending Data</h3>
+
+
+
+
+
+<div class="noteCard">
+
+    <h3>➕ Appending New Data</h3>
+
 
 <pre>
 file = open("demo.txt","a")
@@ -131,80 +176,147 @@ file.write("\nMaster Pyro")
 file.close()
 </pre>
 
-    </div>
+
+<p>
+Append mode adds new content without deleting previous data.
+</p>
 
 
-    <div class="noteCard">
-
-        <h3>📄 Reading Line by Line</h3>
-
-<pre>
-file = open("demo.txt")
-
-print(file.readline())
-
-file.close()
-</pre>
-
-    </div>
+</div>
 
 
-    <div class="noteCard">
 
-        <h3>🪄 Using with Statement</h3>
+
+
+
+
+<div class="noteCard">
+
+    <h3>🪄 Using with Statement</h3>
+
 
 <pre>
 with open("demo.txt","r") as file:
 
-    print(file.read())
+    data = file.read()
+
+    print(data)
 </pre>
 
-        <p>
 
-            The file automatically closes after the block finishes.
-
-        </p>
-
-    </div>
+<p>
+The <b>with</b> statement automatically closes the file after use.
+</p>
 
 
-    <div class="noteCard">
+</div>
 
-        <h3>⚠ Common Errors</h3>
+
+
+
+
+
+
+<div class="noteCard">
+
+    <h3>🐉 File Handling Adventure Rules</h3>
+
 
 <ul>
 
-<li>FileNotFoundError</li>
+<li>Always close files after completing operations.</li>
 
-<li>PermissionError</li>
+<li>Use meaningful file names.</li>
 
-<li>UnicodeDecodeError</li>
+<li>Select correct file mode.</li>
 
-<li>Wrong File Mode</li>
+<li>Handle errors using try-except.</li>
+
+<li>Use encoding when working with different languages.</li>
 
 </ul>
 
-    </div>
+
+</div>
 
 
-    <div class="noteCard">
 
-        <h3>🏆 Best Practices</h3>
+
+
+
+
+
+<div class="noteCard">
+
+    <h3>⚠ Common File Handling Errors</h3>
+
 
 <ul>
 
-<li>Always close files.</li>
+<li>
+<b>FileNotFoundError</b> -
+File does not exist.
+</li>
 
-<li>Use <b>with open()</b>.</li>
 
-<li>Use meaningful filenames.</li>
+<li>
+<b>PermissionError</b> -
+No permission to access file.
+</li>
 
-<li>Handle exceptions using try-except.</li>
 
-<li>Keep backups of important files.</li>
+<li>
+<b>UnicodeDecodeError</b> -
+Wrong encoding format.
+</li>
+
+
+<li>
+<b>Wrong File Mode</b> -
+Incorrect operation selected.
+</li>
+
 
 </ul>
 
-    </div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="noteCard">
+
+    <h3>🌟 Master Pyro's Final Tips</h3>
+
+
+<ul>
+
+<li>
+Use <b>with open()</b> whenever possible.
+</li>
+
+
+<li>
+Keep backup copies of important files.
+</li>
+
+
+<li>
+Use exception handling for safe programs.
+</li>
+
+
+<li>
+Practice reading and writing files regularly.
+</li>
+
+
+</ul>
+
 
 </div>
