@@ -557,3 +557,84 @@
 }
 
 }
+/*====================================================
+                REWARD SCREEN
+====================================================*/
+
+.rewardContainer{
+
+    text-align:center;
+
+    padding:40px;
+
+}
+
+.rewardChest{
+
+    margin-bottom:30px;
+
+}
+
+.chestImage{
+
+    width:220px;
+
+    animation:float 3s ease-in-out infinite;
+
+}
+
+.rewardGrid{
+
+    margin:40px auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+}
+
+.rewardCard{
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    padding:30px;
+
+}
+
+.rewardCard h2{
+
+    color:gold;
+
+}
+
+.rewardCard h1{
+
+    margin-top:20px;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
