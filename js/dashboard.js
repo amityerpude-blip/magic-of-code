@@ -1,5 +1,5 @@
 /*====================================================
-            PYTHON QUEST v2.0
+                PYTHON QUEST
             DASHBOARD CONTROLLER
 ====================================================*/
 
@@ -9,34 +9,38 @@
                 PAGE LOAD
 ====================================================*/
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded",()=>{
 
     loadWorlds();
+
+    loadPlayer();
+
+    updateOverallProgress();
 
 });
 
 
 /*====================================================
-            LOAD ALL WORLD CARDS
+            CREATE WORLD CARDS
 ====================================================*/
 
 function loadWorlds(){
 
-    const grid = document.getElementById("worldGrid");
+    const worldGrid=document.getElementById("worldGrid");
 
-    if(!grid){
+    if(!worldGrid){
 
-        console.error("worldGrid not found!");
+        console.error("worldGrid not found");
 
         return;
 
     }
 
-    grid.innerHTML = "";
+    worldGrid.innerHTML="";
 
-    worlds.forEach(world => {
+    worlds.forEach(world=>{
 
-        grid.innerHTML += createWorldCard(world);
+        worldGrid.innerHTML+=createWorldCard(world);
 
     });
 
@@ -44,7 +48,7 @@ function loadWorlds(){
 
 
 /*====================================================
-            CREATE WORLD CARD
+            CREATE SINGLE CARD
 ====================================================*/
 
 function createWorldCard(world){
@@ -53,56 +57,29 @@ function createWorldCard(world){
 
     <div class="worldCard ${world.rarity}">
 
-        <div class="rarity">
-
-            <span>${world.difficulty}</span>
-
-            <span>${world.rarity.toUpperCase()}</span>
-
-        </div>
-
         <img
-            src="${world.image}"
-            alt="${world.name}"
-        >
+        src="${world.image}"
+        alt="${world.name}">
 
         <div class="worldContent">
 
-            <h3>${world.name}</h3>
+            <h3>
 
-            <p>${world.topic}</p>
+            ${world.name}
+
+            </h3>
 
             <p>
 
-                <strong>Guardian:</strong>
-
-                ${world.guardian}
+            ${world.topic}
 
             </p>
 
-            <div class="cardProgress">
-
-                <div
-                    class="cardProgressFill"
-                    style="width:${world.progress}%">
-                </div>
-
-            </div>
-
-            <div class="rewardBox">
-
-                <span>⭐ ${world.xp}</span>
-
-                <span>🪙 ${world.coins}</span>
-
-                <span>🏆</span>
-
-            </div>
-
             <button
-                onclick="openWorld('${world.folder}')">
+            class="btn btn-primary"
+            onclick="openWorld('${world.folder}')">
 
-                Enter World
+            Enter World
 
             </button>
 
@@ -121,7 +98,125 @@ function createWorldCard(world){
 
 function openWorld(folder){
 
-    window.location.href =
-    "worlds/" + folder + "/index.html";
+    window.location.href=
+
+    "worlds/"+folder+"/index.html";
 
 }
+
+
+/*====================================================
+                LOAD PLAYER
+====================================================*/
+
+function loadPlayer(){
+
+    let player=
+
+    JSON.parse(
+
+    localStorage.getItem("pythonQuestPlayer")
+
+    );
+
+    if(!player){
+
+        player={
+
+            xp:0,
+
+            coins:0,
+
+            badges:0,
+
+            completedWorlds:0,
+
+            level:1
+
+        };
+
+        localStorage.setItem(
+
+        "pythonQuestPlayer",
+
+        JSON.stringify(player)
+
+        );
+
+    }
+
+    document.getElementById("xp").textContent=
+
+    player.xp;
+
+    document.getElementById("coins").textContent=
+
+    player.coins;
+
+    document.getElementById("badges").textContent=
+
+    player.badges;
+
+    document.getElementById("completedWorlds").textContent=
+
+    player.completedWorlds+" / "+worlds.length;
+
+    document.getElementById("playerLevel").textContent=
+
+    player.level;
+
+}
+
+
+/*====================================================
+        UPDATE OVERALL PROGRESS
+====================================================*/
+
+function updateOverallProgress(){
+
+    let player=
+
+    JSON.parse(
+
+    localStorage.getItem("pythonQuestPlayer")
+
+    );
+
+    if(!player) return;
+
+    const percent=
+
+    Math.round(
+
+    (player.completedWorlds/worlds.length)
+
+    *100
+
+    );
+
+    document.getElementById("overallProgress")
+
+    .style.width=
+
+    percent+"%";
+
+    document.getElementById("progressText")
+
+    .textContent=
+
+    percent+
+
+    "% Completed";
+
+}
+
+
+/*====================================================
+                DEBUG
+====================================================*/
+
+console.log(
+
+"Dashboard Loaded Successfully"
+
+);
