@@ -317,50 +317,69 @@
 }
 
 
-/*====================================================
-            CODING
-====================================================*/
+/*==========================================
+            PYTHON EDITOR
+==========================================*/
 
-#pythonCode{
+.pythonEditor{
 
-    width:100%;
+width:100%;
 
-    min-height:350px;
+height:350px;
 
-    background:#0c1725;
+padding:18px;
 
-    color:#00ff95;
+border:none;
 
-    font-family:Consolas,monospace;
+border-radius:18px;
 
-    border-radius:18px;
+background:#111827;
 
-    padding:20px;
+color:#f8f8f2;
 
-    border:none;
+font-family:Consolas,monospace;
 
-    resize:vertical;
+font-size:16px;
 
-}
+resize:vertical;
 
-#output{
+outline:none;
 
-    margin-top:20px;
+box-shadow:0 0 20px rgba(0,0,0,.35);
 
-    min-height:150px;
+margin:20px 0;
 
-    background:#08121f;
-
-    border-radius:18px;
-
-    padding:20px;
-
-    color:#00ff95;
-
-    white-space:pre-wrap;
+line-height:1.6;
 
 }
 
+.pythonEditor:focus{
+
+box-shadow:0 0 18px rgba(255,193,7,.6);
+
+}
+
+#outputConsole{
+
+background:#05070d;
+
+color:#8ef58e;
+
+padding:18px;
+
+border-radius:16px;
+
+min-height:150px;
+
+font-family:Consolas,monospace;
+
+overflow:auto;
+
+white-space:pre-wrap;
+
+margin-top:20px;
+
+}
 
 /*====================================================
             QUIZ
