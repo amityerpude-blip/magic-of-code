@@ -6,10 +6,20 @@
 "use strict";
 
 /*=========================================================
-                GLOBAL SETTINGS
+                CURRENT WORLD
 =========================================================*/
 
-const sections=[
+const WORLD_ID = window.location.pathname
+    .split("/")
+    .filter(Boolean)
+    .slice(-2, -1)[0] || "python-world";
+
+
+/*=========================================================
+                LESSON SECTIONS
+=========================================================*/
+
+const sections = [
 
     "comicSection",
 
@@ -25,14 +35,14 @@ const sections=[
 
 ];
 
-let currentSection=0;
+let currentSection = 0;
 
 
 /*=========================================================
                 PAGE LOAD
 =========================================================*/
 
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded", () => {
 
     loadSavedSection();
 
@@ -54,29 +64,29 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 /*=========================================================
-            DASHBOARD BUTTON
+                GO TO DASHBOARD
 =========================================================*/
 
 function goDashboard(){
 
-    window.location.href="../dashboard.html";
+    window.location.href = "../dashboard.html";
 
 }
 
 
 /*=========================================================
-            NAVIGATION BUTTONS
+            INITIALIZE TAB NAVIGATION
 =========================================================*/
 
 function initializeNavigation(){
 
-    const buttons=document.querySelectorAll(".navButton");
+    const buttons = document.querySelectorAll(".navButton");
 
     buttons.forEach((button,index)=>{
 
         button.addEventListener("click",()=>{
 
-            currentSection=index;
+            currentSection = index;
 
             showSection(currentSection);
 
@@ -88,7 +98,7 @@ function initializeNavigation(){
 
 
 /*=========================================================
-            SHOW SECTION
+                SHOW SECTION
 =========================================================*/
 
 function showSection(index){
@@ -125,7 +135,7 @@ function showSection(index){
 
     .classList.add("active");
 
-    currentSection=index;
+    currentSection = index;
 
     updateProgress();
 
@@ -135,12 +145,12 @@ function showSection(index){
 
 
 /*=========================================================
-            PREVIOUS / NEXT
+                PREVIOUS SECTION
 =========================================================*/
 
 function previousSection(){
 
-    if(currentSection>0){
+    if(currentSection > 0){
 
         currentSection--;
 
@@ -151,9 +161,13 @@ function previousSection(){
 }
 
 
+/*=========================================================
+                NEXT SECTION
+=========================================================*/
+
 function nextSection(){
 
-    if(currentSection<sections.length-1){
+    if(currentSection < sections.length-1){
 
         currentSection++;
 
@@ -165,24 +179,24 @@ function nextSection(){
 
 
 /*=========================================================
-                BUTTONS
+            PREVIOUS / NEXT BUTTONS
 =========================================================*/
 
 function initializeButtons(){
 
-    const previous=document.getElementById("previousBtn");
+    const previous = document.getElementById("previousBtn");
 
-    const next=document.getElementById("nextBtn");
+    const next = document.getElementById("nextBtn");
 
     if(previous){
 
-        previous.onclick=previousSection;
+        previous.onclick = previousSection;
 
     }
 
     if(next){
 
-        next.onclick=nextSection;
+        next.onclick = nextSection;
 
     }
 
@@ -190,33 +204,31 @@ function initializeButtons(){
 
 
 /*=========================================================
-                PROGRESS BAR
+                LESSON PROGRESS
 =========================================================*/
 
 function updateProgress(){
 
-    const bar=document.getElementById("lessonProgressBar");
+    const bar = document.getElementById("lessonProgressBar");
 
     if(!bar) return;
 
-    const percent=
+    const percent = ((currentSection+1)/sections.length)*100;
 
-    ((currentSection+1)/sections.length)*100;
-
-    bar.style.width=percent+"%";
+    bar.style.width = percent + "%";
 
 }
 
 
 /*=========================================================
-            SAVE LAST TAB
+            SAVE CURRENT SECTION
 =========================================================*/
 
 function saveCurrentSection(){
 
     localStorage.setItem(
 
-        "TextFileLibrarySection",
+        WORLD_ID + "-section",
 
         currentSection
 
@@ -226,22 +238,20 @@ function saveCurrentSection(){
 
 
 /*=========================================================
-            LOAD LAST TAB
+            LOAD SAVED SECTION
 =========================================================*/
 
 function loadSavedSection(){
 
-    const saved=
+    const saved = localStorage.getItem(
 
-    localStorage.getItem(
-
-        "TextFileLibrarySection"
+        WORLD_ID + "-section"
 
     );
 
-    if(saved!==null){
+    if(saved !== null){
 
-        currentSection=parseInt(saved);
+        currentSection = parseInt(saved);
 
     }
 
@@ -254,15 +264,15 @@ function loadSavedSection(){
 
 function initializeVideo(){
 
-    const video=document.getElementById("lessonVideo");
+    const video = document.getElementById("lessonVideo");
 
     if(!video) return;
 
-    video.onended=function(){
+    video.onended = function(){
 
         alert(
 
-        "🎬 Lesson completed!\nYou can continue to the next section."
+            "🎬 Animation completed!\nContinue your adventure."
 
         );
 
@@ -277,25 +287,25 @@ function initializeVideo(){
 
 function initializeCoding(){
 
-    const run=document.getElementById("runCode");
+    const run = document.getElementById("runCode");
 
     if(!run) return;
 
-    run.onclick=function(){
+    run.onclick = function(){
 
-        const code=
+        const code =
 
         document.getElementById("pythonCode").value;
 
-        document.getElementById("output").textContent=
+        document.getElementById("output").textContent =
 
-`Python Execution
+`Python Quest Coding Lab
 
---------------------------------
+---------------------------------------
 
 Pyodide integration will be added later.
 
---------------------------------
+---------------------------------------
 
 ${code}`;
 
@@ -305,28 +315,24 @@ ${code}`;
 
 
 /*=========================================================
-                REWARD
+                REWARD SYSTEM
 =========================================================*/
 
 function initializeReward(){
 
-    const reward=
-
-    document.getElementById("claimReward");
+    const reward = document.getElementById("claimReward");
 
     if(!reward) return;
 
-    reward.onclick=function(){
+    reward.onclick = function(){
 
-        let player=
+        let player = JSON.parse(
 
-        JSON.parse(
+            localStorage.getItem(
 
-        localStorage.getItem(
+                "pythonQuestPlayer"
 
-        "pythonQuestPlayer"
-
-        )
+            )
 
         );
 
@@ -348,27 +354,25 @@ function initializeReward(){
 
         }
 
-        player.xp+=300;
+        player.xp += 300;
 
-        player.coins+=150;
+        player.coins += 150;
 
-        player.badges++;
+        player.badges += 1;
 
-        if(player.completedWorlds<1){
+        if(player.completedWorlds < 1){
 
-            player.completedWorlds=1;
+            player.completedWorlds = 1;
 
         }
 
-        player.level=
-
-        Math.floor(player.xp/1000)+1;
+        player.level = Math.floor(player.xp/1000)+1;
 
         localStorage.setItem(
 
-        "pythonQuestPlayer",
+            "pythonQuestPlayer",
 
-        JSON.stringify(player)
+            JSON.stringify(player)
 
         );
 
@@ -376,7 +380,11 @@ function initializeReward(){
 
 `🏆 Congratulations!
 
-You earned
+You completed
+
+${WORLD_ID.replace(/-/g," ").toUpperCase()}
+
+Rewards Earned
 
 ⭐ +300 XP
 
@@ -392,11 +400,11 @@ You earned
 
 
 /*=========================================================
-                DEBUG
+                    DEBUG
 =========================================================*/
 
 console.log(
 
-"📜 Library of Living Scrolls Loaded"
+    "📜 " + WORLD_ID + " Loaded Successfully"
 
 );
