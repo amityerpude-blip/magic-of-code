@@ -101,48 +101,21 @@ function initializeNavigation(){
                 SHOW SECTION
 =========================================================*/
 
-function showSection(index){
+function showSection(sectionId){
 
-    document
+document.querySelectorAll(".lessonContent")
 
-    .querySelectorAll(".lessonContent")
+.forEach(section=>{
 
-    .forEach(section=>{
+section.classList.remove("active");
 
-        section.classList.remove("active");
+});
 
-    });
+document.getElementById(sectionId)
 
-    document
-
-    .querySelectorAll(".navButton")
-
-    .forEach(button=>{
-
-        button.classList.remove("active");
-
-    });
-
-    document
-
-    .getElementById(sections[index])
-
-    .classList.add("active");
-
-    document
-
-    .querySelectorAll(".navButton")[index]
-
-    .classList.add("active");
-
-    currentSection = index;
-
-    updateProgress();
-
-    saveCurrentSection();
+.classList.add("active");
 
 }
-
 
 /*=========================================================
                 PREVIOUS SECTION
