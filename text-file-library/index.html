@@ -276,49 +276,49 @@ id="notesContainer">
             CODING LAB
 ===================================== -->
 
-<section
-id="codingSection"
-class="lessonContent">
+<section id="codingSection" class="lessonContent">
 
 <h2>💻 Master Pyro's Coding Laboratory</h2>
 
 <div class="challengeBox">
 
 <h3 id="challengeTitle">
-
 Challenge 1 : Create a Text File
-
 </h3>
 
 <p id="challengeText">
-
-Create a file named <b>magic.txt</b>
-and write "Welcome to Python Quest"
-
+Create a file named <b>magic.txt</b> and write
+<b>"Welcome to Python Quest"</b>
 </p>
 
 </div>
 
-<div id="editor" class="editor"></div>
+<textarea
+id="pythonCode"
+class="pythonEditor"
+spellcheck="false">
+
+# Write your Python code here
+
+with open("magic.txt","w") as file:
+    file.write("Welcome to Python Quest")
+
+print("File Created Successfully")
+
+</textarea>
 
 <div class="codingButtons">
 
 <button id="runPython" class="btn btn-success">
-
 ▶ Run
-
 </button>
 
 <button id="clearPython" class="btn btn-warning">
-
 🗑 Clear
-
 </button>
 
 <button id="nextChallenge" class="btn btn-primary">
-
 ➡ Next Challenge
-
 </button>
 
 </div>
@@ -328,7 +328,6 @@ and write "Welcome to Python Quest"
 <pre id="outputConsole"></pre>
 
 </section>
-
 <!-- ==========================================
                 QUIZ
 ========================================== -->
