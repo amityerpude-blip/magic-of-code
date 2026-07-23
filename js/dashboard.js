@@ -98,9 +98,7 @@ function createWorldCard(world){
 
 function openWorld(folder){
 
-    window.location.href=
-
-    "worlds/"+folder+"/index.html";
+    window.location.href = folder + "/index.html";
 
 }
 
