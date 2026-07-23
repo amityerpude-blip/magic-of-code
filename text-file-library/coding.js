@@ -1,9 +1,38 @@
 /*=========================================================
-            PYTHON QUEST - CODING LAB
-            Library of Living Scrolls
+                    PYTHON QUEST
+              UNIVERSAL CODING ENGINE
+                  PART 1
 =========================================================*/
 
 "use strict";
+
+/*=========================================================
+                    PYODIDE
+=========================================================*/
+
+let pyodide = null;
+
+let pyodideReady = false;
+
+
+/*=========================================================
+                HTML ELEMENTS
+=========================================================*/
+
+const editor = document.getElementById("pythonCode");
+
+const output = document.getElementById("outputConsole");
+
+const runButton = document.getElementById("runPython");
+
+const clearButton = document.getElementById("clearPython");
+
+const nextButton = document.getElementById("nextChallenge");
+
+const challengeTitle = document.getElementById("challengeTitle");
+
+const challengeText = document.getElementById("challengeText");
+
 
 /*=========================================================
                 CHALLENGES
@@ -12,81 +41,84 @@
 const challenges = [
 
 {
-title: "Challenge 1 : Create a Text File",
 
-text: "Create a file named magic.txt and write 'Welcome to Python Quest' into it.",
+title:"Challenge 1 : Create a Text File",
 
-code:
-`with open("magic.txt","w") as file:
-    file.write("Welcome to Python Quest")
+text:"Create a file named magic.txt and write 'Welcome to Python Quest'.",
+
+starterCode:
+`with open("magic.txt","w") as f:
+    f.write("Welcome to Python Quest")
 
 print("File Created Successfully")`
+
 },
 
 {
-title: "Challenge 2 : Read File",
 
-text: "Read and display the contents of magic.txt.",
+title:"Challenge 2 : Read File",
 
-code:
-`with open("magic.txt","r") as file:
-    print(file.read())`
+text:"Read the contents of magic.txt.",
+
+starterCode:
+`with open("magic.txt","r") as f:
+
+    print(f.read())`
+
 },
 
 {
-title: "Challenge 3 : Append Data",
 
-text: "Append 'Master Pyro' to the existing file.",
+title:"Challenge 3 : Append Data",
 
-code:
-`with open("magic.txt","a") as file:
-    file.write("\\nMaster Pyro")
+text:"Append 'Master Pyro' to the file.",
 
-print("Data Appended Successfully")`
+starterCode:
+`with open("magic.txt","a") as f:
+
+    f.write("\\nMaster Pyro")
+
+print("Done")`
+
 },
 
 {
-title: "Challenge 4 : Read Line by Line",
 
-text: "Read the file line by line using a loop.",
+title:"Challenge 4 : Count Lines",
 
-code:
-`with open("magic.txt","r") as file:
+text:"Count the total number of lines inside magic.txt.",
 
-    for line in file:
+starterCode:
+`with open("magic.txt","r") as f:
 
-        print(line.strip())`
+    lines=f.readlines()
+
+print(len(lines))`
+
 },
 
 {
-title: "Challenge 5 : Handle FileNotFoundError",
 
-text: "Open a file safely using try-except.",
+title:"Challenge 5 : Exception Handling",
 
-code:
+text:"Safely open a file using try-except.",
+
+starterCode:
 `try:
 
-    with open("unknown.txt","r") as file:
+    with open("unknown.txt","r") as f:
 
-        print(file.read())
+        print(f.read())
 
 except FileNotFoundError:
 
     print("File Not Found")`
+
 }
 
 ];
 
-
-/*=========================================================
-                VARIABLES
-=========================================================*/
-
 let currentChallenge = 0;
-
-const editor = document.getElementById("pythonCode");
-
-const output = document.getElementById("outputConsole");
 
 
 /*=========================================================
@@ -95,13 +127,14 @@ const output = document.getElementById("outputConsole");
 
 function loadChallenge(){
 
-document.getElementById("challengeTitle").innerHTML =
+challengeTitle.textContent =
 challenges[currentChallenge].title;
 
-document.getElementById("challengeText").innerHTML =
+challengeText.textContent =
 challenges[currentChallenge].text;
 
-editor.value = challenges[currentChallenge].code;
+editor.value =
+challenges[currentChallenge].starterCode;
 
 output.textContent = "";
 
@@ -109,38 +142,14 @@ output.textContent = "";
 
 
 /*=========================================================
-                RUN BUTTON
-=========================================================*/
-
-function runCode(){
-
-output.textContent =
-"🐍 Python execution will be enabled in Version 2.\n\n" +
-
-"====================================\n" +
-
-"Your Program\n" +
-
-"====================================\n\n" +
-
-editor.value +
-
-"\n\n====================================\n" +
-
-"Program Finished Successfully";
-
-}
-
-
-/*=========================================================
-                CLEAR BUTTON
+                CLEAR EDITOR
 =========================================================*/
 
 function clearEditor(){
 
-editor.value = "";
+editor.value="";
 
-output.textContent = "";
+output.textContent="";
 
 }
 
@@ -153,30 +162,11 @@ function nextChallenge(){
 
 currentChallenge++;
 
-if(currentChallenge >= challenges.length){
+if(currentChallenge>=challenges.length){
 
-alert("🏆 Congratulations!\n\nYou have completed all Text File Handling Challenges!");
+currentChallenge=0;
 
-currentChallenge = 0;
-
-}
-
-loadChallenge();
-
-}
-
-
-/*=========================================================
-                PREVIOUS CHALLENGE
-=========================================================*/
-
-function previousChallenge(){
-
-currentChallenge--;
-
-if(currentChallenge < 0){
-
-currentChallenge = challenges.length - 1;
+alert("🏆 Congratulations!\nYou completed all coding challenges.");
 
 }
 
@@ -186,23 +176,263 @@ loadChallenge();
 
 
 /*=========================================================
-                EVENTS
+            INITIALIZE PYODIDE
 =========================================================*/
 
-document.getElementById("runPython")
-.addEventListener("click", runCode);
+async function initializePyodide(){
 
-document.getElementById("clearPython")
-.addEventListener("click", clearEditor);
+output.textContent="Loading Python Engine...";
 
-document.getElementById("nextChallenge")
-.addEventListener("click", nextChallenge);
+pyodide = await loadPyodide({
+
+indexURL:
+"https://cdn.jsdelivr.net/pyodide/v0.28.3/full/"
+
+});
+
+pyodideReady=true;
+
+output.textContent=
+"🐍 Python Engine Ready!\n\nClick RUN to execute your code.";
+
+}
 
 
 /*=========================================================
-                START
+                BUTTON EVENTS
 =========================================================*/
 
-window.addEventListener("load", loadChallenge);
+runButton.addEventListener(
 
-console.log("🐍 Coding Lab Loaded Successfully");
+"click",
+
+runPython
+
+);
+
+clearButton.addEventListener(
+
+"click",
+
+clearEditor
+
+);
+
+nextButton.addEventListener(
+
+"click",
+
+nextChallenge
+
+);
+
+
+/*=========================================================
+                PAGE LOAD
+=========================================================*/
+
+window.addEventListener(
+
+"load",
+
+()=>{
+
+loadChallenge();
+
+initializePyodide();
+
+}
+
+);
+/*=========================================================
+                PART 2
+            PYTHON EXECUTION ENGINE
+=========================================================*/
+
+async function runPython(){
+
+    if(!pyodideReady){
+
+        output.textContent =
+        "⏳ Python Engine is still loading...";
+
+        return;
+
+    }
+
+    output.textContent = "";
+
+    let code = editor.value;
+
+    try{
+
+        /* Capture print() output */
+
+        pyodide.setStdout({
+
+            batched: function(text){
+
+                output.textContent += text + "\n";
+
+            }
+
+        });
+
+        pyodide.setStderr({
+
+            batched: function(text){
+
+                output.textContent +=
+                "❌ " + text + "\n";
+
+            }
+
+        });
+
+        await pyodide.runPythonAsync(code);
+
+    }
+
+    catch(error){
+
+        output.textContent +=
+
+        "\n❌ Python Error\n\n" +
+
+        error;
+
+    }
+
+}
+/*=========================================================
+                PART 3
+          PYTHON FILE SYSTEM SUPPORT
+=========================================================*/
+
+/*-----------------------------------------------
+        Prepare Virtual File System
+-----------------------------------------------*/
+
+async function prepareFileSystem(){
+
+    if(!pyodideReady) return;
+
+    try{
+
+        await pyodide.runPythonAsync(`
+
+import os
+
+# Create default file if it doesn't exist
+
+if not os.path.exists("magic.txt"):
+
+    with open("magic.txt","w") as file:
+
+        file.write("Welcome to Python Quest")
+
+`);
+
+    }
+
+    catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+
+/*-----------------------------------------------
+        Reset Lesson File
+-----------------------------------------------*/
+
+async function resetMagicFile(){
+
+    if(!pyodideReady) return;
+
+    await pyodide.runPythonAsync(`
+
+with open("magic.txt","w") as file:
+
+    file.write("Welcome to Python Quest")
+
+`);
+
+}
+
+
+/*-----------------------------------------------
+        Show File Content (Debug)
+-----------------------------------------------*/
+
+async function showMagicFile(){
+
+    if(!pyodideReady) return;
+
+    try{
+
+        const data = await pyodide.runPythonAsync(`
+
+with open("magic.txt","r") as file:
+
+    file.read()
+
+`);
+
+        console.log("magic.txt");
+
+        console.log(data);
+
+    }
+
+    catch(e){
+
+        console.log(e);
+
+    }
+
+}
+
+
+/*-----------------------------------------------
+        Create Demo Files
+-----------------------------------------------*/
+
+async function createDemoFiles(){
+
+    if(!pyodideReady) return;
+
+    await pyodide.runPythonAsync(`
+
+with open("student.txt","w") as f:
+
+    f.write("Dino")
+
+with open("spellbook.txt","w") as f:
+
+    f.write("Fire Spell\\nIce Spell\\nWind Spell")
+
+`);
+
+}
+
+
+/*-----------------------------------------------
+        Override Initialization
+-----------------------------------------------*/
+
+window.addEventListener("load",async()=>{
+
+    while(!pyodideReady){
+
+        await new Promise(r=>setTimeout(r,100));
+
+    }
+
+    await prepareFileSystem();
+
+    await createDemoFiles();
+
+});
