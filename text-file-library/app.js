@@ -369,35 +369,77 @@ console.log(
 // LOAD NOTES FROM NOTES.HTML
 // ==========================================
 
+/*=========================================================
+                LOAD NOTES FROM NOTES.HTML
+=========================================================*/
+
 async function loadNotes(){
 
-    try{
+    const notesContainer = document.getElementById("notesContainer");
 
-        const response = await fetch("notes.html");
 
-        const data = await response.text();
+    // Container check
+    if(!notesContainer){
 
-        document.getElementById("notesContainer").innerHTML = data;
+        console.error("notesContainer not found");
+
+        return;
 
     }
 
+
+    try{
+
+
+        const response = await fetch("notes.html");
+
+
+        if(!response.ok){
+
+            throw new Error("notes.html not found");
+
+        }
+
+
+        const notesData = await response.text();
+
+
+        notesContainer.innerHTML = notesData;
+
+
+        console.log("📚 Living Scrolls Loaded Successfully");
+
+
+    }
+
+
     catch(error){
 
-        console.error("Unable to load notes:", error);
 
-        document.getElementById("notesContainer").innerHTML =
-        `
+        console.error(
+            "Notes loading failed:",
+            error
+        );
+
+
+        notesContainer.innerHTML = `
+
         <div class="noteCard">
-            <h3>⚠ Notes Not Found</h3>
+
+            <h3>⚠ Magical Scroll Missing</h3>
+
             <p>
-            Please check notes.html file location.
+            Master Pyro's notes could not be opened.
+            Please check notes.html path.
             </p>
+
         </div>
+
         `;
+
 
     }
 
 }
-
 
 
