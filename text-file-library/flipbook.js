@@ -9,7 +9,7 @@
                 SETTINGS
 =========================================================*/
 
-const TOTAL_PAGES = 14;      // Change for each world
+const TOTAL_PAGES = 21;      // Change for each world
 
 let currentPage = 1;
 
