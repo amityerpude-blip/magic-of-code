@@ -20,7 +20,7 @@ const worlds = [
 
     folder:"python-village",
 
-    image:"images/worlds/python-village.png",
+    image:"assets/kingdoms/python-village.png",
 
     difficulty:"Beginner",
 
@@ -40,7 +40,7 @@ const worlds = [
 
     folder:"decision-valley",
 
-    image:"images/worlds/decision-valley.png",
+    image:"assets/kingdoms/condition-cave.png",
 
     difficulty:"Beginner",
 
@@ -60,7 +60,7 @@ const worlds = [
 
     folder:"looping-forest",
 
-    image:"images/worlds/looping-forest.png",
+    image:"assets/kingdoms/loop-forest.png",
 
     difficulty:"Beginner",
 
