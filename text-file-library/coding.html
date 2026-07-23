@@ -1,0 +1,181 @@
+<!--==================================================
+        LIBRARY OF LIVING SCROLLS
+            CODING CHALLENGES
+===================================================-->
+
+<div class="codingContainer">
+
+    <!-- Challenge 1 -->
+
+    <div class="codingCard">
+
+        <h2>⚔ Challenge 1</h2>
+
+        <h3>Create Your First Scroll</h3>
+
+        <p>
+
+            Write a Python program to create a text file named
+            <b>magic.txt</b> and write the message:
+
+        </p>
+
+<pre>
+Welcome to Python Quest
+</pre>
+
+<textarea class="codeArea">
+
+file = open("magic.txt","w")
+
+file.write("Welcome to Python Quest")
+
+file.close()
+
+</textarea>
+
+    </div>
+
+
+    <!-- Challenge 2 -->
+
+    <div class="codingCard">
+
+        <h2>⚔ Challenge 2</h2>
+
+        <h3>Read the Ancient Scroll</h3>
+
+<pre>
+Read the complete contents
+of magic.txt
+</pre>
+
+<textarea class="codeArea">
+
+file = open("magic.txt","r")
+
+print(file.read())
+
+file.close()
+
+</textarea>
+
+    </div>
+
+
+    <!-- Challenge 3 -->
+
+    <div class="codingCard">
+
+        <h2>⚔ Challenge 3</h2>
+
+        <h3>Add New Magic</h3>
+
+<pre>
+Append
+
+Master Pyro
+
+to the file.
+</pre>
+
+<textarea class="codeArea">
+
+file = open("magic.txt","a")
+
+file.write("\nMaster Pyro")
+
+file.close()
+
+</textarea>
+
+    </div>
+
+
+    <!-- Challenge 4 -->
+
+    <div class="codingCard">
+
+        <h2>⚔ Challenge 4</h2>
+
+        <h3>Read One Line</h3>
+
+<pre>
+Display only the first line
+of the file.
+</pre>
+
+<textarea class="codeArea">
+
+file = open("magic.txt","r")
+
+print(file.readline())
+
+file.close()
+
+</textarea>
+
+    </div>
+
+
+    <!-- Challenge 5 -->
+
+    <div class="codingCard">
+
+        <h2>👑 Final Quest</h2>
+
+        <h3>The Lost Spell Book</h3>
+
+        <p>
+
+            Create a program that
+
+        </p>
+
+        <ul>
+
+            <li>Create a file.</li>
+
+            <li>Write three spell names.</li>
+
+            <li>Read them back.</li>
+
+            <li>Display them beautifully.</li>
+
+        </ul>
+
+<textarea class="codeArea">
+
+# Write your own solution here
+
+</textarea>
+
+    </div>
+
+</div>
+
+
+<div class="codingButtons">
+
+<button id="runCode" class="btn btn-success">
+
+▶ Run Program
+
+</button>
+
+<button id="resetCode" class="btn btn-warning">
+
+↺ Reset
+
+</button>
+
+</div>
+
+
+<h2>Program Output</h2>
+
+<pre id="output">
+
+Output will appear here...
+
+</pre>
