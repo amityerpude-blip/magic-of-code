@@ -1,22 +1,78 @@
 /*====================================================
-            PYTHON QUEST v2.0
-              DASHBOARD CSS
+                PYTHON QUEST
+                DASHBOARD CSS
 ====================================================*/
+
 
 /*====================================================
-                HERO PANEL
+                HEADER
 ====================================================*/
 
-.heroPanel{
+.dashboardHeader{
 
-    width:92%;
+    width:100%;
+
+    padding:18px 6%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:rgba(0,0,0,.25);
+
+    backdrop-filter:blur(12px);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+}
+
+.logo{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:var(--secondary);
+
+}
+
+.levelBox{
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:10px 20px;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+}
+
+
+
+/*====================================================
+                HERO
+====================================================*/
+
+.heroSection{
+
+    width:90%;
+
     max-width:1400px;
 
     margin:40px auto;
 
     display:grid;
 
-    grid-template-columns:350px 1fr;
+    grid-template-columns:1fr 350px;
 
     gap:40px;
 
@@ -24,41 +80,13 @@
 
     backdrop-filter:blur(15px);
 
-    border-radius:30px;
+    border-radius:25px;
 
-    padding:35px;
-
-    box-shadow:0 20px 45px rgba(0,0,0,.35);
+    padding:40px;
 
 }
 
-.heroLeft{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-}
-
-.heroLeft img{
-
-    width:300px;
-
-    animation:floatHero 4s ease-in-out infinite;
-
-}
-
-@keyframes floatHero{
-
-0%{transform:translateY(0);}
-50%{transform:translateY(-12px);}
-100%{transform:translateY(0);}
-
-}
-
-.heroRight{
+.heroText{
 
     display:flex;
 
@@ -68,141 +96,109 @@
 
 }
 
-.heroRight h2{
+.heroText h1{
 
-    font-size:42px;
+    font-size:48px;
 
-    font-family:'Cinzel',serif;
-
-    color:#FFD54F;
+    color:var(--secondary);
 
     margin-bottom:20px;
 
 }
 
-.heroRight p{
+.heroText p{
+
+    line-height:1.9;
+
+    color:var(--text-light);
 
     font-size:18px;
 
-    line-height:2;
-
-    color:#eeeeee;
+    margin-bottom:30px;
 
 }
 
-/*====================================================
-                PLAYER PANEL
-====================================================*/
+.continueButton{
 
-.playerPanel{
+    width:220px;
 
-    width:92%;
+    padding:15px;
 
-    max-width:1400px;
-
-    margin:40px auto;
-
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:25px;
-
-}
-
-.playerCard{
-
-    background:rgba(255,255,255,.08);
-
-    backdrop-filter:blur(12px);
-
-    border-radius:22px;
-
-    padding:25px;
-
-    text-align:center;
-
-    transition:.35s;
-
-}
-
-.playerCard:hover{
-
-    transform:translateY(-8px);
-
-    box-shadow:0 15px 30px rgba(0,0,0,.35);
-
-}
-
-.playerCard h3{
-
-    color:#FFD54F;
-
-    margin-bottom:15px;
-
-}
-
-.playerCard p{
-
-    font-size:34px;
-
-    font-weight:bold;
-
-}
-
-/*====================================================
-            PROGRESS
-====================================================*/
-
-.progressSection{
-
-    width:92%;
-
-    max-width:1400px;
-
-    margin:40px auto;
-
-}
-
-.progressSection h2{
-
-    text-align:center;
-
-    margin-bottom:20px;
-
-}
-
-.progress{
-
-    height:22px;
-
-    background:#1b2940;
+    border:none;
 
     border-radius:50px;
 
-    overflow:hidden;
+    background:var(--primary);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:17px;
 
 }
 
-.progressBar{
+.continueButton:hover{
 
-    width:25%;
-
-    height:100%;
-
-    background:linear-gradient(
-
-    90deg,
-
-    #00E676,
-
-    #69F0AE
-
-    );
-
-    border-radius:50px;
+    transform:translateY(-5px);
 
 }
+
+.heroImage{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.heroImage img{
+
+    width:300px;
+
+    animation:float 3s ease-in-out infinite;
+
+}
+
+
+
+/*====================================================
+            SECTION TITLES
+====================================================*/
+
+.sectionHeading{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:auto;
+
+    margin-bottom:25px;
+
+}
+
+.sectionHeading h2{
+
+    color:var(--secondary);
+
+    margin-bottom:10px;
+
+    font-size:36px;
+
+}
+
+.sectionHeading p{
+
+    color:var(--text-light);
+
+}
+
+
 
 /*====================================================
             WORLD GRID
@@ -210,11 +206,13 @@
 
 .worldSection{
 
-    width:92%;
+    width:90%;
 
-    max-width:1500px;
+    max-width:1400px;
 
-    margin:60px auto;
+    margin:auto;
+
+    margin-top:60px;
 
 }
 
@@ -222,23 +220,25 @@
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 
-    gap:35px;
+    gap:30px;
 
 }
 
+
+
 /*====================================================
-            POKEMON CARD
+            WORLD CARD
 ====================================================*/
 
 .worldCard{
 
     background:rgba(255,255,255,.08);
 
-    backdrop-filter:blur(18px);
+    backdrop-filter:blur(12px);
 
-    border-radius:28px;
+    border-radius:22px;
 
     overflow:hidden;
 
@@ -246,277 +246,247 @@
 
     cursor:pointer;
 
-    box-shadow:0 20px 40px rgba(0,0,0,.35);
-
-    border:2px solid transparent;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
 
 }
 
 .worldCard:hover{
 
-    transform:
+    transform:translateY(-10px);
 
-    translateY(-12px)
-
-    scale(1.03);
-
-    border-color:#FFD54F;
-
-    box-shadow:
-
-    0 0 30px rgba(255,213,79,.5);
+    box-shadow:0 15px 40px rgba(0,0,0,.45);
 
 }
-
-/*====================================================
-            CARD IMAGE
-====================================================*/
 
 .worldCard img{
 
     width:100%;
 
-    height:240px;
+    height:200px;
 
     object-fit:cover;
 
-    transition:.5s;
+    transition:.35s;
 
 }
 
 .worldCard:hover img{
 
-    transform:scale(1.06);
+    transform:scale(1.05);
 
 }
 
+.worldContent{
+
+    padding:20px;
+
+}
+
+.worldContent h3{
+
+    color:var(--secondary);
+
+    margin-bottom:10px;
+
+    text-align:center;
+
+}
+
+.worldContent p{
+
+    color:var(--text-light);
+
+    text-align:center;
+
+    min-height:50px;
+
+}
+
+.worldCard button{
+
+    width:100%;
+
+    margin-top:20px;
+
+}
+
+
+
 /*====================================================
-            CARD BODY
+            DASHBOARD INFO
 ====================================================*/
 
-.worldCard h3{
+.dashboardInfo{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:60px auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
+
+    gap:30px;
+
+}
+
+.infoCard{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:22px;
+
+    padding:30px;
+
+}
+
+.infoCard h2{
+
+    color:var(--secondary);
+
+    margin-bottom:25px;
+
+}
+
+
+
+/*====================================================
+            PLAYER STATS
+====================================================*/
+
+.playerStats{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+}
+
+.statItem{
+
+    background:rgba(255,255,255,.05);
+
+    border-radius:15px;
+
+    padding:20px;
+
+    text-align:center;
+
+}
+
+.statItem h3{
+
+    font-size:32px;
+
+    margin:10px 0;
+
+}
+
+
+
+/*====================================================
+            DAILY MISSION
+====================================================*/
+
+.missionList{
+
+    list-style:none;
+
+}
+
+.missionList li{
+
+    margin-bottom:18px;
+
+    font-size:17px;
+
+}
+
+.missionReward{
+
+    margin-top:30px;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,.05);
+
+    text-align:center;
+
+    font-weight:600;
+
+}
+
+
+
+/*====================================================
+            BADGE
+====================================================*/
+
+.badgeBox{
+
+    text-align:center;
+
+}
+
+.badgeBox img{
+
+    width:120px;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+}
+
+
+
+/*====================================================
+            PROGRESS
+====================================================*/
+
+.progress{
+
+    margin-top:25px;
+
+}
+
+#progressText{
 
     text-align:center;
 
     margin-top:20px;
 
-    font-size:24px;
-
-    color:#FFD54F;
-
 }
 
-.worldCard p{
 
-    text-align:center;
-
-    margin:12px 20px;
-
-    color:#dddddd;
-
-}
 
 /*====================================================
-            DIFFICULTY
+            FOOTER
 ====================================================*/
 
-.stars{
+footer{
 
-    text-align:center;
-
-    color:gold;
-
-    margin-bottom:15px;
+    margin-top:80px;
 
 }
 
-/*====================================================
-            CARD PROGRESS
-====================================================*/
 
-.cardProgress{
-
-    width:85%;
-
-    margin:auto;
-
-    height:12px;
-
-    background:#1d2c45;
-
-    border-radius:30px;
-
-    overflow:hidden;
-
-}
-
-.cardProgressFill{
-
-    width:0%;
-
-    height:100%;
-
-    background:
-
-    linear-gradient(
-
-    90deg,
-
-    #00E676,
-
-    #69F0AE
-
-    );
-
-}
-
-/*====================================================
-            REWARD
-====================================================*/
-
-.rewardBox{
-
-    display:flex;
-
-    justify-content:space-around;
-
-    margin:20px;
-
-    font-weight:bold;
-
-}
-
-/*====================================================
-            BUTTON
-====================================================*/
-
-.worldCard button{
-
-    width:85%;
-
-    margin:20px auto 25px;
-
-    display:block;
-
-    border:none;
-
-    background:#6C63FF;
-
-    color:white;
-
-    padding:15px;
-
-    border-radius:50px;
-
-    font-size:17px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-.worldCard button:hover{
-
-    background:#FFD54F;
-
-    color:#111;
-
-}
-
-/*====================================================
-            CARD RARITY
-====================================================*/
-
-.common{
-
-    border-color:#7CB342;
-
-}
-
-.rare{
-
-    border-color:#29B6F6;
-
-}
-
-.epic{
-
-    border-color:#AB47BC;
-
-}
-
-.legendary{
-
-    border-color:#FF9800;
-
-}
-
-.mythic{
-
-    border-color:#E53935;
-
-}
-
-.divine{
-
-    border-color:#FFD700;
-
-    box-shadow:
-
-    0 0 35px gold;
-
-}
-
-/*====================================================
-                HEADER BUTTONS
-====================================================*/
-
-.headerButtons{
-
-    display:flex;
-
-    gap:15px;
-
-}
-
-.headerButtons button{
-
-    width:55px;
-
-    height:55px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#6C63FF;
-
-    color:white;
-
-    cursor:pointer;
-
-    font-size:22px;
-
-    transition:.3s;
-
-}
-
-.headerButtons button:hover{
-
-    background:#FFD54F;
-
-    color:#111;
-
-}
 
 /*====================================================
             RESPONSIVE
 ====================================================*/
 
-@media(max-width:1000px){
+@media(max-width:900px){
 
-.heroPanel{
+.heroSection{
 
     grid-template-columns:1fr;
 
@@ -524,37 +494,50 @@
 
 }
 
-.playerPanel{
+.continueButton{
 
-    grid-template-columns:repeat(2,1fr);
-
-}
+    margin:auto;
 
 }
 
-@media(max-width:650px){
+.heroImage{
 
-.playerPanel{
-
-    grid-template-columns:1fr;
+    order:-1;
 
 }
 
-.worldGrid{
-
-    grid-template-columns:1fr;
-
-}
-
-.heroLeft img{
+.heroImage img{
 
     width:220px;
 
 }
 
-.heroRight h2{
+}
 
-    font-size:30px;
+
+@media(max-width:650px){
+
+.playerStats{
+
+    grid-template-columns:1fr;
+
+}
+
+.dashboardInfo{
+
+    grid-template-columns:1fr;
+
+}
+
+.sectionHeading h2{
+
+    font-size:28px;
+
+}
+
+.heroText h1{
+
+    font-size:34px;
 
 }
 
