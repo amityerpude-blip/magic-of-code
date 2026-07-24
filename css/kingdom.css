@@ -77,17 +77,15 @@ overflow-x:hidden;
 
 .heroSection{
 
-min-height:100vh;
+width:100%;
 
 display:flex;
 
-align-items:center;
-
 justify-content:center;
 
-padding:40px;
+align-items:center;
 
-position:relative;
+padding:50px 20px 30px;
 
 text-align:center;
 
@@ -96,53 +94,75 @@ text-align:center;
 
 .heroOverlay{
 
-width:min(900px,95%);
+width:min(900px,90%);
 
-background:rgba(0,0,0,.35);
+background:rgba(24,33,48,.92);
 
-backdrop-filter:blur(12px);
+backdrop-filter:blur(10px);
 
-padding:50px;
+padding:55px 50px;
 
-border-radius:30px;
+border-radius:28px;
 
-box-shadow:var(--shadow);
+border:1px solid rgba(255,255,255,.08);
+
+box-shadow:0 15px 40px rgba(0,0,0,.35);
 
 }
 
 
 .heroOverlay h1{
 
-font-size:4rem;
+font-size:3.5rem;
 
-margin-bottom:20px;
+font-weight:700;
 
 color:var(--secondary);
+
+margin-bottom:15px;
+
+text-shadow:0 0 18px rgba(255,210,80,.45);
 
 }
 
 
 .heroOverlay h2{
 
-font-size:2rem;
-
-margin-bottom:20px;
+font-size:1.8rem;
 
 font-weight:500;
+
+color:#f2f2f2;
+
+margin-bottom:20px;
 
 }
 
 
 .heroOverlay p{
 
+max-width:700px;
+
+margin:0 auto 35px;
+
 font-size:1.1rem;
 
 line-height:1.8;
 
-margin-bottom:40px;
+color:#d8d8d8;
 
 }
 
+
+.heroOverlay button{
+
+padding:16px 40px;
+
+font-size:1.1rem;
+
+border-radius:999px;
+
+}
 
 /*====================================================
                 MAGIC BUTTON
