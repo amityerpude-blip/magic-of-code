@@ -55,12 +55,8 @@ initializeKingdom(data);
 
 ====================================================*/
 
-/*====================================================
 
-            INITIALIZE KINGDOM
-
-====================================================*/
-
+console.log("initializeKingdom started");
 async function initializeKingdom(data){
 
     // Navigation
