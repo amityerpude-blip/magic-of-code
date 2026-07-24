@@ -123,22 +123,15 @@ type="audio/mpeg">
 <!-- ==================================================
                 START ENGINE
 =================================================== -->
-
 <script>
 
-window.addEventListener("load",async()=>{
+window.addEventListener("load", async()=>{
 
-await initializeKingdom(KINGDOM_DATA);
+    // Build complete page
+    renderKingdom(KINGDOM_DATA);
 
-const loading=document.getElementById("loadingScreen");
-
-loading.style.opacity="0";
-
-setTimeout(()=>{
-
-loading.style.display="none";
-
-},600);
+    // Start all engines
+    await initializeKingdom(KINGDOM_DATA);
 
 });
 
