@@ -158,7 +158,7 @@ const worlds = [
 
     topic:"Pandas Library",
 
-    folder:"pandas-forest",
+    folder:"pandas-paradise",
 
     image:"images/worlds/pandas-forest.png",
 
