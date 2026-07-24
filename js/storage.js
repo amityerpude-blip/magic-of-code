@@ -265,7 +265,14 @@ localStorage.removeItem(
 STORAGE_KEY
 
 );
+ /*====================================================
+            initializa storage
+====================================================*/           
+function initializeStorage(data){
 
+console.log("Storage initialized.");
+
+}
 location.reload();
 
 }
