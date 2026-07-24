@@ -54,40 +54,46 @@ initializeKingdom(data);
 
 ====================================================*/
 
+/*====================================================
+
+            INITIALIZE KINGDOM
+
+====================================================*/
+
 async function initializeKingdom(data){
 
-// Step 1: Create all HTML
-renderKingdom(data);
+    // Create Complete Kingdom UI
+    renderKingdom(data);
 
-// Step 2: Initialize Navigation
-initializeNavigation();
+    // Navigation
+    initializeNavigation();
 
-// Step 3: Initialize Comic Engine
-initializeComic(data);
+    // Comic Engine
+    initializeComic(data);
 
-// Step 4: Initialize Python Engine
-// Wait until Pyodide and all required packages
-// (Pandas, Matplotlib, etc.) are fully loaded.
-await initializeCoding(data);
+    // Coding Engine
+    await initializeCoding(data);
 
-// Step 5: Initialize Visual Effects
-initializeEffects();
+    // Quiz Engine
+    initializeQuiz(data);
 
-// Step 6: Initialize Storage
-if(typeof initializeStorage==="function"){
+    // Effects
+    initializeEffects();
 
-    initializeStorage(data);
+    // Storage (Optional)
+    if(typeof initializeStorage==="function"){
+
+        initializeStorage(data);
+
+    }
+
+    // Buttons
+    initializeButtons(data);
+
+    // Hide Loading Screen
+    hideLoading();
 
 }
-
-// Step 7: Initialize Buttons
-initializeButtons(data);
-
-// Step 8: Hide Loading Screen
-hideLoading();
-
-}
-
 /*====================================================
             BUTTON EVENTS
 ====================================================*/
