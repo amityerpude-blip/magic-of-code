@@ -39,7 +39,17 @@ background:"assets/images/hero.jpg",
 logo:"assets/images/master-pandas.png"
 
 },
+/*====================================================
+                REQUIRED PACKAGES
+====================================================*/
 
+packages:[
+
+"pandas",
+
+"matplotlib"
+
+],
 /*====================================================
                 KINGDOM SECTIONS
 ====================================================*/
