@@ -186,10 +186,63 @@ Next ➡
 
 
 /*====================================================
+
             ANIMATION SECTION
+
 ====================================================*/
 
 function AnimationComponent(data){
+
+let videoHTML="";
+
+if(data.animation.type==="youtube"){
+
+videoHTML=`
+
+<iframe
+
+width="100%"
+
+height="500"
+
+src="${data.animation.source}"
+
+title="${data.animation.title}"
+
+frameborder="0"
+
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+
+allowfullscreen>
+
+</iframe>
+
+`;
+
+}
+else{
+
+videoHTML=`
+
+<video
+
+controls
+
+playsinline
+
+preload="metadata">
+
+<source
+
+src="${data.animation.source}"
+
+type="video/mp4">
+
+</video>
+
+`;
+
+}
 
 return `
 
@@ -213,19 +266,7 @@ ${data.animation.description}
 
 <div class="videoContainer">
 
-<video
-
-controls
-
-playsinline>
-
-<source
-
-src="${data.animation.video}"
-
-type="video/mp4">
-
-</video>
+${videoHTML}
 
 </div>
 
