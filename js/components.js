@@ -758,7 +758,7 @@ id="particleContainer">
 
 ====================================================*/
 
-function renderKingdom(data){
+/*function renderKingdom(data){
 
 const root = document.getElementById("kingdomContainer");
 
@@ -786,4 +786,65 @@ AudioComponent(data)+
 
 RewardPopupComponent();
 
+}*/
+function renderKingdom(data){
+
+const root=document.getElementById("kingdomContainer");
+
+root.innerHTML="";
+
+try{
+root.innerHTML+=HeroComponent(data);
+console.log("Hero ✓");
+}catch(e){console.error("Hero",e);}
+
+try{
+root.innerHTML+=NavigationComponent(data);
+console.log("Navigation ✓");
+}catch(e){console.error("Navigation",e);}
+
+try{
+root.innerHTML+=ComicComponent(data);
+console.log("Comic ✓");
+}catch(e){console.error("Comic",e);}
+
+try{
+root.innerHTML+=AnimationComponent(data);
+console.log("Animation ✓");
+}catch(e){console.error("Animation",e);}
+
+try{
+root.innerHTML+=NotesComponent(data);
+console.log("Notes ✓");
+}catch(e){console.error("Notes",e);}
+
+try{
+root.innerHTML+=CodingComponent(data);
+console.log("Coding ✓");
+}catch(e){console.error("Coding",e);}
+
+try{
+root.innerHTML+=QuizComponent(data);
+console.log("Quiz ✓");
+}catch(e){console.error("Quiz",e);}
+
+try{
+root.innerHTML+=ChallengeComponent(data);
+console.log("Challenge ✓");
+}catch(e){console.error("Challenge",e);}
+
+try{
+root.innerHTML+=FooterComponent(data);
+console.log("Footer ✓");
+}catch(e){console.error("Footer",e);}
+
+try{
+root.innerHTML+=AudioComponent(data);
+console.log("Audio ✓");
+}catch(e){console.error("Audio",e);}
+
+try{
+root.innerHTML+=RewardPopupComponent();
+console.log("Reward ✓");
+}catch(e){console.error("Reward",e);}
 }
