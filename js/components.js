@@ -748,3 +748,38 @@ id="particleContainer">
 `;
 
 }
+/*====================================================
+
+            RENDER KINGDOM
+
+====================================================*/
+
+function renderKingdom(data){
+
+const root = document.getElementById("kingdomContainer");
+
+root.innerHTML =
+
+HeroComponent(data)+
+
+NavigationComponent(data)+
+
+ComicComponent(data)+
+
+AnimationComponent(data)+
+
+NotesComponent(data)+
+
+CodingComponent(data)+
+
+PracticeComponent(data)+
+
+ChallengeComponent(data)+
+
+FooterComponent(data)+
+
+AudioComponent(data)+
+
+RewardPopupComponent();
+
+}
