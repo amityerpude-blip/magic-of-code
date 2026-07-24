@@ -55,18 +55,23 @@ initializeKingdom(data);
 
 function initializeKingdom(data){
 
+// Step 1: Create all HTML
+renderKingdom(data);
+
+// Step 2: Initialize engines
 initializeNavigation();
-
 initializeComic(data);
-
 initializeCoding(data);
-
 initializeEffects();
 
-initializeStorage(data);
+// Step 3: Optional systems
+if(typeof initializeStorage==="function"){
+    initializeStorage(data);
+}
 
 initializeButtons(data);
 
+// Step 4: Hide loading screen
 hideLoading();
 
 }
