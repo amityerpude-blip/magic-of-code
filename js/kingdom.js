@@ -32,7 +32,7 @@ NotesComponent(data) +
 
 CodingComponent(data) +
 
-PracticeComponent(data) +
+QuizComponent(data) +
 
 ChallengeComponent(data) +
 
@@ -48,6 +48,7 @@ initializeKingdom(data);
 
 }
 
+
 /*====================================================
 
             INITIALIZE KINGDOM
@@ -61,9 +62,6 @@ initializeKingdom(data);
 ====================================================*/
 
 async function initializeKingdom(data){
-
-    // Create Complete Kingdom UI
-    renderKingdom(data);
 
     // Navigation
     initializeNavigation();
