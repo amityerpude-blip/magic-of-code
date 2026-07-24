@@ -85,9 +85,9 @@ subtitle:"Practice Pandas coding"
 },
 
 {
-id:"practiceSection",
-icon:"🧩",
-title:"Training Arena",
+id:"quizSection",
+            icon:"🧩",
+title:"Monster Hunt"
 subtitle:"Solve practice challenges"
 },
 
@@ -339,71 +339,67 @@ code:
                 PRACTICE
 ====================================================*/
 
-practice:{
+quiz:{
 
-title:"🧩 Data Puzzle Garden",
+title:"👾 Monster Hunt",
 
-description:
-
-"Practice your Pandas skills.",
+description:"Defeat every monster by answering one question at a time.",
 
 questions:[
 
 {
-
-icon:"🌱",
-
-title:"Create a Series",
-
-text:"Create a Series containing five magical fruits."
-
+question:"Which library is imported as pd?",
+options:["NumPy","Pandas","Matplotlib","CSV"],
+answer:1
 },
 
 {
-
-icon:"📦",
-
-title:"Create a DataFrame",
-
-text:"Store student records in a DataFrame."
-
+question:"Which function reads a CSV file?",
+options:[
+"readfile()",
+"open()",
+"read_csv()",
+"csv.read()"
+],
+answer:2
 },
 
 {
-
-icon:"📄",
-
-title:"Read CSV",
-
-text:"Load a CSV file using read_csv()."
-
+question:"Which structure stores tabular data?",
+options:[
+"Series",
+"Tuple",
+"DataFrame",
+"Dictionary"
+],
+answer:2
 },
 
 {
-
-icon:"📊",
-
-title:"Average Marks",
-
-text:"Calculate the average marks."
-
+question:"Which command shows the first 5 rows?",
+options:[
+"head()",
+"tail()",
+"top()",
+"show()"
+],
+answer:0
 },
 
 {
-
-icon:"✨",
-
-title:"Filter Data",
-
-text:"Display students scoring more than 80."
-
+question:"Which function gives average values?",
+options:[
+"sum()",
+"count()",
+"mean()",
+"shape()"
+],
+answer:2
 }
 
 ]
 
 },
-
-
 /*====================================================
                 FINAL CHALLENGE
 ====================================================*/
