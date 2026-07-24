@@ -87,7 +87,7 @@ subtitle:"Practice Pandas coding"
 {
 id:"quizSection",
             icon:"🧩",
-title:"Monster Hunt"
+title:"Monster Hunt",
 subtitle:"Solve practice challenges"
 },
 
@@ -336,7 +336,7 @@ code:
 
 
 /*====================================================
-                PRACTICE
+               QUIZ
 ====================================================*/
 
 quiz:{
