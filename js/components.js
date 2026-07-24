@@ -423,59 +423,63 @@ ${challenge.title}
 
 /*====================================================
 
-            PRACTICE ARENA
+                MONSTER HUNT QUIZ
 
 ====================================================*/
 
-function PracticeComponent(data){
+function QuizComponent(data){
 
 return `
 
 <section
-
-id="practiceSection"
-
+id="quizSection"
 class="lessonContent">
 
 <h2>
 
-🧩 ${data.practice.title}
+👾 ${data.quiz.title}
 
 </h2>
 
 <p>
 
-${data.practice.description}
+${data.quiz.description}
 
 </p>
 
-<div class="practiceContainer">
+<div class="quizContainer">
 
-${data.practice.questions.map(question=>`
+<div class="quizCard">
 
-<div class="practiceCard">
+<div id="quizQuestion">
 
-<div class="practiceIcon">
-
-${question.icon}
+Loading Question...
 
 </div>
 
-<h3>
-
-${question.title}
-
-</h3>
-
-<p>
-
-${question.text}
-
-</p>
+<div id="quizOptions">
 
 </div>
 
-`).join("")}
+<div class="quizFooter">
+
+<span id="quizProgress">
+
+Question 1
+
+</span>
+
+<button
+id="nextQuizButton"
+onclick="nextQuestion()">
+
+Next ▶
+
+</button>
+
+</div>
+
+</div>
 
 </div>
 
@@ -772,7 +776,7 @@ NotesComponent(data)+
 
 CodingComponent(data)+
 
-PracticeComponent(data)+
+QuizComponent(data)+
 
 ChallengeComponent(data)+
 
