@@ -3,8 +3,6 @@
             MAGIC OF CODE
             QUIZ ENGINE
 
-            quizEngine.js
-
 ====================================================*/
 
 
@@ -13,11 +11,8 @@
 ====================================================*/
 
 let quizData = null;
-
 let currentQuestion = 0;
-
 let score = 0;
-
 let selectedAnswer = -1;
 
 
@@ -32,9 +27,7 @@ function initializeQuiz(data){
     quizData = data.quiz;
 
     currentQuestion = 0;
-
     score = 0;
-
     selectedAnswer = -1;
 
     loadQuestion();
@@ -50,79 +43,76 @@ function loadQuestion(){
 
     const q = quizData.questions[currentQuestion];
 
-    document.getElementById("quizCounter").innerHTML =
+    document.getElementById("quizProgress").innerHTML =
     `Question ${currentQuestion+1} / ${quizData.questions.length}`;
 
     document.getElementById("quizQuestion").innerHTML =
-    q.question;
+    `<h3>${q.question}</h3>`;
 
-    const area =
+    const options =
     document.getElementById("quizOptions");
 
-    area.innerHTML = "";
+    options.innerHTML = "";
 
     q.options.forEach((option,index)=>{
 
-        const button =
-        document.createElement("button");
+        options.innerHTML += `
 
-        button.className = "quizOption";
+        <button
+        class="quizOption"
+        onclick="selectAnswer(${index},this)">
 
-        button.innerHTML = option;
+        ${option}
 
-        button.onclick = ()=>selectOption(index);
+        </button>
 
-        area.appendChild(button);
+        `;
 
     });
 
-    document.getElementById("quizResult").innerHTML = "";
+    document.getElementById("nextQuizButton").innerHTML =
+    "✨ Cast Spell";
 
-    document.getElementById("nextQuestion").style.display =
-    "none";
+    document.getElementById("nextQuizButton").onclick =
+    submitAnswer;
 
 }
 
 
 /*====================================================
-            SELECT OPTION
+                SELECT ANSWER
 ====================================================*/
 
-function selectOption(index){
+function selectAnswer(index,button){
 
     selectedAnswer = index;
 
-    document
-    .querySelectorAll(".quizOption")
-    .forEach(btn=>{
+    document.querySelectorAll(".quizOption").forEach(btn=>{
 
         btn.classList.remove("selected");
 
     });
 
-    document
-    .querySelectorAll(".quizOption")[index]
-    .classList.add("selected");
+    button.classList.add("selected");
 
 }
 
 
 /*====================================================
-            SUBMIT ANSWER
+                SUBMIT ANSWER
 ====================================================*/
 
 function submitAnswer(){
 
     if(selectedAnswer==-1){
 
-        alert("Choose an answer first!");
+        alert("Select an answer first.");
 
         return;
 
     }
 
-    const q =
-    quizData.questions[currentQuestion];
+    const q = quizData.questions[currentQuestion];
 
     const buttons =
     document.querySelectorAll(".quizOption");
@@ -136,10 +126,6 @@ function submitAnswer(){
         buttons[selectedAnswer]
         .classList.add("correct");
 
-        document.getElementById("quizResult")
-        .innerHTML =
-        "✅ Correct! +10 XP";
-
     }
     else{
 
@@ -149,27 +135,26 @@ function submitAnswer(){
         buttons[q.answer]
         .classList.add("correct");
 
-        document.getElementById("quizResult")
-        .innerHTML =
-        "❌ Wrong Answer";
-
     }
 
-    document.getElementById("nextQuestion")
-    .style.display="inline-block";
+    document.getElementById("nextQuizButton").innerHTML =
+    "Next ▶";
+
+    document.getElementById("nextQuizButton").onclick =
+    nextQuestion;
 
 }
 
 
 /*====================================================
-            NEXT QUESTION
+                NEXT QUESTION
 ====================================================*/
 
 function nextQuestion(){
 
     currentQuestion++;
 
-    selectedAnswer = -1;
+    selectedAnswer=-1;
 
     if(currentQuestion>=quizData.questions.length){
 
@@ -185,57 +170,50 @@ function nextQuestion(){
 
 
 /*====================================================
-            FINISH QUIZ
+                FINISH QUIZ
 ====================================================*/
 
 function finishQuiz(){
 
-    const percent =
-    Math.round(
-    score*100/
-    quizData.questions.length
+    const percent = Math.round(
+
+        score*100/quizData.questions.length
+
     );
 
-    document.getElementById("quizContainer").innerHTML=
-
-    `
+    document.getElementById("quizContainer").innerHTML = `
 
     <div class="quizComplete">
 
-        <h2>
-        🏆 Quiz Completed
-        </h2>
+        <h2>🏆 Quiz Completed</h2>
 
         <h3>
 
-        Score : ${score} /
-        ${quizData.questions.length}
+        Score : ${score} / ${quizData.questions.length}
 
         </h3>
 
         <h3>
 
-        Percentage :
         ${percent}%
 
         </h3>
 
         <p>
 
-        ${percent>=quizData.passingScore ?
+        ${percent>=70 ?
 
         "🎉 Master Pandas is proud of you!"
 
         :
 
-        "📚 Practice again to improve your magic."
+        "📚 Practice again and become stronger."
 
         }
 
         </p>
 
-        <button
-        onclick="restartQuiz()">
+        <button onclick="restartQuiz()">
 
         🔄 Retry Quiz
 
@@ -249,19 +227,18 @@ function finishQuiz(){
 
 
 /*====================================================
-            RESTART
+                RESTART
 ====================================================*/
 
 function restartQuiz(){
 
-    currentQuestion = 0;
+    currentQuestion=0;
 
-    score = 0;
+    score=0;
 
-    selectedAnswer = -1;
+    selectedAnswer=-1;
 
-    document.getElementById("quizSection").innerHTML =
-
+    document.getElementById("quizSection").outerHTML =
     QuizComponent(currentKingdom);
 
     initializeQuiz(currentKingdom);
