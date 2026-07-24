@@ -21,6 +21,10 @@ let currentKingdom = null;
             INITIALIZE
 ====================================================*/
 
+/*====================================================
+            INITIALIZE
+====================================================*/
+
 async function initializeCoding(data){
 
 currentKingdom = data;
@@ -29,10 +33,25 @@ showOutput("🔮 Loading Python Magic...");
 
 pyodide = await loadPyodide();
 
-showOutput("✅ Python Magic Ready!");
+/*--------------------------------------------
+        Load Required Packages
+--------------------------------------------*/
+
+if(data.packages && data.packages.length){
+
+for(const pkg of data.packages){
+
+showOutput("📦 Loading " + pkg + "...");
+
+await pyodide.loadPackage(pkg);
 
 }
 
+}
+
+showOutput("✅ Python Magic Ready!");
+
+}
 
 /*====================================================
             RUN CODE
