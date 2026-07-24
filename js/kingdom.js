@@ -48,34 +48,45 @@ initializeKingdom(data);
 
 }
 
-
 /*====================================================
+
             INITIALIZE KINGDOM
+
 ====================================================*/
 
-function initializeKingdom(data){
+async function initializeKingdom(data){
 
 // Step 1: Create all HTML
 renderKingdom(data);
 
-// Step 2: Initialize engines
+// Step 2: Initialize Navigation
 initializeNavigation();
+
+// Step 3: Initialize Comic Engine
 initializeComic(data);
-initializeCoding(data);
+
+// Step 4: Initialize Python Engine
+// Wait until Pyodide and all required packages
+// (Pandas, Matplotlib, etc.) are fully loaded.
+await initializeCoding(data);
+
+// Step 5: Initialize Visual Effects
 initializeEffects();
 
-// Step 3: Optional systems
+// Step 6: Initialize Storage
 if(typeof initializeStorage==="function"){
+
     initializeStorage(data);
+
 }
 
+// Step 7: Initialize Buttons
 initializeButtons(data);
 
-// Step 4: Hide loading screen
+// Step 8: Hide Loading Screen
 hideLoading();
 
 }
-
 
 /*====================================================
             BUTTON EVENTS
