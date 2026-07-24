@@ -40,7 +40,55 @@ logo:"assets/images/master-pandas.png"
 
 },
 
+/*====================================================
+                KINGDOM SECTIONS
+====================================================*/
 
+sections:[
+
+{
+id:"comicSection",
+icon:"📖",
+title:"Story Scroll",
+subtitle:"Read Dino's magical adventure"
+},
+
+{
+id:"animationSection",
+icon:"🎬",
+title:"Magic Vision",
+subtitle:"Watch the animated lesson"
+},
+
+{
+id:"notesSection",
+icon:"📚",
+title:"Wisdom Grove",
+subtitle:"Learn important concepts"
+},
+
+{
+id:"codingSection",
+icon:"🧪",
+title:"Spell Forge",
+subtitle:"Practice Pandas coding"
+},
+
+{
+id:"practiceSection",
+icon:"🧩",
+title:"Training Arena",
+subtitle:"Solve practice challenges"
+},
+
+{
+id:"challengeSection",
+icon:"🏆",
+title:"Guardian Battle",
+subtitle:"Complete the final quest"
+}
+
+],
 /*====================================================
                 COMIC
 ====================================================*/
