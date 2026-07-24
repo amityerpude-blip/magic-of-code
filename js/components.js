@@ -848,3 +848,4 @@ root.innerHTML+=RewardPopupComponent();
 console.log("Reward ✓");
 }catch(e){console.error("Reward",e);}
 }
+console.log("components.js loaded");
