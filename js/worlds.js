@@ -154,7 +154,7 @@ const worlds = [
 {
     id:8,
 
-    name:"Pandas Forest",
+    name: "Pandas Paradise",
 
     topic:"Pandas Library",
 
