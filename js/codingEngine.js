@@ -61,18 +61,14 @@ async function initializeCoding(data){
 
     // SQL Kingdom
     if(data.id === "sql"){
-
         showOutput("🐉 Dragon SQL Ready!");
         return;
-
     }
 
     // Python Kingdoms
     if(typeof loadPyodide !== "function"){
-
         showOutput("❌ Pyodide not found.");
         return;
-
     }
 
     showOutput("🔮 Loading Python Magic...");
@@ -80,15 +76,10 @@ async function initializeCoding(data){
     pyodide = await loadPyodide();
 
     if(data.packages){
-
         for(const pkg of data.packages){
-
             showOutput("📦 Loading " + pkg + "...");
-
             await pyodide.loadPackage(pkg);
-
         }
-
     }
 
     showOutput("✅ Python Magic Ready!");
