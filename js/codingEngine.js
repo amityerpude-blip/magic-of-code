@@ -52,7 +52,7 @@ await pyodide.loadPackage(pkg);
 showOutput("✅ Python Magic Ready!");
 
 }*/
-async function initializeCoding(data){
+
 async function initializeCoding(data){
 
     console.log("initializeCoding started");
