@@ -132,7 +132,7 @@ type="audio/mpeg">
 
 <script src="../js/comicEngine.js"></script>
 
-<script src="../js/codingEngine.js"></script>
+<script src="../js/sqlEngine.js"></script>
 
 <script src="../js/quizEngine.js"></script>
 
@@ -160,11 +160,21 @@ type="audio/mpeg">
 
 window.addEventListener("load", async()=>{
 
+    // Build complete page
     renderKingdom(KINGDOM_DATA);
 
-    await initializeKingdom(KINGDOM_DATA);
+    // Common modules
+    initializeNavigation();
+    initializeComic(KINGDOM_DATA);
+    initializeQuiz(KINGDOM_DATA);
+    initializeEffects();
+    initializeButtons(KINGDOM_DATA);
 
+    // SQL Engine
     await initializeSQLEngine();
+
+    // Hide Loader
+    hideLoading();
 
 });
 
