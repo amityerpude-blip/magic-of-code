@@ -40,8 +40,9 @@ async function initializeSQLEngine(){
 
     createSampleDatabase();
 
-    sqlReady = true;
+initializeSQLEditor();
 
+sqlReady = true;
     showSQLOutput(
 
 `🐉 Dragon SQL Engine Ready
@@ -113,15 +114,7 @@ return;
 
 }
 
-const query=
-
-document
-
-.getElementById("codeEditor")
-
-.value
-
-.trim();
+const query = getSQLQuery().trim();
 
 if(query===""){
 
@@ -136,7 +129,7 @@ return;
 }
 
 try{
-
+visualizeQuery(query);
 const result=
 
 db.exec(query);
