@@ -130,6 +130,32 @@ return;
 
 try{
 visualizeQuery(query);
+const dangerous = [
+
+"DROP",
+"DELETE",
+"UPDATE",
+"ALTER"
+
+];
+
+const upper = query.toUpperCase();
+
+if(
+
+dangerous.some(cmd => upper.startsWith(cmd))
+
+){
+
+const ok = confirm(
+
+"⚠ This query modifies the database.\n\nContinue?"
+
+);
+
+if(!ok) return;
+
+}
 const result=
 
 db.exec(query);
@@ -151,75 +177,3 @@ showSQLOutput(
 }
 
 
-/*====================================================
-            SHOW OUTPUT
-====================================================*/
-
-function showSQLOutput(text){
-
-document
-
-.getElementById("output")
-
-.innerHTML=
-
-`<pre>${text}</pre>`;
-
-}
-
-
-/*====================================================
-        RENDER RESULT TABLE
-====================================================*/
-
-function renderResult(result){
-
-if(result.length===0){
-
-showSQLOutput(
-
-"✅ Query executed successfully."
-
-);
-
-return;
-
-}
-
-let html=
-
-"<table class='sqlTable'>";
-
-html+="<tr>";
-
-result[0].columns.forEach(col=>{
-
-html+=`<th>${col}</th>`;
-
-});
-
-html+="</tr>";
-
-result[0].values.forEach(row=>{
-
-html+="<tr>";
-
-row.forEach(value=>{
-
-html+=`<td>${value}</td>`;
-
-});
-
-html+="</tr>";
-
-});
-
-html+="</table>";
-
-document
-
-.getElementById("output")
-
-.innerHTML=html;
-
-}
