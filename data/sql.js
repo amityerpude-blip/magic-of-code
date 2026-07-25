@@ -136,7 +136,7 @@ description:
 type:"youtube",
 
 source:"https://www.youtube.com/embed/YOUR_VIDEO_ID"
-
+},
 /*====================================================
                 NOTES
 ====================================================*/
@@ -244,8 +244,6 @@ text:"SQL is used in schools, banks, hospitals, railway reservation systems, e-c
 }
 
 ]
-
-},
 
 },
 
