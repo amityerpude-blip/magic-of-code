@@ -162,13 +162,9 @@ type="audio/mpeg">
 
 <script>
 
-window.addEventListener("load",async()=>{
+window.addEventListener("load", ()=>{
 
-    renderKingdom(KINGDOM_DATA);
-
-    await initializeKingdom(KINGDOM_DATA);
-
-   await initializeSQLEngine();
+    loadKingdom(KINGDOM_DATA);
 
 });
 
