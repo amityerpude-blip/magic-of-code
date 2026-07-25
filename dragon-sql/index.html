@@ -140,15 +140,6 @@ type="audio/mpeg">
 
 <script src="../js/kingdom.js"></script>
 
-<!-- ==================================================
-                SQL ENGINE
-=================================================== -->
-
-<!-- ==================================================
-                SQL ENGINE
-=================================================== -->
-
-<script src="../js/sqlEngine.js"></script>
 
 
 
@@ -160,10 +151,10 @@ type="audio/mpeg">
 
 window.addEventListener("load", async()=>{
 
-    // Build complete page
+    // Build Page
     renderKingdom(KINGDOM_DATA);
 
-    // Common modules
+    // Common Modules
     initializeNavigation();
     initializeComic(KINGDOM_DATA);
     initializeQuiz(KINGDOM_DATA);
@@ -173,11 +164,19 @@ window.addEventListener("load", async()=>{
     // SQL Engine
     await initializeSQLEngine();
 
+    // Override Run Button
+    const runButton=document.querySelector(
+        "#codingSection .codingButtons button"
+    );
+
+    if(runButton){
+        runButton.onclick=runSQLCode;
+    }
+
     // Hide Loader
     hideLoading();
 
 });
-
 </script>
 
 </body>
