@@ -58,31 +58,40 @@ async function initializeCoding(data){
 
     currentKingdom = data;
 
+    /*==============================
+            SQL Kingdom
+    ==============================*/
+
+    if(data.id==="sql"){
+
+        showOutput("🐉 Dragon SQL Ready!");
+
+        return;
+
+    }
+
+    /*==============================
+            Python Kingdoms
+    ==============================*/
+
     pyodide = await loadPyodide();
 
     console.log("Pyodide loaded");
-
-    console.log("Packages:", data.packages);
 
     if(data.packages){
 
         for(const pkg of data.packages){
 
-            console.log("Loading package:", pkg);
-
             await pyodide.loadPackage(pkg);
-
-            console.log(pkg + " loaded");
 
         }
 
     }
 
-    console.log("Initialization complete");
-
     showOutput("✅ Python Magic Ready!");
 
 }
+    
 /*====================================================
             RUN CODE
 ====================================================*/
