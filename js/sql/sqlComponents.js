@@ -63,6 +63,14 @@ ${data.coding.description}
 
 </div>
 
+<!-- SQL Query Visualizer -->
+
+<div
+id="queryVisualizer"
+class="queryVisualizer">
+
+</div>
+
 <textarea
 
 id="codeEditor"
@@ -90,10 +98,6 @@ class="sqlOutput">
 `;
 
 }
-
-/*====================================================
-        OVERRIDE COMMON COMPONENT
-====================================================*/
 
 CodingComponent = SQLCodingComponent;
 
