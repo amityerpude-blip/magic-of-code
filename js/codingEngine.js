@@ -53,33 +53,32 @@ showOutput("✅ Python Magic Ready!");
 
 }*/
 
+/*====================================================
+            INITIALIZE PYTHON ENGINE
+====================================================*/
+
 async function initializeCoding(data){
 
-    console.log("initializeCoding started");
-
     currentKingdom = data;
-
-    // SQL Kingdom
-    if(data.id === "sql"){
-        showOutput("🐉 Dragon SQL Ready!");
-        return;
-    }
-
-    // Python Kingdoms
-    if(typeof loadPyodide !== "function"){
-        showOutput("❌ Pyodide not found.");
-        return;
-    }
 
     showOutput("🔮 Loading Python Magic...");
 
     pyodide = await loadPyodide();
 
-    if(data.packages){
+    /*--------------------------------------------
+            Load Required Packages
+    --------------------------------------------*/
+
+    if(data.packages && data.packages.length){
+
         for(const pkg of data.packages){
+
             showOutput("📦 Loading " + pkg + "...");
+
             await pyodide.loadPackage(pkg);
+
         }
+
     }
 
     showOutput("✅ Python Magic Ready!");
