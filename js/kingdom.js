@@ -59,32 +59,30 @@ initializeKingdom(data);
 console.log("initializeKingdom started");
 async function initializeKingdom(data){
 
-    // Navigation
+    alert("1 Navigation");
     initializeNavigation();
 
-    // Comic Engine
+    alert("2 Comic");
     initializeComic(data);
 
-    // Coding Engine
+    alert("3 Coding");
     await initializeCoding(data);
 
-    // Quiz Engine
+    alert("4 Quiz");
     initializeQuiz(data);
 
-    // Effects
+    alert("5 Effects");
     initializeEffects();
 
-    // Storage (Optional)
+    alert("6 Storage");
     if(typeof initializeStorage==="function"){
-
         initializeStorage(data);
-
     }
 
-    // Buttons
+    alert("7 Buttons");
     initializeButtons(data);
 
-    // Hide Loading Screen
+    alert("8 Hide Loading");
     hideLoading();
 
 }
