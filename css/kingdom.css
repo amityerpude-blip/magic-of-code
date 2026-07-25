@@ -257,8 +257,8 @@ opacity:.95;
 
 .magicGrid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-    gap:18px;
+    grid-template-columns:repeat(6,1fr);
+    gap:14px;
 }
 
 .magicTile{
@@ -267,7 +267,7 @@ opacity:.95;
 
     border-radius:22px;
 
-    height:120px;
+    height:100px;
 
     display:flex;
 
