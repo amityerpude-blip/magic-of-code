@@ -833,11 +833,20 @@ root.innerHTML+=ChallengeComponent(data);
 console.log("Challenge ✓");
 }catch(e){console.error("Challenge",e);}
 
-try{
-root.innerHTML+=FooterComponent(data);
-console.log("Footer ✓");
-}catch(e){console.error("Footer",e);}
+// Footer will be shown only after kingdom completion
 
+document.getElementById("completeKingdom").onclick = ()=>{
+
+    saveProgress(data.id);
+
+    showReward("🏆 Kingdom Completed!");
+
+    document.getElementById("kingdomContainer").insertAdjacentHTML(
+        "beforeend",
+        FooterComponent(data)
+    );
+
+};
 try{
 root.innerHTML+=AudioComponent(data);
 console.log("Audio ✓");
