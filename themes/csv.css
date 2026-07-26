@@ -1,0 +1,254 @@
+/*====================================================
+
+            MAGIC OF CODE
+            CSV SAVANNAH THEME
+
+====================================================*/
+
+/*====================================================
+            THEME VARIABLES
+====================================================*/
+
+:root{
+
+    --primary:#c58b2d;
+    --secondary:#8b5a2b;
+    --accent:#f4d35e;
+
+    --background:#f8ecd0;
+
+    --card:#d6a85f;
+
+    --cardHover:#c89447;
+
+    --title:#5b3415;
+
+    --text:#4a3522;
+
+    --button:#8b5a2b;
+
+    --buttonHover:#6d431d;
+
+    --success:#2ecc71;
+
+}
+
+
+/*====================================================
+            BODY
+====================================================*/
+
+body{
+
+    background:linear-gradient(
+    180deg,
+    #f8ecd0 0%,
+    #efd39b 100%);
+
+    color:var(--text);
+
+}
+
+
+/*====================================================
+            HERO
+====================================================*/
+
+.heroSection{
+
+    background:
+    linear-gradient(
+    rgba(0,0,0,.18),
+    rgba(0,0,0,.18)
+    ),
+    url("../csv-kingdom/assets/images/background.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+}
+
+.heroOverlay{
+
+    background:rgba(255,248,230,.18);
+
+    backdrop-filter:blur(5px);
+
+}
+
+
+/*====================================================
+            TITLES
+====================================================*/
+
+.heroSection h1,
+.heroSection h2,
+.kingdomNavigation h2,
+.lessonContent h2{
+
+    color:var(--title);
+
+}
+
+.heroSection p,
+.lessonContent p{
+
+    color:var(--text);
+
+}
+
+
+/*====================================================
+            NAVIGATION TILES
+====================================================*/
+
+.magicTile{
+
+    background:var(--card);
+
+    color:#fff;
+
+}
+
+.magicTile:hover{
+
+    background:var(--cardHover);
+
+}
+
+.magicTile.active{
+
+    background:linear-gradient(
+    135deg,
+    var(--accent),
+    var(--primary));
+
+    color:#4b2f13;
+
+}
+
+
+/*====================================================
+            LESSON CARDS
+====================================================*/
+
+.lessonContent{
+
+    background:#fff8ea;
+
+}
+
+.noteCard{
+
+    background:#fffdf8;
+
+    border-left:6px solid var(--primary);
+
+}
+
+.noteCard h3{
+
+    color:var(--title);
+
+}
+
+.noteCard p{
+
+    color:var(--text);
+
+}
+
+
+/*====================================================
+            CODING
+====================================================*/
+
+.codingContainer{
+
+    background:#fffdf8;
+
+}
+
+#codeEditor{
+
+    background:#fffdf8;
+
+    color:#222;
+
+}
+
+#output{
+
+    background:#2d2d2d;
+
+    color:#9eff9e;
+
+}
+
+
+/*====================================================
+            BUTTONS
+====================================================*/
+
+button{
+
+    background:var(--button);
+
+    color:#fff;
+
+}
+
+button:hover{
+
+    background:var(--buttonHover);
+
+}
+
+
+/*====================================================
+            QUIZ
+====================================================*/
+
+.quizCard{
+
+    background:#fffdf8;
+
+}
+
+.quizOption{
+
+    background:#f7e2b2;
+
+    color:#4b2f13;
+
+}
+
+.quizOption:hover{
+
+    background:#efd39b;
+
+}
+
+
+/*====================================================
+            FINAL CHALLENGE
+====================================================*/
+
+.challengeCard{
+
+    background:#fff8ea;
+
+}
+
+
+/*====================================================
+            FOOTER
+====================================================*/
+
+.kingdomFooter{
+
+    background:#8b5a2b;
+
+    color:white;
+
+}
