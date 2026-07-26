@@ -9,31 +9,23 @@
 
 :root{
 
---primary:#B86A1D;      /* Dragon Bronze */
+--primary:#D39B2C;      /* Gold */
+--secondary:#E7BE57;    /* Light Gold */
+--accent:#F4A742;       /* Warm Orange */
 
---secondary:#D79A2B;    /* Dragon Gold */
+--dark:#5B4332;         /* Background */
+--light:#FFF6E8;        /* Cream */
 
---accent:#FF7A1A;       /* Lava Orange */
-
---dark:#24140F;         /* Dark Brown */
-
---light:#FFF5E6;        /* Scroll */
-
---card:#4A2B1F;         /* Dragon Leather */
+--card:#7A5B42;         /* Tile Color */
 
 --success:#4CAF50;
-
 --warning:#FF9800;
-
 --danger:#E53935;
 
---text:#F8E9C9;
-
---border:#D7A13A;
+--text:#FFF6E8;         /* Text */
+--border:#E0B04D;       /* Gold Border */
 
 }
-
-
 /*====================================================
                 HERO
 ====================================================*/
