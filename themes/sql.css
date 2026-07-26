@@ -9,27 +9,27 @@
 
 :root{
 
---primary:#2563eb;
+--primary:#B86A1D;      /* Dragon Bronze */
 
---secondary:#60a5fa;
+--secondary:#D79A2B;    /* Dragon Gold */
 
---accent:#38bdf8;
+--accent:#FF7A1A;       /* Lava Orange */
 
---dark:#0f172a;
+--dark:#24140F;         /* Dark Brown */
 
---light:#f8fbff;
+--light:#FFF5E6;        /* Scroll */
 
---card:#ffffff;
+--card:#4A2B1F;         /* Dragon Leather */
 
---success:#22c55e;
+--success:#4CAF50;
 
---warning:#f59e0b;
+--warning:#FF9800;
 
---danger:#ef4444;
+--danger:#E53935;
 
---text:#1e293b;
+--text:#F8E9C9;
 
---border:#bfdbfe;
+--border:#D7A13A;
 
 }
 
@@ -41,22 +41,14 @@
 .heroSection{
 
 background:
-
 linear-gradient(
-
 135deg,
-
-#0f172a,
-
-#1d4ed8,
-
-#38bdf8
-
+#24140F,
+#4A2B1F,
+#8C4A20
 );
 
 }
-
-
 /*====================================================
                 BUTTONS
 ====================================================*/
@@ -129,18 +121,13 @@ var(--border);
 .challengeCard{
 
 background:
-
 linear-gradient(
-
 135deg,
-
-#1e3a8a,
-
-#2563eb
-
+#4A2B1F,
+#8C4A20
 );
 
-color:white;
+color:#FFF5E6;
 
 }
 
