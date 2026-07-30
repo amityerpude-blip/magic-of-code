@@ -37,20 +37,7 @@
 
 body{
 
-    background:
-    linear-gradient(
-        135deg,
-        #2B0000 0%,
-        #5C0011 30%,
-        #8B0000 60%,
-        #C62828 100%
-    );
-
-    color:#F5F5F5;
-
-    min-height:100vh;
-
-    background-attachment:fixed;
+    background:#7B3F00;
 
 }
 
