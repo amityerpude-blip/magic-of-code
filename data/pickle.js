@@ -43,11 +43,7 @@ logo:"assets/images/master-pickle.png"
                 REQUIRED PACKAGES
 ====================================================*/
 
-packages:[
-
-"pickle"
-
-],
+packages:[],
 
 /*====================================================
                 KINGDOM SECTIONS
