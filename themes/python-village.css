@@ -1,0 +1,372 @@
+/*====================================================
+
+            MAGIC OF CODE
+            PYTHON VILLAGE
+
+            python-village.css
+
+====================================================*/
+
+
+/*====================================================
+                COLOR THEME
+====================================================*/
+
+:root{
+
+    --primary:#1565C0;
+    --secondary:#42A5F5;
+    --accent:#FFD54F;
+
+    --background:#4A90E2;
+
+    --card:#FFFFFF;
+
+    --text:#263238;
+    --textLight:#546E7A;
+
+    --success:#43A047;
+    --danger:#E53935;
+
+}
+
+
+/*====================================================
+                BODY
+====================================================*/
+
+body{
+
+    background:#4A90E2;
+
+}
+
+
+/*====================================================
+                HERO
+====================================================*/
+
+.hero{
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+}
+
+.hero h1{
+
+    color:white;
+
+}
+
+.hero p{
+
+    color:#E3F2FD;
+
+}
+
+
+/*====================================================
+                SECTION TITLES
+====================================================*/
+
+.sectionTitle,
+.sectionHeading h2{
+
+    color:white;
+
+}
+
+.sectionHeading p{
+
+    color:#E3F2FD;
+
+}
+
+
+/*====================================================
+                NAVIGATION
+====================================================*/
+
+.navButton:hover{
+
+    background:#E3F2FD;
+
+    border-left:4px solid var(--accent);
+
+}
+
+.navButton.active{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+
+/*====================================================
+                CARDS
+====================================================*/
+
+.noteCard,
+.challengeCard,
+.rewardCard,
+.quizCard{
+
+    background:var(--card);
+
+    color:var(--text);
+
+    border-top:4px solid var(--secondary);
+
+    border-radius:18px;
+
+    box-shadow:
+    0 10px 20px rgba(0,0,0,.15);
+
+    transition:.3s;
+
+}
+
+.noteCard:hover,
+.challengeCard:hover,
+.rewardCard:hover,
+.quizCard:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+    0 16px 30px rgba(0,0,0,.25);
+
+}
+
+
+/*====================================================
+                NOTES
+====================================================*/
+
+.noteCard h3{
+
+    color:var(--primary);
+
+}
+
+.noteCard p{
+
+    color:var(--textLight);
+
+    line-height:1.7;
+
+}
+
+
+/*====================================================
+                CODE EDITOR
+====================================================*/
+
+#codeEditor{
+
+    background:#FAFAFA;
+
+    border:2px solid var(--secondary);
+
+    color:#212121;
+
+}
+
+#codeEditor:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+    0 0 10px rgba(33,150,243,.35);
+
+}
+
+
+/*====================================================
+                OUTPUT
+====================================================*/
+
+#output{
+
+    background:#FFFFFF;
+
+    color:#212121;
+
+    border-left:5px solid var(--accent);
+
+}
+
+
+/*====================================================
+                BUTTONS
+====================================================*/
+
+button{
+
+    background:var(--primary);
+
+    color:white;
+
+    transition:.25s;
+
+}
+
+button:hover{
+
+    background:var(--secondary);
+
+    transform:translateY(-2px);
+
+}
+
+
+/*====================================================
+                QUIZ
+====================================================*/
+
+.option{
+
+    transition:.25s;
+
+}
+
+.option:hover{
+
+    background:#E3F2FD;
+
+}
+
+.correct{
+
+    background:#C8E6C9 !important;
+
+    border-color:var(--success);
+
+}
+
+.wrong{
+
+    background:#FFCDD2 !important;
+
+    border-color:var(--danger);
+
+}
+
+
+/*====================================================
+                FINAL CHALLENGE
+====================================================*/
+
+.challengeBox{
+
+    background:#FFFFFF;
+
+    border:2px solid var(--accent);
+
+}
+
+
+/*====================================================
+                PROGRESS
+====================================================*/
+
+.progressBar{
+
+    background:var(--secondary);
+
+}
+
+
+/*====================================================
+                COMIC
+====================================================*/
+
+.comicControls button{
+
+    background:var(--secondary);
+
+}
+
+.comicControls button:hover{
+
+    background:var(--primary);
+
+}
+
+
+/*====================================================
+                LOADING SCREEN
+====================================================*/
+
+.loadingScreen{
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+}
+
+.loader{
+
+    font-size:5rem;
+
+    animation:float 2s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+
+
+/*====================================================
+                SCROLLBAR
+====================================================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--secondary);
+
+    border-radius:10px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--primary);
+
+}
