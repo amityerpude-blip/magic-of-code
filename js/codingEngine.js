@@ -69,18 +69,35 @@ async function initializeCoding(data){
             Load Required Packages
     --------------------------------------------*/
 
-    if(data.packages && data.packages.length){
+    /*--------------------------------------------
+        Load Required Packages
+--------------------------------------------*/
 
-        for(const pkg of data.packages){
+if (
+    Array.isArray(data.packages) &&
+    data.packages.length > 0
+) {
 
-            showOutput("📦 Loading " + pkg + "...");
+    for (const pkg of data.packages) {
+
+        showOutput("📦 Loading " + pkg + "...");
+
+        try {
 
             await pyodide.loadPackage(pkg);
+
+        }
+        catch (error) {
+
+            console.warn(`Package '${pkg}' could not be loaded.`, error);
+
+            showOutput(`⚠️ Package '${pkg}' not available.`);
 
         }
 
     }
 
+}
     showOutput("✅ Python Magic Ready!");
 
 }
