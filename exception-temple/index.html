@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+
+        🛡️ Temple of Protection | Magic of Code
+
+    </title>
+
+    <!--==================================================
+                        COMMON CSS
+    ==================================================-->
+
+    <link rel="stylesheet"
+          href="../css/kingdom.css">
+
+    <link rel="stylesheet"
+          href="../themes/exception-temple.css">
+
+    <!--==================================================
+                        GOOGLE FONT
+    ==================================================-->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!--==================================================
+                    LOADING SCREEN
+    ==================================================-->
+
+    <div class="loadingScreen"
+         id="loadingScreen">
+
+        <div class="loader">
+
+            🛡️
+
+        </div>
+
+        <h2>
+
+            Loading Temple of Protection...
+
+        </h2>
+
+    </div>
+
+    <!--==================================================
+                    MAGIC PARTICLES
+    ==================================================-->
+
+    <div id="particleContainer"></div>
+
+    <!--==================================================
+                    PAGE CONTENT
+    ==================================================-->
+
+    <div id="kingdomContainer">
+
+        <!-- Generated Automatically -->
+
+    </div>
+
+    <!--==================================================
+                        AUDIO
+    ==================================================-->
+
+    <audio id="buttonSound">
+
+        <source src="assets/audio/button.mp3"
+                type="audio/mpeg">
+
+    </audio>
+
+    <audio id="hoverSound">
+
+        <source src="assets/audio/hover.mp3"
+                type="audio/mpeg">
+
+    </audio>
+
+    <audio id="pageFlip">
+
+        <source src="assets/audio/page-flip.mp3"
+                type="audio/mpeg">
+
+    </audio>
+
+    <!--==================================================
+                        PYODIDE
+    ==================================================-->
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
+
+    <!--==================================================
+                        KINGDOM DATA
+    ==================================================-->
+
+    <script src="../data/exception-temple.js"></script>
+
+    <!--==================================================
+                    COMMON ENGINES
+    ==================================================-->
+
+    <script src="../js/storage.js"></script>
+
+    <script src="../js/effects.js"></script>
+
+    <script src="../js/navigation.js"></script>
+
+    <script src="../js/comicEngine.js"></script>
+
+    <script src="../js/codingEngine.js"></script>
+
+    <script src="../js/quizEngine.js"></script>
+
+    <script src="../js/components.js"></script>
+
+    <script src="../js/kingdom.js"></script>
+
+    <!--==================================================
+                    START ENGINE
+    ==================================================-->
+
+    <script>
+
+        window.addEventListener(
+
+            "load",
+
+            async()=>{
+
+                renderKingdom(KINGDOM_DATA);
+
+                await initializeKingdom(KINGDOM_DATA);
+
+            }
+
+        );
+
+    </script>
+
+</body>
+
+</html>
