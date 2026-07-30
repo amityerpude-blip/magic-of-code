@@ -83,7 +83,7 @@ description:
 
 folder:"assets/comics/",
 
-pages:12
+pages:11
 
 },
 
