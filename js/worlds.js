@@ -148,13 +148,33 @@ const worlds = [
 },
 
 /*====================================================
-                8. PANDAS FOREST
+                8. PICKLE KINGDOM
 ====================================================*/
 
 {
     id:8,
 
-    name: "Pandas Paradise",
+    name:"Pickle Kingdom",
+
+    topic:"Pickle Module",
+
+    folder:"pickle-kingdom",
+
+    image:"images/worlds/pickle-kingdom.png",
+
+    difficulty:"Intermediate",
+
+    rarity:"epic"
+},
+
+/*====================================================
+                9. PANDAS PARADISE
+====================================================*/
+
+{
+    id:9,
+
+    name:"Pandas Paradise",
 
     topic:"Pandas Library",
 
@@ -168,11 +188,11 @@ const worlds = [
 },
 
 /*====================================================
-            9. CRYSTAL CHART PEAKS
+            10. CRYSTAL CHART PEAKS
 ====================================================*/
 
 {
-    id:9,
+    id:10,
 
     name:"Crystal Chart Peaks",
 
@@ -188,11 +208,11 @@ const worlds = [
 },
 
 /*====================================================
-            10. NUMPY CRYSTAL CAVERNS
+            11. NUMPY CRYSTAL CAVERNS
 ====================================================*/
 
 {
-    id:10,
+    id:11,
 
     name:"NumPy Crystal Caverns",
 
@@ -208,11 +228,11 @@ const worlds = [
 },
 
 /*====================================================
-            11. DRAGON SQL CITADEL
+            12. DRAGON SQL CITADEL
 ====================================================*/
 
 {
-    id:11,
+    id:12,
 
     name:"Dragon SQL Citadel",
 
@@ -228,11 +248,11 @@ const worlds = [
 },
 
 /*====================================================
-            12. SPIDER WEB NEXUS
+            13. SPIDER WEB NEXUS
 ====================================================*/
 
 {
-    id:12,
+    id:13,
 
     name:"Spider Web Nexus",
 
@@ -248,11 +268,11 @@ const worlds = [
 },
 
 /*====================================================
-        13. PYTHON MASTER'S CASTLE
+        14. PYTHON MASTER'S CASTLE
 ====================================================*/
 
 {
-    id:13,
+    id:14,
 
     name:"Python Master's Castle",
 
