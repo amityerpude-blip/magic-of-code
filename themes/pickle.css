@@ -39,10 +39,18 @@ body{
 
     background:
     linear-gradient(
-        180deg,
-        #FFF8F2 0%,
-        #FFE8D6 100%
+        135deg,
+        #2B0000 0%,
+        #5C0011 30%,
+        #8B0000 60%,
+        #C62828 100%
     );
+
+    color:#F5F5F5;
+
+    min-height:100vh;
+
+    background-attachment:fixed;
 
 }
 
@@ -133,16 +141,15 @@ body{
 .rewardCard,
 .quizCard{
 
-    background:var(--card);
+    background:rgba(255,255,255,0.96);
 
-    border-radius:16px;
+    color:#263238;
 
-    border-top:4px solid var(--secondary);
+    border:2px solid #FFC107;
 
     box-shadow:
-    0 8px 20px rgba(0,0,0,.08);
-
-    transition:.25s;
+        0 0 20px rgba(255,193,7,.25),
+        0 8px 20px rgba(0,0,0,.35);
 
 }
 
