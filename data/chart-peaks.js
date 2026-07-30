@@ -926,4 +926,88 @@ answer:2
 
 },
   
-  
+  /*====================================================
+                GUARDIAN BATTLE
+====================================================*/
+
+challenge:{
+
+title:"🏆 Guardian Battle",
+
+description:
+
+"Deep within Crystal Chart Peaks lies the Legendary Crystal Graph. The Chart Guardian has hidden its power inside ten visualization crystals. Master Graphos challenges Dino to recreate every graph and restore the Crystal Graph to reveal the hidden story inside the data.",
+
+icon:"📊",
+
+heading:"The Legendary Crystal Graph",
+
+story:
+
+"Long ago, the Crystal Peaks displayed the history of the entire Coding Kingdom through magical charts. When the Crystal Guardian disappeared, the graphs shattered into glowing fragments. Only a true Data Wizard can rebuild every chart and restore the Crystal Graph. Every completed visualization unlocks another crystal until the mountain shines with the light of knowledge once again.",
+
+tasks:[
+
+"📈 Create a Line Graph showing student marks in five tests.",
+
+"🎨 Draw a red line graph using circle markers.",
+
+"📊 Create a Bar Graph showing sales of different products.",
+
+"🥧 Create a Pie Chart showing monthly expenses with percentage labels.",
+
+"🎯 Display a Scatter Plot showing the relationship between study hours and marks.",
+
+"📦 Create a Histogram showing the frequency distribution of marks.",
+
+"🔲 Plot two lines on the same graph with Grid and Legend.",
+
+"🏷️ Add Title, X-axis Label and Y-axis Label to a graph.",
+
+"💾 Save a graph as 'chart.png' using savefig().",
+
+"🏆 Design a Student Performance Dashboard using suitable charts."
+
+],
+
+reward:{
+
+badge:"📊 Crystal Chart Master",
+
+xp:450,
+
+coins:225,
+
+unlock:"numpy-caverns"
+
+}
+
+},
+
+/*====================================================
+                    FOOTER
+====================================================*/
+
+footer:{
+
+button:"💎 Continue to NumPy Crystal Caverns",
+
+next:"../numpy-caverns/index.html"
+
+},
+
+/*====================================================
+                    AUDIO
+====================================================*/
+
+audio:{
+
+magic:"assets/audio/magic.mp3",
+
+button:"assets/audio/button.mp3",
+
+page:"assets/audio/page-flip.mp3"
+
+}
+
+};
