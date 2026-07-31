@@ -5,12 +5,25 @@
 
         networkSimulator.js
 
-            PART 1
+                PART 1
 
 ==================================================*/
 
-
 "use strict";
+
+
+/*==================================================
+                GLOBAL VARIABLES
+==================================================*/
+
+let simulator = null;
+
+let selectedTopology = null;
+let selectedSwitching = null;
+let selectedDevice = null;
+
+let userConnections = [];
+
 
 /*==================================================
         NETWORK SIMULATOR COMPONENT
@@ -21,43 +34,35 @@ function NetworkSimulatorComponent(){
     return `
 
     <section
-        id="networkSection"
-        class="lessonContent">
+    id="networkSection"
+    class="lessonContent">
 
-        <div id="networkSimulator"></div>
+        <div id="networkSimulator">
+
+        </div>
 
     </section>
 
     `;
 
 }
-/*==================================================
-                GLOBAL VARIABLES
-==================================================*/
-
-let simulator;
-
-let currentModule=0;
-
-let selectedTopology=null;
-
-let selectedSwitching=null;
-
-let selectedDevice=null;
-
-let userConnections=[];
-
-let packetAnimations=[];
 
 
 /*==================================================
-            INITIALIZE SIMULATOR
+        INITIALIZE NETWORK SIMULATOR
 ==================================================*/
 
 function initializeNetworkSimulator(){
 
-    simulator=
-    KINGDOM_DATA.networkSimulator;
+    simulator = KINGDOM_DATA.networkSimulator;
+
+    if(!simulator){
+
+        console.error("Network Simulator data missing.");
+
+        return;
+
+    }
 
     renderNetworkSimulator();
 
@@ -65,31 +70,23 @@ function initializeNetworkSimulator(){
 
 
 /*==================================================
-            RENDER SIMULATOR
+        RENDER COMPLETE SIMULATOR
 ==================================================*/
 
 function renderNetworkSimulator(){
 
-    const container=
-    document.getElementById(
-        "networkSimulator"
-    );
+    const container =
+    document.getElementById("networkSimulator");
 
     if(!container) return;
 
-    container.innerHTML=`
+    container.innerHTML =
 
-        <div class="networkSimulator">
+        renderHeader() +
 
-            ${renderHeader()}
+        renderTopologyModule() +
 
-            ${renderTopologyBuilder()}
-
-            ${renderTransmission()}
-
-        </div>
-
-    `;
+        renderTransmissionModule();
 
 }
 
@@ -100,23 +97,23 @@ function renderNetworkSimulator(){
 
 function renderHeader(){
 
-    return`
+    return `
 
-        <div class="networkHeader">
+    <div class="networkHeader">
 
-            <h2>
+        <h2>
 
-                ${simulator.title}
+            ${simulator.title}
 
-            </h2>
+        </h2>
 
-            <p>
+        <p>
 
-                ${simulator.description}
+            ${simulator.description}
 
-            </p>
+        </p>
 
-        </div>
+    </div>
 
     `;
 
@@ -124,32 +121,36 @@ function renderHeader(){
 
 
 /*==================================================
-            TOPOLOGY BUILDER
+        TOPOLOGY BUILDER MODULE
 ==================================================*/
 
-function renderTopologyBuilder(){
+function renderTopologyModule(){
 
-    const module=
-    simulator.modules[0];
+    const module =
+    simulator.modules.find(
 
-    return`
+        m => m.id === "topologyBuilder"
+
+    );
+
+    return `
 
     <div class="networkModule">
 
         <div class="moduleHeader">
 
-            <div class="moduleTitle">
+            <h2>
 
                 ${module.icon}
                 ${module.title}
 
-            </div>
+            </h2>
 
-            <div class="moduleDescription">
+            <p>
 
                 ${module.description}
 
-            </div>
+            </p>
 
         </div>
 
@@ -162,42 +163,32 @@ function renderTopologyBuilder(){
         </div>
 
         <div
-
-            class="networkCanvas"
-
-            id="topologyCanvas"
-
-        >
+        id="topologyCanvas"
+        class="topologyCanvas">
 
         </div>
 
         <div class="controlPanel">
 
             <button
-
-                class="magicBtn"
-
-                onclick="validateTopology()">
+            class="magicBtn"
+            onclick="validateTopology()">
 
                 ${module.controls.validateButton}
 
             </button>
 
             <button
-
-                class="magicBtn"
-
-                onclick="resetTopology()">
+            class="magicBtn"
+            onclick="resetTopology()">
 
                 ${module.controls.resetButton}
 
             </button>
 
             <button
-
-                class="magicBtn"
-
-                onclick="clearConnections()">
+            class="magicBtn"
+            onclick="clearConnections()">
 
                 ${module.controls.clearButton}
 
@@ -213,32 +204,118 @@ function renderTopologyBuilder(){
 
 
 /*==================================================
+        TRANSMISSION MODULE
+==================================================*/
+
+function renderTransmissionModule(){
+
+    const module =
+    simulator.modules.find(
+
+        m => m.id === "transmission"
+
+    );
+
+    return `
+
+    <div class="networkModule">
+
+        <div class="moduleHeader">
+
+            <h2>
+
+                ${module.icon}
+                ${module.title}
+
+            </h2>
+
+            <p>
+
+                ${module.description}
+
+            </p>
+
+        </div>
+
+        <div class="switchingGrid">
+
+            ${module.options
+                .map(renderSwitchCard)
+                .join("")}
+
+        </div>
+
+        <div
+        id="transmissionCanvas"
+        class="transmissionCanvas">
+
+        </div>
+
+        <div class="controlPanel">
+
+            <button
+            class="magicBtn"
+            onclick="startTransmission()">
+
+                ${module.controls.sendButton}
+
+            </button>
+
+            <button
+            class="magicBtn"
+            onclick="resetTransmission()">
+
+                ${module.controls.resetButton}
+
+            </button>
+
+        </div>
+
+        <div
+        id="resultPanel"
+        class="resultPanel">
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+
+/*==================================================
+
+            NETWORK SIMULATOR
+                PART 2
+
+        TOPOLOGY BUILDER ENGINE
+
+==================================================*/
+
+
+/*==================================================
             TOPOLOGY CARD
 ==================================================*/
 
 function renderTopologyCard(topology){
 
-    return`
+    return `
 
     <div
-
-        class="topologyCard"
-
-        onclick="selectTopology('${topology.id}')"
-
-    >
+    class="topologyCard"
+    onclick="selectTopology('${topology.id}',this)">
 
         <div class="topologyIcon">
 
-            ${topology.name.split(" ")[0]}
+            🌐
 
         </div>
 
-        <div class="topologyName">
+        <h3>
 
             ${topology.name}
 
-        </div>
+        </h3>
 
         <p>
 
@@ -254,166 +331,59 @@ function renderTopologyCard(topology){
 
 
 /*==================================================
-            TRANSMISSION
-==================================================*/
-
-function renderTransmission(){
-
-    const module=
-    simulator.modules[1];
-
-    return`
-
-    <div class="networkModule">
-
-        <div class="moduleHeader">
-
-            <div class="moduleTitle">
-
-                ${module.icon}
-
-                ${module.title}
-
-            </div>
-
-            <div class="moduleDescription">
-
-                ${module.description}
-
-            </div>
-
-        </div>
-
-        <div class="switchingGrid">
-
-            ${module.options
-                .map(renderSwitchCard)
-                .join("")}
-
-        </div>
-
-        <div
-
-            class="transmissionCanvas"
-
-            id="transmissionCanvas"
-
-        >
-
-        </div>
-
-        <div class="controlPanel">
-
-            <button
-
-                class="magicBtn"
-
-                onclick="startTransmission()">
-
-                ${module.controls.sendButton}
-
-            </button>
-
-            <button
-
-                class="magicBtn"
-
-                onclick="resetTransmission()">
-
-                ${module.controls.resetButton}
-
-            </button>
-
-        </div>
-
-        <div
-
-            class="resultPanel"
-
-            id="resultPanel">
-
-        </div>
-
-    </div>
-
-    `;
-
-}
-
-
-/*==================================================
             SWITCH CARD
 ==================================================*/
 
 function renderSwitchCard(option){
 
-    return`
+    return `
 
     <div
-
-        class="switchCard"
-
-        onclick="selectSwitching('${option.id}')"
-
-    >
+    class="switchCard"
+    onclick="selectSwitching('${option.id}',this)">
 
         <div class="switchIcon">
 
-            ${option.title.split(" ")[0]}
+            📡
 
         </div>
 
-        <div class="switchTitle">
+        <h3>
 
             ${option.title}
 
-        </div>
+        </h3>
 
-        <div class="switchDescription">
+        <p>
 
             ${option.description}
 
-        </div>
+        </p>
 
     </div>
 
     `;
 
 }
-
-/*==================================================
-
-        NETWORK SIMULATOR
-            PART 2
-
-    TOPOLOGY BUILDER ENGINE
-
-==================================================*/
 
 
 /*==================================================
             SELECT TOPOLOGY
 ==================================================*/
 
-function selectTopology(id){
+function selectTopology(id,card){
 
     selectedTopology=id;
 
-    userConnections=[];
-
     selectedDevice=null;
 
+    userConnections=[];
+
     document
-
     .querySelectorAll(".topologyCard")
+    .forEach(c=>c.classList.remove("active"));
 
-    .forEach(card=>{
-
-        card.classList.remove("active");
-
-    });
-
-    event.currentTarget.classList.add("active");
+    card.classList.add("active");
 
     renderTopologyCanvas();
 
@@ -421,56 +391,71 @@ function selectTopology(id){
 
 
 /*==================================================
-        RENDER TOPOLOGY CANVAS
+        SELECT SWITCHING
+==================================================*/
+
+function selectSwitching(id,card){
+
+    selectedSwitching=id;
+
+    document
+    .querySelectorAll(".switchCard")
+    .forEach(c=>c.classList.remove("active"));
+
+    card.classList.add("active");
+
+    renderTransmissionCanvas();
+
+}
+
+
+/*==================================================
+        TOPOLOGY CANVAS
 ==================================================*/
 
 function renderTopologyCanvas(){
 
-    if(!selectedTopology) return;
-
     const canvas=
+    document.getElementById("topologyCanvas");
 
-    document.getElementById(
-
-        "topologyCanvas"
-
-    );
-
-    const module=
-
-    simulator.modules[0];
+    if(!canvas) return;
 
     canvas.innerHTML="";
 
+    const module=
+    simulator.modules.find(
+        m=>m.id==="topologyBuilder"
+    );
+
     const positions={
 
-        pc1:{left:120,top:120},
+        pc1:{x:120,y:80},
 
-        pc2:{left:120,top:320},
+        pc2:{x:120,y:260},
 
-        pc3:{left:620,top:120},
+        pc3:{x:520,y:80},
 
-        pc4:{left:620,top:320},
+        pc4:{x:520,y:260},
 
-        switch:{left:370,top:120},
+        switch:{x:320,y:80},
 
-        router:{left:370,top:320}
+        router:{x:320,y:260}
 
     };
 
     module.devices.forEach(device=>{
 
-        const node=
+        canvas.appendChild(
 
-        createDevice(
+            createDevice(
 
-            device,
+                device,
 
-            positions[device.id]
+                positions[device.id]
+
+            )
 
         );
-
-        canvas.appendChild(node);
 
     });
 
@@ -481,33 +466,26 @@ function renderTopologyCanvas(){
             CREATE DEVICE
 ==================================================*/
 
-function createDevice(
-
-    device,
-
-    position
-
-){
+function createDevice(device,pos){
 
     const div=
-
     document.createElement("div");
 
     div.className="device";
 
     div.dataset.id=device.id;
 
-    div.style.left=
+    div.style.left=pos.x+"px";
 
-    position.left+"px";
-
-    div.style.top=
-
-    position.top+"px";
+    div.style.top=pos.y+"px";
 
     div.innerHTML=`
 
-        ${device.icon}
+        <div class="deviceIcon">
+
+            ${device.icon}
+
+        </div>
 
         <div class="deviceLabel">
 
@@ -517,19 +495,11 @@ function createDevice(
 
     `;
 
-    div.addEventListener(
+    div.onclick=()=>{
 
-        "click",
+        selectDevice(device.id,div);
 
-        ()=>selectDevice(
-
-            device.id,
-
-            div
-
-        )
-
-    );
+    };
 
     return div;
 
@@ -540,23 +510,13 @@ function createDevice(
             SELECT DEVICE
 ==================================================*/
 
-function selectDevice(
+function selectDevice(id,element){
 
-    id,
-
-    element
-
-){
-
-    if(!selectedDevice){
+    if(selectedDevice===null){
 
         selectedDevice=id;
 
-        element.classList.add(
-
-            "selected"
-
-        );
+        element.classList.add("selected");
 
         return;
 
@@ -566,37 +526,17 @@ function selectDevice(
 
         selectedDevice=null;
 
-        element.classList.remove(
-
-            "selected"
-
-        );
+        element.classList.remove("selected");
 
         return;
 
     }
 
-    createConnection(
-
-        selectedDevice,
-
-        id
-
-    );
+    createConnection(selectedDevice,id);
 
     document
-
     .querySelectorAll(".device")
-
-    .forEach(device=>{
-
-        device.classList.remove(
-
-            "selected"
-
-        );
-
-    });
+    .forEach(d=>d.classList.remove("selected"));
 
     selectedDevice=null;
 
@@ -607,43 +547,13 @@ function selectDevice(
         CREATE CONNECTION
 ==================================================*/
 
-function createConnection(
+function createConnection(from,to){
 
-    from,
+    if(connectionExists(from,to)) return;
 
-    to
+    userConnections.push([from,to]);
 
-){
-
-    if(
-
-        connectionExists(
-
-            from,
-
-            to
-
-        )
-
-    ) return;
-
-    userConnections.push([
-
-        from,
-
-        to
-
-    ]);
-
-    drawConnection(
-
-        from,
-
-        to,
-
-        "#4fc3f7"
-
-    );
+    drawConnection(from,to);
 
 }
 
@@ -652,41 +562,15 @@ function createConnection(
         CONNECTION EXISTS
 ==================================================*/
 
-function connectionExists(
+function connectionExists(from,to){
 
-    from,
+    return userConnections.some(c=>
 
-    to
+        (c[0]===from && c[1]===to)
 
-){
+        ||
 
-    return userConnections.some(
-
-        connection=>{
-
-            return(
-
-                (
-
-                    connection[0]===from &&
-
-                    connection[1]===to
-
-                )
-
-                ||
-
-                (
-
-                    connection[0]===to &&
-
-                    connection[1]===from
-
-                )
-
-            );
-
-        }
+        (c[0]===to && c[1]===from)
 
     );
 
@@ -694,7 +578,7 @@ function connectionExists(
 
 
 /*==================================================
-            DRAW CONNECTION
+        DRAW CONNECTION
 ==================================================*/
 
 function drawConnection(
@@ -703,61 +587,28 @@ function drawConnection(
 
     to,
 
-    color
+    color="#4fc3f7"
 
 ){
 
     const canvas=
+    document.getElementById("topologyCanvas");
 
-    document.getElementById(
+    const a=
+    document.querySelector(`[data-id="${from}"]`);
 
-        "topologyCanvas"
+    const b=
+    document.querySelector(`[data-id="${to}"]`);
 
-    );
+    if(!a || !b) return;
 
-    const node1=
+    const x1=a.offsetLeft+35;
+    const y1=a.offsetTop+35;
 
-    document.querySelector(
+    const x2=b.offsetLeft+35;
+    const y2=b.offsetTop+35;
 
-        `[data-id="${from}"]`
-
-    );
-
-    const node2=
-
-    document.querySelector(
-
-        `[data-id="${to}"]`
-
-    );
-
-    if(
-
-        !node1 ||
-
-        !node2
-
-    ) return;
-
-    const x1=
-
-    node1.offsetLeft+35;
-
-    const y1=
-
-    node1.offsetTop+35;
-
-    const x2=
-
-    node2.offsetLeft+35;
-
-    const y2=
-
-    node2.offsetTop+35;
-
-    const length=
-
-    Math.hypot(
+    const length=Math.hypot(
 
         x2-x1,
 
@@ -765,9 +616,7 @@ function drawConnection(
 
     );
 
-    const angle=
-
-    Math.atan2(
+    const angle=Math.atan2(
 
         y2-y1,
 
@@ -775,33 +624,19 @@ function drawConnection(
 
     )*180/Math.PI;
 
-    const line=
+    const line=document.createElement("div");
 
-    document.createElement("div");
+    line.className="connectionLine";
 
-    line.className=
+    line.style.left=x1+"px";
 
-    "connectionLine";
+    line.style.top=y1+"px";
 
-    line.style.width=
+    line.style.width=length+"px";
 
-    length+"px";
+    line.style.transform=`rotate(${angle}deg)`;
 
-    line.style.left=
-
-    x1+"px";
-
-    line.style.top=
-
-    y1+"px";
-
-    line.style.transform=
-
-    `rotate(${angle}deg)`;
-
-    line.style.background=
-
-    color;
+    line.style.background=color;
 
     canvas.appendChild(line);
 
@@ -824,10 +659,11 @@ function clearConnections(){
 
 /*==================================================
 
-        NETWORK SIMULATOR
-            PART 3
+            NETWORK SIMULATOR
+                PART 3
 
-        TOPOLOGY VALIDATION
+        TOPOLOGY VALIDATION &
+        TRANSMISSION NETWORK
 
 ==================================================*/
 
@@ -840,78 +676,52 @@ function validateTopology(){
 
     if(!selectedTopology){
 
-        alert("Please select a topology.");
+        alert("Please select a topology first.");
 
         return;
 
     }
 
-    const module=
+    const module =
+    simulator.modules.find(
+        m => m.id === "topologyBuilder"
+    );
 
-    simulator.modules[0];
-
-    const expected=
-
+    const expected =
     module.validation[selectedTopology];
 
-    if(
-
-        userConnections.length===0
-
-    ){
+    if(!expected){
 
         showResult(
-
-            module.messages.incomplete,
-
+            "Validation data not found.",
             false
-
         );
 
         return;
 
     }
 
-    const result=
-
+    const result =
     compareConnections(
-
         expected,
-
         userConnections
-
     );
 
-    highlightConnections(
+    if(result){
 
-        expected,
-
-        result.correct
-
-    );
-
-    if(result.success){
+        showResult(
+            module.messages.success,
+            true
+        );
 
         playSuccess();
 
-        showResult(
-
-            module.messages.success,
-
-            true
-
-        );
-
     }
-
     else{
 
         showResult(
-
             module.messages.failure,
-
             false
-
         );
 
     }
@@ -923,151 +733,31 @@ function validateTopology(){
         COMPARE CONNECTIONS
 ==================================================*/
 
-function compareConnections(
+function compareConnections(expected,user){
 
-    expected,
+    if(expected.length!==user.length){
 
-    user
+        return false;
 
-){
+    }
 
-    let correct=[];
+    return expected.every(connection=>{
 
-    expected.forEach(connection=>{
+        return user.some(item=>{
 
-        const found=
+            return (
 
-        user.some(item=>
+                (connection[0]===item[0] &&
+                 connection[1]===item[1])
 
-            sameConnection(
+                ||
 
-                connection,
+                (connection[0]===item[1] &&
+                 connection[1]===item[0])
 
-                item
+            );
 
-            )
-
-        );
-
-        if(found){
-
-            correct.push(connection);
-
-        }
-
-    });
-
-    return{
-
-        success:
-
-        correct.length===expected.length &&
-
-        user.length===expected.length,
-
-        correct
-
-    };
-
-}
-
-
-/*==================================================
-        SAME CONNECTION
-==================================================*/
-
-function sameConnection(
-
-    a,
-
-    b
-
-){
-
-    return(
-
-        (
-
-            a[0]===b[0] &&
-
-            a[1]===b[1]
-
-        )
-
-        ||
-
-        (
-
-            a[0]===b[1] &&
-
-            a[1]===b[0]
-
-        )
-
-    );
-
-}
-
-
-/*==================================================
-        HIGHLIGHT CONNECTIONS
-==================================================*/
-
-function highlightConnections(
-
-    expected,
-
-    correct
-
-){
-
-    document
-
-    .querySelectorAll(
-
-        ".connectionLine"
-
-    )
-
-    .forEach(line=>{
-
-        line.remove();
-
-    });
-
-    userConnections.forEach(connection=>{
-
-        const valid=
-
-        correct.some(item=>
-
-            sameConnection(
-
-                item,
-
-                connection
-
-            )
-
-        );
-
-        drawConnection(
-
-            connection[0],
-
-            connection[1],
-
-            valid
-
-            ?
-
-            "#2ecc71"
-
-            :
-
-            "#ff4d6d"
-
-        );
+        });
 
     });
 
@@ -1080,13 +770,531 @@ function highlightConnections(
 
 function resetTopology(){
 
+    selectedTopology=null;
+
     selectedDevice=null;
 
     userConnections=[];
 
-    renderTopologyCanvas();
+    document
+    .querySelectorAll(".topologyCard")
+    .forEach(card=>{
+
+        card.classList.remove("active");
+
+    });
+
+    document.getElementById(
+        "topologyCanvas"
+    ).innerHTML="";
 
     hideResult();
+
+}
+
+
+/*==================================================
+        TRANSMISSION CANVAS
+==================================================*/
+
+function renderTransmissionCanvas(){
+
+    const canvas =
+    document.getElementById(
+        "transmissionCanvas"
+    );
+
+    if(!canvas) return;
+
+    canvas.innerHTML="";
+
+    const module =
+    simulator.modules.find(
+        m=>m.id==="transmission"
+    );
+
+    module.nodes.forEach(node=>{
+
+        const div =
+        document.createElement("div");
+
+        div.className="networkNode";
+
+        div.id=node.id;
+
+        div.style.left=node.x+"px";
+
+        div.style.top=node.y+"px";
+
+        div.innerHTML=node.label;
+
+        canvas.appendChild(div);
+
+    });
+
+    drawTransmissionLinks();
+
+}
+
+
+/*==================================================
+        DRAW ALL LINKS
+==================================================*/
+
+function drawTransmissionLinks(){
+
+    const module =
+    simulator.modules.find(
+        m=>m.id==="transmission"
+    );
+
+    module.paths.forEach(path=>{
+
+        for(
+
+            let i=0;
+
+            i<path.nodes.length-1;
+
+            i++
+
+        ){
+
+            drawNetworkLine(
+
+                path.nodes[i],
+
+                path.nodes[i+1]
+
+            );
+
+        }
+
+    });
+
+}
+
+
+/*==================================================
+        DRAW SINGLE LINK
+==================================================*/
+
+function drawNetworkLine(from,to){
+
+    const canvas =
+    document.getElementById(
+        "transmissionCanvas"
+    );
+
+    const start =
+    document.getElementById(from);
+
+    const end =
+    document.getElementById(to);
+
+    if(!start || !end) return;
+
+    const x1 =
+    start.offsetLeft+30;
+
+    const y1 =
+    start.offsetTop+30;
+
+    const x2 =
+    end.offsetLeft+30;
+
+    const y2 =
+    end.offsetTop+30;
+
+    const length =
+    Math.hypot(
+
+        x2-x1,
+
+        y2-y1
+
+    );
+
+    const angle =
+    Math.atan2(
+
+        y2-y1,
+
+        x2-x1
+
+    )*180/Math.PI;
+
+    const line =
+    document.createElement("div");
+
+    line.className="connectionLine";
+
+    line.style.left=x1+"px";
+
+    line.style.top=y1+"px";
+
+    line.style.width=length+"px";
+
+    line.style.transform=
+    `rotate(${angle}deg)`;
+
+    canvas.appendChild(line);
+
+}
+
+/*==================================================
+
+            NETWORK SIMULATOR
+                PART 4
+
+        TRANSMISSION ENGINE
+
+==================================================*/
+
+
+/*==================================================
+            START TRANSMISSION
+==================================================*/
+
+function startTransmission(){
+
+    if(!selectedSwitching){
+
+        alert("Please select a switching technique.");
+
+        return;
+
+    }
+
+    switch(selectedSwitching){
+
+        case "packet":
+
+            startPacketTransmission();
+            break;
+
+        case "message":
+
+            startMessageTransmission();
+            break;
+
+        case "circuit":
+
+            startCircuitTransmission();
+            break;
+
+    }
+
+}
+
+
+/*==================================================
+            RESET TRANSMISSION
+==================================================*/
+
+function resetTransmission(){
+
+    clearPackets();
+
+    renderTransmissionCanvas();
+
+    hideResult();
+
+}
+
+
+/*==================================================
+        PACKET SWITCHING
+==================================================*/
+
+async function startPacketTransmission(){
+
+    const module =
+    simulator.modules.find(
+        m=>m.id==="transmission"
+    );
+
+    clearPackets();
+
+    for(const packet of module.packetTransmission.packets){
+
+        await animatePacket(packet);
+
+        await sleep(300);
+
+    }
+
+    showResult(
+        module.messages.packet,
+        true
+    );
+
+}
+
+
+/*==================================================
+        MESSAGE SWITCHING
+==================================================*/
+
+async function startMessageTransmission(){
+
+    const module =
+    simulator.modules.find(
+        m=>m.id==="transmission"
+    );
+
+    clearPackets();
+
+    const packet = createPacket({
+
+        id:"MSG",
+
+        color:"#9c27b0"
+
+    });
+
+    const route =
+    module.paths.find(
+
+        p=>p.id===module.messageTransmission.route
+
+    );
+
+    for(const node of route.nodes){
+
+        await movePacketToNode(packet,node);
+
+        await sleep(300);
+
+    }
+
+    packet.remove();
+
+    showResult(
+        module.messages.message,
+        true
+    );
+
+}
+
+
+/*==================================================
+        CIRCUIT SWITCHING
+==================================================*/
+
+async function startCircuitTransmission(){
+
+    const module =
+    simulator.modules.find(
+        m=>m.id==="transmission"
+    );
+
+    clearPackets();
+
+    const route =
+    module.paths.find(
+
+        p=>p.id===module.circuitTransmission.route
+
+    );
+
+    highlightRoute(route);
+
+    await sleep(500);
+
+    const packet = createPacket({
+
+        id:"MSG",
+
+        color:"#ff9800"
+
+    });
+
+    for(const node of route.nodes){
+
+        await movePacketToNode(packet,node);
+
+        await sleep(250);
+
+    }
+
+    packet.remove();
+
+    clearHighlights();
+
+    showResult(
+        module.messages.circuit,
+        true
+    );
+
+}
+
+
+/*==================================================
+            ANIMATE PACKET
+==================================================*/
+
+async function animatePacket(packet){
+
+    const module =
+    simulator.modules.find(
+        m=>m.id==="transmission"
+    );
+
+    const route =
+    module.paths.find(
+
+        p=>p.id===packet.route
+
+    );
+
+    if(!route) return;
+
+    const dot = createPacket(packet);
+
+    for(const node of route.nodes){
+
+        await movePacketToNode(dot,node);
+
+        await sleep(200);
+
+    }
+
+    dot.remove();
+
+}
+
+
+/*==================================================
+            CREATE PACKET
+==================================================*/
+
+function createPacket(packet){
+
+    const canvas =
+    document.getElementById(
+        "transmissionCanvas"
+    );
+
+    const div =
+    document.createElement("div");
+
+    div.className="packet";
+
+    div.innerHTML=packet.id;
+
+    div.style.background=packet.color;
+
+    canvas.appendChild(div);
+
+    return div;
+
+}
+
+
+/*==================================================
+            MOVE PACKET
+==================================================*/
+
+function movePacketToNode(packet,nodeId){
+
+    return new Promise(resolve=>{
+
+        const node =
+        document.getElementById(nodeId);
+
+        if(!node){
+
+            resolve();
+
+            return;
+
+        }
+
+        packet.style.left =
+        (node.offsetLeft+20)+"px";
+
+        packet.style.top =
+        (node.offsetTop+20)+"px";
+
+        node.classList.add("active");
+
+        setTimeout(()=>{
+
+            node.classList.remove("active");
+
+            resolve();
+
+        },350);
+
+    });
+
+}
+
+/*==================================================
+
+            NETWORK SIMULATOR
+                PART 5
+
+        UTILITIES & RESULT ENGINE
+
+==================================================*/
+
+
+/*==================================================
+        HIGHLIGHT ROUTE
+==================================================*/
+
+function highlightRoute(route){
+
+    if(!route) return;
+
+    route.nodes.forEach(id=>{
+
+        const node =
+        document.getElementById(id);
+
+        if(node){
+
+            node.classList.add("active");
+
+        }
+
+    });
+
+}
+
+
+/*==================================================
+        CLEAR HIGHLIGHTS
+==================================================*/
+
+function clearHighlights(){
+
+    document
+    .querySelectorAll(".networkNode")
+    .forEach(node=>{
+
+        node.classList.remove("active");
+
+    });
+
+}
+
+
+/*==================================================
+        CLEAR PACKETS
+==================================================*/
+
+function clearPackets(){
+
+    document
+    .querySelectorAll(".packet")
+    .forEach(packet=>{
+
+        packet.remove();
+
+    });
 
 }
 
@@ -1095,45 +1303,20 @@ function resetTopology(){
             SHOW RESULT
 ==================================================*/
 
-function showResult(
+function showResult(message,success){
 
-    message,
-
-    success
-
-){
-
-    const panel=
-
-    document.getElementById(
-
-        "resultPanel"
-
-    );
+    const panel =
+    document.getElementById("resultPanel");
 
     if(!panel) return;
 
-    panel.classList.add(
-
-        "show"
-
-    );
+    panel.classList.add("show");
 
     panel.innerHTML=`
 
         <div class="resultTitle">
 
-            ${success
-
-                ?
-
-                "✅ Success"
-
-                :
-
-                "❌ Try Again"
-
-            }
+            ${success ? "✅ Success" : "❌ Try Again"}
 
         </div>
 
@@ -1154,25 +1337,14 @@ function showResult(
 
 function hideResult(){
 
-    const panel=
+    const panel =
+    document.getElementById("resultPanel");
 
-    document.getElementById(
+    if(!panel) return;
 
-        "resultPanel"
+    panel.classList.remove("show");
 
-    );
-
-    if(panel){
-
-        panel.classList.remove(
-
-            "show"
-
-        );
-
-        panel.innerHTML="";
-
-    }
+    panel.innerHTML="";
 
 }
 
@@ -1183,720 +1355,16 @@ function hideResult(){
 
 function playSuccess(){
 
-    const audio=
-
-    document.getElementById(
-
-        "successSound"
-
-    );
+    const audio =
+    document.getElementById("successSound");
 
     if(audio){
 
         audio.currentTime=0;
 
-        audio.play();
+        audio.play().catch(()=>{});
 
     }
-
-}
-
-/*==================================================
-
-        NETWORK SIMULATOR
-            PART 4
-
-        DATA TRANSMISSION
-
-==================================================*/
-
-
-/*==================================================
-        SELECT SWITCHING METHOD
-==================================================*/
-
-function selectSwitching(id){
-
-    selectedSwitching=id;
-
-    document
-
-    .querySelectorAll(".switchCard")
-
-    .forEach(card=>{
-
-        card.classList.remove("active");
-
-    });
-
-    event.currentTarget.classList.add("active");
-
-    renderTransmissionCanvas();
-
-}
-
-
-/*==================================================
-    RENDER TRANSMISSION NETWORK
-==================================================*/
-
-function renderTransmissionCanvas(){
-
-    if(!selectedSwitching) return;
-
-    const canvas=
-
-    document.getElementById(
-
-        "transmissionCanvas"
-
-    );
-
-    canvas.innerHTML="";
-
-    const module=
-
-    simulator.modules[1];
-
-    const positions={
-
-        pc1:{x:80,y:120},
-        pc2:{x:180,y:120},
-        pc3:{x:280,y:120},
-        pc4:{x:380,y:120},
-        pc5:{x:480,y:120},
-
-        pc6:{x:80,y:360},
-        pc7:{x:180,y:360},
-        pc8:{x:280,y:360},
-        pc9:{x:380,y:360},
-        pc10:{x:480,y:360},
-
-        pc11:{x:80,y:600},
-        pc12:{x:180,y:600},
-        pc13:{x:280,y:600},
-        pc14:{x:380,y:600},
-        pc15:{x:480,y:600},
-
-        server:{x:850,y:360}
-
-    };
-
-    module.nodes.forEach(node=>{
-
-        const div=
-
-        document.createElement("div");
-
-        div.className="networkNode";
-
-        div.id=node.id;
-
-        div.style.left=
-
-        positions[node.id].x+"px";
-
-        div.style.top=
-
-        positions[node.id].y+"px";
-
-        div.innerHTML=node.label;
-
-        canvas.appendChild(div);
-
-    });
-
-    drawTransmissionLinks();
-
-}
-
-
-/*==================================================
-        DRAW NETWORK LINKS
-==================================================*/
-
-function drawTransmissionLinks(){
-
-    const module=
-
-    simulator.modules[1];
-
-    module.paths.forEach(path=>{
-
-        const nodes=path.nodes;
-
-        for(
-
-            let i=0;
-
-            i<nodes.length-1;
-
-            i++
-
-        ){
-
-            drawNetworkLine(
-
-                nodes[i],
-
-                nodes[i+1]
-
-            );
-
-        }
-
-    });
-
-}
-
-
-/*==================================================
-        DRAW SINGLE LINK
-==================================================*/
-
-function drawNetworkLine(
-
-    from,
-
-    to
-
-){
-
-    const canvas=
-
-    document.getElementById(
-
-        "transmissionCanvas"
-
-    );
-
-    const start=
-
-    document.getElementById(from);
-
-    const end=
-
-    document.getElementById(to);
-
-    if(
-
-        !start ||
-
-        !end
-
-    ) return;
-
-    const x1=
-
-    start.offsetLeft+32;
-
-    const y1=
-
-    start.offsetTop+32;
-
-    const x2=
-
-    end.offsetLeft+32;
-
-    const y2=
-
-    end.offsetTop+32;
-
-    const length=
-
-    Math.hypot(
-
-        x2-x1,
-
-        y2-y1
-
-    );
-
-    const angle=
-
-    Math.atan2(
-
-        y2-y1,
-
-        x2-x1
-
-    )*180/Math.PI;
-
-    const line=
-
-    document.createElement("div");
-
-    line.className=
-
-    "connectionLine";
-
-    line.style.left=
-
-    x1+"px";
-
-    line.style.top=
-
-    y1+"px";
-
-    line.style.width=
-
-    length+"px";
-
-    line.style.transform=
-
-    `rotate(${angle}deg)`;
-
-    canvas.appendChild(line);
-
-}
-
-
-/*==================================================
-        START TRANSMISSION
-==================================================*/
-
-function startTransmission(){
-
-    if(!selectedSwitching){
-
-        alert(
-
-        "Select a switching technique."
-
-        );
-
-        return;
-
-    }
-
-    if(
-
-        selectedSwitching==="packet"
-
-    ){
-
-        startPacketTransmission();
-
-    }
-
-    else if(
-
-        selectedSwitching==="message"
-
-    ){
-
-        startMessageTransmission();
-
-    }
-
-    else{
-
-        startCircuitTransmission();
-
-    }
-
-}
-
-
-/*==================================================
-        RESET TRANSMISSION
-==================================================*/
-
-function resetTransmission(){
-
-    packetAnimations=[];
-
-    renderTransmissionCanvas();
-
-    hideResult();
-
-}
-
-/*==================================================
-
-        NETWORK SIMULATOR
-            PART 5
-
-    PACKET • MESSAGE • CIRCUIT
-
-==================================================*/
-
-
-/*==================================================
-        PACKET SWITCHING
-==================================================*/
-
-async function startPacketTransmission(){
-
-    const module=
-
-    simulator.modules[1];
-
-    clearPackets();
-
-    const packets=
-
-    module.packetTransmission.packets;
-
-    for(const packet of packets){
-
-        animatePacket(packet);
-
-        await sleep(500);
-
-    }
-
-    showResult(
-
-        module.messages.packet,
-
-        true
-
-    );
-
-}
-
-
-/*==================================================
-        ANIMATE ONE PACKET
-==================================================*/
-
-async function animatePacket(packet){
-
-    const module=
-
-    simulator.modules[1];
-
-    const route=
-
-    module.paths.find(
-
-        path=>path.id===packet.route
-
-    );
-
-    if(!route) return;
-
-    const dot=
-
-    createPacket(
-
-        packet
-
-    );
-
-    for(const node of route.nodes){
-
-        await movePacketToNode(
-
-            dot,
-
-            node
-
-        );
-
-    }
-
-    dot.remove();
-
-}
-
-
-/*==================================================
-            CREATE PACKET
-==================================================*/
-
-function createPacket(packet){
-
-    const canvas=
-
-    document.getElementById(
-
-        "transmissionCanvas"
-
-    );
-
-    const div=
-
-    document.createElement("div");
-
-    div.className="packet";
-
-    div.style.background=
-
-    packet.color;
-
-    div.innerHTML=
-
-    packet.id;
-
-    canvas.appendChild(div);
-
-    return div;
-
-}
-
-
-/*==================================================
-        MESSAGE SWITCHING
-==================================================*/
-
-async function startMessageTransmission(){
-
-    const module=
-
-    simulator.modules[1];
-
-    clearPackets();
-
-    const packet=
-
-    createPacket({
-
-        id:"MSG",
-
-        color:"#9C27B0"
-
-    });
-
-    const route=
-
-    module.paths.find(
-
-        path=>
-
-        path.id===
-
-        module.messageTransmission.route
-
-    );
-
-    for(
-
-        const node
-
-        of route.nodes
-
-    ){
-
-        await movePacketToNode(
-
-            packet,
-
-            node
-
-        );
-
-        await sleep(400);
-
-    }
-
-    packet.remove();
-
-    showResult(
-
-        module.messages.message,
-
-        true
-
-    );
-
-}
-
-
-/*==================================================
-        CIRCUIT SWITCHING
-==================================================*/
-
-async function startCircuitTransmission(){
-
-    const module=
-
-    simulator.modules[1];
-
-    clearPackets();
-
-    const route=
-
-    module.paths.find(
-
-        path=>
-
-        path.id===
-
-        module.circuitTransmission.route
-
-    );
-
-    highlightRoute(route);
-
-    await sleep(800);
-
-    const packet=
-
-    createPacket({
-
-        id:"MSG",
-
-        color:"#ff9800"
-
-    });
-
-    for(
-
-        const node
-
-        of route.nodes
-
-    ){
-
-        await movePacketToNode(
-
-            packet,
-
-            node
-
-        );
-
-    }
-
-    packet.remove();
-
-    clearHighlights();
-
-    showResult(
-
-        module.messages.circuit,
-
-        true
-
-    );
-
-}
-
-
-/*==================================================
-        MOVE PACKET
-==================================================*/
-
-function movePacketToNode(
-
-    packet,
-
-    nodeId
-
-){
-
-    return new Promise(resolve=>{
-
-        const node=
-
-        document.getElementById(
-
-            nodeId
-
-        );
-
-        if(!node){
-
-            resolve();
-
-            return;
-
-        }
-
-        packet.style.left=
-
-        node.offsetLeft+20+"px";
-
-        packet.style.top=
-
-        node.offsetTop+20+"px";
-
-        node.classList.add("active");
-
-        setTimeout(()=>{
-
-            node.classList.remove(
-
-                "active"
-
-            );
-
-            resolve();
-
-        },500);
-
-    });
-
-}
-
-
-/*==================================================
-        CLEAR PACKETS
-==================================================*/
-
-function clearPackets(){
-
-    document
-
-    .querySelectorAll(".packet")
-
-    .forEach(packet=>packet.remove());
-
-}
-
-
-/*==================================================
-        HIGHLIGHT ROUTE
-==================================================*/
-
-function highlightRoute(route){
-
-    route.nodes.forEach(id=>{
-
-        const node=
-
-        document.getElementById(id);
-
-        if(node){
-
-            node.classList.add(
-
-                "active"
-
-            );
-
-        }
-
-    });
-
-}
-
-
-/*==================================================
-        CLEAR HIGHLIGHTS
-==================================================*/
-
-function clearHighlights(){
-
-    document
-
-    .querySelectorAll(
-
-        ".networkNode"
-
-    )
-
-    .forEach(node=>{
-
-        node.classList.remove(
-
-            "active"
-
-        );
-
-    });
 
 }
 
@@ -1907,11 +1375,67 @@ function clearHighlights(){
 
 function sleep(ms){
 
-    return new Promise(resolve=>
+    return new Promise(resolve=>{
 
-        setTimeout(resolve,ms)
+        setTimeout(resolve,ms);
 
-    );
+    });
 
 }
+
+
+/*==================================================
+            RESIZE SUPPORT
+==================================================*/
+
+window.addEventListener("resize",()=>{
+
+    if(selectedTopology){
+
+        renderTopologyCanvas();
+
+        userConnections.forEach(connection=>{
+
+            drawConnection(
+
+                connection[0],
+
+                connection[1],
+
+                "#4fc3f7"
+
+            );
+
+        });
+
+    }
+
+    if(selectedSwitching){
+
+        renderTransmissionCanvas();
+
+    }
+
+});
+
+
+/*==================================================
+            AUTO START
+==================================================*/
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    if(
+
+        typeof KINGDOM_DATA!=="undefined" &&
+
+        KINGDOM_DATA.networkSimulator
+
+    ){
+
+        initializeNetworkSimulator();
+
+    }
+
+});
 
