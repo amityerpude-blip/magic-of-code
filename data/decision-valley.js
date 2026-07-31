@@ -147,118 +147,6 @@ description:
 
 cards:[
 
-/* Part 2 */
-
-]
-
-},
-
-/*====================================================
-                SPELL FORGE
-====================================================*/
-
-coding:{
-
-title:"🧪 Spell Forge",
-
-description:
-
-"Practice writing programs using conditions.",
-
-defaultCode:
-
-`age=int(input("Enter your age : "))
-
-if age>=18:
-    print("You are eligible to vote.")
-else:
-    print("You are not eligible.")`,
-
-challenges:[
-
-/* Part 3 */
-
-]
-
-},
-
-/*====================================================
-                MONSTER HUNT
-====================================================*/
-
-quiz:{
-
-title:"👾 Monster Hunt",
-
-description:
-
-"Defeat the Valley Monsters by making the correct decisions.",
-
-questions:[
-
-/* Part 4 */
-
-]
-
-},
-
-/*====================================================
-                GUARDIAN BATTLE
-====================================================*/
-
-challenge:{
-
-title:"🏆 Guardian Battle",
-
-description:
-
-"Face the final challenge and prove your decision-making skills.",
-
-icon:"🦉",
-
-heading:"The Crossroads of Destiny",
-
-story:
-
-"Three magical roads stand before Dino. Only correct logical decisions will reveal the safe path through the valley.",
-
-tasks:[
-
-/* Part 5 */
-
-]
-
-},
-
-/*====================================================
-                FOOTER
-====================================================*/
-
-footer:{
-
-button:"🌲 Continue to Looping Forest",
-
-next:"../looping-forest/index.html"
-
-},
-
-/*====================================================
-                AUDIO
-====================================================*/
-
-audio:{
-
-magic:"assets/audio/magic.mp3",
-
-button:"assets/audio/button.mp3",
-
-page:"assets/audio/page-flip.mp3"
-
-}
-
-};
-cards:[
-
 {
 icon:"🤔",
 title:"Decision Making",
@@ -351,6 +239,30 @@ text:"Decision making is used in ATM systems, online shopping discounts, login a
 }
 
 ]
+
+},
+
+/*====================================================
+                SPELL FORGE
+====================================================*/
+
+coding:{
+
+title:"🧪 Spell Forge",
+
+description:
+
+"Practice writing programs using conditions.",
+
+defaultCode:
+
+`age=int(input("Enter your age : "))
+
+if age>=18:
+    print("You are eligible to vote.")
+else:
+    print("You are not eligible.")`,
+
 challenges:[
 
 {
@@ -606,6 +518,21 @@ else:
 }
 
 ]
+
+},
+
+/*====================================================
+                MONSTER HUNT
+====================================================*/
+
+quiz:{
+
+title:"👾 Monster Hunt",
+
+description:
+
+"Defeat the Valley Monsters by making the correct decisions.",
+
 questions:[
 
 {
@@ -885,13 +812,19 @@ answer:1
 
 ]
 
+},
+
+/*====================================================
+                GUARDIAN BATTLE
+====================================================*/
+
 challenge:{
 
 title:"🏆 Guardian Battle",
 
 description:
 
-"Complete the final mission by solving real-life decision-making problems using Python conditions.",
+"Face the final challenge and prove your decision-making skills.",
 
 icon:"🦉",
 
@@ -899,7 +832,7 @@ heading:"The Crossroads of Destiny",
 
 story:
 
-"Dino reaches the center of the Valley of Decisions where eight magical gates block his path. Each gate presents a real-world programming challenge. Master Owl explains that only correct decisions can unlock every gate and reveal the path to the Looping Forest.",
+"Three magical roads stand before Dino. Only correct logical decisions will reveal the safe path through the valley.",
 
 tasks:[
 
@@ -919,7 +852,57 @@ tasks:[
 
 "🛒 Calculate a shopping discount of 10% if the purchase amount is ₹5000 or more."
 
-],
+]
+
+
+},
+
+/*====================================================
+                FOOTER
+====================================================*/
+
+footer:{
+
+button:"🌲 Continue to Looping Forest",
+
+next:"../looping-forest/index.html"
+
+},
+
+/*====================================================
+                AUDIO
+====================================================*/
+
+audio:{
+
+magic:"assets/audio/magic.mp3",
+
+button:"assets/audio/button.mp3",
+
+page:"assets/audio/page-flip.mp3"
+
+}
+
+};
+
+
+
+challenge:{
+
+title:"🏆 Guardian Battle",
+
+description:
+
+"Complete the final mission by solving real-life decision-making problems using Python conditions.",
+
+icon:"🦉",
+
+heading:"The Crossroads of Destiny",
+
+story:
+
+"Dino reaches the center of the Valley of Decisions where eight magical gates block his path. Each gate presents a real-world programming challenge. Master Owl explains that only correct decisions can unlock every gate and reveal the path to the Looping Forest.",
+
 
 reward:{
 
