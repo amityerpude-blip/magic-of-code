@@ -819,9 +819,25 @@ console.log("Notes ✓");
 }catch(e){console.error("Notes",e);}
 
 try{
-root.innerHTML+=CodingComponent(data);
-console.log("Coding ✓");
-}catch(e){console.error("Coding",e);}
+
+    if(data.coding){
+
+        root.innerHTML+=CodingComponent(data);
+
+    }
+    else if(typeof NetworkSimulatorComponent==="function"){
+
+        root.innerHTML+=NetworkSimulatorComponent();
+
+    }
+
+    console.log("Coding ✓");
+
+}catch(e){
+
+    console.error("Coding",e);
+
+}
 
 try{
 root.innerHTML+=QuizComponent(data);
