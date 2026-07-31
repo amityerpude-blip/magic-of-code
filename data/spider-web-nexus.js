@@ -743,11 +743,7 @@ const KINGDOM_DATA = {
                 answer:0
 
             }
-
-        ]
-
-    },
-                        {
+            {
 
                 question:
                 "Which topology connects every device to every other device?",
