@@ -1428,55 +1428,47 @@ answer:1
 
 challenge:{
 
-title:"🕸️ Guardian Battle",
+    title:"🕸️ Guardian Battle",
 
-description:
+    description:"Restore the Spider Web Nexus by completing all network missions.",
 
-"The glowing threads of the Spider Web Nexus have been damaged by the Dark Network Bug. Master Arachne challenges Dino to restore the magical network by rebuilding the correct topology and selecting the best switching technique for each transmission. Every successful connection restores another part of the kingdom.",
+    icon:"🕷️",
 
-icon:"🕷️",
+    heading:"Restore the Magic Web",
 
-heading:"Restore the Magic Web",
+    story:"The Spider Web Nexus once connected every kingdom. Complete every simulation to reconnect the web.",
 
-story:
+    tasks:[
 
-"The Spider Web Nexus once connected every kingdom of the Magic of Code world. One day, the Dark Network Bug tangled the magical web, breaking communication between kingdoms. Data packets were lost, messages stopped reaching their destinations and the ancient servers fell silent. Master Arachne believes only Dino can reconnect the web and bring life back to the network.",
+        "🕸️ Build a Bus Topology correctly.",
 
-missions:[
+        "⭐ Build a Star Topology correctly.",
 
-"🛠️ Build a correct Star Topology by connecting all devices to the central switch.",
+        "🔄 Build a Ring Topology correctly.",
 
-"⭕ Repair a Ring Topology by completing the communication loop.",
+        "🌳 Build a Tree Topology correctly.",
 
-"📦 Choose Packet Switching to deliver Internet data successfully.",
+        "🕸️ Build a Mesh Topology correctly.",
 
-"💬 Use Message Switching where Store-and-Forward communication is required.",
+        "📦 Demonstrate Packet Switching.",
 
-"⚡ Select Circuit Switching for a dedicated communication path.",
+        "💬 Demonstrate Message Switching.",
 
-"📡 Connect the Gateway Router with the Core Router to restore Internet access.",
+        "🔌 Demonstrate Circuit Switching."
 
-"🌐 Restore communication between all six computers and the Web Server.",
+    ],
 
-"🛡️ Identify and remove one Network Bug causing communication failure.",
+    reward:{
 
-"📨 Successfully deliver the message 'HELLO SERVER' using the appropriate switching technique.",
+        badge:"Network Guardian",
 
-"👑 Restore the complete Spider Web Nexus and reconnect every kingdom."
+        xp:200,
 
-],
+        coins:100,
 
-reward:{
+        unlock:"python-master-castle"
 
-badge:"🕸️ Network Guardian",
-
-xp:500,
-
-coins:250,
-
-unlock:"python-masters-castle"
-
-}
+    }
 
 },
 
