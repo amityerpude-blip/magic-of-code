@@ -1,1503 +1,1247 @@
 /*====================================================
 
-            MAGIC OF CODE
+        MAGIC OF CODE
         SPIDER WEB NEXUS
 
         spider-web-nexus.js
 
-            PART 1
-
 ====================================================*/
 
-const KINGDOM_DATA={
-
-/*====================================================
-                BASIC INFORMATION
-====================================================*/
-
-id:"computerNetworks",
-
-title:"🕸️ Spider Web Nexus",
-
-shortTitle:"Spider Web Nexus",
-
-subtitle:"Master Arachne - Guardian of Networks",
-
-description:
-
-"Deep beneath the Cyber Mountains lies the Spider Web Nexus, a magical web connecting every kingdom of the Magic of Code world. Every glowing strand carries information from one place to another. Master Arachne, the wise Spider Sage, teaches Dino how computers communicate, how the Internet works, and how millions of devices stay connected through magical network webs.",
-
-master:"🕷️ Master Arachne",
-
-/*====================================================
-                    HERO
-====================================================*/
-
-hero:{
-
-background:"assets/images/hero.jpg",
-
-logo:"assets/images/master-arachne.png"
-
-},
-
-/*====================================================
-                KINGDOM SECTIONS
-====================================================*/
-
-sections:[
-
-{
-
-id:"comicSection",
-
-icon:"📖",
-
-title:"Story Scroll",
-
-subtitle:"The Web of Connections"
-
-},
-
-{
-
-id:"animationSection",
-
-icon:"🎬",
-
-title:"Magic Vision",
-
-subtitle:"Computer Networks Explained"
-
-},
-
-{
-
-id:"notesSection",
-
-icon:"📚",
-
-title:"Wisdom Scrolls",
-
-subtitle:"Learn Computer Networks"
-
-},
-
-{
-
-id:"networkSection",
-
-type:"networkSimulator",
-
-icon:"🌐",
-
-title:"Network Simulator",
-
-subtitle:"Build • Connect • Transmit"
-
-},
-
-{
-
-id:"quizSection",
-
-icon:"👾",
-
-title:"Monster Hunt",
-
-subtitle:"Defeat the Network Bugs"
-
-},
-
-{
-
-id:"challengeSection",
-
-icon:"🏆",
-
-title:"Guardian Battle",
-
-subtitle:"Restore the Magic Network"
-
-}
-
-],
-
-/*====================================================
-                    COMIC
-====================================================*/
-
-comic:{
-
-title:"📖 The Web of Connections",
-
-description:
-
-"Dino enters a mysterious cave where glowing spider webs stretch endlessly in every direction. Each silk strand carries sparkling packets of information. Master Arachne reveals that every web represents a computer network, connecting people, schools, businesses and the entire Internet into one magical world.",
-
-folder:"assets/comic/",
-
-totalPages:16
-
-},
-
-/*====================================================
-                    ANIMATION
-====================================================*/
-
-animation:{
-
-title:"🎬 Introduction to Computer Networks",
-
-description:
-
-"Discover how computers communicate, how the Internet works, and why networking connects the entire digital world.",
-
-type:"youtube",
-
-source:"https://www.youtube.com/embed/qiQR5rTSshw"
-
-},
-
-/*====================================================
-                    NOTES
-====================================================*/
-
-notes:{
-
-title:"📚 Wisdom Scrolls",
-
-description:
-
-"Master the magical concepts of Computer Networks.",
-
-cards:[
-  /*====================================================
-                WISDOM SCROLLS
-====================================================*/
-
-{
-
-icon:"🕸️",
-
-title:"What is a Computer Network?",
-
-content:
-
-"A Computer Network is a collection of two or more computers and other devices connected together to share data, hardware, software and communication resources."
-
-},
-
-{
-
-icon:"✨",
-
-title:"Advantages of Computer Networks",
-
-content:
-
-"Computer Networks allow resource sharing, fast communication, file sharing, Internet access, centralized data management, online collaboration and cost reduction."
-
-},
-
-{
-
-icon:"🌐",
-
-title:"Types of Networks",
-
-content:
-
-"Networks are classified according to their geographical coverage. The main types are PAN, LAN, MAN and WAN."
-
-},
-
-{
-
-icon:"📱",
-
-title:"PAN (Personal Area Network)",
-
-content:
-
-"A PAN connects personal devices within a short distance such as mobile phones, smart watches, Bluetooth headsets and laptops."
-
-},
-
-{
-
-icon:"🏫",
-
-title:"LAN (Local Area Network)",
-
-content:
-
-"A LAN connects computers within a limited area such as a classroom, school, office or laboratory. It provides high-speed communication."
-
-},
-
-{
-
-icon:"🏙️",
-
-title:"MAN (Metropolitan Area Network)",
-
-content:
-
-"A MAN connects multiple LANs across a city or metropolitan area. Cable TV and city-wide educational networks are examples."
-
-},
-
-{
-
-icon:"🌍",
-
-title:"WAN (Wide Area Network)",
-
-content:
-
-"A WAN connects computers over very large geographical areas such as countries and continents. The Internet is the largest WAN."
-
-},
-
-{
-
-icon:"🖥️",
-
-title:"Network Devices",
-
-content:
-
-"Important networking devices include Hub, Switch, Router, Modem, Repeater, Bridge, Gateway and Network Interface Card (NIC)."
-
-},
-
-{
-
-icon:"🔀",
-
-title:"Network Topologies",
-
-content:
-
-"Topology refers to the physical or logical arrangement of devices in a network. Common topologies are Bus, Star, Ring, Mesh and Tree."
-
-},
-
-{
-
-icon:"📡",
-
-title:"Communication Media",
-
-content:
-
-"Data travels through Wired Media (Twisted Pair Cable, Coaxial Cable, Optical Fibre) or Wireless Media (Wi-Fi, Bluetooth, Infrared, Microwave and Satellite)."
-
-},
-
-{
-
-icon:"🌎",
-
-title:"Internet and WWW",
-
-content:
-
-"The Internet is a global network connecting millions of computers. The World Wide Web (WWW) is a service available on the Internet that provides access to web pages through browsers."
-
-},
-
-{
-
-icon:"🔗",
-
-title:"URL, IP Address and Domain Name",
-
-content:
-
-"A URL identifies a web resource. An IP Address uniquely identifies a device on a network. A Domain Name is the human-readable name of a website such as www.cbse.gov.in."
-
-},
-
-{
-
-icon:"📨",
-
-title:"Network Protocols",
-
-content:
-
-"Protocols are rules that govern communication between devices. Common protocols include HTTP, HTTPS, FTP, SMTP and POP3."
-
-},
-
-{
-
-icon:"🛡️",
-
-title:"Cyber Safety",
-
-content:
-
-"Use strong passwords, enable two-factor authentication, avoid suspicious links, install antivirus software, keep software updated and never share personal information with unknown users."
-
-}
-
-]
-
-},
-
-/*====================================================
-            NETWORK SIMULATOR
-====================================================*/
-
-networkSimulator:{
-
-title:"🌐 Network Simulator",
-
-description:
-
-"Build computer networks, explore different topologies and understand how data travels using Packet Switching, Message Switching and Circuit Switching.",
-
-modules:[
-
-/*====================================================
-            MODULE 1 : BUILD NETWORK
-====================================================*/
-
-{
-
-id:"topologyBuilder",
-
-icon:"🛠️",
-
-title:"Build the Network",
-
-description:
-
-"Choose a topology and connect the devices correctly to activate the Magic Web.",
-
-instruction:
-
-"Select a topology, then connect all devices correctly. Every correct connection strengthens the magical network.",
-
-topologies:[
-
-{
-
-id:"star",
-
-name:"⭐ Star Topology",
-
-centerDevice:"Switch"
-
-},
-
-{
-
-id:"bus",
-
-name:"🚌 Bus Topology",
-
-centerDevice:"Backbone Cable"
-
-},
-
-{
-
-id:"ring",
-
-name:"⭕ Ring Topology",
-
-centerDevice:null
-
-},
-
-{
-
-id:"tree",
-
-name:"🌳 Tree Topology",
-
-centerDevice:"Root Switch"
-
-},
-
-{
-
-id:"mesh",
-
-name:"🕸 Mesh Topology",
-
-centerDevice:null
-
-}
-
-],
-
-devices:[
-
-{
-
-id:"pc1",
-
-name:"Computer A",
-
-icon:"💻"
-
-},
-
-{
-
-id:"pc2",
-
-name:"Computer B",
-
-icon:"💻"
-
-},
-
-{
-
-id:"pc3",
-
-name:"Computer C",
-
-icon:"💻"
-
-},
-
-{
-
-id:"pc4",
-
-name:"Computer D",
-
-icon:"💻"
-
-},
-
-{
-
-id:"switch",
-
-name:"Switch",
-
-icon:"🔀"
-
-},
-
-{
-
-id:"router",
-
-name:"Router",
-
-icon:"📡"
-
-}
-
-]
-
-},
-
-/*====================================================
-        MODULE 2 : DATA TRANSMISSION
-====================================================*/
-
-{
-
-id:"transmission",
-
-icon:"📡",
-
-title:"Data Transmission",
-
-description:
-
-"Observe how data travels through the network using different switching techniques.",
-
-instruction:
-
-"Choose one switching technique and click SEND to watch the data travel through the network.",
-
-message:"HELLO SERVER",
-
-options:[
-
-{
-
-id:"packet",
-
-title:"📦 Packet Switching"
-
-},
-
-{
-
-id:"message",
-
-title:"💬 Message Switching"
-
-},
-
-{
-
-id:"circuit",
-
-title:"⚡ Circuit Switching"
-
-}
-
-],
-
-network:{
-
-nodes:[
-
-{
-
-id:"pc",
-
-label:"💻 PC"
-
-},
-
-{
-
-id:"s1",
-
-label:"🔀 Switch"
-
-},
-
-{
-
-id:"r1",
-
-label:"📡 Router 1"
-
-},
-
-{
-
-id:"r2",
-
-label:"📡 Router 2"
-
-},
-
-{
-
-id:"r3",
-
-label:"📡 Router 3"
-
-},
-
-{
-
-id:"gateway",
-
-label:"🌐 Gateway"
-
-},
-
-{
-
-id:"core",
-
-label:"⚙️ Core Router"
-
-},
-
-{
-
-id:"serverSwitch",
-
-label:"🔀 Server Switch"
-
-},
-
-{
-
-id:"server",
-
-label:"🖥️ Server"
-
-}
-
-]
-
-}
-
-}
-
-],
-
-/*====================================================
-        TOPOLOGY VALIDATION DATA
-====================================================*/
-
-validation:{
-
-star:[
-
-["pc1","switch"],
-["pc2","switch"],
-["pc3","switch"],
-["pc4","switch"],
-["router","switch"]
-
-],
-
-bus:[
-
-["pc1","bus"],
-["pc2","bus"],
-["pc3","bus"],
-["pc4","bus"],
-["router","bus"]
-
-],
-
-ring:[
-
-["pc1","pc2"],
-["pc2","pc3"],
-["pc3","pc4"],
-["pc4","router"],
-["router","pc1"]
-
-],
-
-tree:[
-
-["router","switch"],
-["switch","pc1"],
-["switch","pc2"],
-["router","pc3"],
-["router","pc4"]
-
-],
-
-mesh:[
-
-["pc1","pc2"],
-["pc1","pc3"],
-["pc1","pc4"],
-["pc2","pc3"],
-["pc2","pc4"],
-["pc3","pc4"]
-
-]
-
-},
-
-/*====================================================
-        TRANSMISSION NETWORK GRAPH
-====================================================*/
-
-graph:[
-
-["pc","s1"],
-
-["s1","r1"],
-
-["s1","r2"],
-
-["s1","r3"],
-
-["r1","gateway"],
-
-["r2","gateway"],
-
-["r3","gateway"],
-
-["gateway","core"],
-
-["core","serverSwitch"],
-
-["serverSwitch","server"]
-
-],
-
-/*====================================================
-            TRANSMISSION PATHS
-====================================================*/
-
-paths:{
-
-packet:[
-
-{
-
-packet:"P1",
-
-color:"#4CAF50",
-
-route:[
-
-"pc",
-"s1",
-"r1",
-"gateway",
-"core",
-"serverSwitch",
-"server"
-
-]
-
-},
-
-{
-
-packet:"P2",
-
-color:"#2196F3",
-
-route:[
-
-"pc",
-"s1",
-"r2",
-"gateway",
-"core",
-"serverSwitch",
-"server"
-
-]
-
-},
-
-{
-
-packet:"P3",
-
-color:"#FF9800",
-
-route:[
-
-"pc",
-"s1",
-"r3",
-"gateway",
-"core",
-"serverSwitch",
-"server"
-
-]
-
-},
-
-{
-
-packet:"P4",
-
-color:"#E91E63",
-
-route:[
-
-"pc",
-"s1",
-"r2",
-"gateway",
-"core",
-"serverSwitch",
-"server"
-
-]
-
-}
-
-],
-
-message:[
-
-"pc",
-"s1",
-"r2",
-"gateway",
-"core",
-"serverSwitch",
-"server"
-
-],
-
-circuit:[
-
-"pc",
-"s1",
-"r1",
-"gateway",
-"core",
-"serverSwitch",
-"server"
-
-]
-
-},
-
-/*====================================================
-            NETWORK CONDITIONS
-====================================================*/
-
-conditions:[
-
-{
-
-id:"normal",
-
-title:"🟢 Normal Network"
-
-},
-
-{
-
-id:"congestion",
-
-title:"🟡 Network Congestion"
-
-}
-
-],
-
-/*====================================================
-        RESULT MESSAGES
-====================================================*/
-
-messages:{
-
-topologySuccess:
-
-"🎉 Excellent! The topology has been created successfully.",
-
-topologyFail:
-
-"❌ Incorrect connections. Check the selected topology and try again.",
-
-packetSuccess:
-
-"📦 Packets travelled through multiple routes and were successfully reassembled at the destination.",
-
-messageSuccess:
-
-"💬 The complete message was stored and forwarded at every intermediate device before reaching the server.",
-
-circuitSuccess:
-
-"⚡ A dedicated communication path was established before transmitting the complete message.",
-
-congestion:
-
-"🚧 Network congestion detected! Observe how each switching technique behaves under heavy traffic."
-
-}
-
-},
-
-/*====================================================
-            MONSTER HUNT
-====================================================*/
-/*====================================================
-                MONSTER HUNT
-====================================================*/
-
-quiz:{
-
-title:"👾 Monster Hunt",
-
-description:
-
-"Defeat the Network Bugs by answering questions about Computer Networks.",
-
-questions:[
-
-{
-
-question:"What is a Computer Network?",
-
-options:[
-
-"A collection of connected computers and devices",
-
-"A programming language",
-
-"An operating system",
-
-"A web browser"
-
-],
-
-answer:0
-
-},
-
-{
-
-question:"Which network covers the largest geographical area?",
-
-options:[
-
-"PAN",
-
-"LAN",
-
-"MAN",
-
-"WAN"
-
-],
-
-answer:3
-
-},
-
-{
-
-question:"Which network is commonly used inside a school?",
-
-options:[
-
-"WAN",
-
-"MAN",
-
-"LAN",
-
-"PAN"
-
-],
-
-answer:2
-
-},
-
-{
-
-question:"PAN stands for:",
-
-options:[
-
-"Private Area Network",
-
-"Personal Area Network",
-
-"Public Area Network",
-
-"Primary Area Network"
-
-],
-
-answer:1
-
-},
-
-{
-
-question:"Which device forwards data packets between different networks?",
-
-options:[
-
-"Switch",
-
-"Hub",
-
-"Router",
-
-"NIC"
-
-],
-
-answer:2
-
-},
-
-{
-
-question:"Which device connects multiple computers in a LAN?",
-
-options:[
-
-"Router",
-
-"Switch",
-
-"Gateway",
-
-"Modem"
-
-],
-
-answer:1
-
-},
-
-{
-
-question:"Which topology uses a central switch or hub?",
-
-options:[
-
-"Ring",
-
-"Bus",
-
-"Star",
-
-"Mesh"
-
-],
-
-answer:2
-
-},
-
-{
-
-question:"Which topology forms a closed loop?",
-
-options:[
-
-"Star",
-
-"Bus",
-
-"Ring",
-
-"Tree"
-
-],
-
-answer:2
-
-},
-
-{
-
-question:"The Internet is an example of:",
-
-options:[
-
-"PAN",
-
-"LAN",
-
-"WAN",
-
-"MAN"
-
-],
-
-answer:2
-
-},
-
-{
-
-question:"WWW stands for:",
-
-options:[
-
-"World Wide Web",
-
-"Wide World Web",
-
-"World Web Window",
-
-"Web World Wide"
-
-],
-
-answer:0
-
-},
-
-{
-
-question:"Which protocol is used to open websites?",
-
-options:[
-
-"SMTP",
-
-"HTTP",
-
-"FTP",
-
-"POP3"
-
-],
-
-answer:1
-
-},
-
-{
-
-question:"HTTPS is more secure because it:",
-
-options:[
-
-"Compresses files",
-
-"Encrypts communication",
-
-"Increases Internet speed",
-
-"Blocks advertisements"
-
-],
-
-answer:1
-
-},
-
-{
-
-question:"Which protocol is mainly used for transferring files?",
-
-options:[
-
-"HTTP",
-
-"FTP",
-
-"SMTP",
-
-"POP3"
-
-],
-
-answer:1
-
-},
-
-{
-
-question:"Which protocol is used for sending emails?",
-
-options:[
-
-"POP3",
-
-"SMTP",
-
-"HTTP",
-
-"FTP"
-
-],
-
-answer:1
-
-},
-
-{
-
-question:"Which protocol is commonly used for receiving emails?",
-
-options:[
-
-"SMTP",
-
-"HTTP",
-
-"FTP",
-
-"POP3"
-
-],
-
-answer:3
-
-},
-
-{
-
-question:"An IP Address is used to:",
-
-options:[
-
-"Decorate websites",
-
-"Identify a device on a network",
-
-"Store passwords",
-
-"Create databases"
-
-],
-
-answer:1
-
-},
-
-{
-
-question:"A Domain Name is:",
-
-options:[
-
-"A programming language",
-
-"A human-readable website name",
-
-"A type of router",
-
-"A network cable"
-
-],
-
-answer:1
-
-},
-
-{
-
-question:"Which communication media uses light for data transmission?",
-
-options:[
-
-"Twisted Pair Cable",
-
-"Coaxial Cable",
-
-"Optical Fibre",
-
-"Bluetooth"
-
-],
-
-answer:2
-
-},
-
-{
-
-question:"Which wireless technology is commonly used to connect nearby devices?",
-
-options:[
-
-"Wi-Fi",
-
-"Bluetooth",
-
-"Optical Fibre",
-
-"Ethernet"
-
-],
-
-answer:1
-
-},
-
-{
-
-question:"Which switching technique is used on the Internet?",
-
-options:[
-
-"Circuit Switching",
-
-"Message Switching",
-
-"Packet Switching",
-
-"Manual Switching"
-
-],
-
-answer:2
-
-},
-
-{
-
-question:"In Packet Switching, data is:",
-
-options:[
-
-"Sent as one complete message",
-
-"Divided into small packets",
-
-"Stored permanently",
-
-"Compressed only"
-
-],
-
-answer:1
-
-},
-
-{
-
-question:"Which switching technique establishes a dedicated path before transmission?",
-
-options:[
-
-"Packet Switching",
-
-"Message Switching",
-
-"Circuit Switching",
-
-"Hybrid Switching"
-
-],
-
-answer:2
-
-},
-
-{
-
-question:"Which switching technique follows the Store-and-Forward principle?",
-
-options:[
-
-"Packet Switching",
-
-"Message Switching",
-
-"Circuit Switching",
-
-"Star Switching"
-
-],
-
-answer:1
-
-},
-
-{
-
-question:"Which is a good cyber safety practice?",
-
-options:[
-
-"Share your password",
-
-"Click unknown links",
-
-"Use strong passwords",
-
-"Disable antivirus"
-
-],
-
-answer:2
-
-},
-
-{
-
-question:"What is the primary purpose of a computer network?",
-
-options:[
-
-"Playing games only",
-
-"Sharing data and resources",
-
-"Creating operating systems",
-
-"Designing hardware"
-
-],
-
-answer:1
-
-}
-
-]
-
-},
-
-/*====================================================
-                GUARDIAN BATTLE
-====================================================*/
-
-/*====================================================
-                GUARDIAN BATTLE
-====================================================*/
-
-challenge:{
-
-    title:"🕸️ Guardian Battle",
-
-    description:"Restore the Spider Web Nexus by completing all network missions.",
-
-    icon:"🕷️",
-
-    heading:"Restore the Magic Web",
-
-    story:"The Spider Web Nexus once connected every kingdom. Complete every simulation to reconnect the web.",
-
-    tasks:[
-
-        "🕸️ Build a Bus Topology correctly.",
-
-        "⭐ Build a Star Topology correctly.",
-
-        "🔄 Build a Ring Topology correctly.",
-
-        "🌳 Build a Tree Topology correctly.",
-
-        "🕸️ Build a Mesh Topology correctly.",
-
-        "📦 Demonstrate Packet Switching.",
-
-        "💬 Demonstrate Message Switching.",
-
-        "🔌 Demonstrate Circuit Switching."
+const KINGDOM_DATA = {
+
+    /*==================================================
+                        BASIC INFO
+    ==================================================*/
+
+    id: "network",
+
+    title: "🕸️ Spider Web Nexus",
+
+    shortTitle: "Spider Web Nexus",
+
+    subtitle:
+        "Master the Magic of Computer Networks",
+
+    description:
+        "Welcome to the Spider Web Nexus, the magical kingdom where every device is connected through enchanted threads. Learn how computers communicate, build different network topologies, and send magical packets across the world.",
+
+
+    /*==================================================
+                    KINGDOM MAP
+    ==================================================*/
+
+    sections: [
+
+        {
+            id: "comic",
+            icon: "📖",
+            title: "Comic",
+            subtitle: "Story Adventure"
+        },
+
+        {
+            id: "animation",
+            icon: "🎬",
+            title: "Animation",
+            subtitle: "Watch & Learn"
+        },
+
+        {
+            id: "notes",
+            icon: "📚",
+            title: "Notes",
+            subtitle: "Study Concepts"
+        },
+
+        {
+            id: "coding",
+            icon: "🕸️",
+            title: "Network Simulator",
+            subtitle: "Build & Experiment"
+        },
+
+        {
+            id: "quiz",
+            icon: "👾",
+            title: "Monster Hunt",
+            subtitle: "Defeat Network Bugs"
+        },
+
+        {
+            id: "challenge",
+            icon: "🏆",
+            title: "Final Battle",
+            subtitle: "Restore the Nexus"
+        }
 
     ],
 
-    reward:{
 
-        badge:"Network Guardian",
+    /*==================================================
+                        COMIC
+    ==================================================*/
 
-        xp:200,
+    comic: {
 
-        coins:100,
+        title:
+            "The Broken Web",
 
-        unlock:"python-master-castle"
+        description:
+            "Master Spider discovers that the magical web connecting every kingdom has been damaged. Dino must learn Computer Networks to reconnect every magical kingdom.",
+
+        folder:
+            "assets/comic/"
+
+    },
+
+
+    /*==================================================
+                        ANIMATION
+    ==================================================*/
+
+    animation: {
+
+        type: "youtube",
+
+        title:
+            "Introduction to Computer Networks",
+
+        description:
+            "Understand how computers communicate using networks.",
+
+        source:
+            "https://www.youtube.com/embed/qiQR5rTSshw"
+
+    },
+
+
+    /*==================================================
+                        NOTES
+    ==================================================*/
+
+    notes: {
+
+        title:
+            "Computer Networks",
+
+        description:
+            "Study the important networking concepts before entering the simulator.",
+
+        cards: [
+
+            {
+
+                icon:"🖥️",
+
+                title:"Computer Network",
+
+                text:
+                "A computer network is a collection of interconnected computers that share data, software and hardware resources."
+
+            },
+
+            {
+
+                icon:"🌍",
+
+                title:"Advantages",
+
+                text:
+                "Resource sharing, communication, collaboration, centralized storage, faster data exchange and Internet access."
+
+            },
+
+            {
+
+                icon:"📡",
+
+                title:"Types of Networks",
+
+                text:
+                "PAN, LAN, MAN and WAN are classified according to their geographical coverage."
+
+            },
+
+            {
+
+                icon:"🕸️",
+
+                title:"Network Topology",
+
+                text:
+                "Topology defines the physical or logical arrangement of devices in a network."
+
+            },
+
+            {
+
+                icon:"📦",
+
+                title:"Data Switching",
+
+                text:
+                "Circuit Switching, Message Switching and Packet Switching are methods used to transmit data."
+
+            },
+
+            {
+
+                icon:"💻",
+
+                title:"Networking Devices",
+
+                text:
+                "Hub, Switch, Router, Repeater, Bridge, Gateway and Modem help establish communication between computers."
+
+            },
+
+            {
+
+                icon:"🔐",
+
+                title:"Network Security",
+
+                text:
+                "Firewalls, passwords, antivirus software and encryption help protect networks from attacks."
+
+            },
+
+            {
+
+                icon:"🌐",
+
+                title:"Internet",
+
+                text:
+                "The Internet is the world's largest WAN connecting billions of devices together."
+
+            }
+
+        ]
+
+    },
+
+
+    /*==================================================
+                NETWORK SIMULATOR
+    ==================================================*/
+
+    networkSimulator: {
+
+        title:
+            "🕸️ Spider Web Network Simulator",
+
+        description:
+            "Build different network topologies and observe how data travels using various switching techniques.",
+
+        modules: [
+
+            /*==========================================
+                    MODULE 1
+            ==========================================*/
+
+            {
+
+                id:"topologyBuilder",
+
+                icon:"🛠️",
+
+                title:"Build the Network",
+
+                description:
+                "Choose a topology and connect the devices correctly.",
+
+                instruction:
+                "Create the correct topology by connecting all devices.",
+
+                controls:{
+
+                    validateButton:"✅ Validate",
+
+                    resetButton:"🔄 Reset",
+
+                    clearButton:"🧹 Clear"
+
+                },
+
+                topologies:[
+
+                    {
+
+                        id:"star",
+
+                        name:"⭐ Star",
+
+                        description:
+                        "Every computer connects to a central switch."
+
+                    },
+
+                    {
+
+                        id:"bus",
+
+                        name:"🚌 Bus",
+
+                        description:
+                        "All computers share one backbone cable."
+
+                    },
+
+                    {
+
+                        id:"ring",
+
+                        name:"⭕ Ring",
+
+                        description:
+                        "Each computer connects to exactly two neighbours."
+
+                    },
+
+                    {
+
+                        id:"mesh",
+
+                        name:"🕸️ Mesh",
+
+                        description:
+                        "Every computer connects to every other computer."
+
+                    }
+
+                ],
+
+                devices:[                    {
+
+                        id:"pc1",
+
+                        name:"PC 1",
+
+                        icon:"💻"
+
+                    },
+
+                    {
+
+                        id:"pc2",
+
+                        name:"PC 2",
+
+                        icon:"💻"
+
+                    },
+
+                    {
+
+                        id:"pc3",
+
+                        name:"PC 3",
+
+                        icon:"💻"
+
+                    },
+
+                    {
+
+                        id:"pc4",
+
+                        name:"PC 4",
+
+                        icon:"💻"
+
+                    },
+
+                    {
+
+                        id:"switch",
+
+                        name:"Switch",
+
+                        icon:"🔀"
+
+                    },
+
+                    {
+
+                        id:"router",
+
+                        name:"Router",
+
+                        icon:"📡"
+
+                    }
+
+                ],
+
+                validation:{
+
+                    star:[
+
+                        ["pc1","switch"],
+                        ["pc2","switch"],
+                        ["pc3","switch"],
+                        ["pc4","switch"]
+
+                    ],
+
+                    bus:[
+
+                        ["pc1","pc2"],
+                        ["pc2","pc3"],
+                        ["pc3","pc4"]
+
+                    ],
+
+                    ring:[
+
+                        ["pc1","pc2"],
+                        ["pc2","pc3"],
+                        ["pc3","pc4"],
+                        ["pc4","pc1"]
+
+                    ],
+
+                    mesh:[
+
+                        ["pc1","pc2"],
+                        ["pc1","pc3"],
+                        ["pc1","pc4"],
+                        ["pc2","pc3"],
+                        ["pc2","pc4"],
+                        ["pc3","pc4"]
+
+                    ]
+
+                },
+
+                messages:{
+
+                    success:
+                    "Excellent! The topology has been created correctly.",
+
+                    failure:
+                    "Some connections are incorrect. Try again.",
+
+                    incomplete:
+                    "Create all required connections first."
+
+                }
+
+            },
+
+            /*==========================================
+                    MODULE 2
+            ==========================================*/
+
+            {
+
+                id:"dataTransmission",
+
+                icon:"📦",
+
+                title:"Data Transmission",
+
+                description:
+                "Observe how data travels using different switching techniques.",
+
+                controls:{
+
+                    sendButton:"🚀 Send Data",
+
+                    resetButton:"🔄 Reset"
+
+                },
+
+                options:[
+
+                    {
+
+                        id:"packet",
+
+                        title:"📦 Packet Switching",
+
+                        description:
+                        "Message is divided into packets. Each packet may travel through a different path."
+
+                    },
+
+                    {
+
+                        id:"message",
+
+                        title:"💌 Message Switching",
+
+                        description:
+                        "Entire message is stored and forwarded from one node to another."
+
+                    },
+
+                    {
+
+                        id:"circuit",
+
+                        title:"🔗 Circuit Switching",
+
+                        description:
+                        "A dedicated communication path is established before transmission."
+
+                    }
+
+                ],
+
+                nodes:[
+
+                    {id:"pc1",label:"PC1"},
+                    {id:"pc2",label:"PC2"},
+                    {id:"pc3",label:"PC3"},
+                    {id:"pc4",label:"PC4"},
+                    {id:"pc5",label:"PC5"},
+
+                    {id:"pc6",label:"PC6"},
+                    {id:"pc7",label:"PC7"},
+                    {id:"pc8",label:"PC8"},
+                    {id:"pc9",label:"PC9"},
+                    {id:"pc10",label:"PC10"},
+
+                    {id:"pc11",label:"PC11"},
+                    {id:"pc12",label:"PC12"},
+                    {id:"pc13",label:"PC13"},
+                    {id:"pc14",label:"PC14"},
+                    {id:"pc15",label:"PC15"},
+
+                    {id:"server",label:"SERVER"}
+
+                ],
+
+                paths:[
+
+                    {
+
+                        id:"route1",
+
+                        nodes:[
+                            "pc1",
+                            "pc2",
+                            "pc3",
+                            "pc8",
+                            "pc13",
+                            "server"
+                        ]
+
+                    },
+
+                    {
+
+                        id:"route2",
+
+                        nodes:[
+                            "pc5",
+                            "pc10",
+                            "pc15",
+                            "server"
+                        ]
+
+                    },
+
+                    {
+
+                        id:"route3",
+
+                        nodes:[
+                            "pc6",
+                            "pc7",
+                            "pc8",
+                            "pc9",
+                            "pc10",
+                            "server"
+                        ]
+
+                    }
+
+                ],
+                            packetTransmission:{
+
+                    packets:[
+
+                        {
+                            id:"P1",
+                            color:"#ff5252",
+                            route:"route1"
+                        },
+
+                        {
+                            id:"P2",
+                            color:"#42a5f5",
+                            route:"route2"
+                        },
+
+                        {
+                            id:"P3",
+                            color:"#66bb6a",
+                            route:"route3"
+                        },
+
+                        {
+                            id:"P4",
+                            color:"#ffca28",
+                            route:"route1"
+                        }
+
+                    ]
+
+                },
+
+                messageTransmission:{
+
+                    route:"route1"
+
+                },
+
+                circuitTransmission:{
+
+                    route:"route3"
+
+                },
+
+                messages:{
+
+                    packet:
+                    "Packet Switching completed successfully. Each packet followed its own route before reaching the destination.",
+
+                    message:
+                    "Message Switching completed successfully. The complete message travelled from node to node before delivery.",
+
+                    circuit:
+                    "Circuit Switching completed successfully. A dedicated communication path was established first."
+
+                }
+
+            }
+
+        ]
+
+    },
+
+
+
+    /*==================================================
+                        QUIZ
+    ==================================================*/
+
+    quiz:{
+
+        title:
+        "👾 Monster Hunt",
+
+        description:
+        "Defeat the Network Monsters by answering one question at a time.",
+
+        questions:[
+
+            {
+
+                question:
+                "What is a Computer Network?",
+
+                options:[
+
+                    "A collection of interconnected computers",
+
+                    "A programming language",
+
+                    "An operating system",
+
+                    "A web browser"
+
+                ],
+
+                answer:0
+
+            },
+
+            {
+
+                question:
+                "Which network covers the largest geographical area?",
+
+                options:[
+
+                    "LAN",
+
+                    "PAN",
+
+                    "WAN",
+
+                    "MAN"
+
+                ],
+
+                answer:2
+
+            },
+
+            {
+
+                question:
+                "Which topology uses a central connecting device?",
+
+                options:[
+
+                    "Bus",
+
+                    "Ring",
+
+                    "Star",
+
+                    "Mesh"
+
+                ],
+
+                answer:2
+
+            },
+
+            {
+
+                question:
+                "Which device forwards packets between different networks?",
+
+                options:[
+
+                    "Switch",
+
+                    "Hub",
+
+                    "Router",
+
+                    "NIC"
+
+                ],
+
+                answer:2
+
+            },
+
+            {
+
+                question:
+                "What does LAN stand for?",
+
+                options:[
+
+                    "Local Area Network",
+
+                    "Large Area Network",
+
+                    "Logical Area Network",
+
+                    "Long Access Network"
+
+                ],
+
+                answer:0
+
+            }
+
+        ]
+
+    },
+                        {
+
+                question:
+                "Which topology connects every device to every other device?",
+
+                options:[
+
+                    "Star",
+
+                    "Ring",
+
+                    "Mesh",
+
+                    "Bus"
+
+                ],
+
+                answer:2
+
+            },
+
+            {
+
+                question:
+                "Which topology uses a single backbone cable?",
+
+                options:[
+
+                    "Bus",
+
+                    "Mesh",
+
+                    "Tree",
+
+                    "Star"
+
+                ],
+
+                answer:0
+
+            },
+
+            {
+
+                question:
+                "Which topology forms a closed loop?",
+
+                options:[
+
+                    "Star",
+
+                    "Ring",
+
+                    "Bus",
+
+                    "Tree"
+
+                ],
+
+                answer:1
+
+            },
+
+            {
+
+                question:
+                "Which device connects computers within a LAN intelligently?",
+
+                options:[
+
+                    "Hub",
+
+                    "Switch",
+
+                    "Router",
+
+                    "Gateway"
+
+                ],
+
+                answer:1
+
+            },
+
+            {
+
+                question:
+                "Which device regenerates weak signals?",
+
+                options:[
+
+                    "Router",
+
+                    "Repeater",
+
+                    "Bridge",
+
+                    "Firewall"
+
+                ],
+
+                answer:1
+
+            },
+
+            {
+
+                question:
+                "Which device converts digital signals into analog signals?",
+
+                options:[
+
+                    "Switch",
+
+                    "Hub",
+
+                    "Modem",
+
+                    "Bridge"
+
+                ],
+
+                answer:2
+
+            },
+
+            {
+
+                question:
+                "Which network is normally used inside a school?",
+
+                options:[
+
+                    "WAN",
+
+                    "LAN",
+
+                    "MAN",
+
+                    "PAN"
+
+                ],
+
+                answer:1
+
+            },
+
+            {
+
+                question:
+                "Which protocol is mainly used for web browsing?",
+
+                options:[
+
+                    "HTTP",
+
+                    "FTP",
+
+                    "SMTP",
+
+                    "POP3"
+
+                ],
+
+                answer:0
+
+            },
+
+            {
+
+                question:
+                "Which protocol is used to transfer files?",
+
+                options:[
+
+                    "FTP",
+
+                    "HTTP",
+
+                    "DNS",
+
+                    "SMTP"
+
+                ],
+
+                answer:0
+
+            },
+
+            {
+
+                question:
+                "Which protocol is commonly used to send e-mails?",
+
+                options:[
+
+                    "FTP",
+
+                    "SMTP",
+
+                    "ARP",
+
+                    "ICMP"
+
+                ],
+
+                answer:1
+
+            },
+
+            {
+
+                question:
+                "Which protocol translates domain names into IP addresses?",
+
+                options:[
+
+                    "DNS",
+
+                    "FTP",
+
+                    "SMTP",
+
+                    "HTTP"
+
+                ],
+
+                answer:0
+
+            },
+
+            {
+
+                question:
+                "An IP Address uniquely identifies a ________.",
+
+                options:[
+
+                    "Program",
+
+                    "Device",
+
+                    "Cable",
+
+                    "Browser"
+
+                ],
+
+                answer:1
+
+            },
+
+            {
+
+                question:
+                "Which switching technique creates a dedicated communication path?",
+
+                options:[
+
+                    "Packet Switching",
+
+                    "Message Switching",
+
+                    "Circuit Switching",
+
+                    "Broadcast Switching"
+
+                ],
+
+                answer:2
+
+            },
+
+            {
+
+                question:
+                "In Packet Switching, data is divided into ________.",
+
+                options:[
+
+                    "Frames",
+
+                    "Packets",
+
+                    "Files",
+
+                    "Signals"
+
+                ],
+
+                answer:1
+
+            },
+
+            {
+
+                question:
+                "Which switching technique stores the complete message before forwarding?",
+
+                options:[
+
+                    "Packet Switching",
+
+                    "Circuit Switching",
+
+                    "Message Switching",
+
+                    "Hybrid Switching"
+
+                ],
+
+                answer:2
+
+            },
+
+            {
+
+                question:
+                "Which topology is easiest to expand?",
+
+                options:[
+
+                    "Ring",
+
+                    "Star",
+
+                    "Bus",
+
+                    "Point-to-Point"
+
+                ],
+
+                answer:1
+
+            },
+
+            {
+
+                question:
+                "Which topology is most reliable because multiple paths exist?",
+
+                options:[
+
+                    "Bus",
+
+                    "Ring",
+
+                    "Mesh",
+
+                    "Star"
+
+                ],
+
+                answer:2
+
+            },
+
+            {
+
+                question:
+                "Which device connects two different networks together?",
+
+                options:[
+
+                    "Hub",
+
+                    "Switch",
+
+                    "Router",
+
+                    "NIC"
+
+                ],
+
+                answer:2
+
+            },
+
+            {
+
+                question:
+                "Which of these is an example of a WAN?",
+
+                options:[
+
+                    "School Computer Lab",
+
+                    "Home Wi-Fi",
+
+                    "The Internet",
+
+                    "Bluetooth"
+
+                ],
+
+                answer:2
+
+            },
+
+            {
+
+                question:
+                "Which device filters traffic to improve network security?",
+
+                options:[
+
+                    "Firewall",
+
+                    "Switch",
+
+                    "Hub",
+
+                    "Repeater"
+
+                ],
+
+                answer:0
+
+            }
+
+        ]
+
+    },
+    /*==================================================
+                    FINAL CHALLENGE
+    ==================================================*/
+
+    challenge:{
+
+        title:
+        "🕸️ Guardian Battle",
+
+        description:
+        "Restore the magical communication network by completing the final mission.",
+
+        icon:"🕷️",
+
+        heading:
+        "Restore the Magic Web",
+
+        story:
+        "The Spider Web Nexus once connected every kingdom through invisible strands of magical communication. The Dark Bug has broken these links. Build the correct topology and choose the best switching technique to restore the network.",
+
+        tasks:[
+
+            "🕸️ Build the correct Network Topology.",
+
+            "📦 Demonstrate Packet Switching.",
+
+            "🔗 Demonstrate Circuit Switching.",
+
+            "💌 Demonstrate Message Switching.",
+
+            "🏆 Complete the Monster Hunt Quiz."
+
+        ]
+
+    },
+
+
+
+    /*==================================================
+                        FOOTER
+    ==================================================*/
+
+    footer:{
+
+        button:"➡️ Continue to Database Kingdom",
+
+        next:"../database-castle/index.html"
+
+    },
+
+
+
+    /*==================================================
+                        AUDIO
+    ==================================================*/
+
+    audio:{
+
+        magic:"assets/audio/magic.mp3",
+
+        button:"assets/audio/button.mp3",
+
+        page:"assets/audio/page-flip.mp3"
 
     }
 
-},
-
-/*====================================================
-                    FOOTER
-====================================================*/
-
-footer:{
-
-button:"👑 Enter Python Master's Castle",
-
-next:"../python-masters-castle/index.html"
-
-},
-
-/*====================================================
-                    AUDIO
-====================================================*/
-
-audio:{
-
-magic:"assets/audio/magic.mp3",
-
-button:"assets/audio/button.mp3",
-
-page:"assets/audio/page-flip.mp3",
-
-success:"assets/audio/success.mp3"
-
-}
-
 };
+
+
+
+/*==================================================
+            EXPORT FOR DEBUGGING
+==================================================*/
+
+window.KINGDOM_DATA = KINGDOM_DATA;
