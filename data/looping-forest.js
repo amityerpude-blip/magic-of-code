@@ -177,147 +177,6 @@ description:
 
 cards:[
 
-/* Part 2 */
-
-]
-
-},
-
-/*====================================================
-                SPELL FORGE
-====================================================*/
-
-coding:{
-
-title:"🧪 Spell Forge",
-
-description:
-
-"Practice writing Python programs using loops.",
-
-defaultCode:
-
-`for i in range(1,6):
-
-    print("Welcome to Looping Forest",i)
-`,
-
-challenges:[
-
-/* Part 3 */
-
-]
-
-},
-
-/*====================================================
-                MONSTER HUNT
-====================================================*/
-
-quiz:{
-
-title:"👾 Monster Hunt",
-
-description:
-
-"Answer questions correctly to defeat the creatures of the Looping Forest.",
-
-questions:[
-
-/* Part 4 */
-
-]
-
-},
-
-/*====================================================
-                GUARDIAN BATTLE
-====================================================*/
-
-challenge:{
-
-title:"🏆 Guardian Battle",
-
-description:
-
-"Master Stag challenges Dino to escape the enchanted maze using the power of loops.",
-
-icon:"🦌",
-
-heading:"The Endless Maze",
-
-story:
-
-"The magical forest constantly rearranges itself. Only repeated spells can reveal the hidden exit. Use loops wisely to complete every challenge.",
-
-tasks:[
-
-"🔢 Print numbers from 1 to 100 using a for loop.",
-
-"⚡ Print all even numbers between 1 and 50.",
-
-"📋 Display the multiplication table of a given number.",
-
-"➕ Calculate the sum of the first N natural numbers.",
-
-"🏆 Find the factorial of a given number.",
-
-"🌱 Generate the Fibonacci series for N terms.",
-
-"💎 Check whether a given number is Prime or Not.",
-
-"🔄 Reverse the digits of a number using a while loop.",
-
-"⭐ Print a right-angled triangle star pattern using nested loops.",
-
-"🎯 Create a guessing game that repeatedly asks the user to guess a secret number until the correct answer is entered."
-
-],
-
-reward:{
-
-badge:"Forest Explorer",
-
-xp:200,
-
-coins:100,
-
-unlock:"function-tower"
-
-}
-
-},
-
-/*====================================================
-                FOOTER
-====================================================*/
-
-footer:{
-
-button:"🧙 Continue to Wizard's Function Tower",
-
-next:"../function-tower/index.html"
-
-},
-
-/*====================================================
-                AUDIO
-====================================================*/
-
-audio:{
-
-magic:"assets/audio/magic.mp3",
-
-button:"assets/audio/button.mp3",
-
-page:"assets/audio/page-flip.mp3"
-
-}
-
-};
-
-cards:[
-
 {
 icon:"🔁",
 title:"What is a Loop?",
@@ -409,6 +268,28 @@ text:"Loops are used in games, ATM software, attendance systems, report generati
 
 }
 ]
+
+},
+
+/*====================================================
+                SPELL FORGE
+====================================================*/
+
+coding:{
+
+title:"🧪 Spell Forge",
+
+description:
+
+"Practice writing Python programs using loops.",
+
+defaultCode:
+
+`for i in range(1,6):
+
+    print("Welcome to Looping Forest",i)
+`,
+
 challenges:[
 
 {
@@ -636,6 +517,21 @@ print("Congratulations! You guessed correctly.")`
 }
 
 ]
+
+},
+
+/*====================================================
+                MONSTER HUNT
+====================================================*/
+
+quiz:{
+
+title:"👾 Monster Hunt",
+
+description:
+
+"Answer questions correctly to defeat the creatures of the Looping Forest.",
+
 questions:[
 
 {
@@ -829,4 +725,96 @@ answer:3
 }
 
 ]
+
+},
+
+/*====================================================
+                GUARDIAN BATTLE
+====================================================*/
+
+challenge:{
+
+title:"🏆 Guardian Battle",
+
+description:
+
+"Master Stag challenges Dino to escape the enchanted maze using the power of loops.",
+
+icon:"🦌",
+
+heading:"The Endless Maze",
+
+story:
+
+"The magical forest constantly rearranges itself. Only repeated spells can reveal the hidden exit. Use loops wisely to complete every challenge.",
+
+tasks:[
+
+"🔢 Print numbers from 1 to 100 using a for loop.",
+
+"⚡ Print all even numbers between 1 and 50.",
+
+"📋 Display the multiplication table of a given number.",
+
+"➕ Calculate the sum of the first N natural numbers.",
+
+"🏆 Find the factorial of a given number.",
+
+"🌱 Generate the Fibonacci series for N terms.",
+
+"💎 Check whether a given number is Prime or Not.",
+
+"🔄 Reverse the digits of a number using a while loop.",
+
+"⭐ Print a right-angled triangle star pattern using nested loops.",
+
+"🎯 Create a guessing game that repeatedly asks the user to guess a secret number until the correct answer is entered."
+
+],
+
+reward:{
+
+badge:"Forest Explorer",
+
+xp:200,
+
+coins:100,
+
+unlock:"function-tower"
+
+}
+
+},
+
+/*====================================================
+                FOOTER
+====================================================*/
+
+footer:{
+
+button:"🧙 Continue to Wizard's Function Tower",
+
+next:"../function-tower/index.html"
+
+},
+
+/*====================================================
+                AUDIO
+====================================================*/
+
+audio:{
+
+magic:"assets/audio/magic.mp3",
+
+button:"assets/audio/button.mp3",
+
+page:"assets/audio/page-flip.mp3"
+
+}
+
+};
+
+
+
+
 
