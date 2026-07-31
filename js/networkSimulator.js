@@ -12,7 +12,25 @@
 
 "use strict";
 
+/*==================================================
+        NETWORK SIMULATOR COMPONENT
+==================================================*/
 
+function NetworkSimulatorComponent(){
+
+    return `
+
+    <section
+        id="networkSection"
+        class="lessonContent">
+
+        <div id="networkSimulator"></div>
+
+    </section>
+
+    `;
+
+}
 /*==================================================
                 GLOBAL VARIABLES
 ==================================================*/
