@@ -177,113 +177,6 @@ description:
 
 cards:[
 
-/* Part 2 */
-
-]
-
-},
-
-/*====================================================
-                SPELL FORGE
-====================================================*/
-
-coding:{
-
-title:"🧪 Spell Forge",
-
-description:
-
-"Practice your Python spells and become a true coding apprentice.",
-
-defaultCode:
-
-`print("Welcome to Python Village!")`,
-
-challenges:[
-
-/* Part 3 */
-
-]
-
-},
-
-/*====================================================
-                MONSTER HUNT
-====================================================*/
-
-quiz:{
-
-title:"👾 Monster Hunt",
-
-description:
-
-"Defeat Python Monsters by answering one question at a time.",
-
-questions:[
-
-/* Part 4 */
-
-]
-
-},
-
-/*====================================================
-                FINAL CHALLENGE
-====================================================*/
-
-challenge:{
-
-title:"🏆 Guardian Battle",
-
-description:
-
-"Complete the final mission to earn Master Pyro's blessing.",
-
-icon:"🐍",
-
-heading:"The First Python Spell",
-
-story:
-
-"Master Pyro asks Dino to prove that he has learned the language of Python by creating his very first magical program.",
-
-tasks:[
-
-/* Part 5 */
-
-]
-
-},
-
-/*====================================================
-                FOOTER
-====================================================*/
-
-footer:{
-
-button:"🏞 Continue to Valley of Decisions",
-
-next:"../decision-valley/index.html"
-
-},
-
-/*====================================================
-                AUDIO
-====================================================*/
-
-audio:{
-
-magic:"assets/audio/magic.mp3",
-
-button:"assets/audio/button.mp3",
-
-page:"assets/audio/page-flip.mp3"
-
-}
-
-};
-cards:[
-
 {
 icon:"🐍",
 title:"What is Python?",
@@ -376,6 +269,25 @@ text:"Use meaningful variable names, write comments where necessary, maintain pr
 }
 
 ]
+
+},
+
+/*====================================================
+                SPELL FORGE
+====================================================*/
+
+coding:{
+
+title:"🧪 Spell Forge",
+
+description:
+
+"Practice your Python spells and become a true coding apprentice.",
+
+defaultCode:
+
+`print("Welcome to Python Village!")`,
+
 challenges:[
 
 {
@@ -603,6 +515,21 @@ print("Annual Salary =",annual)`
 }
 
 ]
+
+},
+
+/*====================================================
+                MONSTER HUNT
+====================================================*/
+
+quiz:{
+
+title:"👾 Monster Hunt",
+
+description:
+
+"Defeat Python Monsters by answering one question at a time.",
+
 questions:[
 
 {
@@ -881,6 +808,29 @@ answer:3
 }
 
 ]
+
+},
+
+/*====================================================
+                FINAL CHALLENGE
+====================================================*/
+
+challenge:{
+
+title:"🏆 Guardian Battle",
+
+description:
+
+"Complete the final mission to earn Master Pyro's blessing.",
+
+icon:"🐍",
+
+heading:"The First Python Spell",
+
+story:
+
+"Master Pyro asks Dino to prove that he has learned the language of Python by creating his very first magical program.",
+
 tasks:[
 
 "🐍 Print 'Welcome to Python Village'",
@@ -900,3 +850,37 @@ tasks:[
 "🎉 Display 'Congratulations! You have completed Python Village.'"
 
 ]
+
+
+},
+
+/*====================================================
+                FOOTER
+====================================================*/
+
+footer:{
+
+button:"🏞 Continue to Valley of Decisions",
+
+next:"../decision-valley/index.html"
+
+},
+
+/*====================================================
+                AUDIO
+====================================================*/
+
+audio:{
+
+magic:"assets/audio/magic.mp3",
+
+button:"assets/audio/button.mp3",
+
+page:"assets/audio/page-flip.mp3"
+
+}
+
+};
+
+
+
