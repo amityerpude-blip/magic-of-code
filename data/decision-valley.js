@@ -884,36 +884,3 @@ page:"assets/audio/page-flip.mp3"
 }
 
 };
-
-
-
-challenge:{
-
-title:"🏆 Guardian Battle",
-
-description:
-
-"Complete the final mission by solving real-life decision-making problems using Python conditions.",
-
-icon:"🦉",
-
-heading:"The Crossroads of Destiny",
-
-story:
-
-"Dino reaches the center of the Valley of Decisions where eight magical gates block his path. Each gate presents a real-world programming challenge. Master Owl explains that only correct decisions can unlock every gate and reveal the path to the Looping Forest.",
-
-
-reward:{
-
-badge:"Decision Maker",
-
-xp:150,
-
-coins:75,
-
-unlock:"looping-forest"
-
-}
-
-},
