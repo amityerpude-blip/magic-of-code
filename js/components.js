@@ -845,24 +845,42 @@ console.log("Quiz ✓");
 }catch(e){console.error("Quiz",e);}
 
 try{
-root.innerHTML+=ChallengeComponent(data);
-console.log("Challenge ✓");
-}catch(e){console.error("Challenge",e);}
+
+    if(data.challenge){
+
+        root.innerHTML+=ChallengeComponent(data);
+
+    }
+
+    console.log("Challenge ✓");
+
+}catch(e){
+
+    console.error("Challenge",e);
+
+}
 
 // Footer will be shown only after kingdom completion
 
-document.getElementById("completeKingdom").onclick = ()=>{
+const completeBtn=document.getElementById("completeKingdom");
 
-    saveProgress(data.id);
+if(completeBtn){
 
-    showReward("🏆 Kingdom Completed!");
+    completeBtn.onclick=()=>{
 
-    document.getElementById("kingdomContainer").insertAdjacentHTML(
-        "beforeend",
-        FooterComponent(data)
-    );
+        saveProgress(data.id);
 
-};
+        showReward("🏆 Kingdom Completed!");
+
+        document.getElementById("kingdomContainer")
+        .insertAdjacentHTML(
+            "beforeend",
+            FooterComponent(data)
+        );
+
+    };
+
+}
 try{
 root.innerHTML+=AudioComponent(data);
 console.log("Audio ✓");
