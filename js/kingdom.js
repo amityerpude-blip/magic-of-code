@@ -72,7 +72,23 @@ async function initializeKingdom(data){
     initializeComic(data);
 
     // Coding Engine
-    await initializeCoding(data);
+   // Coding / Network Simulator
+
+if(data.coding){
+
+    // Only initialize if the function exists
+    if(typeof initializeCoding==="function"){
+
+        await initializeCoding(data);
+
+    }
+
+}
+else if(typeof initializeNetworkSimulator==="function"){
+
+    await initializeNetworkSimulator(data);
+
+}
 
     // Quiz Engine
     initializeQuiz(data);
