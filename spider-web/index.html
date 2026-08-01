@@ -154,21 +154,11 @@
 
     <script>
 
-        window.addEventListener(
+    window.addEventListener("load", () => {
 
-            "load",
+    renderKingdom(KINGDOM_DATA);
 
-            async()=>{
-
-                renderKingdom(KINGDOM_DATA);
-
-                await initializeKingdom(KINGDOM_DATA);
-
-                initializeNetworkSimulator();
-
-            }
-
-        );
+    });
 
     </script>
 
