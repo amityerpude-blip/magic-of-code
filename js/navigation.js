@@ -45,7 +45,18 @@ sections.forEach(s=>s.classList.remove("active"));
 
 tile.classList.add("active");
 
-const section=document.getElementById(target);
+const sectionMap = {
+    comic: "comicSection",
+    animation: "animationSection",
+    notes: "notesSection",
+    coding: "networkSection",   // Spider Web uses network instead of coding
+    quiz: "quizSection",
+    challenge: "challengeSection"
+};
+
+const section = document.getElementById(
+    sectionMap[target] || target
+);
 
 if(section){
 
