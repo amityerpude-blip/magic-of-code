@@ -93,7 +93,7 @@ subtitle:"Learn Python Basics"
 
 id:"codingSection",
 
-icon:"🧪",
+icon:"⚗️",
 
 title:"Spell Forge",
 
