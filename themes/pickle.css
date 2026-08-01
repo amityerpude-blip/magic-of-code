@@ -128,7 +128,7 @@ body{
 .rewardCard,
 .quizCard{
 
-    background:#993d08;
+    background:#f09a5d;
 
     color:#263238;
 
@@ -158,7 +158,7 @@ body{
 
 .noteCard h3{
 
-    color:var(--primary);
+    color:#f09a5d;
 
 }
 
