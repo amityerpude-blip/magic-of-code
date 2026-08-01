@@ -742,7 +742,7 @@ const KINGDOM_DATA = {
 
                 answer:0
 
-            }
+            },
             {
 
                 question:
