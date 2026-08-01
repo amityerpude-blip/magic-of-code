@@ -14,6 +14,8 @@
 
 function initializeNavigation(){
 
+console.log("Navigation Initialized");
+
 const tiles=document.querySelectorAll(".magicTile");
 
 const sections=document.querySelectorAll(".lessonContent");
