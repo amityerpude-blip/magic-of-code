@@ -166,7 +166,9 @@ body{
 
 .noteCard h3{
 
-    color:var(--primary);
+            color:var(--text);
+
+   /* color:var(--primary);*/
 
 }
 
