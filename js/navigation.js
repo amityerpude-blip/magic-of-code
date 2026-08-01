@@ -31,7 +31,9 @@ tiles.forEach(tile=>{
 
 tile.addEventListener("click",()=>{
 
-const target=tile.dataset.section;
+    console.log("Clicked:", tile.dataset.section);
+
+    const target=tile.dataset.section;
 
 /* Remove Active */
 
