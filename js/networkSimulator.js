@@ -210,11 +210,9 @@ function renderTopologyModule(){
 function renderTransmissionModule(){
 
     const module =
-    simulator.modules.find(
-
-        m => m.id === "transmission"
-
-    );
+simulator.modules.find(
+    m => m.id === "dataTransmission"
+);
 
     return `
 
