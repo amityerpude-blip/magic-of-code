@@ -108,7 +108,7 @@ body{
 
 .navButton:hover{
 
-    background:#E3F2FD;
+    background:#6288bd;
 
     border-left:5px solid var(--secondary);
 
@@ -166,13 +166,13 @@ body{
 
 .noteCard h3{
 
-    color:var(--primary);
+    color:#FFFFFF;
 
 }
 
 .noteCard p{
 
-    color:var(--text);
+    color:#FFFFFF;
 
     line-height:1.7;
 
