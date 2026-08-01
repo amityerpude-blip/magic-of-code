@@ -20,7 +20,7 @@
 
     --bg:#FFF8F2;
 
-    --card:#993d08;
+    --card:#FFFFFF;
 
     --text:#263238;
     --textLight:#546E7A;
@@ -128,7 +128,7 @@ body{
 .rewardCard,
 .quizCard{
 
-    background:rgba(255,255,255,0.96);
+    background:#993d08;
 
     color:#263238;
 
