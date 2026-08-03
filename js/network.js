@@ -1,4 +1,25 @@
 /*==================================================
+        NETWORK SIMULATOR COMPONENT
+==================================================*/
+
+function NetworkSimulatorComponent(){
+
+    return `
+
+    <section
+        id="networkSection"
+        class="lessonContent">
+
+        <div id="networkWorkspace">
+
+        </div>
+
+    </section>
+
+    `;
+
+}
+/*==================================================
             NETWORK ENGINE
 ==================================================*/
 
