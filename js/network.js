@@ -201,6 +201,33 @@ async function initializeNetworkSimulator(data){
 
 }
 /*==================================================
+        SWITCH MODE
+==================================================*/
+
+function switchMode(mode){
+
+    const modes = [
+        "topology",
+        "transmission",
+        "security",
+        "battle"
+    ];
+
+    modes.forEach(name => {
+
+        const section = document.getElementById(name + "Mode");
+
+        if(section){
+
+            section.style.display =
+                (name === mode) ? "block" : "none";
+
+        }
+
+    });
+
+}
+/*==================================================
         INITIALIZE NETWORK SIMULATOR
 ==================================================*/
 
