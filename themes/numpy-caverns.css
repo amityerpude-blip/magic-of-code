@@ -251,7 +251,8 @@ button:hover{
                 QUIZ OPTIONS
 ====================================================*/
 
-.option{background:#E0F2F1;
+.option
+ {background:#18615d;
 
     transition:.25s;
 
