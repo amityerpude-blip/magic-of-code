@@ -158,7 +158,11 @@
 
     renderKingdom(KINGDOM_DATA);
 
-    await initializeKingdom(KINGDOM_DATA);
+    if (typeof initializeNetworkSimulator === "function") {
+
+        await initializeNetworkSimulator(KINGDOM_DATA.networkSimulator);
+
+    }
 
 });
 
