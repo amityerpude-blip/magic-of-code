@@ -2565,27 +2565,31 @@ function renderSecurityModule(module){
 
         <div class="controlPanel">
 
-            <button
+    <button
+        class="magicBtn"
+        onclick="startSecurityGame()">
 
-                class="magicBtn"
+        ${module.controls.startButton}
 
-                onclick="startSecurityGame()">
+    </button>
 
-                ${module.controls.startButton}
+    <button
+        class="magicBtn"
+        onclick="checkSecurityAnswers()">
 
-            </button>
+        ✔ Check Answers
 
-            <button
+    </button>
 
-                class="magicBtn"
+    <button
+        class="magicBtn"
+        onclick="resetSecurityGame()">
 
-                onclick="resetSecurityGame()">
+        ${module.controls.resetButton}
 
-                ${module.controls.resetButton}
+    </button>
 
-            </button>
-
-        </div>
+</div>
 
         <div
 
@@ -2617,35 +2621,25 @@ function startSecurityGame(){
 
     arena.innerHTML="";
 
-    const attacks=[
+    const threats=
 
-        "🦠 Virus",
+    generateRandomThreats();
 
-        "🎣 Phishing",
-
-        "🐴 Trojan",
-
-        "💣 Malware",
-
-        "👾 Spyware"
-
-    ];
-
-    const defenses=[
-
-        "🛡 Firewall",
+    const options=[
 
         "🔒 Antivirus",
 
-        "🔑 Encryption",
+        "🛡 Firewall",
 
-        "🔐 Authentication",
+        "🔐 Encryption",
+
+        "🔑 Authentication",
 
         "📡 Secure Network"
 
     ];
 
-    attacks.forEach((attack,index)=>{
+    threats.forEach(threat=>{
 
         const row=document.createElement("div");
 
@@ -2655,7 +2649,7 @@ function startSecurityGame(){
 
             <span class="attack">
 
-                ${attack}
+                ${threat.attack}
 
             </span>
 
@@ -2663,7 +2657,7 @@ function startSecurityGame(){
 
                 class="defenseSelect"
 
-                data-answer="${defenses[index]}">
+                data-answer="${threat.defense}">
 
                 <option>
 
@@ -2671,9 +2665,9 @@ function startSecurityGame(){
 
                 </option>
 
-                ${defenses.map(item=>
+                ${options.map(option=>
 
-                    `<option>${item}</option>`
+                    `<option>${option}</option>`
 
                 ).join("")}
 
@@ -2684,6 +2678,12 @@ function startSecurityGame(){
         arena.appendChild(row);
 
     });
+
+    document.getElementById(
+
+        "securityResult"
+
+    ).innerHTML="";
 
 }
 
@@ -2808,3 +2808,680 @@ function resetSecurityGame(){
     }
 
 }
+
+/*==================================================
+        GENERATE RANDOM THREATS
+==================================================*/
+
+function generateRandomThreats(){
+
+    const attacks=[
+
+        {
+            attack:"🦠 Virus",
+            defense:"🔒 Antivirus"
+        },
+
+        {
+            attack:"🎣 Phishing",
+            defense:"🔑 Authentication"
+        },
+
+        {
+            attack:"🐴 Trojan",
+            defense:"🛡 Firewall"
+        },
+
+        {
+            attack:"💣 Malware",
+            defense:"🔒 Antivirus"
+        },
+
+        {
+            attack:"👾 Spyware",
+            defense:"🛡 Firewall"
+        },
+
+        {
+            attack:"🌐 Hacker",
+            defense:"🔐 Encryption"
+        }
+
+    ];
+
+    attacks.sort(
+
+        ()=>Math.random()-0.5
+
+    );
+
+    return attacks.slice(0,5);
+
+}
+/*==================================================
+            RENDER FINAL BATTLE
+==================================================*/
+
+function renderFinalBattle(module){
+
+    const section=document.createElement("section");
+
+    section.className="networkModule";
+
+    section.innerHTML=`
+
+        <div class="moduleHeader">
+
+            <h2>
+
+                ${module.icon} ${module.title}
+
+            </h2>
+
+            <p>
+
+                ${module.description}
+
+            </p>
+
+        </div>
+
+        <div class="battleArena">
+
+            <div class="battleCharacter hero">
+
+                <div class="battleAvatar">
+
+                    🧙‍♂️
+
+                </div>
+
+                <h3>
+
+                    Network Wizard
+
+                </h3>
+
+                <div class="healthBar">
+
+                    <div
+
+                        id="playerHealth"
+
+                        class="healthFill"
+
+                        style="width:100%">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="battleCharacter enemy">
+
+                <div class="battleAvatar">
+
+                    🕷️
+
+                </div>
+
+                <h3>
+
+                    Spider King
+
+                </h3>
+
+                <div class="healthBar">
+
+                    <div
+
+                        id="enemyHealth"
+
+                        class="healthFill enemy"
+
+                        style="width:100%">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div
+
+            id="battleQuestion"
+
+            class="battleQuestion">
+
+        </div>
+
+        <div
+
+            id="battleOptions"
+
+            class="battleOptions">
+
+        </div>
+
+        <div class="controlPanel">
+
+            <button
+
+                class="magicBtn"
+
+                onclick="startFinalBattle()">
+
+                ⚔ Start Battle
+
+            </button>
+
+        </div>
+
+    `;
+
+    NetworkEngine.workspace.appendChild(
+
+        section
+
+    );
+
+}
+
+/*==================================================
+            START FINAL BATTLE
+==================================================*/
+
+function startFinalBattle(){
+
+    const module=
+
+    NetworkEngine.simulator.modules.find(
+
+        module=>module.id==="finalBattle"
+
+    );
+
+    if(!module)return;
+
+    NetworkEngine.state.playerHealth=100;
+
+    NetworkEngine.state.enemyHealth=100;
+
+    NetworkEngine.state.currentQuestion=0;
+
+    updateBattleHealth();
+
+    nextBattleQuestion();
+
+}
+
+/*==================================================
+            NEXT BATTLE QUESTION
+==================================================*/
+
+function nextBattleQuestion(){
+
+    const module=
+
+    NetworkEngine.simulator.modules.find(
+
+        module=>module.id==="finalBattle"
+
+    );
+
+    if(!module)return;
+
+    if(
+
+        NetworkEngine.state.currentQuestion>=
+
+        module.questions.length
+
+    ){
+
+        battleWon();
+
+        return;
+
+    }
+
+    const question=
+
+    module.questions[
+
+        NetworkEngine.state.currentQuestion
+
+    ];
+
+    renderBattleQuestion(question);
+
+}
+
+/*==================================================
+        RENDER BATTLE QUESTION
+==================================================*/
+
+function renderBattleQuestion(question){
+
+    document.getElementById(
+
+        "battleQuestion"
+
+    ).innerHTML=`
+
+        <h3>
+
+            ${question.question}
+
+        </h3>
+
+    `;
+
+    const options=document.getElementById(
+
+        "battleOptions"
+
+    );
+
+    options.innerHTML="";
+
+    question.options.forEach(
+
+        (option,index)=>{
+
+            const button=
+
+            document.createElement("button");
+
+            button.className="battleOption";
+
+            button.textContent=option;
+
+            button.onclick=function(){
+
+                checkBattleAnswer(
+
+                    index,
+
+                    question.answer
+
+                );
+
+            };
+
+            options.appendChild(button);
+
+        }
+
+    );
+
+}
+
+/*==================================================
+            CHECK BATTLE ANSWER
+==================================================*/
+
+function checkBattleAnswer(
+
+    selected,
+
+    correct
+
+){
+
+    const buttons=document.querySelectorAll(
+
+        ".battleOption"
+
+    );
+
+    buttons.forEach(button=>{
+
+        button.disabled=true;
+
+    });
+
+    if(selected===correct){
+
+        NetworkEngine.state.enemyHealth-=20;
+
+        if(
+
+            NetworkEngine.state.enemyHealth<0
+
+        ){
+
+            NetworkEngine.state.enemyHealth=0;
+
+        }
+
+        showNotification(
+
+            "⚔ Critical Hit!",
+
+            "success"
+
+        );
+
+    }
+
+    else{
+
+        NetworkEngine.state.playerHealth-=20;
+
+        if(
+
+            NetworkEngine.state.playerHealth<0
+
+        ){
+
+            NetworkEngine.state.playerHealth=0;
+
+        }
+
+        showNotification(
+
+            "🕷 Spider King attacks!",
+
+            "warning"
+
+        );
+
+    }
+
+    updateBattleHealth();
+
+    if(
+
+        NetworkEngine.state.enemyHealth===0
+
+    ){
+
+        battleWon();
+
+        return;
+
+    }
+
+    if(
+
+        NetworkEngine.state.playerHealth===0
+
+    ){
+
+        battleLost();
+
+        return;
+
+    }
+
+    NetworkEngine.state.currentQuestion++;
+
+    setTimeout(
+
+        nextBattleQuestion,
+
+        1000
+
+    );
+
+}
+
+/*==================================================
+            UPDATE BATTLE HEALTH
+==================================================*/
+
+function updateBattleHealth(){
+
+    const player=document.getElementById(
+
+        "playerHealth"
+
+    );
+
+    const enemy=document.getElementById(
+
+        "enemyHealth"
+
+    );
+
+    if(player){
+
+        player.style.width=
+
+        NetworkEngine.state.playerHealth+"%";
+
+    }
+
+    if(enemy){
+
+        enemy.style.width=
+
+        NetworkEngine.state.enemyHealth+"%";
+
+    }
+
+}
+
+/*==================================================
+                BATTLE WON
+==================================================*/
+
+function battleWon(){
+
+    document.getElementById(
+
+        "battleQuestion"
+
+    ).innerHTML=`
+
+        <h2>
+
+            🏆 Victory!
+
+        </h2>
+
+        <p>
+
+            You defeated the Spider King!
+
+        </p>
+
+    `;
+
+    document.getElementById(
+
+        "battleOptions"
+
+    ).innerHTML="";
+
+    NetworkEngine.state.score+=50;
+
+    document.getElementById(
+
+        "networkScore"
+
+    ).textContent=
+
+    NetworkEngine.state.score;
+
+    showNotification(
+
+        "🎉 Kingdom Cleared!",
+
+        "success"
+
+    );
+
+    finishKingdom();
+
+}
+
+/*==================================================
+                BATTLE LOST
+==================================================*/
+
+function battleLost(){
+
+    document.getElementById(
+
+        "battleQuestion"
+
+    ).innerHTML=`
+
+        <h2>
+
+            ☠ Defeat
+
+        </h2>
+
+        <p>
+
+            The Spider King has defeated you.
+
+        </p>
+
+    `;
+
+    document.getElementById(
+
+        "battleOptions"
+
+    ).innerHTML=`
+
+        <button
+
+            class="magicBtn"
+
+            onclick="resetBattle()">
+
+            🔄 Try Again
+
+        </button>
+
+    `;
+
+    showNotification(
+
+        "Better luck next time!",
+
+        "warning"
+
+    );
+
+}
+
+/*==================================================
+                RESET BATTLE
+==================================================*/
+
+function resetBattle(){
+
+    NetworkEngine.state.playerHealth=100;
+
+    NetworkEngine.state.enemyHealth=100;
+
+    NetworkEngine.state.currentQuestion=0;
+
+    updateBattleHealth();
+
+    nextBattleQuestion();
+
+}
+
+/*==================================================
+            FINISH KINGDOM
+==================================================*/
+
+function finishKingdom(){
+
+    NetworkEngine.state.completed=true;
+
+    if(typeof saveProgress==="function"){
+
+        saveProgress(
+
+            NetworkEngine.simulator.id
+
+        );
+
+    }
+
+    if(typeof showReward==="function"){
+
+        showReward(
+
+            "🕸 Spider Web Nexus Complete!",
+
+            "You have mastered Computer Networks."
+
+        );
+
+    }
+
+}
+
+/*==================================================
+            SAVE NETWORK PROGRESS
+==================================================*/
+
+function saveNetworkProgress(){
+
+    const progress={
+
+        score:NetworkEngine.state.score,
+
+        topology:NetworkEngine.state.topology,
+
+        completed:NetworkEngine.state.completed,
+
+        transmission:NetworkEngine.state.transmission,
+
+        playerHealth:NetworkEngine.state.playerHealth,
+
+        enemyHealth:NetworkEngine.state.enemyHealth,
+
+        currentQuestion:NetworkEngine.state.currentQuestion
+
+    };
+
+    localStorage.setItem(
+
+        "SpiderWebNexus",
+
+        JSON.stringify(progress)
+
+    );
+
+}
+/*==================================================
+            LOAD NETWORK PROGRESS
+==================================================*/
+
+function loadNetworkProgress(){
+
+    const data=localStorage.getItem(
+
+        "SpiderWebNexus"
+
+    );
+
+    if(!data)return;
+
+    const progress=JSON.parse(data);
+
+    Object.assign(
+
+        NetworkEngine.state,
+
+        progress
+
+    );
+
+    updateScore();
+
+}
+
