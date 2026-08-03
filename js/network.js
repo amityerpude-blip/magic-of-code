@@ -4,19 +4,183 @@
 
 function NetworkSimulatorComponent(){
 
-    return `
+return `
 
-    <section
-        id="networkSection"
-        class="lessonContent">
+<section id="networkSection" class="lessonContent">
 
-        <div id="networkWorkspace">
+    <h2>🕸️ Spider Web Nexus</h2>
+
+    <p>
+        Build the network, transmit data, defend the system and defeat
+        the Dark Hacker.
+    </p>
+
+    <!--==============================================
+                MODE SELECTOR
+    ==============================================-->
+
+    <div class="networkModeBar">
+
+        <button onclick="switchMode('topology')">
+            🖥️ Topology Builder
+        </button>
+
+        <button onclick="switchMode('transmission')">
+            📡 Data Transmission
+        </button>
+
+        <button onclick="switchMode('security')">
+            🔐 Network Security
+        </button>
+
+        <button onclick="switchMode('battle')">
+            ⚔️ Final Battle
+        </button>
+
+    </div>
+
+    <!--==============================================
+                TOPOLOGY BUILDER
+    ==============================================-->
+
+    <div id="topologyMode" class="networkMode">
+
+        <h3>🖥️ Topology Builder</h3>
+
+        <div id="devicePanel" class="devicePanel"></div>
+
+        <div id="topologyCanvas" class="topologyCanvas"></div>
+
+        <div class="networkButtons">
+
+            <button onclick="validateTopology()">
+                ✅ Validate
+            </button>
+
+            <button onclick="resetTopology()">
+                🔄 Reset
+            </button>
 
         </div>
 
-    </section>
+    </div>
 
-    `;
+    <!--==============================================
+                DATA TRANSMISSION
+    ==============================================-->
+
+    <div id="transmissionMode"
+         class="networkMode"
+         style="display:none;">
+
+        <h3>📡 Data Transmission</h3>
+
+        <div id="transmissionArea"
+             class="transmissionArea"></div>
+
+        <div class="networkButtons">
+
+            <button onclick="startTransmission('packet')">
+                Packet Switching
+            </button>
+
+            <button onclick="startTransmission('circuit')">
+                Circuit Switching
+            </button>
+
+            <button onclick="startTransmission('message')">
+                Message Switching
+            </button>
+
+            <button onclick="resetTransmission()">
+                🔄 Reset
+            </button>
+
+        </div>
+
+    </div>
+
+    <!--==============================================
+                NETWORK SECURITY
+    ==============================================-->
+
+    <div id="securityMode"
+         class="networkMode"
+         style="display:none;">
+
+        <h3>🔐 Network Security</h3>
+
+        <div id="securityQuestion"
+             class="securityQuestion"></div>
+
+        <div id="securityOptions"
+             class="securityOptions"></div>
+
+        <div class="networkButtons">
+
+            <button onclick="nextSecurityQuestion()">
+                Next Threat
+            </button>
+
+        </div>
+
+    </div>
+
+    <!--==============================================
+                FINAL BATTLE
+    ==============================================-->
+
+    <div id="battleMode"
+         class="networkMode"
+         style="display:none;">
+
+        <h3>⚔️ Final Battle</h3>
+
+        <div class="battleHealth">
+
+            <div>
+
+                🛡️ Player
+
+                <progress id="playerHealth"
+                          value="100"
+                          max="100">
+                </progress>
+
+            </div>
+
+            <div>
+
+                👾 Hacker
+
+                <progress id="enemyHealth"
+                          value="100"
+                          max="100">
+                </progress>
+
+            </div>
+
+        </div>
+
+        <div id="battleQuestion"
+             class="battleQuestion"></div>
+
+        <div id="battleOptions"
+             class="battleOptions"></div>
+
+        <div class="networkButtons">
+
+            <button onclick="startFinalBattle()">
+                🚀 Start Battle
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+`;
 
 }
 /*==================================================
