@@ -183,6 +183,36 @@ return `
 `;
 
 }
+
+/*==================================================
+        INITIALIZE NETWORK SIMULATOR
+==================================================*/
+
+async function initializeNetworkSimulator(data){
+
+    console.log("Initializing Network Simulator...");
+
+    NetworkEngine.data = data;
+
+    // Show first mode
+    switchMode("topology");
+
+    // Build topology screen
+    if(typeof createDevicePanel === "function"){
+
+        createDevicePanel();
+
+    }
+
+    if(typeof createTopologyCanvas === "function"){
+
+        createTopologyCanvas();
+
+    }
+
+    console.log("Network Simulator Ready");
+
+}
 /*==================================================
             NETWORK ENGINE
 ==================================================*/
