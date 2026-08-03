@@ -3132,17 +3132,7 @@ function checkBattleAnswer(
 
 ){
 
-    const buttons=document.querySelectorAll(
-
-        ".battleOption"
-
-    );
-
-    buttons.forEach(button=>{
-
-        button.disabled=true;
-
-    });
+    disableBattleOptions();
 
     if(selected===correct){
 
@@ -3220,13 +3210,13 @@ function checkBattleAnswer(
 
     NetworkEngine.state.currentQuestion++;
 
-    setTimeout(
+    setTimeout(()=>{
 
-        nextBattleQuestion,
+    nextBattleQuestion();
 
-        1000
+    enableBattleOptions();
 
-    );
+},1000);
 
 }
 
@@ -3482,6 +3472,41 @@ function loadNetworkProgress(){
     );
 
     updateScore();
+
+}
+
+/*==================================================
+            DISABLE BATTLE OPTIONS
+==================================================*/
+
+function disableBattleOptions(){
+
+    document
+
+        .querySelectorAll(".battleOption")
+
+        .forEach(button=>{
+
+            button.disabled=true;
+
+        });
+
+}
+/*==================================================
+            ENABLE BATTLE OPTIONS
+==================================================*/
+
+function enableBattleOptions(){
+
+    document
+
+        .querySelectorAll(".battleOption")
+
+        .forEach(button=>{
+
+            button.disabled=false;
+
+        });
 
 }
 
