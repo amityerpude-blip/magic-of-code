@@ -154,11 +154,13 @@
 
     <script>
 
-    window.addEventListener("load", () => {
+    window.addEventListener("load", async () => {
 
     renderKingdom(KINGDOM_DATA);
 
-    });
+    await initializeKingdom(KINGDOM_DATA);
+
+});
 
     </script>
 
