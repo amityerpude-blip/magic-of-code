@@ -183,7 +183,23 @@ return `
 `;
 
 }
+/*==================================================
+        INITIALIZE NETWORK SIMULATOR
+==================================================*/
 
+async function initializeNetworkSimulator(data){
+
+    console.log("Initializing Network Simulator...");
+
+    // Save data for all modules
+    NetworkEngine.data = data;
+
+    // Default mode
+    switchMode("topology");
+
+    console.log("Network Simulator Ready");
+
+}
 /*==================================================
         INITIALIZE NETWORK SIMULATOR
 ==================================================*/
