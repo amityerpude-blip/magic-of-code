@@ -196,8 +196,46 @@ async function initializeNetworkSimulator(data){
 
     // Default mode
     switchMode("topology");
+    createDevicePanel();
 
     console.log("Network Simulator Ready");
+
+}
+
+/*==================================================
+        CREATE DEVICE PANEL
+==================================================*/
+
+function createDevicePanel(){
+
+    const panel = document.getElementById("devicePanel");
+
+    if(!panel) return;
+
+    panel.innerHTML = "";
+
+    const devices = NetworkEngine.data.devices || [];
+
+    devices.forEach(device => {
+
+        const card = document.createElement("div");
+
+        card.className = "deviceCard";
+
+        card.dataset.type = device.type;
+
+        card.draggable = true;
+
+        card.innerHTML = `
+            <div class="deviceIcon">${device.icon}</div>
+            <div class="deviceName">${device.name}</div>
+        `;
+
+        card.addEventListener("dragstart", startDeviceDrag);
+
+        panel.appendChild(card);
+
+    });
 
 }
 /*==================================================
