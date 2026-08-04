@@ -206,6 +206,10 @@ async function initializeNetworkSimulator(data){
         CREATE DEVICE PANEL
 ==================================================*/
 
+/*==================================================
+        CREATE DEVICE PANEL
+==================================================*/
+
 function createDevicePanel(){
 
     const panel = document.getElementById("devicePanel");
@@ -214,7 +218,20 @@ function createDevicePanel(){
 
     panel.innerHTML = "";
 
-    const devices = NetworkEngine.data.devices || [];
+    const topologyModule =
+        NetworkEngine.data.modules.find(
+            module => module.id === "topologyBuilder"
+        );
+
+    if(!topologyModule){
+
+        console.error("Topology module not found");
+
+        return;
+
+    }
+
+    const devices = topologyModule.devices || [];
 
     devices.forEach(device => {
 
@@ -222,16 +239,17 @@ function createDevicePanel(){
 
         card.className = "deviceCard";
 
-        card.dataset.type = device.type;
-
-        card.draggable = true;
+        card.dataset.id = device.id;
 
         card.innerHTML = `
-            <div class="deviceIcon">${device.icon}</div>
-            <div class="deviceName">${device.name}</div>
-        `;
+            <div class="deviceIcon">
+                ${device.icon}
+            </div>
 
-        card.addEventListener("dragstart", startDeviceDrag);
+            <div class="deviceName">
+                ${device.name}
+            </div>
+        `;
 
         panel.appendChild(card);
 
