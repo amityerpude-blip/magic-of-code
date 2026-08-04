@@ -256,6 +256,24 @@ function createDevicePanel(){
     });
 
 }
+
+/*==================================================
+        START DEVICE DRAG
+==================================================*/
+
+function startDeviceDrag(event){
+
+    const deviceId =
+        event.currentTarget.dataset.id;
+
+    event.dataTransfer.setData(
+        "deviceId",
+        deviceId
+    );
+
+    event.dataTransfer.effectAllowed = "copy";
+
+}
 /*==================================================
         SWITCH MODE
 ==================================================*/
