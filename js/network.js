@@ -273,12 +273,204 @@ function startDeviceDrag(event){
     const deviceId =
         event.currentTarget.dataset.id;
 
+    console.log("DRAG START:", deviceId);
+
+    event.dataTransfer.effectAllowed = "copy";
+
+    // Use text/plain as the reliable browser format
     event.dataTransfer.setData(
-        "deviceId",
+        "text/plain",
         deviceId
     );
 
+}
+
+/*==================================================
+        DEVICE DRAG & DROP
+==================================================*/
+
+let draggedDeviceId = null;
+
+
+/*--------------------------------------------------
+        START DRAG
+--------------------------------------------------*/
+
+function startDeviceDrag(event){
+
+    draggedDeviceId = event.currentTarget.dataset.id;
+
     event.dataTransfer.effectAllowed = "copy";
+
+    event.dataTransfer.setData(
+        "text/plain",
+        draggedDeviceId
+    );
+
+}
+
+
+/*--------------------------------------------------
+        ALLOW DROP
+--------------------------------------------------*/
+
+function allowDeviceDrop(event){
+
+    event.preventDefault();
+
+    event.dataTransfer.dropEffect = "copy";
+
+}
+
+
+/*--------------------------------------------------
+        HANDLE DEVICE DROP
+--------------------------------------------------*/
+
+function handleDeviceDrop(event){
+
+    event.preventDefault();
+
+    const deviceId =
+        event.dataTransfer.getData("text/plain");
+
+    if(!deviceId){
+
+        console.warn("No device selected for drop");
+
+        return;
+
+    }
+
+    const canvas =
+        document.getElementById("topologyCanvas");
+
+    if(!canvas) return;
+
+
+    /*------------------------------------------
+            GET DEVICE INFORMATION
+    ------------------------------------------*/
+
+    const topologyModule =
+        NetworkEngine.data.modules.find(
+            module =>
+                module.id === "topologyBuilder"
+        );
+
+    if(!topologyModule) return;
+
+
+    const device =
+        topologyModule.devices.find(
+            d => d.id === deviceId
+        );
+
+    if(!device) return;
+
+
+    /*------------------------------------------
+            CREATE DEVICE ON CANVAS
+    ------------------------------------------*/
+
+    const node =
+        document.createElement("div");
+
+    node.className = "topologyNode";
+
+    node.dataset.id = device.id;
+
+    node.innerHTML = `
+        <div class="topologyNodeIcon">
+            ${device.icon}
+        </div>
+
+        <div class="topologyNodeName">
+            ${device.name}
+        </div>
+    `;
+
+
+    /*------------------------------------------
+            POSITION
+    ------------------------------------------*/
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+    const x =
+        event.clientX - rect.left;
+
+    const y =
+        event.clientY - rect.top;
+
+
+    node.style.left =
+        `${x}px`;
+
+    node.style.top =
+        `${y}px`;
+
+
+    /*------------------------------------------
+            ABSOLUTE POSITION
+    ------------------------------------------*/
+
+    node.style.position = "absolute";
+
+
+    /*------------------------------------------
+            ADD TO CANVAS
+    ------------------------------------------*/
+
+    canvas.appendChild(node);
+
+
+    console.log(
+        "Device dropped:",
+        device.name
+    );
+
+}
+
+
+/*--------------------------------------------------
+        INITIALIZE DRAG & DROP
+--------------------------------------------------*/
+
+function initializeTopologyDragDrop(){
+
+    const canvas =
+        document.getElementById(
+            "topologyCanvas"
+        );
+
+    if(!canvas){
+
+        console.warn(
+            "Topology canvas not found"
+        );
+
+        return;
+
+    }
+
+
+    canvas.addEventListener(
+        "dragover",
+        allowDeviceDrop
+    );
+
+
+    canvas.addEventListener(
+        "drop",
+        handleDeviceDrop
+    );
+
+
+    console.log(
+        "Topology Drag & Drop initialized"
+    );
 
 }
 /*==================================================
@@ -318,21 +510,11 @@ async function initializeNetworkSimulator(data){
 
     NetworkEngine.data = data;
 
-    // Show first mode
     switchMode("topology");
 
-    // Build topology screen
-    if(typeof createDevicePanel === "function"){
+    createDevicePanel();
 
-        createDevicePanel();
-
-    }
-
-    if(typeof createTopologyCanvas === "function"){
-
-        createTopologyCanvas();
-
-    }
+    initializeTopologyDragDrop();
 
     console.log("Network Simulator Ready");
 
