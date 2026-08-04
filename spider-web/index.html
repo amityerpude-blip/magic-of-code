@@ -156,18 +156,31 @@
 
     window.addEventListener("load", async () => {
 
+    renderKingdom(KINGDOM_DATA);window.addEventListener("load", async () => {
+
     renderKingdom(KINGDOM_DATA);
+
+    initializeNavigation();
+
+    initializeComic(KINGDOM_DATA);
+
+    initializeQuiz(KINGDOM_DATA);
+
+    initializeEffects();
+
+    initializeButtons(KINGDOM_DATA);
 
     if (typeof initializeNetworkSimulator === "function") {
 
-        await initializeNetworkSimulator(KINGDOM_DATA.networkSimulator);
+        await initializeNetworkSimulator(
+            KINGDOM_DATA.networkSimulator
+        );
 
     }
 
     hideLoading();
 
 });
-
     </script>
 
 </body>
