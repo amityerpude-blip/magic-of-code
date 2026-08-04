@@ -631,6 +631,39 @@ function initializeTopologyDragDrop(){
     );
 
 }
+
+/*==================================================
+        INITIALIZE TOPOLOGY DRAG & DROP
+==================================================*/
+
+function initializeTopologyDragDrop() {
+
+    const canvas =
+        document.querySelector(".topologyCanvas");
+
+    if (!canvas) {
+
+        console.error(
+            "Topology canvas not found."
+        );
+
+        return;
+    }
+
+    canvas.addEventListener(
+        "dragover",
+        handleDeviceDragOver
+    );
+
+    canvas.addEventListener(
+        "drop",
+        handleDeviceDrop
+    );
+
+    console.log(
+        "Topology drag & drop initialized."
+    );
+}
 /*==================================================
         SWITCH MODE
 ==================================================*/
