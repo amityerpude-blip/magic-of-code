@@ -1,0 +1,19 @@
+
+/* 15 ROUTER / 3 PATH NETWORK */
+#transmissionCanvas{
+    min-height:520px !important;
+    height:520px !important;
+}
+.transmissionNetworkNode{
+    user-select:none;
+}
+@media(max-width:700px){
+    #transmissionCanvas{
+        min-height:450px !important;
+        height:450px !important;
+    }
+    .transmissionNetworkNode{
+        transform:translate(-50%,-50%) scale(.82) !important;
+        transform-origin:center;
+    }
+}
