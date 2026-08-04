@@ -263,7 +263,165 @@ function createDevicePanel(){
 });
 
 }
+/*==================================================
+        DRAG DEVICE FROM PANEL
+==================================================*/
 
+function startDeviceDrag(event) {
+
+    const deviceId =
+        event.currentTarget.dataset.id;
+
+    event.dataTransfer.setData(
+        "text/plain",
+        deviceId
+    );
+
+    event.dataTransfer.effectAllowed = "copy";
+
+    console.log("Dragging device:", deviceId);
+}
+
+
+/*==================================================
+        ALLOW DROP
+==================================================*/
+
+function handleDeviceDragOver(event) {
+
+    event.preventDefault();
+
+    event.dataTransfer.dropEffect = "copy";
+}
+
+
+/*==================================================
+        HANDLE DEVICE DROP
+==================================================*/
+
+function handleDeviceDrop(event) {
+
+    event.preventDefault();
+
+    const canvas =
+        event.currentTarget;
+
+    const deviceId =
+        event.dataTransfer.getData("text/plain");
+
+    if (!deviceId) {
+
+        console.warn("No device ID received.");
+
+        return;
+    }
+
+    console.log(
+        "Dropped device:",
+        deviceId
+    );
+
+
+    /*----------------------------------------------
+        FIND DEVICE DATA
+    ----------------------------------------------*/
+
+    const topologyModule =
+        NetworkEngine.data.modules.find(
+            module => module.id === "topologyBuilder"
+        );
+
+    if (!topologyModule) {
+
+        console.error(
+            "Topology module not found."
+        );
+
+        return;
+    }
+
+
+    const device =
+        topologyModule.devices.find(
+            d => d.id === deviceId
+        );
+
+    if (!device) {
+
+        console.error(
+            "Device not found:",
+            deviceId
+        );
+
+        return;
+    }
+
+
+    /*----------------------------------------------
+        CALCULATE DROP POSITION
+    ----------------------------------------------*/
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+    const x =
+        event.clientX - rect.left;
+
+    const y =
+        event.clientY - rect.top;
+
+
+    /*----------------------------------------------
+        CREATE NODE
+    ----------------------------------------------*/
+
+    const node =
+        document.createElement("div");
+
+    node.className =
+        "topologyNode";
+
+    node.dataset.id =
+        device.id;
+
+    node.innerHTML = `
+
+        <div class="topologyNodeIcon">
+            ${device.icon}
+        </div>
+
+        <div class="topologyNodeName">
+            ${device.name}
+        </div>
+
+    `;
+
+
+    /*----------------------------------------------
+        POSITION NODE
+    ----------------------------------------------*/
+
+    node.style.left =
+        `${x}px`;
+
+    node.style.top =
+        `${y}px`;
+
+
+    /*----------------------------------------------
+        ADD NODE TO CANVAS
+    ----------------------------------------------*/
+
+    canvas.appendChild(node);
+
+
+    console.log(
+        "Device placed:",
+        device.name,
+        x,
+        y
+    );
+}
 /*==================================================
         START DEVICE DRAG
 ==================================================*/
