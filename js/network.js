@@ -235,25 +235,32 @@ function createDevicePanel(){
 
     devices.forEach(device => {
 
-        const card = document.createElement("div");
+    const card = document.createElement("div");
 
-        card.className = "deviceCard";
+    card.className = "deviceCard";
 
-        card.dataset.id = device.id;
+    card.dataset.id = device.id;
 
-        card.innerHTML = `
-            <div class="deviceIcon">
-                ${device.icon}
-            </div>
+    card.innerHTML = `
+        <div class="deviceIcon">
+            ${device.icon}
+        </div>
 
-            <div class="deviceName">
-                ${device.name}
-            </div>
-        `;
+        <div class="deviceName">
+            ${device.name}
+        </div>
+    `;
 
-        panel.appendChild(card);
+    card.draggable = true;
 
-    });
+    card.addEventListener(
+        "dragstart",
+        startDeviceDrag
+    );
+
+    panel.appendChild(card);
+
+});
 
 }
 
