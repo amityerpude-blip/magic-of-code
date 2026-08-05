@@ -2,9 +2,8 @@
     SPIDER WEB NEXUS
     TOPOLOGY BUILDER - SURGICAL PATCH
 
-    This file changes ONLY the topology-building interaction.
-    The transmission simulator, packet switching, message switching,
-    circuit switching, security and battle modules are untouched.
+    ONLY the Build the Network interaction is patched here.
+    Transmission simulation is intentionally untouched.
 ====================================================*/
 
 (function () {
@@ -13,7 +12,7 @@
     if (window.__SPIDER_TOPOLOGY_PATCH__) return;
     window.__SPIDER_TOPOLOGY_PATCH__ = true;
 
-    function topologyIsActive() {
+    function active() {
         return !!(
             window.NetworkEngine &&
             NetworkEngine.state &&
@@ -21,42 +20,13 @@
         );
     }
 
-    /*
-       BUILD MODE:
-       Students must be allowed to draw ANY connection first.
-       Correctness is checked only when Validate is pressed.
-       The previous version rejected incorrect connections here,
-       which made the builder appear broken and made it impossible
-       for students to construct-and-check a topology.
-    */
-    window.canConnect = function (from, to) {
-        if (!topologyIsActive()) {
-            if (typeof window.showNotification === "function") {
-                showNotification("Please select a topology first.", "warning");
-            }
-            return false;
-        }
+    function addCable(from, to) {
+        if (!active() || !from || !to || from === to) return;
 
-        if (!from || !to || from === to) {
-            if (typeof window.showNotification === "function") {
-                showNotification("Choose two different devices.", "warning");
-            }
-            return false;
-        }
+        const connections = NetworkEngine.state.connections ||
+            (NetworkEngine.state.connections = []);
 
-        return true;
-    };
-
-    /*
-       Explicitly replace connection creation so the patch does not
-       depend on the old validation gate inside network.js.
-    */
-    window.createConnection = function (from, to) {
-        if (!window.NetworkEngine || !NetworkEngine.state) return;
-
-        if (!window.canConnect(from, to)) return;
-
-        const exists = NetworkEngine.state.connections.some(function (c) {
+        const exists = connections.some(function (c) {
             return (
                 (c.from === from && c.to === to) ||
                 (c.from === to && c.to === from)
@@ -71,33 +41,82 @@
         }
 
         const connection = { from: from, to: to };
-        NetworkEngine.state.connections.push(connection);
+        connections.push(connection);
 
+        /* Use the existing renderer from network.js. */
         if (typeof window.drawConnection === "function") {
-            drawConnection(connection);
-        }
-
-        if (typeof window.checkTopologyCompletion === "function") {
-            checkTopologyCompletion();
+            window.drawConnection(connection);
         }
 
         if (typeof window.showTopologyResult === "function") {
             showTopologyResult(
-                "🔗 Cable added. Build the topology, then press Validate.",
+                "🔗 Cable added. Continue building, then press Validate.",
                 "info"
             );
         }
-    };
+    }
 
     /*
-       The original SVG layer is intentionally left intact.
-       This helper makes the active builder state explicit after
-       a topology is selected, without touching transmission.
+       IMPORTANT FIX:
+       network.js contains its own lexical selectNetworkDevice()
+       and canConnect() functions. Replacing window.canConnect or
+       window.createConnection therefore does not reliably replace
+       those internal calls.
+
+       We intercept clicks during CAPTURE phase, before the original
+       node click handler runs. This makes the builder independent of
+       the old connection-validation gate.
     */
+    document.addEventListener("click", function (event) {
+        const node = event.target.closest
+            ? event.target.closest("#topologyCanvas .topologyNode")
+            : null;
+
+        if (!node || !active()) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+
+        const id = node.dataset.id;
+        const previous = NetworkEngine.state.selectedNode;
+
+        if (!previous) {
+            NetworkEngine.state.selectedNode = id;
+            document.querySelectorAll("#topologyCanvas .topologyNode.selected")
+                .forEach(function (n) { n.classList.remove("selected"); });
+            node.classList.add("selected");
+
+            if (typeof window.showTopologyResult === "function") {
+                showTopologyResult(
+                    `🔗 ${id} selected. Now choose another device.`,
+                    "info"
+                );
+            }
+            return;
+        }
+
+        if (previous === id) {
+            node.classList.remove("selected");
+            NetworkEngine.state.selectedNode = null;
+            return;
+        }
+
+        addCable(previous, id);
+
+        document.querySelectorAll("#topologyCanvas .topologyNode.selected")
+            .forEach(function (n) { n.classList.remove("selected"); });
+
+        NetworkEngine.state.selectedNode = null;
+    }, true);
+
+    /* Allow the existing drag logic to remain untouched. */
     window.__resetTopologyBuilderSelection = function () {
         if (!window.NetworkEngine || !NetworkEngine.state) return;
         NetworkEngine.state.selectedNode = null;
+        document.querySelectorAll("#topologyCanvas .topologyNode.selected")
+            .forEach(function (n) { n.classList.remove("selected"); });
     };
 
-    console.log("🛠️ Spider Web Nexus topology interaction patch loaded.");
+    console.log("🛠️ Spider Web Nexus topology capture patch loaded.");
 })();
