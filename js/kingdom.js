@@ -86,6 +86,24 @@ if(data.coding){
 }
 else if(typeof initializeNetworkSimulator==="function"){
 
+    /*
+       Load the topology-only interaction patch after network.js has
+       defined NetworkEngine, but before the simulator is initialized.
+       Transmission / switching code is not modified by this patch.
+    */
+    if(!window.__SPIDER_TOPOLOGY_BUILDER_PATCH__){
+        await new Promise((resolve)=>{
+            const script=document.createElement("script");
+            script.src="js/topology-builder-patch.js?v=20260805";
+            script.onload=()=>resolve();
+            script.onerror=()=>{
+                console.warn("Topology builder patch could not be loaded.");
+                resolve();
+            };
+            document.head.appendChild(script);
+        });
+    }
+
     await initializeNetworkSimulator(data);
 
 }
