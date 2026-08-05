@@ -11,33 +11,47 @@
 </head>
 <body>
     <div id="kingdomContainer"></div>
+
     <script src="../data/spider-web-nexus.js"></script>
+
     <script src="../js/storage.js"></script>
     <script src="../js/effects.js"></script>
     <script src="../js/navigation.js"></script>
     <script src="../js/comicEngine.js"></script>
     <script src="../js/quizEngine.js"></script>
     <script src="../js/components.js"></script>
-    <script src="../js/kingdom.js"></script>
+
+    <!-- Spider Web Nexus has its own kingdom controller.
+         The shared kingdom.js is intentionally NOT loaded here. -->
+    <script src="../js/spider-web-kingdom.js"></script>
+
     <script src="../js/network.js"></script>
     <script src="../js/network-topology-patch.js"></script>
     <script src="../js/spider-web-enhancements.js"></script>
+
     <script>
-    window.addEventListener("load", async () => {
-        if (typeof KINGDOM_DATA === "undefined") {
-            console.error("KINGDOM_DATA failed to load.");
-            return;
+    window.addEventListener("load", async function () {
+        try {
+            if (typeof KINGDOM_DATA === "undefined") {
+                console.error("🕸 KINGDOM_DATA failed to load.");
+                return;
+            }
+
+            if (typeof renderKingdom !== "function") {
+                console.error("renderKingdom is not available.");
+                return;
+            }
+
+            renderKingdom(KINGDOM_DATA);
+
+            if (typeof initializeSpiderWebKingdom === "function") {
+                await initializeSpiderWebKingdom(KINGDOM_DATA);
+            } else {
+                console.error("initializeSpiderWebKingdom is not available.");
+            }
+        } catch (error) {
+            console.error("🕸 Spider Web Nexus initialization failed:", error);
         }
-        renderKingdom(KINGDOM_DATA);
-        if (typeof initializeNavigation === "function") initializeNavigation();
-        if (typeof initializeComic === "function") initializeComic(KINGDOM_DATA);
-        if (typeof initializeQuiz === "function") initializeQuiz(KINGDOM_DATA);
-        if (typeof initializeEffects === "function") initializeEffects();
-        if (typeof initializeButtons === "function") initializeButtons(KINGDOM_DATA);
-        if (typeof initializeNetworkSimulator === "function") {
-            await initializeNetworkSimulator(KINGDOM_DATA.networkSimulator || KINGDOM_DATA);
-        }
-        if (typeof hideLoading === "function") hideLoading();
     });
     </script>
 </body>
