@@ -16,6 +16,25 @@
     function clearVisual(){ document.querySelectorAll("#topologyCanvas .topologyNode.selected").forEach(n=>n.classList.remove("selected")); }
     function clearSelection(){ if(window.NetworkEngine&&NetworkEngine.state){ clearVisual(); NetworkEngine.state.selectedNode=null; } }
 
+    /* Keep the instruction message at the bottom of the network plane. */
+    function positionTopologyHint(){
+        const c=canvas();
+        if(!c) return;
+        const hint=c.querySelector(".topologyPlayHint");
+        if(!hint) return;
+
+        hint.style.position="absolute";
+        hint.style.left="50%";
+        hint.style.bottom="10px";
+        hint.style.top="auto";
+        hint.style.transform="translateX(-50%)";
+        hint.style.zIndex="20";
+        hint.style.width="min(92%, 620px)";
+        hint.style.boxSizing="border-box";
+        hint.style.textAlign="center";
+        hint.style.pointerEvents="none";
+    }
+
     /* SELECT DEVICE -> SELECT DEVICE */
     document.addEventListener("click", function(event){
         const node=nodeFrom(event.target);
@@ -97,6 +116,7 @@
         const c=canvas();
         if(!c) return;
         c.querySelectorAll(".topologyNode").forEach(prepareNode);
+        positionTopologyHint();
     }
 
     /* IMPORTANT: topologyCanvas is created later by network.js.
@@ -111,5 +131,5 @@
     else start();
 
     window.__resetTopologyBuilderSelection=clearSelection;
-    console.log("🛠️ Spider Web Nexus topology builder patch ACTIVE — drag + select-to-connect restored.");
+    console.log("🛠️ Spider Web Nexus topology builder patch ACTIVE — drag + select-to-connect restored; instruction moved to bottom of network plane.");
 })();
