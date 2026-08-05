@@ -1,9 +1,15 @@
 /*====================================================
     SPIDER WEB NEXUS
-    TOPOLOGY BUILDER - SURGICAL PATCH
+    TOPOLOGY BUILDER — RESTORE PREVIOUS INTERACTION
 
-    ONLY the Build the Network interaction is patched here.
-    Transmission simulation is intentionally untouched.
+    This patch restores ONLY the old topology-builder interaction:
+      • devices can be dragged around the network canvas
+      • click one device, then another device to connect them
+      • connections are visible immediately
+      • cables can be clicked to remove them
+      • topology correctness is checked by Validate
+
+    Transmission / packet / message / circuit switching is untouched.
 ====================================================*/
 
 (function () {
@@ -12,30 +18,48 @@
     if (window.__SPIDER_TOPOLOGY_PATCH__) return;
     window.__SPIDER_TOPOLOGY_PATCH__ = true;
 
-    function active() {
+    function ready() {
         return !!(
             window.NetworkEngine &&
             NetworkEngine.state &&
-            NetworkEngine.state.topology
+            document.getElementById("topologyCanvas")
         );
     }
 
-    function addCable(from, to) {
-        if (!active() || !from || !to || from === to) return;
+    function getNode(target) {
+        if (!target || !target.closest) return null;
+        return target.closest("#topologyCanvas .topologyNode");
+    }
 
-        const connections = NetworkEngine.state.connections ||
+    function clearSelection() {
+        document
+            .querySelectorAll("#topologyCanvas .topologyNode.selected")
+            .forEach(function (node) {
+                node.classList.remove("selected");
+            });
+        NetworkEngine.state.selectedNode = null;
+    }
+
+    function connectDevices(from, to) {
+        if (!ready() || !from || !to || from === to) return;
+
+        const connections =
+            NetworkEngine.state.connections ||
             (NetworkEngine.state.connections = []);
 
-        const exists = connections.some(function (c) {
+        const exists = connections.some(function (connection) {
             return (
-                (c.from === from && c.to === to) ||
-                (c.from === to && c.to === from)
+                (connection.from === from && connection.to === to) ||
+                (connection.from === to && connection.to === from)
             );
         });
 
         if (exists) {
             if (typeof window.showTopologyResult === "function") {
-                showTopologyResult("🔗 This cable already exists.", "warning");
+                window.showTopologyResult(
+                    "🔗 This connection already exists.",
+                    "warning"
+                );
             }
             return;
         }
@@ -43,80 +67,189 @@
         const connection = { from: from, to: to };
         connections.push(connection);
 
-        /* Use the existing renderer from network.js. */
+        /* Draw immediately — exactly as the previous builder did. */
         if (typeof window.drawConnection === "function") {
             window.drawConnection(connection);
         }
 
         if (typeof window.showTopologyResult === "function") {
-            showTopologyResult(
-                "🔗 Cable added. Continue building, then press Validate.",
+            window.showTopologyResult(
+                "🔗 Connection created. Continue building the network.",
                 "info"
             );
         }
     }
 
     /*
-       IMPORTANT FIX:
-       network.js contains its own lexical selectNetworkDevice()
-       and canConnect() functions. Replacing window.canConnect or
-       window.createConnection therefore does not reliably replace
-       those internal calls.
+       The old network.js validates a connection inside its lexical
+       canConnect() function. That made the builder reject a connection
+       before students could build and validate the topology.
 
-       We intercept clicks during CAPTURE phase, before the original
-       node click handler runs. This makes the builder independent of
-       the old connection-validation gate.
+       Capture the device click first so the old click handler cannot
+       block the previous select-A -> select-B interaction.
     */
     document.addEventListener("click", function (event) {
-        const node = event.target.closest
-            ? event.target.closest("#topologyCanvas .topologyNode")
-            : null;
-
-        if (!node || !active()) return;
+        const node = getNode(event.target);
+        if (!node || !ready()) return;
 
         event.preventDefault();
         event.stopPropagation();
         event.stopImmediatePropagation();
 
         const id = node.dataset.id;
-        const previous = NetworkEngine.state.selectedNode;
+        const selected = NetworkEngine.state.selectedNode;
 
-        if (!previous) {
+        if (!selected) {
             NetworkEngine.state.selectedNode = id;
-            document.querySelectorAll("#topologyCanvas .topologyNode.selected")
-                .forEach(function (n) { n.classList.remove("selected"); });
+            clearVisualSelectionOnly();
             node.classList.add("selected");
 
             if (typeof window.showTopologyResult === "function") {
-                showTopologyResult(
-                    `🔗 ${id} selected. Now choose another device.`,
+                window.showTopologyResult(
+                    `🔗 ${nodeName(node)} selected — now select another device.`,
                     "info"
                 );
             }
             return;
         }
 
-        if (previous === id) {
+        if (selected === id) {
             node.classList.remove("selected");
             NetworkEngine.state.selectedNode = null;
             return;
         }
 
-        addCable(previous, id);
-
-        document.querySelectorAll("#topologyCanvas .topologyNode.selected")
-            .forEach(function (n) { n.classList.remove("selected"); });
-
-        NetworkEngine.state.selectedNode = null;
+        connectDevices(selected, id);
+        clearSelection();
     }, true);
 
-    /* Allow the existing drag logic to remain untouched. */
-    window.__resetTopologyBuilderSelection = function () {
-        if (!window.NetworkEngine || !NetworkEngine.state) return;
-        NetworkEngine.state.selectedNode = null;
-        document.querySelectorAll("#topologyCanvas .topologyNode.selected")
-            .forEach(function (n) { n.classList.remove("selected"); });
-    };
+    function clearVisualSelectionOnly() {
+        document
+            .querySelectorAll("#topologyCanvas .topologyNode.selected")
+            .forEach(function (node) {
+                node.classList.remove("selected");
+            });
+    }
 
-    console.log("🛠️ Spider Web Nexus topology capture patch loaded.");
+    function nodeName(node) {
+        const label = node.querySelector(
+            ".topologyNodeName, .deviceTitle"
+        );
+        return label ? label.textContent.trim() : node.dataset.id;
+    }
+
+    /*====================================================
+        RESTORE DRAGGABLE DEVICES
+    ====================================================*/
+
+    function prepareNode(node) {
+        if (!node || node.dataset.previousBuilderReady === "true") {
+            return;
+        }
+
+        node.dataset.previousBuilderReady = "true";
+        node.style.cursor = "grab";
+        node.style.userSelect = "none";
+        node.style.touchAction = "none";
+
+        /* Native drag support as well as the existing mouse dragging. */
+        node.setAttribute("draggable", "true");
+
+        node.addEventListener("dragstart", function (event) {
+            event.dataTransfer.effectAllowed = "move";
+            event.dataTransfer.setData("text/plain", node.dataset.id || "");
+            node.classList.add("dragging");
+        });
+
+        node.addEventListener("dragend", function () {
+            node.classList.remove("dragging");
+        });
+
+        /* Reliable pointer dragging for desktop/touch. */
+        node.addEventListener("pointerdown", function (event) {
+            if (event.button !== 0) return;
+            if (event.target.closest && event.target.closest("button")) return;
+
+            const canvas = document.getElementById("topologyCanvas");
+            if (!canvas) return;
+
+            const rect = node.getBoundingClientRect();
+            const canvasRect = canvas.getBoundingClientRect();
+            const offsetX = event.clientX - rect.left;
+            const offsetY = event.clientY - rect.top;
+
+            let moved = false;
+
+            function move(e) {
+                const dx = e.clientX - event.clientX;
+                const dy = e.clientY - event.clientY;
+
+                if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
+                    moved = true;
+                }
+
+                if (!moved) return;
+
+                let left = e.clientX - canvasRect.left - offsetX;
+                let top = e.clientY - canvasRect.top - offsetY;
+
+                left = Math.max(
+                    5,
+                    Math.min(left, canvas.clientWidth - node.offsetWidth - 5)
+                );
+
+                top = Math.max(
+                    5,
+                    Math.min(top, canvas.clientHeight - node.offsetHeight - 5)
+                );
+
+                node.style.left = `${left}px`;
+                node.style.top = `${top}px`;
+                node.classList.add("dragging");
+
+                if (typeof window.updateConnections === "function") {
+                    window.updateConnections();
+                }
+            }
+
+            function up() {
+                document.removeEventListener("pointermove", move);
+                document.removeEventListener("pointerup", up);
+                node.classList.remove("dragging");
+            }
+
+            document.addEventListener("pointermove", move);
+            document.addEventListener("pointerup", up);
+        });
+    }
+
+    function prepareAllNodes() {
+        if (!ready()) return;
+        document
+            .querySelectorAll("#topologyCanvas .topologyNode")
+            .forEach(prepareNode);
+    }
+
+    const observer = new MutationObserver(function () {
+        prepareAllNodes();
+    });
+
+    function startObserver() {
+        const canvas = document.getElementById("topologyCanvas");
+        if (!canvas) return;
+        observer.observe(canvas, { childList: true, subtree: true });
+        prepareAllNodes();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", startObserver);
+    } else {
+        startObserver();
+    }
+
+    window.__resetTopologyBuilderSelection = clearSelection;
+
+    console.log(
+        "🛠️ Spider Web Nexus: previous drag + select-to-connect topology builder restored."
+    );
 })();
