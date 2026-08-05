@@ -63,10 +63,23 @@
             initializeComic(data);
         }
 
+        /*
+           Spider Web owns its network shell. Mount it explicitly here
+           before starting network.js. This removes the dependency on
+           the shared components.js network branch.
+        */
+        if (typeof mountSpiderWebNetworkComponent === "function") {
+            mountSpiderWebNetworkComponent();
+        } else {
+            console.error("🕸 Spider Web network component is not loaded.");
+        }
+
         /* Network kingdom uses the network simulator instead of
            the normal Python coding engine. */
         if (typeof initializeNetworkSimulator === "function") {
             await initializeNetworkSimulator(data.networkSimulator || data);
+        } else {
+            console.error("🕸 initializeNetworkSimulator is not available.");
         }
 
         if (typeof initializeQuiz === "function") {
