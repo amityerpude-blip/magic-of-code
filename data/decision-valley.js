@@ -109,7 +109,7 @@ description:
 
 "Dino reaches a magical valley filled with crossroads. Master Owl explains that every programmer must learn how to make the correct decision using Python conditions.",
 
-folder:"assets/comic/",
+folder:"assets/comics/",
 
 totalPages:22
 
