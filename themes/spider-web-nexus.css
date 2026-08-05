@@ -1,0 +1,220 @@
+/* Spider Web Nexus - visual refresh
+   Keeps the existing network simulation logic untouched.
+*/
+
+:root {
+  --swn-bg: #07182b;
+  --swn-panel: #102b45;
+  --swn-panel-2: #163956;
+  --swn-card: #1d3048;
+  --swn-border: #20c7f5;
+  --swn-text: #f4f8ff;
+  --swn-muted: #c9d8e8;
+  --swn-accent: #7b4dff;
+  --swn-accent-2: #13d5ef;
+}
+
+body {
+  background:
+    radial-gradient(circle at 15% 15%, rgba(19,213,239,.10), transparent 28%),
+    radial-gradient(circle at 85% 20%, rgba(123,77,255,.12), transparent 30%),
+    linear-gradient(135deg, #061323, #0b2036 55%, #101b3a);
+  color: var(--swn-text);
+}
+
+body, button, input, select, textarea {
+  font-family: inherit;
+}
+
+h1, h2, h3, h4, p {
+  color: var(--swn-text);
+}
+
+p, small, .subtitle, .description, .muted {
+  color: var(--swn-muted);
+}
+
+/* Center the main hero/header content */
+.hero,
+.hero-section,
+#hero,
+.welcome-section {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center;
+}
+
+.hero > *,
+.hero-section > *,
+#hero > *,
+.welcome-section > * {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Journey navigation */
+.journey,
+.journey-section,
+.adventure-nav,
+#journey {
+  max-width: 1050px;
+  margin: 28px auto !important;
+}
+
+.journey button,
+.adventure-nav button,
+.tab-button,
+.mode-tab {
+  color: var(--swn-text) !important;
+  background: linear-gradient(180deg, #20354e, #172940) !important;
+  border: 1px solid rgba(32,199,245,.35) !important;
+  transition: .2s ease;
+}
+
+.journey button:hover,
+.adventure-nav button:hover,
+.tab-button:hover,
+.mode-tab:hover {
+  transform: translateY(-2px);
+  border-color: var(--swn-border) !important;
+  box-shadow: 0 0 18px rgba(32,199,245,.18);
+}
+
+/* Simulator */
+.network-simulator,
+.simulator,
+#networkSimulator {
+  max-width: 1050px;
+  margin: 28px auto !important;
+  color: var(--swn-text);
+}
+
+.network-simulator .panel,
+.simulator .panel,
+.network-panel {
+  background: rgba(10, 30, 49, .88);
+  border: 1px solid rgba(32,199,245,.38);
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(0,0,0,.20);
+}
+
+/* Build Network / Data Transmission tabs */
+.network-tabs,
+.simulator-tabs,
+.tab-container,
+.tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 18px 0;
+}
+
+.network-tabs button,
+.simulator-tabs button,
+.tab-container button,
+.tabs button {
+  flex: 1 1 220px;
+  min-height: 52px;
+  border-radius: 12px !important;
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff !important;
+  background: linear-gradient(135deg, #1d3854, #22324e) !important;
+  border: 1px solid rgba(32,199,245,.45) !important;
+}
+
+.network-tabs button.active,
+.simulator-tabs button.active,
+.tab-container button.active,
+.tabs button.active {
+  background: linear-gradient(135deg, #10cde9, #7447ee) !important;
+  border-color: #8defff !important;
+  color: #fff !important;
+  box-shadow: 0 0 20px rgba(19,213,239,.22);
+}
+
+/* Improve readability of cards */
+.card,
+.note-card,
+.topic-card,
+.mode-card,
+.switching-card {
+  background: rgba(28,48,72,.96) !important;
+  color: var(--swn-text) !important;
+  border: 1px solid rgba(32,199,245,.28) !important;
+}
+
+.card p,
+.note-card p,
+.topic-card p,
+.mode-card p,
+.switching-card p {
+  color: var(--swn-muted) !important;
+}
+
+/* Notes */
+.notes,
+.notes-section,
+#notes {
+  max-width: 1050px;
+  margin: 28px auto;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.notes-grid > *,
+.notes .topic,
+.notes .note-card {
+  min-height: 120px;
+}
+
+/* Buttons */
+button {
+  color: #fff;
+}
+
+button.primary,
+.btn-primary,
+.transmit-btn {
+  background: linear-gradient(135deg, #10cde9, #7447ee) !important;
+  color: #fff !important;
+  border: 0 !important;
+  box-shadow: 0 5px 18px rgba(20,180,240,.20);
+}
+
+button.secondary,
+.btn-secondary,
+.reset-btn {
+  background: linear-gradient(135deg, #3156d8, #7045e8) !important;
+  color: #fff !important;
+}
+
+/* Network simulator text */
+.network-simulator label,
+.network-simulator span,
+.network-simulator strong,
+.network-simulator div {
+  /* Do not force every child color; existing network visualization colors
+     should remain available. */
+}
+
+@media (max-width: 760px) {
+  .network-tabs,
+  .simulator-tabs,
+  .tab-container,
+  .tabs {
+    flex-direction: column;
+  }
+
+  .network-tabs button,
+  .simulator-tabs button,
+  .tab-container button,
+  .tabs button {
+    flex-basis: auto;
+    width: 100%;
+  }
+}
