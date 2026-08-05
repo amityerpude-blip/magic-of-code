@@ -57,11 +57,6 @@ initializeKingdom(data);
 
 
 console.log("initializeKingdom started");
-/*====================================================
-
-            INITIALIZE KINGDOM
-
-====================================================*/
 
 async function initializeKingdom(data){
 
@@ -72,41 +67,16 @@ async function initializeKingdom(data){
     initializeComic(data);
 
     // Coding Engine
-   // Coding / Network Simulator
-
-if(data.coding){
-
-    // Only initialize if the function exists
-    if(typeof initializeCoding==="function"){
+    if(data.coding){
 
         await initializeCoding(data);
 
     }
+    else if(typeof initializeNetworkSimulator==="function"){
 
-}
-else if(typeof initializeNetworkSimulator==="function"){
+        await initializeNetworkSimulator(data);
 
-    /*
-       Load the topology-only interaction patch after network.js has
-       defined NetworkEngine, but before the simulator is initialized.
-       Transmission / switching code is not modified by this patch.
-    */
-    if(!window.__SPIDER_TOPOLOGY_BUILDER_PATCH__){
-        await new Promise((resolve)=>{
-            const script=document.createElement("script");
-            script.src="js/topology-builder-patch.js?v=20260805";
-            script.onload=()=>resolve();
-            script.onerror=()=>{
-                console.warn("Topology builder patch could not be loaded.");
-                resolve();
-            };
-            document.head.appendChild(script);
-        });
     }
-
-    await initializeNetworkSimulator(data);
-
-}
 
     // Quiz Engine
     initializeQuiz(data);
