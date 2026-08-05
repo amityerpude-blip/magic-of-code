@@ -4,45 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🕸️ Spider Web Nexus | Magic of Code</title>
-
     <link rel="stylesheet" href="../css/kingdom.css">
-    <link rel="stylesheet" href="../themes/spider-web-nexus.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <div class="loadingScreen" id="loadingScreen">
-        <div class="loader">🕸️</div>
-        <h2>Loading Spider Web Nexus...</h2>
-    </div>
-
-    <div id="particleContainer"></div>
-
     <div id="kingdomContainer"></div>
-
-    <audio id="buttonSound">
-        <source src="assets/audio/button.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="hoverSound">
-        <source src="assets/audio/hover.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="pageFlip">
-        <source src="assets/audio/page-flip.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="successSound">
-        <source src="assets/audio/success.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="magicSound">
-        <source src="assets/audio/magic.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- KINGDOM DATA -->
     <script src="../data/spider-web-nexus.js"></script>
-
-    <!-- COMMON ENGINES -->
     <script src="../js/storage.js"></script>
     <script src="../js/effects.js"></script>
     <script src="../js/navigation.js"></script>
@@ -50,27 +19,24 @@
     <script src="../js/quizEngine.js"></script>
     <script src="../js/components.js"></script>
     <script src="../js/kingdom.js"></script>
-
-    <!-- NETWORK SIMULATOR: KEEP THE EXISTING WORKING VERSION -->
     <script src="../js/network.js"></script>
-
-    <!-- VISUAL + SYLLABUS ENHANCEMENTS -->
     <script src="../js/spider-web-enhancements.js"></script>
-
     <script>
     window.addEventListener("load", async () => {
-        renderKingdom(KINGDOM_DATA);
-        initializeNavigation();
-        initializeComic(KINGDOM_DATA);
-        initializeQuiz(KINGDOM_DATA);
-        initializeEffects();
-        initializeButtons(KINGDOM_DATA);
-
-        if (typeof initializeNetworkSimulator === "function") {
-            await initializeNetworkSimulator(KINGDOM_DATA.networkSimulator);
+        if (typeof KINGDOM_DATA === "undefined") {
+            console.error("KINGDOM_DATA failed to load.");
+            return;
         }
-
-        hideLoading();
+        renderKingdom(KINGDOM_DATA);
+        if (typeof initializeNavigation === "function") initializeNavigation();
+        if (typeof initializeComic === "function") initializeComic(KINGDOM_DATA);
+        if (typeof initializeQuiz === "function") initializeQuiz(KINGDOM_DATA);
+        if (typeof initializeEffects === "function") initializeEffects();
+        if (typeof initializeButtons === "function") initializeButtons(KINGDOM_DATA);
+        if (typeof initializeNetworkSimulator === "function") {
+            await initializeNetworkSimulator(KINGDOM_DATA.networkSimulator || KINGDOM_DATA);
+        }
+        if (typeof hideLoading === "function") hideLoading();
     });
     </script>
 </body>
