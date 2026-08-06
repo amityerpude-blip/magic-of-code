@@ -20,10 +20,35 @@
             };
         }
 
+        /*
+         * Spider Web is the FINAL learning kingdom.
+         * Keep its navigation independent from the shared kingdom.js.
+         * Previous -> Dragon SQL Citadel
+         * Next -> Dashboard
+         */
+        const dashboardButton = document.getElementById("dashboardKingdom");
+        if (dashboardButton) {
+            dashboardButton.onclick = function () {
+                window.location.href = "../dashboard.html";
+            };
+        }
+
+        const previousButton = document.getElementById("previousKingdom");
+        if (previousButton) {
+            previousButton.disabled = false;
+            previousButton.classList.remove("disabled");
+            previousButton.onclick = function () {
+                window.location.href = "../dragon-sql/index.html";
+            };
+        }
+
         const nextButton = document.getElementById("nextKingdom");
-        if (nextButton && data && data.footer && data.footer.next) {
+        if (nextButton) {
+            nextButton.disabled = false;
+            nextButton.classList.remove("disabled");
+            nextButton.textContent = "🏠 Back to Dashboard";
             nextButton.onclick = function () {
-                window.location.href = data.footer.next;
+                window.location.href = "../dashboard.html";
             };
         }
 
