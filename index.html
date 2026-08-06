@@ -20,6 +20,10 @@
     <div class="castle"></div>
 </div>
 
+<div class="home-sparkles" aria-hidden="true"></div>
+<div class="shooting-star shooting-star-one" aria-hidden="true"></div>
+<div class="shooting-star shooting-star-two" aria-hidden="true"></div>
+
 <header class="home-header">
     <a class="home-brand" href="index.html" aria-label="Coding Quest Home">
         <img class="home-brand-mark" src="assets/coding-quest-logo.svg" alt="Coding Quest logo">
@@ -34,6 +38,31 @@
 </header>
 
 <main class="magic-stage" id="about">
+
+    <div class="magic-orbit magic-orbit-outer" aria-hidden="true"></div>
+    <div class="magic-orbit magic-orbit-inner" aria-hidden="true"></div>
+
+    <div class="magic-chest-wrap" aria-hidden="true">
+        <div class="magic-chest">
+            <div class="chest-glow"></div>
+            <div class="chest-lid"></div>
+            <div class="chest-body"></div>
+            <div class="chest-lock">✦</div>
+            <div class="chest-light"></div>
+        </div>
+    </div>
+
+    <div class="magic-wand" aria-hidden="true">
+        <span class="wand-stick"></span>
+        <span class="wand-star">✦</span>
+        <span class="wand-spark spark-a">✦</span>
+        <span class="wand-spark spark-b">✧</span>
+        <span class="wand-spark spark-c">•</span>
+    </div>
+
+    <div class="magic-burst" aria-hidden="true">
+        <span>✦</span><span>✧</span><span>✦</span><span>✧</span><span>✦</span><span>✧</span>
+    </div>
 
     <div id="realms" aria-label="Five learning realms">
         <a class="realm realm-python" href="dashboard.html" aria-label="Basic Python — Python Foundations">
@@ -67,15 +96,13 @@
         </a>
     </div>
 
-    <div class="portal-ring" aria-hidden="true"></div>
-
     <section class="portal-core" aria-labelledby="portal-title">
+        <div class="portal-title-small">✨ THE ADVENTURE BEGINS ✨</div>
         <img class="portal-logo" src="assets/coding-quest-logo.svg" alt="Coding Quest fantasy emblem">
-        <div class="portal-symbol" aria-hidden="true">✨</div>
         <h2 id="portal-title">The Magical World of Coding</h2>
         <p class="tagline">
-            Learn Python, work with data, master SQL and explore computer networks
-            through stories, challenges, coding activities and battles.
+            Five realms await. Choose your path, master your magic,
+            and become a Coding Champion.
         </p>
 
         <div class="portal-actions">
@@ -95,5 +122,6 @@
 </main>
 
 <script src="js/app.js"></script>
+<script src="js/home-magic.js"></script>
 </body>
 </html>
