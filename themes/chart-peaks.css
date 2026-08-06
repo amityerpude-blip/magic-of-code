@@ -4,473 +4,184 @@
         CRYSTAL CHART PEAKS
 
         chart-peaks.css
+        Visual theme only — functionality untouched
 
-====================================================*/
-
-
-/*====================================================
-                    THEME
 ====================================================*/
 
 :root{
-
-    --primary:#00ACC1;
-
-    --secondary:#4DD0E1;
-
-    --accent:#B2EBF2;
-
-    --background:#0B1F33;
-
-    --card:#1a6e78;
-
-    --text:#12324A;
-
-    --textLight:#5E7A8C;
-
-    --success:#2E7D32;
-
-    --danger:#D32F2F;
-
+    --primary:#7C4DFF;
+    --secondary:#B388FF;
+    --accent:#E8DEFF;
+    --background:#120B2E;
+    --card:#24164A;
+    --text:#F4F0FF;
+    --textLight:#C8BFE2;
+    --success:#66BB6A;
+    --danger:#EF5350;
+    --gold:#FFD54F;
+    --crystal:#D9C7FF;
 }
-
-
-/*====================================================
-                    BODY
-====================================================*/
 
 body{
-
-    background:var(--background);
-
+    background:
+        radial-gradient(circle at 15% 10%, rgba(124,77,255,.18), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(179,136,255,.12), transparent 28%),
+        linear-gradient(135deg,#100829,#18103B 55%,#0E0824);
     color:var(--text);
-
 }
-
-
-/*====================================================
-                    HERO
-====================================================*/
 
 .hero{
-
     background:
-    linear-gradient(
-        135deg,
-        #0277BD,
-        #00ACC1
-    );
-
+        linear-gradient(135deg,rgba(49,24,105,.96),rgba(124,77,255,.92)),
+        radial-gradient(circle at 80% 20%,rgba(255,255,255,.15),transparent 30%);
     color:white;
-
+    border-bottom:2px solid rgba(179,136,255,.45);
+    box-shadow:0 12px 35px rgba(0,0,0,.3);
 }
 
-.hero h1{
-
-    color:white;
-
-}
-
-.hero p{
-
-    color:#E0F7FA;
-
-}
-
-
-/*====================================================
-                SECTION TITLES
-====================================================*/
+.hero h1{color:white;text-shadow:0 0 18px rgba(216,198,255,.5);}
+.hero p{color:#EDE5FF;}
 
 .sectionHeading h2,
-.sectionTitle{
+.sectionTitle{color:#F7F2FF;text-shadow:0 0 12px rgba(179,136,255,.2);}
+.sectionHeading p{color:var(--textLight);}
 
-    color:white;
-
-}
-
-.sectionHeading p{
-
-    color:#B2EBF2;
-
-}
-
-
-/*====================================================
-                NAVIGATION
-====================================================*/
-
-.navButton{
-
-    transition:.3s;
-
-}
-
+.navButton{transition:.3s;}
 .navButton:hover{
-
-    background:#E0F7FA;
-
+    background:rgba(232,222,255,.12);
     border-left:5px solid var(--secondary);
-
-}
-
-.navButton.active{
-
-    background:var(--primary);
-
     color:white;
-
 }
-
-
-/*====================================================
-                    CARDS
-====================================================*/
+.navButton.active{
+    background:linear-gradient(90deg,var(--primary),#9C6FFF);
+    color:white;
+    box-shadow:0 5px 18px rgba(124,77,255,.35);
+}
 
 .noteCard,
 .challengeCard,
 .quizCard,
 .rewardCard{
-
-    background:var(--card);
-
+    background:linear-gradient(145deg,rgba(45,28,87,.98),rgba(31,19,62,.98));
     color:var(--text);
-
+    border:1px solid rgba(179,136,255,.25);
     border-top:5px solid var(--primary);
-
     border-radius:18px;
-
-    box-shadow:
-    0 12px 25px rgba(0,0,0,.25);
-
+    box-shadow:0 12px 30px rgba(0,0,0,.3),0 0 0 1px rgba(124,77,255,.06);
     transition:.3s;
-
 }
 
 .noteCard:hover,
 .challengeCard:hover,
 .quizCard:hover,
 .rewardCard:hover{
-
     transform:translateY(-6px);
-
-    box-shadow:
-    0 18px 35px rgba(0,172,193,.35);
-
+    border-color:rgba(179,136,255,.55);
+    box-shadow:0 18px 38px rgba(0,0,0,.4),0 0 25px rgba(124,77,255,.25);
 }
 
-
-/*====================================================
-                    NOTES
-====================================================*/
-
-.noteCard h3{
-
-    color:var(--primary);
-
-}
-
-.noteCard p{
-
-    color:var(--text);
-
-    line-height:1.7;
-
-}
-
-
-/*====================================================
-                CODE EDITOR
-====================================================*/
+.noteCard h3{color:#D4C1FF;text-shadow:0 0 10px rgba(179,136,255,.25);}
+.noteCard p{color:#E5DFF2;line-height:1.7;}
 
 #codeEditor{
-
-    background:white;
-
-    color:#222;
-
+    background:#0D0920;
+    color:#F3EEFF;
     border:2px solid var(--secondary);
-
     border-radius:10px;
-
+    box-shadow:inset 0 0 20px rgba(0,0,0,.25);
 }
-
 #codeEditor:focus{
-
     outline:none;
-
-    border-color:var(--primary);
-
-    box-shadow:
-    0 0 15px rgba(0,172,193,.35);
-
+    border-color:#D1BFFF;
+    box-shadow:0 0 18px rgba(179,136,255,.35);
 }
-
-
-/*====================================================
-                    OUTPUT
-====================================================*/
 
 #output{
-
-    background:white;
-
-    color:#222;
-
+    background:#F8F5FF;
+    color:#24183D;
     border-left:5px solid var(--primary);
-
+    border-radius:8px;
 }
-
-
-/*====================================================
-                    BUTTONS
-====================================================*/
 
 button{
-
-    background:var(--primary);
-
+    background:linear-gradient(135deg,#7C4DFF,#9C6FFF);
     color:white;
-
     border:none;
-
+    border-radius:9px;
     transition:.3s;
-
+    box-shadow:0 5px 14px rgba(124,77,255,.25);
 }
-
 button:hover{
-
-    background:var(--secondary);
-
+    background:linear-gradient(135deg,#8E68FF,#B388FF);
     transform:translateY(-2px);
-
+    box-shadow:0 8px 20px rgba(124,77,255,.4);
 }
 
-
-/*====================================================
-                QUIZ OPTIONS
-====================================================*/
-
-.option{
-    
-    transition:.25s;
-
-}
-
-.option:hover{
-
-    background:#E0F7FA;
-
-}
-
-.correct{
-
-    background:#C8E6C9 !important;
-
-    border-color:var(--success);
-
-}
-
-.wrong{
-
-    background:#FFCDD2 !important;
-
-    border-color:var(--danger);
-
-}
-
-
-/*====================================================
-                CHALLENGE
-====================================================*/
+.option{transition:.25s;border-radius:10px;}
+.option:hover{background:rgba(232,222,255,.12);}
+.correct{background:#234B2B !important;border-color:var(--success);color:#E8F5E9;}
+.wrong{background:#542426 !important;border-color:var(--danger);color:#FFEBEE;}
 
 .challengeBox{
-
-    background:var(--card);
-
+    background:linear-gradient(145deg,#281652,#1B1039);
     border:3px solid var(--secondary);
-
+    box-shadow:0 0 24px rgba(124,77,255,.16);
 }
-
-
-/*====================================================
-                PROGRESS BAR
-====================================================*/
 
 .progressBar{
-
-    background:var(--secondary);
-
+    background:linear-gradient(90deg,#7C4DFF,#B388FF,#E0CFFF);
+    box-shadow:0 0 12px rgba(179,136,255,.35);
 }
 
+.comicControls button{background:linear-gradient(135deg,#9C6FFF,#B388FF);}
+.comicControls button:hover{background:#7C4DFF;}
 
-/*====================================================
-                    COMIC
-====================================================*/
-
-.comicControls button{
-
-    background:var(--secondary);
-
-}
-
-.comicControls button:hover{
-
-    background:var(--primary);
-
-}
-
-
-/*====================================================
-                    LINKS
-====================================================*/
-
-a{
-
-    color:var(--primary);
-
-}
-
-a:hover{
-
-    color:var(--secondary);
-
-}
-
-
-/*====================================================
-                    INPUTS
-====================================================*/
+a{color:#C7ADFF;}
+a:hover{color:#E0CFFF;}
 
 input,
 textarea,
 select{
-
-    border:2px solid var(--secondary);
-
+    background:#F8F5FF;
+    color:#25173F;
+    border:2px solid #B388FF;
     border-radius:8px;
-
 }
-
 input:focus,
 textarea:focus,
 select:focus{
-
-    border-color:var(--primary);
-
+    border-color:#7C4DFF;
     outline:none;
-
+    box-shadow:0 0 12px rgba(124,77,255,.2);
 }
-
-
-/*====================================================
-                LOADING SCREEN
-====================================================*/
 
 .loadingScreen{
-
-    background:
-    linear-gradient(
-        135deg,
-        #0B1F33,
-        #00ACC1
-    );
-
+    background:radial-gradient(circle at center,#2B1760 0%,#120B2E 60%,#090519 100%);
     color:white;
-
 }
-
 .loader{
-
     font-size:5rem;
-
     animation:crystalFloat 2s ease-in-out infinite;
-
+    filter:drop-shadow(0 0 22px rgba(179,136,255,.8));
 }
-
 @keyframes crystalFloat{
-
-    0%{
-
-        transform:
-        translateY(0)
-        rotate(-4deg);
-
-    }
-
-    50%{
-
-        transform:
-        translateY(-12px)
-        rotate(4deg);
-
-    }
-
-    100%{
-
-        transform:
-        translateY(0)
-        rotate(-4deg);
-
-    }
-
+    0%{transform:translateY(0) rotate(-4deg);}
+    50%{transform:translateY(-12px) rotate(4deg);}
+    100%{transform:translateY(0) rotate(-4deg);}
 }
 
-
-/*====================================================
-                SCROLLBAR
-====================================================*/
-
-::-webkit-scrollbar{
-
-    width:10px;
-
-}
-
-::-webkit-scrollbar-track{
-
-    background:#DFF9FB;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-    background:var(--secondary);
-
-    border-radius:10px;
-
-}
-
-::-webkit-scrollbar-thumb:hover{
-
-    background:var(--primary);
-
-}
-
-
-/*====================================================
-                CRYSTAL GLOW
-====================================================*/
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:#160D32;}
+::-webkit-scrollbar-thumb{background:#7651C8;border-radius:10px;}
+::-webkit-scrollbar-thumb:hover{background:#B388FF;}
 
 .heroImage img,
 .noteCard:hover,
 .challengeCard:hover{
-
-    filter:
-    drop-shadow(0 0 18px rgba(77,208,225,.75));
-
+    filter:drop-shadow(0 0 18px rgba(179,136,255,.65));
 }
-
-
-/*====================================================
-                TEXT SELECTION
-====================================================*/
 
 ::selection{
-
-    background:var(--accent);
-
-    color:#000;
-
+    background:#B388FF;
+    color:#160D32;
 }
-
