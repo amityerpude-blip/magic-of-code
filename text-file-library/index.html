@@ -10,445 +10,156 @@ content="width=device-width, initial-scale=1.0">
 
 <title>
 
-Python Quest | Library of Living Scrolls
+📜 Library of Living Scrolls | Magic of Code
 
 </title>
 
-<link rel="stylesheet"
-href="../css/style.css">
+<!--==================================================
+                    COMMON CSS
+===================================================-->
 
 <link rel="stylesheet"
-href="style.css">
+href="../css/kingdom.css">
+
+<link rel="stylesheet"
+href="../themes/text-file-library.css">
+
+<!--==================================================
+                    GOOGLE FONT
+===================================================-->
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
 
 </head>
 
 <body>
 
-<!-- ====================================================
-                        HEADER
-==================================================== -->
+<!--==================================================
+                LOADING SCREEN
+===================================================-->
 
-<header class="worldHeader">
+<div
+class="loadingScreen"
+id="loadingScreen">
 
-<div class="logo">
-
-📜 Python Quest
-
-</div>
-
-<div class="worldTitle">
-
-Library of Living Scrolls
-
-</div>
-
-<button
-class="btn btn-primary"
-onclick="goDashboard()">
-
-🏠 Dashboard
-
-</button>
-
-</header>
-
-<!-- ====================================================
-                    WORLD INTRO
-==================================================== -->
-
-<section class="worldBanner">
-
-<div class="bannerContent">
-
-<h1>
-
-📜 Library of Living Scrolls
-
-</h1>
-
-<p>
-
-Master Pyro has invited Dino into the greatest magical library
-ever created.
-
-Every scroll stores knowledge.
-
-Only Python's File Magic can unlock their secrets.
-
-Can you master the spells?
-
-</p>
-
-<button
-class="btn btn-success"
-onclick="showSection('comicSection')">
-
-▶ Begin Adventure
-
-</button>
-
-</div>
-
-</section>
-
-<!-- ====================================================
-                    NAVIGATION
-==================================================== -->
-
-<section class="lessonNavigation">
-
-<button
-class="navButton active"
-data-target="comicSection">
+<div class="loader">
 
 📜
 
-<span>Legend Scroll</span>
-
-</button>
-
-<button
-class="navButton"
-data-target="animationSection">
-🔮
-
-<span>Crystal Vision</span>
-
-</button>
-
-<button
-class="navButton"
-data-target="notesSection">
-
-📔 
-
-<span>Spell Book</span>
-
-</button>
-
-<button
-class="navButton"
-data-target="codingSection">
-
-⚗️
-
-<span>Spell Forge</span>
-
-</button>
-
-<button
-class="navButton"
-data-target="quizSection">
-
-👾
-
-<span>Monster Hunt</span>
-
-</button>
-
-<button
-class="navButton"
-data-target="rewardSection">
-
-🏆
-
-<span>Treasure</span>
-
-</button>
-
-</section>
-
-<!-- ====================================================
-                    PROGRESS
-==================================================== -->
-
-<section class="lessonProgress">
-
-<div class="progress">
-
-<div
-id="lessonProgressBar"
-class="progress-bar">
-
 </div>
-
-</div>
-
-</section>
-
-<!-- ====================================================
-                    LESSON CONTENT
-==================================================== -->
-
-<main class="lessonContainer">
-
-<!-- ==========================================
-                STORY
-========================================== -->
-
-<section
-id="comicSection"
-class="lessonContent active">
 
 <h2>
 
-📖 Story Adventure
+Loading Library of Living Scrolls...
 
 </h2>
-
-<div id="flipbook"></div>
-
-<div class="lessonButtons">
-
-<button
-id="previousComic"
-class="btn btn-warning">
-
-◀ Previous
-
-</button>
-
-<button
-id="nextComic"
-class="btn btn-primary">
-
-Next ▶
-
-</button>
 
 </div>
 
-</section>
+<!--==================================================
+                MAGIC PARTICLES
+===================================================-->
 
-<!-- ==========================================
-                ANIMATION
-========================================== -->
+<div id="particleContainer"></div>
 
-<section
-id="animationSection"
-class="lessonContent">
+<!--==================================================
+                PAGE CONTENT
+===================================================-->
 
-<h2>
+<div id="kingdomContainer">
 
-🎬 Magical Lesson
+<!-- Generated automatically by the common kingdom engine -->
 
-</h2>
+</div>
 
-<video
-id="lessonVideo"
-controls>
+<!--==================================================
+                    AUDIO
+===================================================-->
+
+<audio id="buttonSound">
 
 <source
-src="videos/text-file.mp4"
-type="video/mp4">
+src="assets/audio/button.mp3"
+type="audio/mpeg">
 
-Your browser does not support video.
+</audio>
 
-</video>
+<audio id="hoverSound">
 
-</section>
+<source
+src="assets/audio/hover.mp3"
+type="audio/mpeg">
 
+</audio>
 
-  <!-- ==========================================
-            LIBRARY OF LIVING SCROLLS
-            QUICK NOTES SECTION
-========================================== -->
+<audio id="pageFlip">
 
-<section
-id="notesSection"
-class="lessonContent">
+<source
+src="assets/audio/page-flip.mp3"
+type="audio/mpeg">
 
-<h2>
-📚 Quick Notes
-</h2>
+</audio>
 
-<p class="section-intro">
-Master Pyro's magical scrolls contain all the secrets of Text File Handling.
-Read these notes and unlock new coding powers! ✨
-</p>
+<!--==================================================
+                    PYODIDE
+===================================================-->
 
+<script
+src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js">
+</script>
 
-<div id="notesContainer">
+<!--==================================================
+                    KINGDOM DATA
+===================================================-->
 
-<!-- Notes from notes.html will load here -->
+<script
+src="../data/text-file-library.js">
+</script>
 
-</div>
+<!--==================================================
+                COMMON ENGINES
+===================================================-->
 
+<script src="../js/storage.js"></script>
 
-</section>
+<script src="../js/effects.js"></script>
 
-<!-- =====================================
-            CODING LAB
-===================================== -->
+<script src="../js/navigation.js"></script>
 
-<section id="codingSection" class="lessonContent">
+<script src="../js/comicEngine.js"></script>
 
-<h2>💻 Master Pyro's Coding Laboratory</h2>
+<script src="../js/codingEngine.js"></script>
 
-<div class="challengeBox">
+<script src="../js/quizEngine.js"></script>
 
-<h3 id="challengeTitle">
-Challenge 1 : Create a Text File
-</h3>
+<script src="../js/components.js"></script>
 
-<p id="challengeText">
-Create a file named <b>magic.txt</b> and write
-<b>"Welcome to Python Quest"</b>
-</p>
+<script src="../js/kingdom.js"></script>
 
-</div>
+<!--==================================================
+                START ENGINE
+===================================================-->
 
-<textarea
-id="pythonCode"
-class="pythonEditor"
-spellcheck="false">
+<script>
 
-# Write your Python code here
+window.addEventListener("load", async()=>{
 
-with open("magic.txt","w") as file:
-    file.write("Welcome to Python Quest")
+    renderKingdom(KINGDOM_DATA);
 
-print("File Created Successfully")
+    await initializeKingdom(KINGDOM_DATA);
 
-</textarea>
+});
 
-<div class="codingButtons">
-
-<button id="runPython" class="btn btn-success">
-▶ Run
-</button>
-
-<button id="clearPython" class="btn btn-warning">
-🗑 Clear
-</button>
-
-<button id="nextChallenge" class="btn btn-primary">
-➡ Next Challenge
-</button>
-
-</div>
-
-<h3>Console Output</h3>
-
-<pre id="outputConsole"></pre>
-
-</section>
-<!-- ==========================================
-                QUIZ
-========================================== -->
-
-<section
-id="quizSection"
-class="lessonContent">
-
-<h2>
-
-📝 Challenge
-
-</h2>
-
-<div
-id="quizContainer">
-
-</div>
-
-<div class="center">
-
-<button
-id="submitQuiz"
-class="btn btn-primary">
-
-Submit Quiz
-
-</button>
-
-</div>
-
-<h2
-id="quizScore">
-
-</h2>
-
-</section>
-
-<!-- ==========================================
-                REWARD
-========================================== -->
-
-<section
-id="rewardSection"
-class="lessonContent">
-
-<div class="rewardBox">
-
-<h2>
-
-🏆 Treasure Unlocked
-
-</h2>
-
-<p>
-
-Congratulations!
-
-You have mastered the magic of
-Text File Handling.
-
-</p>
-
-<button
-id="claimReward"
-class="btn btn-success">
-
-Claim Reward
-
-</button>
-
-</div>
-
-</section>
-
-</main>
-
-<!-- ====================================================
-                    FOOTER
-==================================================== -->
-
-<footer class="lessonFooter">
-
-<button
-id="previousBtn"
-class="btn btn-warning">
-
-⬅ Previous
-
-</button>
-
-<button
-id="nextBtn"
-class="btn btn-primary">
-
-Next ➜
-
-</button>
-
-</footer>
-
-<!-- ====================================================
-                    JAVASCRIPT
-==================================================== -->
-
-<!-- Pyodide -->
-<script src="https://cdn.jsdelivr.net/pyodide/v0.28.3/full/pyodide.js"></script>
-
-<!-- World Scripts -->
-<script src="flipbook.js"></script>
-<script src="quiz.js"></script>
-<script src="app.js"></script>
-
-<!-- Coding Engine (must be loaded after Pyodide) -->
-<script src="coding.js"></script>
- 
+</script>
 
 </body>
 
