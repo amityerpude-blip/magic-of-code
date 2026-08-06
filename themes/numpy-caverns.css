@@ -14,23 +14,24 @@
 
 :root{
 
-    --primary:#009688;
+    /* Crystal Caverns palette — deep sapphire + amethyst + ice-cyan */
+    --primary:#7C5CFF;
 
-    --secondary:#4DB6AC;
+    --secondary:#22D3EE;
 
-    --accent:#B2DFDB;
+    --accent:#B9A7FF;
 
-    --background:#15d1d1;
+    --background:#07152E;
 
-    --card:#F2FFFE;
+    --card:#10264A;
 
-    --text:#163636;
+    --text:#F2F7FF;
 
-    --textLight:#5A7474;
+    --textLight:#B8C7E3;
 
-    --success:#2E7D32;
+    --success:#66E3A4;
 
-    --danger:#D32F2F;
+    --danger:#FF6B81;
 
 }
 
@@ -41,7 +42,10 @@
 
 body{
 
-    background:var(--background);
+    background:
+    radial-gradient(circle at 15% 10%, rgba(124,92,255,.18), transparent 28%),
+    radial-gradient(circle at 85% 20%, rgba(34,211,238,.13), transparent 26%),
+    linear-gradient(135deg,#061126,#0A1F40 55%,#07152E);
 
     color:var(--text);
 
@@ -57,11 +61,14 @@ body{
     background:
     linear-gradient(
         135deg,
-        #00695C,
-        #009688
+        #111A4A,
+        #432B91 52%,
+        #087F9C
     );
 
     color:white;
+
+    box-shadow:0 14px 35px rgba(0,0,0,.28);
 
 }
 
@@ -73,7 +80,7 @@ body{
 
 .hero p{
 
-    color:#E0F2F1;
+    color:#DCEBFF;
 
 }
 
@@ -85,13 +92,13 @@ body{
 .sectionHeading h2,
 .sectionTitle{
 
-    color:white;
+    color:#F7F4FF;
 
 }
 
 .sectionHeading p{
 
-    color:#B2DFDB;
+    color:#BFEFFF;
 
 }
 
@@ -108,7 +115,7 @@ body{
 
 .navButton:hover{
 
-    background:#E0F2F1;
+    background:rgba(34,211,238,.14);
 
     border-left:5px solid var(--secondary);
 
@@ -116,7 +123,7 @@ body{
 
 .navButton.active{
 
-    background:var(--primary);
+    background:linear-gradient(135deg,var(--primary),#5B45D6);
 
     color:white;
 
@@ -132,7 +139,7 @@ body{
 .quizCard,
 .rewardCard{
 
-    background:var(--card);
+    background:linear-gradient(145deg,#122B52,#0D2141);
 
     color:var(--text);
 
@@ -141,7 +148,8 @@ body{
     border-radius:18px;
 
     box-shadow:
-    0 12px 25px rgba(0,0,0,.25);
+    0 12px 25px rgba(0,0,0,.32),
+    0 0 18px rgba(124,92,255,.08);
 
     transition:.3s;
 
@@ -155,7 +163,8 @@ body{
     transform:translateY(-6px);
 
     box-shadow:
-    0 18px 35px rgba(0,150,136,.35);
+    0 18px 35px rgba(0,0,0,.38),
+    0 0 28px rgba(34,211,238,.18);
 
 }
 
@@ -166,7 +175,7 @@ body{
 
 .noteCard h3{
 
-    color:var(--primary);
+    color:#8EEBFF;
 
 }
 
@@ -185,9 +194,9 @@ body{
 
 #codeEditor{
 
-    background:white;
+    background:#08162F;
 
-    color:#222;
+    color:#EAF7FF;
 
     border:2px solid var(--secondary);
 
@@ -202,7 +211,7 @@ body{
     border-color:var(--primary);
 
     box-shadow:
-    0 0 15px rgba(0,150,136,.35);
+    0 0 15px rgba(34,211,238,.28);
 
 }
 
@@ -213,11 +222,11 @@ body{
 
 #output{
 
-    background:white;
+    background:#0B1B36;
 
-    color:#222;
+    color:#EAF7FF;
 
-    border-left:5px solid var(--primary);
+    border-left:5px solid var(--secondary);
 
 }
 
@@ -228,7 +237,7 @@ body{
 
 button{
 
-    background:var(--primary);
+    background:linear-gradient(135deg,var(--primary),#5B45D6);
 
     color:white;
 
@@ -240,7 +249,7 @@ button{
 
 button:hover{
 
-    background:var(--secondary);
+    background:linear-gradient(135deg,#8D76FF,var(--secondary));
 
     transform:translateY(-2px);
 
@@ -251,8 +260,13 @@ button:hover{
                 QUIZ OPTIONS
 ====================================================*/
 
-.option
- {background:#18615d;
+.option{
+
+    background:#17345D;
+
+    color:#F2F7FF;
+
+    border:1px solid rgba(34,211,238,.18);
 
     transition:.25s;
 
@@ -260,23 +274,27 @@ button:hover{
 
 .option:hover{
 
-    background:#E0F2F1;
+    background:#214875;
 
 }
 
 .correct{
 
-    background:#C8E6C9 !important;
+    background:#174C42 !important;
 
     border-color:var(--success);
+
+    color:#E9FFF4;
 
 }
 
 .wrong{
 
-    background:#FFCDD2 !important;
+    background:#54283A !important;
 
     border-color:var(--danger);
+
+    color:#FFF0F3;
 
 }
 
@@ -287,7 +305,7 @@ button:hover{
 
 .challengeBox{
 
-    background:var(--card);
+    background:linear-gradient(145deg,#10294F,#0B1D3A);
 
     border:3px solid var(--secondary);
 
@@ -300,7 +318,7 @@ button:hover{
 
 .progressBar{
 
-    background:var(--secondary);
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
 
 }
 
@@ -311,13 +329,13 @@ button:hover{
 
 .comicControls button{
 
-    background:var(--secondary);
+    background:linear-gradient(135deg,#159CB5,var(--secondary));
 
 }
 
 .comicControls button:hover{
 
-    background:var(--primary);
+    background:linear-gradient(135deg,var(--primary),#8D76FF);
 
 }
 
@@ -328,13 +346,13 @@ button:hover{
 
 a{
 
-    color:var(--primary);
+    color:#72E8FF;
 
 }
 
 a:hover{
 
-    color:var(--secondary);
+    color:#B9A7FF;
 
 }
 
@@ -347,7 +365,11 @@ input,
 textarea,
 select{
 
-    border:2px solid var(--secondary);
+    background:#0B1B36;
+
+    color:#F2F7FF;
+
+    border:2px solid #31537D;
 
     border-radius:8px;
 
@@ -357,9 +379,11 @@ input:focus,
 textarea:focus,
 select:focus{
 
-    border-color:var(--primary);
+    border-color:var(--secondary);
 
     outline:none;
+
+    box-shadow:0 0 12px rgba(34,211,238,.18);
 
 }
 
@@ -371,10 +395,12 @@ select:focus{
 .loadingScreen{
 
     background:
+    radial-gradient(circle at center,rgba(124,92,255,.2),transparent 38%),
     linear-gradient(
         135deg,
-        #082B2B,
-        #009688
+        #050D20,
+        #17235C 55%,
+        #075A70
     );
 
     color:white;
@@ -397,7 +423,7 @@ select:focus{
         translateY(0)
         scale(1);
 
-        filter:drop-shadow(0 0 5px #80CBC4);
+        filter:drop-shadow(0 0 5px #8EEBFF);
 
     }
 
@@ -407,7 +433,8 @@ select:focus{
         translateY(-10px)
         scale(1.08);
 
-        filter:drop-shadow(0 0 20px #4DB6AC);
+        filter:drop-shadow(0 0 22px #22D3EE)
+               drop-shadow(0 0 12px #7C5CFF);
 
     }
 
@@ -417,7 +444,7 @@ select:focus{
         translateY(0)
         scale(1);
 
-        filter:drop-shadow(0 0 5px #80CBC4);
+        filter:drop-shadow(0 0 5px #8EEBFF);
 
     }
 
@@ -436,13 +463,13 @@ select:focus{
 
 ::-webkit-scrollbar-track{
 
-    background:#DFF7F5;
+    background:#07152E;
 
 }
 
 ::-webkit-scrollbar-thumb{
 
-    background:var(--secondary);
+    background:linear-gradient(var(--primary),var(--secondary));
 
     border-radius:10px;
 
@@ -450,7 +477,7 @@ select:focus{
 
 ::-webkit-scrollbar-thumb:hover{
 
-    background:var(--primary);
+    background:var(--secondary);
 
 }
 
@@ -464,7 +491,7 @@ select:focus{
 .challengeCard:hover{
 
     filter:
-    drop-shadow(0 0 18px rgba(77,182,172,.75));
+    drop-shadow(0 0 18px rgba(34,211,238,.45));
 
 }
 
@@ -475,8 +502,8 @@ select:focus{
 
 ::selection{
 
-    background:var(--accent);
+    background:#7C5CFF;
 
-    color:#000;
+    color:white;
 
 }
