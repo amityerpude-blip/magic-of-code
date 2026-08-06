@@ -1,0 +1,155 @@
+/*====================================================
+
+            MAGIC OF CODE
+            LIBRARY OF LIVING SCROLLS THEME
+
+====================================================*/
+
+:root{
+    --primary:#7b4fd6;
+    --secondary:#3b2a68;
+    --accent:#f4d35e;
+    --background:#101b36;
+    --card:#1d2b4a;
+    --cardHover:#293b61;
+    --title:#f4d35e;
+    --text:#edf5ff;
+    --button:#6949d8;
+    --buttonHover:#5536c2;
+    --success:#39d98a;
+}
+
+body{
+    background:
+        radial-gradient(circle at 15% 10%,rgba(123,79,214,.22),transparent 28%),
+        radial-gradient(circle at 85% 20%,rgba(54,210,255,.12),transparent 25%),
+        linear-gradient(180deg,#0b1730 0%,#14294a 100%);
+    color:var(--text);
+}
+
+.heroSection{
+    background:
+        linear-gradient(135deg,rgba(11,23,48,.82),rgba(59,42,104,.72)),
+        url("../text-file-library/assets/images/background.jpg");
+    background-size:cover;
+    background-position:center;
+}
+
+.heroOverlay{
+    background:rgba(8,18,38,.38);
+    backdrop-filter:blur(5px);
+}
+
+.heroSection h1,
+.heroSection h2,
+.kingdomNavigation h2,
+.lessonContent h2{
+    color:var(--title);
+    text-shadow:0 0 14px rgba(244,211,94,.15);
+}
+
+.heroSection p,
+.lessonContent p{
+    color:var(--text);
+}
+
+.magicTile{
+    background:linear-gradient(145deg,#1d2b4a,#14233f);
+    color:#fff;
+    border:1px solid rgba(88,205,255,.22);
+    box-shadow:0 8px 20px rgba(0,0,0,.18);
+}
+
+.magicTile:hover{
+    background:linear-gradient(145deg,#293b61,#1d2b4a);
+    transform:translateY(-3px);
+}
+
+.magicTile.active{
+    background:linear-gradient(135deg,#18c9f4,#6949d8);
+    color:#fff;
+    box-shadow:0 0 22px rgba(75,193,255,.22);
+}
+
+.lessonContent{
+    background:linear-gradient(145deg,rgba(18,34,61,.98),rgba(10,24,46,.98));
+    border:1px solid rgba(79,210,255,.22);
+    color:var(--text);
+}
+
+.noteCard{
+    background:linear-gradient(145deg,#1b2c4d,#13233f);
+    border-left:5px solid var(--primary);
+    border-top:1px solid rgba(255,255,255,.05);
+    color:var(--text);
+}
+
+.noteCard h3{
+    color:#f4d35e;
+}
+
+.noteCard p{
+    color:#e6f2ff;
+}
+
+.codingContainer{
+    background:#0b1830;
+    border:1px solid rgba(80,215,255,.2);
+}
+
+#codeEditor{
+    background:#081426;
+    color:#e9f7ff;
+    border:1px solid rgba(74,210,255,.24);
+}
+
+#output{
+    background:#06101e;
+    color:#8ff0b6;
+    border:1px solid rgba(57,217,138,.2);
+}
+
+button{
+    background:linear-gradient(135deg,#18c9f4,#6949d8);
+    color:#fff;
+    border:1px solid rgba(255,255,255,.14);
+}
+
+button:hover{
+    background:linear-gradient(135deg,#39d8ff,#795ce9);
+}
+
+.quizCard{
+    background:#132542;
+    border:1px solid rgba(79,210,255,.2);
+}
+
+.quizOption{
+    background:#1d3153;
+    color:#eef8ff;
+    border:1px solid rgba(94,214,255,.18);
+}
+
+.quizOption:hover,
+.quizOption.selected{
+    background:#29446e;
+}
+
+.quizOption.correct{
+    background:#17633f;
+}
+
+.quizOption.wrong{
+    background:#71333d;
+}
+
+.challengeCard{
+    background:linear-gradient(145deg,#172a49,#10213c);
+    color:#edf6ff;
+    border:1px solid rgba(244,211,94,.2);
+}
+
+.kingdomFooter{
+    background:linear-gradient(135deg,#2f2358,#173454);
+    color:white;
+}
