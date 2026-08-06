@@ -1,0 +1,384 @@
+/* ================================================================
+   SPIDER WEB NEXUS — NETWORK KINGDOM
+   Dedicated topology-builder styling.
+
+   This file is intentionally scoped to topology/network-builder
+   elements so it does not alter the other kingdoms.
+   ================================================================ */
+
+/* ---------- TOPOLOGY BUILDER ROOT ---------- */
+#networkSimulator,
+.networkSimulator,
+.network-builder,
+#networkBuilder {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ---------- TOPOLOGY CHOICE CARDS ---------- */
+.topologyGrid,
+.topology-options,
+.topologyChoices {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    margin: 14px 0 18px;
+}
+
+.topologyCard {
+    position: relative;
+    min-height: 82px;
+    padding: 14px 12px;
+    border: 1px solid rgba(93, 220, 255, .32);
+    border-radius: 16px;
+    background: linear-gradient(145deg, rgba(22, 46, 76, .96), rgba(13, 30, 53, .96));
+    color: #eef8ff;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.topologyCard:hover {
+    transform: translateY(-2px);
+    border-color: rgba(54, 220, 255, .82);
+    box-shadow: 0 8px 24px rgba(0, 210, 255, .14);
+}
+
+.topologyCard.active,
+.topologyCard.selected {
+    border-color: #ffd84d;
+    background: linear-gradient(145deg, rgba(42, 57, 94, .98), rgba(23, 36, 68, .98));
+    box-shadow: 0 0 0 1px rgba(255, 216, 77, .18), 0 0 24px rgba(255, 216, 77, .18);
+}
+
+.topologyCard .topologyIcon,
+.topologyCard .icon {
+    display: block;
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 7px;
+}
+
+.topologyCard strong,
+.topologyCard h3,
+.topologyCard .topologyTitle {
+    display: block;
+    margin: 0 0 5px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.topologyCard p,
+.topologyCard small,
+.topologyCard .topologyDescription {
+    display: block;
+    margin: 0;
+    color: #bcd3e7;
+    font-size: 11px;
+    line-height: 1.35;
+}
+
+/* ---------- INSTRUCTIONS ---------- */
+.topologyInstructions,
+.topology-help,
+#topologyInstructions {
+    margin: 10px 0 14px;
+    padding: 11px 14px;
+    border: 1px solid rgba(65, 211, 255, .24);
+    border-radius: 12px;
+    background: rgba(7, 25, 48, .82);
+    color: #d9efff;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* ---------- CANVAS ---------- */
+#topologyCanvas,
+.topologyCanvas {
+    position: relative !important;
+    display: block;
+    width: 100% !important;
+    min-height: 470px;
+    height: 470px;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 1px solid rgba(61, 215, 255, .46);
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at 50% 45%, rgba(34, 106, 150, .13), transparent 45%),
+        linear-gradient(145deg, #07182d 0%, #091e38 55%, #07152a 100%);
+    box-shadow: inset 0 0 45px rgba(0, 184, 255, .055), 0 10px 35px rgba(0, 0, 0, .18);
+}
+
+/* Subtle network grid */
+#topologyCanvas::before,
+.topologyCanvas::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .28;
+    background-image:
+        linear-gradient(rgba(93, 220, 255, .055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(93, 220, 255, .055) 1px, transparent 1px);
+    background-size: 36px 36px;
+}
+
+/* ---------- NODES ---------- */
+#topologyCanvas .topologyNode,
+.topologyCanvas .topologyNode {
+    position: absolute !important;
+    z-index: 5;
+    width: 92px;
+    min-height: 78px;
+    padding: 9px 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    box-sizing: border-box;
+    border: 1px solid rgba(145, 190, 224, .42);
+    border-radius: 15px;
+    background: linear-gradient(145deg, #172b47, #0e2037);
+    color: #ffffff;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    box-shadow: 0 7px 18px rgba(0, 0, 0, .32), inset 0 1px 0 rgba(255, 255, 255, .05);
+    transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease;
+}
+
+#topologyCanvas .topologyNode:hover,
+.topologyCanvas .topologyNode:hover {
+    border-color: rgba(54, 220, 255, .9);
+    box-shadow: 0 0 18px rgba(0, 200, 255, .18), 0 8px 20px rgba(0, 0, 0, .35);
+}
+
+#topologyCanvas .topologyNode:active,
+.topologyCanvas .topologyNode:active {
+    cursor: grabbing;
+}
+
+#topologyCanvas .topologyNode.selected,
+.topologyCanvas .topologyNode.selected {
+    border-color: #ffd84d !important;
+    box-shadow: 0 0 0 2px rgba(255, 216, 77, .2), 0 0 25px rgba(255, 216, 77, .32) !important;
+    transform: translateY(-2px) scale(1.035);
+}
+
+#topologyCanvas .topologyNode.dragging,
+.topologyCanvas .topologyNode.dragging {
+    cursor: grabbing !important;
+    z-index: 30;
+    transform: scale(1.04);
+    border-color: #48ddff;
+    box-shadow: 0 0 26px rgba(57, 220, 255, .35), 0 12px 25px rgba(0, 0, 0, .4);
+}
+
+.topologyNodeIcon,
+#topologyCanvas .topologyNodeIcon {
+    display: block;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.topologyNodeName,
+#topologyCanvas .topologyNodeName {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #ffffff;
+    font-size: 11px;
+    line-height: 1.2;
+    font-weight: 800;
+    text-align: center;
+}
+
+/* ---------- CONNECTION LAYER ---------- */
+#topologyCanvas .connectionLayer,
+.topologyCanvas .connectionLayer,
+#topologyCanvas svg,
+.topologyCanvas svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow: visible;
+    pointer-events: none;
+}
+
+#topologyCanvas .connection,
+.topologyCanvas .connection {
+    pointer-events: stroke;
+    cursor: pointer;
+}
+
+#topologyCanvas line,
+.topologyCanvas line,
+#topologyCanvas .connectionLine,
+.topologyCanvas .connectionLine {
+    stroke: #29c8ff;
+    stroke-width: 3;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 3px rgba(41, 200, 255, .35));
+}
+
+#topologyCanvas .connection:hover,
+.topologyCanvas .connection:hover {
+    stroke: #ffd84d;
+    filter: drop-shadow(0 0 5px rgba(255, 216, 77, .5));
+}
+
+/* Keep cables behind devices */
+#topologyCanvas .cable,
+.topologyCanvas .cable {
+    z-index: 1;
+}
+
+/* ---------- VALIDATION / CONTROL AREA ---------- */
+.topologyControls,
+.topology-controls,
+#topologyControls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 16px 0;
+}
+
+.topologyControls button,
+.topology-controls button,
+#topologyControls button {
+    min-height: 42px;
+    padding: 10px 18px;
+    border: 1px solid rgba(72, 220, 255, .45);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #13c9f5, #6252e9);
+    color: #ffffff;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .2);
+    transition: transform .15s ease, filter .15s ease;
+}
+
+.topologyControls button:hover,
+.topology-controls button:hover,
+#topologyControls button:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+}
+
+/* ---------- RESULT / STATUS ---------- */
+.topologyResult,
+#topologyResult,
+#topologyStatus,
+.topology-status {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 12px 0 0;
+    padding: 13px 16px;
+    border: 1px solid rgba(68, 218, 255, .28);
+    border-radius: 13px;
+    background: rgba(7, 25, 48, .9);
+    color: #e7f7ff;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+/* ---------- DRAG HANDLE / DEVICE HINT ---------- */
+#topologyCanvas .topologyNode::after,
+.topologyCanvas .topologyNode::after {
+    content: "⋮⋮";
+    position: absolute;
+    top: 4px;
+    right: 7px;
+    color: rgba(160, 215, 240, .45);
+    font-size: 9px;
+    letter-spacing: -2px;
+    pointer-events: none;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+    .topologyGrid,
+    .topology-options,
+    .topologyChoices {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #topologyCanvas,
+    .topologyCanvas {
+        min-height: 430px;
+        height: 430px;
+    }
+}
+
+@media (max-width: 600px) {
+    .topologyGrid,
+    .topology-options,
+    .topologyChoices {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .topologyCard {
+        min-height: 76px;
+        padding: 10px 7px;
+        border-radius: 12px;
+    }
+
+    .topologyCard .topologyIcon,
+    .topologyCard .icon {
+        font-size: 20px;
+    }
+
+    .topologyCard strong,
+    .topologyCard h3,
+    .topologyCard .topologyTitle {
+        font-size: 12px;
+    }
+
+    .topologyCard p,
+    .topologyCard small,
+    .topologyCard .topologyDescription {
+        font-size: 9px;
+    }
+
+    #topologyCanvas,
+    .topologyCanvas {
+        min-height: 390px;
+        height: 390px;
+        border-radius: 15px;
+    }
+
+    #topologyCanvas .topologyNode,
+    .topologyCanvas .topologyNode {
+        width: 76px;
+        min-height: 68px;
+        padding: 6px 5px;
+    }
+
+    .topologyNodeIcon,
+    #topologyCanvas .topologyNodeIcon {
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 21px;
+    }
+
+    .topologyNodeName,
+    #topologyCanvas .topologyNodeName {
+        font-size: 9px;
+    }
+}
