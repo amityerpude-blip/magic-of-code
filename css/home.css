@@ -1,5 +1,5 @@
 /*====================================================
-   PYTHON QUEST — MAGIC PORTAL HOME
+   CODING QUEST — MAGIC PORTAL HOME
    Homepage-only styles. Does not affect kingdoms/dashboard.
 ====================================================*/
 
@@ -28,22 +28,17 @@
     backdrop-filter:blur(16px);
 }
 
-.home-brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    text-decoration:none;
-}
+.home-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
 
 .home-brand-mark{
-    width:44px;
-    height:44px;
-    display:grid;
-    place-items:center;
+    width:50px;
+    height:50px;
+    display:block;
+    object-fit:cover;
     border-radius:14px;
-    background:linear-gradient(135deg,#6c63ff,#29b6f6);
-    box-shadow:0 0 24px rgba(108,99,255,.45);
-    font-size:25px;
+    box-shadow:0 0 24px rgba(41,182,246,.38);
+    background:#0b1930;
+    border:1px solid rgba(255,213,79,.22);
 }
 
 .home-brand h1{
@@ -55,20 +50,9 @@
 }
 
 .home-nav{display:flex;gap:24px;align-items:center;}
-.home-nav a{
-    color:#e8edf7;
-    text-decoration:none;
-    font-size:14px;
-    font-weight:600;
-    transition:.25s;
-}
+.home-nav a{color:#e8edf7;text-decoration:none;font-size:14px;font-weight:600;transition:.25s;}
 .home-nav a:hover{color:#ffd54f;}
-.home-nav .nav-dashboard{
-    padding:9px 16px;
-    border:1px solid rgba(255,213,79,.35);
-    border-radius:30px;
-    background:rgba(255,213,79,.08);
-}
+.home-nav .nav-dashboard{padding:9px 16px;border:1px solid rgba(255,213,79,.35);border-radius:30px;background:rgba(255,213,79,.08);}
 
 .magic-stage{
     min-height:calc(100vh - 76px);
@@ -94,104 +78,46 @@
 .magic-stage::after{
     content:"✦  ✧  ✦  ✧  ✦  ✧  ✦";
     position:absolute;
-    top:10%;
-    left:50%;
-    transform:translateX(-50%);
-    width:90%;
-    text-align:center;
-    color:rgba(255,213,79,.35);
-    letter-spacing:40px;
-    font-size:12px;
-    pointer-events:none;
+    top:10%;left:50%;transform:translateX(-50%);width:90%;text-align:center;
+    color:rgba(255,213,79,.35);letter-spacing:40px;font-size:12px;pointer-events:none;
 }
 
 .portal-ring{
-    position:absolute;
-    width:min(31vw,350px);
-    height:min(31vw,350px);
-    border-radius:50%;
+    position:absolute;width:min(31vw,350px);height:min(31vw,350px);border-radius:50%;
     border:2px solid rgba(108,99,255,.35);
     box-shadow:0 0 30px rgba(108,99,255,.22), inset 0 0 35px rgba(41,182,246,.12);
-    animation:portalPulse 5s ease-in-out infinite;
-    z-index:-1;
+    animation:portalPulse 5s ease-in-out infinite;z-index:-1;
 }
 
-.portal-ring::before,
-.portal-ring::after{
-    content:"";
-    position:absolute;
-    inset:15px;
-    border-radius:50%;
-    border:1px dashed rgba(255,213,79,.20);
-}
+.portal-ring::before,.portal-ring::after{content:"";position:absolute;inset:15px;border-radius:50%;border:1px dashed rgba(255,213,79,.20);}
 .portal-ring::after{inset:42px;border-color:rgba(41,182,246,.18);}
 
-@keyframes portalPulse{
-    0%,100%{transform:scale(.96) rotate(0deg);opacity:.75;}
-    50%{transform:scale(1.04) rotate(8deg);opacity:1;}
-}
+@keyframes portalPulse{0%,100%{transform:scale(.96) rotate(0deg);opacity:.75;}50%{transform:scale(1.04) rotate(8deg);opacity:1;}}
 
 .portal-core{
-    width:min(39vw,500px);
-    max-width:500px;
-    text-align:center;
-    padding:30px 28px;
-    border-radius:30px;
-    background:rgba(10,23,43,.78);
-    border:1px solid rgba(255,255,255,.10);
+    width:min(39vw,500px);max-width:500px;text-align:center;padding:22px 28px 28px;
+    border-radius:30px;background:rgba(10,23,43,.82);border:1px solid rgba(255,255,255,.10);
     box-shadow:0 25px 70px rgba(0,0,0,.35),0 0 55px rgba(108,99,255,.13);
-    backdrop-filter:blur(14px);
-    z-index:5;
+    backdrop-filter:blur(14px);z-index:5;
 }
 
-.portal-symbol{
-    width:58px;
-    height:58px;
-    margin:0 auto 8px;
-    display:grid;
-    place-items:center;
-    border-radius:50%;
-    font-size:32px;
-    background:linear-gradient(135deg,#6c63ff,#29b6f6);
-    box-shadow:0 0 30px rgba(41,182,246,.35);
+.portal-logo{
+    width:clamp(90px,10vw,125px);
+    height:clamp(96px,10.5vw,135px);
+    object-fit:cover;
+    display:block;
+    margin:0 auto 3px;
+    border-radius:22px;
+    filter:drop-shadow(0 0 22px rgba(41,182,246,.30));
 }
 
-.portal-core h2{
-    margin:0 0 10px;
-    font-family:'Cinzel',serif;
-    font-size:clamp(31px,4vw,52px);
-    line-height:1.08;
-    color:#ffd54f;
-    text-shadow:0 0 25px rgba(255,213,79,.16);
-}
-
-.portal-core .tagline{
-    max-width:570px;
-    margin:0 auto 18px;
-    color:#dce5f2;
-    line-height:1.55;
-    font-size:clamp(13px,1.4vw,16px);
-}
-
+.portal-symbol{width:46px;height:46px;margin:0 auto 6px;display:grid;place-items:center;border-radius:50%;font-size:25px;background:linear-gradient(135deg,#6c63ff,#29b6f6);box-shadow:0 0 30px rgba(41,182,246,.35);}
+.portal-core h2{margin:0 0 10px;font-family:'Cinzel',serif;font-size:clamp(31px,4vw,52px);line-height:1.08;color:#ffd54f;text-shadow:0 0 25px rgba(255,213,79,.16);}
+.portal-core .tagline{max-width:570px;margin:0 auto 18px;color:#dce5f2;line-height:1.55;font-size:clamp(13px,1.4vw,16px);}
 .portal-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
 .portal-actions .btn{padding:12px 22px;font-size:14px;}
 
-.realm{
-    position:absolute;
-    width:150px;
-    min-height:108px;
-    padding:13px 10px;
-    text-align:center;
-    border-radius:20px;
-    background:rgba(20,38,65,.90);
-    border:1px solid rgba(255,255,255,.13);
-    box-shadow:0 12px 30px rgba(0,0,0,.28);
-    backdrop-filter:blur(12px);
-    text-decoration:none;
-    color:#fff;
-    transition:transform .3s,box-shadow .3s,border-color .3s;
-    z-index:8;
-}
+.realm{position:absolute;width:150px;min-height:108px;padding:13px 10px;text-align:center;border-radius:20px;background:rgba(20,38,65,.90);border:1px solid rgba(255,255,255,.13);box-shadow:0 12px 30px rgba(0,0,0,.28);backdrop-filter:blur(12px);text-decoration:none;color:#fff;transition:transform .3s,box-shadow .3s,border-color .3s;z-index:8;}
 .realm:hover{transform:translateY(-8px) scale(1.06);box-shadow:0 18px 40px rgba(0,0,0,.35);border-color:currentColor;}
 .realm .realm-icon{font-size:30px;display:block;margin-bottom:3px;}
 .realm strong{display:block;font-size:14px;}
@@ -204,47 +130,24 @@
 .realm-network{bottom:14%;right:17%;color:#5bbcff;}
 .realm-python:hover{transform:translateX(-50%) translateY(-8px) scale(1.06);}
 
-.home-status{
-    position:absolute;
-    left:50%;
-    bottom:3.5%;
-    transform:translateX(-50%);
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:8px 14px;
-    border-radius:30px;
-    background:rgba(8,18,35,.82);
-    border:1px solid rgba(255,255,255,.10);
-    color:#d8e3ef;
-    font-size:11px;
-    z-index:10;
-    white-space:nowrap;
-}
+.home-status{position:absolute;left:50%;bottom:3.5%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:30px;background:rgba(8,18,35,.82);border:1px solid rgba(255,255,255,.10);color:#d8e3ef;font-size:11px;z-index:10;white-space:nowrap;}
 .home-status .progress-mini{width:80px;height:5px;background:#23344d;border-radius:10px;overflow:hidden;}
 .home-status .progress-mini span{display:block;width:0%;height:100%;background:linear-gradient(90deg,#6c63ff,#29b6f6);}
-
-.home-footer-note{
-    position:absolute;
-    right:24px;
-    bottom:22px;
-    color:rgba(220,229,242,.48);
-    font-size:10px;
-    z-index:5;
-}
+.home-footer-note{position:absolute;right:24px;bottom:22px;color:rgba(220,229,242,.48);font-size:10px;z-index:5;}
 
 @media(max-width:800px){
     .home-header{height:64px;padding:8px 16px;}
     .home-brand h1{font-size:20px;}
-    .home-brand-mark{width:38px;height:38px;font-size:21px;}
+    .home-brand-mark{width:42px;height:44px;border-radius:12px;}
     .home-nav a:not(.nav-dashboard){display:none;}
     .magic-stage{min-height:calc(100vh - 64px);height:calc(100vh - 64px);padding:12px 10px;}
     .magic-stage::before{width:84vw;height:84vw;}
     .portal-ring{width:48vw;height:48vw;}
-    .portal-core{width:min(82vw,430px);padding:24px 17px;}
+    .portal-core{width:min(82vw,430px);padding:16px 17px 20px;}
+    .portal-logo{width:84px;height:90px;margin-bottom:1px;}
     .portal-core h2{font-size:31px;}
     .portal-core .tagline{font-size:12px;line-height:1.45;}
-    .portal-symbol{width:48px;height:48px;font-size:26px;}
+    .portal-symbol{width:40px;height:40px;font-size:23px;}
     .realm{width:118px;min-height:84px;padding:9px 7px;border-radius:16px;}
     .realm .realm-icon{font-size:24px;}
     .realm strong{font-size:12px;}
@@ -265,7 +168,8 @@
     .realm-data{top:27%;}
     .realm-sql{bottom:17%;}
     .realm-network{bottom:17%;}
-    .portal-core{width:76vw;padding:20px 12px;}
+    .portal-core{width:76vw;padding:13px 12px 17px;}
+    .portal-logo{width:72px;height:77px;}
     .portal-core h2{font-size:27px;}
     .portal-core .tagline{font-size:10px;}
     .portal-actions .btn{padding:10px 14px;font-size:11px;}
@@ -275,8 +179,9 @@
     .realm-python{top:4%;}
     .realm-files,.realm-data{top:25%;}
     .realm-sql,.realm-network{bottom:12%;}
-    .portal-core{padding:17px 18px;}
-    .portal-symbol{width:42px;height:42px;font-size:23px;margin-bottom:4px;}
+    .portal-core{padding:10px 18px 15px;}
+    .portal-logo{width:70px;height:75px;}
+    .portal-symbol{width:36px;height:36px;font-size:20px;margin-bottom:3px;}
     .portal-core h2{font-size:27px;margin-bottom:6px;}
     .portal-core .tagline{margin-bottom:10px;}
     .realm{min-height:72px;padding:7px;}
