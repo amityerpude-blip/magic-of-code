@@ -2,13 +2,8 @@
     SPIDER WEB NEXUS
     SWITCHING VISUAL PATCH
 
-    Purpose:
-    - Keep the existing packet/message/circuit logic intact.
-    - Make the ACTUAL route used during transmission glow.
-    - Remove the misleading Path 1 highlight when automatic
-      routing is selected.
-    - Highlight cross-links only when the actual route uses them.
-    - Keep circuit switching visually dedicated to its selected path.
+    Only fixes route visualization. Existing transmission behavior
+    and topology interaction remain untouched.
 ====================================================*/
 (function () {
     "use strict";
@@ -33,22 +28,22 @@
         });
     }
 
-    /* Highlight any route, including alternate cross-link routes. */
+    /* Highlight an arbitrary route, including cross-link routes. */
     function highlightActualRoute(nodes) {
         const ids = routeIds(nodes);
         clearRouteGlow();
 
-        /* Main-route segments that belong to this actual route. */
         document.querySelectorAll(".cleanRouteLine").forEach(line => {
             const routeIndex = Number(line.dataset.route);
-            const route = window.TransmissionNetwork?.routes?.[routeIndex];
+            const route = typeof TransmissionNetwork !== "undefined"
+                ? TransmissionNetwork.routes?.[routeIndex]
+                : null;
             if (!route) return;
 
-            const routeNodeIds = route.nodes;
             let belongs = false;
-            for (let i = 0; i < routeNodeIds.length - 1; i++) {
-                const a = routeNodeIds[i];
-                const b = routeNodeIds[i + 1];
+            for (let i = 0; i < route.nodes.length - 1; i++) {
+                const a = route.nodes[i];
+                const b = route.nodes[i + 1];
                 if (ids.has(a) && ids.has(b)) {
                     belongs = true;
                     break;
@@ -59,16 +54,12 @@
             line.setAttribute("stroke-width", belongs ? "8" : "4");
         });
 
-        /* Highlight every node actually used by the route. */
         ids.forEach(id => {
             document.getElementById("tnode-" + id)?.classList.add("pathActive");
         });
 
-        /* Highlight only cross-links that are actually traversed. */
         document.querySelectorAll(".cleanCrossLink").forEach(line => {
-            const from = line.dataset.from;
-            const to = line.dataset.to;
-            const active = ids.has(from) && ids.has(to);
+            const active = ids.has(line.dataset.from) && ids.has(line.dataset.to);
             line.classList.toggle("activeCross", active);
         });
     }
@@ -79,8 +70,7 @@
         });
     }
 
-    /* Wrap the existing UI updater so automatic techniques do not falsely
-       display Path 1 as if it were selected by the student. */
+    /* Automatic modes must not leave Path 1 looking selected. */
     const originalUpdateUI = window.updateTransmissionTechniqueUI;
     if (typeof originalUpdateUI === "function") {
         window.updateTransmissionTechniqueUI = function (technique) {
@@ -92,26 +82,31 @@
         };
     }
 
-    /* Circuit switching: the selected dedicated path remains the only glowing
-       route. This simply reinforces the existing behavior. */
+    /* Circuit switching keeps the selected dedicated path glowing. */
     const originalSelectPath = window.selectTransmissionPath;
     if (typeof originalSelectPath === "function") {
         window.selectTransmissionPath = function (index) {
             originalSelectPath.apply(this, arguments);
-            const route = window.TransmissionNetwork?.routes?.[index];
-            if (route) highlightActualRoute(route.nodes);
+            if (typeof TransmissionNetwork !== "undefined") {
+                const route = TransmissionNetwork.routes?.[index];
+                if (route) highlightActualRoute(route.nodes);
+            }
         };
     }
 
-    /* Packet switching: each packet highlights the route it is actually using,
-       including alternate cross-link routes. */
+    /* Packet switching: highlight the actual route of each packet. */
     const originalRunPacket = window.runPacketSwitching;
     if (typeof originalRunPacket === "function") {
         window.runPacketSwitching = function () {
+            if (typeof TransmissionNetwork === "undefined") {
+                return originalRunPacket.apply(this, arguments);
+            }
+
             const routePool = [
-                ...(window.TransmissionNetwork?.routes || []).map(r => ({ name: r.name, nodes: r.nodes })),
-                ...(window.TransmissionNetwork?.alternateRoutes || [])
+                ...TransmissionNetwork.routes.map(r => ({ name: r.name, nodes: r.nodes })),
+                ...TransmissionNetwork.alternateRoutes
             ];
+
             const chosen = [];
             while (chosen.length < 5 && routePool.length) {
                 const candidate = routePool[Math.floor(Math.random() * routePool.length)];
@@ -119,16 +114,11 @@
             }
 
             const result = document.getElementById("resultPanel");
-            if (result) {
-                result.innerHTML = `<b>📦 Packet Switching</b><br>Five packets are being sent. Watch each packet choose its own route.`;
-            }
+            if (result) result.innerHTML = `<b>📦 Packet Switching</b><br>Five packets are being sent. Watch each packet choose its own route.`;
 
             let done = 0;
             chosen.forEach((item, index) => setTimeout(() => {
                 highlightActualRoute(item.nodes);
-                if (typeof window.highlightCrossLinksForNodes === "function") {
-                    window.highlightCrossLinksForNodes(window.getNamedRoutePoints(item.nodes));
-                }
 
                 const points = typeof window.getNamedRoutePoints === "function"
                     ? window.getNamedRoutePoints(item.nodes)
@@ -147,12 +137,16 @@
         };
     }
 
-    /* Message switching: highlight the complete store-and-forward route before
-       the envelope starts, rather than leaving Path 1 glowing. */
+    /* Message switching: the complete message route glows before and during
+       STORE → WAIT → FORWARD. */
     const originalRunMessage = window.runMessageSwitching;
     if (typeof originalRunMessage === "function") {
         window.runMessageSwitching = function () {
-            const routes = window.TransmissionNetwork?.alternateRoutes || [];
+            if (typeof TransmissionNetwork === "undefined") {
+                return originalRunMessage.apply(this, arguments);
+            }
+
+            const routes = TransmissionNetwork.alternateRoutes || [];
             const candidate = routes[Math.floor(Math.random() * routes.length)];
             if (!candidate) return originalRunMessage.apply(this, arguments);
 
@@ -177,28 +171,18 @@
         };
     }
 
-    /* Circuit switching should not be affected by automatic-route cleanup. */
+    /* Circuit switching: reinforce the selected dedicated route. */
     const originalRunCircuit = window.runCircuitSwitching;
     if (typeof originalRunCircuit === "function") {
         window.runCircuitSwitching = function () {
-            const index = window.TransmissionNetwork?.selectedPath ?? 0;
-            const route = window.TransmissionNetwork?.routes?.[index];
-            if (route) highlightActualRoute(route.nodes);
+            if (typeof TransmissionNetwork !== "undefined") {
+                const index = TransmissionNetwork.selectedPath ?? 0;
+                const route = TransmissionNetwork.routes?.[index];
+                if (route) highlightActualRoute(route.nodes);
+            }
             return originalRunCircuit.apply(this, arguments);
         };
     }
 
-    /* The existing animation calls markCurrentHop with routeIndex 0 even for
-       cross-link routes. Replace only the visual part so the current hop is
-       still highlighted without changing transmission behavior. */
-    const originalMarkHop = window.markCurrentHop;
-    if (typeof originalMarkHop === "function") {
-        window.markCurrentHop = function (point, routeIndex, hopIndex, totalHops) {
-            document.querySelectorAll(".cleanTransmissionNode").forEach(n => n.classList.remove("currentHop"));
-            if (point) document.getElementById("tnode-" + point.id)?.classList.add("currentHop");
-            return originalMarkHop.apply(this, arguments);
-        };
-    }
-
-    console.log("✨ Spider Web Nexus switching visual patch ACTIVE — actual packet/message/circuit routes now glow correctly.");
+    console.log("✨ Spider Web Nexus switching visual patch ACTIVE — actual routes now glow correctly.");
 })();
