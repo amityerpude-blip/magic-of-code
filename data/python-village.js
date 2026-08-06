@@ -141,7 +141,7 @@ description:
 
 folder:"assets/comic/",
 
-totalPages:16
+totalPages:21
 
 },
 
