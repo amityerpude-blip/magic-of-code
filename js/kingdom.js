@@ -20,8 +20,7 @@ const KINGDOM_ROUTE = [
     { folder:"chart-peaks", name:"Crystal Chart Peaks" },
     { folder:"numpy-caverns", name:"NumPy Crystal Caverns" },
     { folder:"dragon-sql", name:"Dragon SQL Citadel" },
-    { folder:"spider-web", name:"Spider Web Nexus" },
-    { folder:"master-castle", name:"Python Master's Castle" }
+    { folder:"spider-web", name:"Spider Web Nexus" }
 ];
 
 function getCurrentKingdomFolder(){
@@ -130,7 +129,7 @@ if(previousButton && !nav.previous){
 }
 
 if(nextButton && nav.isLast){
-    nextButton.textContent="🏰 Back to Dashboard";
+    nextButton.textContent="🏠 Back to Dashboard";
 }
 
 const finishButton=document.getElementById("completeKingdom");
