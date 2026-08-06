@@ -83,7 +83,7 @@ description:
 
 folder:"assets/comics/",
 
-pages:11
+totalPages:11
 
 },
 
