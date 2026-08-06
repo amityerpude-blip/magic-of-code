@@ -1,171 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="description" content="Python Quest — The Magical World of Coding. Explore Python, file handling, data analysis, SQL and computer networks.">
 <title>Python Quest | The Magical World of Coding</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="css/style.css">
-
+<link rel="stylesheet" href="css/home.css">
 </head>
 
-<body>
+<body class="home-page">
 
-<!--====================================================
-                    BACKGROUND
-=====================================================-->
-
-<div class="background">
+<div class="background" aria-hidden="true">
     <div class="stars"></div>
     <div class="castle"></div>
 </div>
 
-<!--====================================================
-                    HEADER
-=====================================================-->
+<header class="home-header">
+    <a class="home-brand" href="index.html" aria-label="Python Quest Home">
+        <span class="home-brand-mark">🐍</span>
+        <h1>Python Quest</h1>
+    </a>
 
-<header>
-
-<div class="logo">
-    <img src="assets/icons/logo.png" alt="Python Quest Logo">
-    <h1>Python Quest</h1>
-</div>
-
-<nav>
-    <a href="#welcome">About</a>
-    <a href="dashboard.html">Adventure</a>
-    <a href="#journey">Journey</a>
-    <a href="#contact">Contact</a>
-</nav>
-
+    <nav class="home-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="nav-dashboard">🗺️ Dashboard</a>
+        <a href="#realms">Realms</a>
+        <a href="#about">About</a>
+    </nav>
 </header>
 
-<!--====================================================
-                    HERO
-=====================================================-->
+<main class="magic-stage" id="about">
 
-<section class="hero">
+    <!-- FIVE MAJOR LEARNING REALMS -->
+    <div id="realms" aria-label="Five learning realms">
+        <a class="realm realm-python" href="dashboard.html" aria-label="Basic Python — Python Foundations">
+            <span class="realm-icon">🐍</span>
+            <strong>Basic Python</strong>
+            <small>Python Foundations</small>
+        </a>
 
-<h2>The Magical World of Coding</h2>
+        <a class="realm realm-files" href="dashboard.html" aria-label="File Handling">
+            <span class="realm-icon">📜</span>
+            <strong>File Handling</strong>
+            <small>Text • CSV • Pickle</small>
+        </a>
 
-<p>
-Begin an adventure through a connected world of Python,
-data handling, data science, SQL and computer networks.
-Learn through stories, animations, notes, coding activities
-and battles — all from one learning dashboard.
-</p>
+        <a class="realm realm-data" href="dashboard.html" aria-label="Data Analysis">
+            <span class="realm-icon">📊</span>
+            <strong>Data Analysis</strong>
+            <small>Pandas • NumPy • Charts</small>
+        </a>
 
-<div class="heroButtons">
-    <a href="dashboard.html" class="btn primary">✨ Start Adventure</a>
-    <a href="dashboard.html" class="btn secondary">▶ Continue Adventure</a>
-</div>
+        <a class="realm realm-sql" href="dashboard.html" aria-label="SQL">
+            <span class="realm-icon">🐉</span>
+            <strong>SQL</strong>
+            <small>Databases & Queries</small>
+        </a>
 
-</section>
+        <a class="realm realm-network" href="dashboard.html" aria-label="Computer Networks">
+            <span class="realm-icon">🕷️</span>
+            <strong>Networks</strong>
+            <small>Devices • Protocols • Web</small>
+        </a>
+    </div>
 
-<!--====================================================
-                MASTER PYRO WELCOME
-=====================================================-->
+    <!-- CENTRAL MAGIC PORTAL -->
+    <div class="portal-ring" aria-hidden="true"></div>
 
-<section id="welcome" class="welcome">
+    <section class="portal-core" aria-labelledby="portal-title">
+        <div class="portal-symbol">✨</div>
+        <h2 id="portal-title">The Magical World of Coding</h2>
+        <p class="tagline">
+            Learn Python, work with data, master SQL and explore computer networks
+            through stories, challenges, coding activities and battles.
+        </p>
 
-<div class="welcomeImage">
-    <img src="assets/characters/master-pyro.png" alt="Master Pyro">
-</div>
+        <div class="portal-actions">
+            <a href="dashboard.html" class="btn primary">✨ Start Adventure</a>
+            <a href="dashboard.html" class="btn secondary">▶ Continue</a>
+        </div>
+    </section>
 
-<div class="welcomeText">
+    <div class="home-status" aria-label="Adventure progress">
+        <span>🧙 Explorer</span>
+        <span>Level 1</span>
+        <div class="progress-mini" aria-hidden="true"><span></span></div>
+        <span>0 / 13 Kingdoms</span>
+    </div>
 
-<h2>🧙 Welcome Explorer!</h2>
-
-<p>
-Greetings, young adventurer! I am <strong>Master Pyro</strong>,
-guardian of the Magical World of Coding.
-
-Your journey is not a collection of separate lessons.
-It is one connected adventure where every kingdom unlocks
-a new Python or Computer Science power.
-</p>
-
-<p>
-When you are ready, enter the <strong>Dashboard</strong>.
-That is where your complete map of learning worlds,
-progress and adventures lives.
-</p>
-
-<a href="dashboard.html" class="btn primary">🗺️ Open Adventure Dashboard</a>
-
-</div>
-
-</section>
-
-<!--====================================================
-                ADVENTURE OVERVIEW
-=====================================================-->
-
-<section id="journey" class="masters">
-
-<h2>✨ What Awaits You</h2>
-
-<p style="text-align:center; max-width:760px; margin:0 auto 30px;">
-One learning journey — four major areas of discovery.
-The individual kingdoms are intentionally kept on the Dashboard
-so the landing page stays clean and focused.
-</p>
-
-<div class="masterGrid">
-
-<div class="masterCard">
-    <div style="font-size:3rem;">🐍</div>
-    <h3>Python Foundations</h3>
-    <p>Basics, decisions, loops, functions and exception handling.</p>
-</div>
-
-<div class="masterCard">
-    <div style="font-size:3rem;">📚</div>
-    <h3>Files & Data</h3>
-    <p>Text files, CSV files, Pickle and practical data handling.</p>
-</div>
-
-<div class="masterCard">
-    <div style="font-size:3rem;">📊</div>
-    <h3>Data Science</h3>
-    <p>Pandas, NumPy and Matplotlib through visual and practical adventures.</p>
-</div>
-
-<div class="masterCard">
-    <div style="font-size:3rem;">🌐</div>
-    <h3>SQL & Networks</h3>
-    <p>Database skills and computer networking complete the learning journey.</p>
-</div>
-
-</div>
-
-<div style="text-align:center; margin-top:35px;">
-    <a href="dashboard.html" class="btn primary">🗺️ Explore the 13 Learning Worlds</a>
-</div>
-
-</section>
-
-<!--====================================================
-                    FOOTER
-=====================================================-->
-
-<footer id="contact">
-
-<p>Developed with ❤️ by <strong>Amit Yerpude</strong></p>
-<p>Python Quest © 2026</p>
-
-</footer>
+    <div class="home-footer-note">✨ One quest • 13 kingdoms • endless discovery</div>
+</main>
 
 <script src="js/app.js"></script>
-
 </body>
-
 </html>
