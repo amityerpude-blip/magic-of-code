@@ -48,7 +48,7 @@ animation:{
 title:"Text File Handling — Read & Write Magic",
 description:"Watch a Class 12 text-file-handling lesson covering file modes, open(), read(), readline(), readlines(), write() and writelines().",
 type:"youtube",
-source:"https://www.youtube.com/embed/af3CEhgLjXU"
+source:"https://www.youtube.com/embed/GryfSXDtuqw"
 },
 
 notes:{
