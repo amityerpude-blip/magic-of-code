@@ -1,0 +1,35 @@
+/* =========================================================
+   CODING QUEST — VIDEO CINEMATIC HOMEPAGE
+   Opening.mp4 plays once, then repeat.mp4 loops.
+   HTML controls remain fully interactive above the video.
+   ========================================================= */
+.cinematic-video-home{margin:0;min-height:100vh;overflow:hidden;background:#030713}
+.cinematic-video-home .video-home-stage{position:relative;width:100vw;height:100vh;height:100dvh;min-height:520px;overflow:hidden;background:#030713;isolation:isolate}
+.quest-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;background:#030713;display:block}
+.quest-video-opening{z-index:1;opacity:1}
+.quest-video-repeat{z-index:0;opacity:0}
+.video-home-stage.repeat-active .quest-video-opening{opacity:0;visibility:hidden}
+.video-home-stage.repeat-active .quest-video-repeat{opacity:1}
+.video-home-vignette{position:absolute;inset:0;z-index:4;pointer-events:none;background:radial-gradient(circle at center,transparent 42%,rgba(0,0,0,.08) 66%,rgba(0,0,0,.55) 100%)}
+.video-home-stars{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:.32;background-image:radial-gradient(circle,rgba(255,255,255,.9) 0 1px,transparent 1.6px),radial-gradient(circle,rgba(255,221,99,.75) 0 1px,transparent 1.7px);background-size:113px 137px,173px 191px;animation:videoStars 24s linear infinite}
+@keyframes videoStars{to{background-position:113px 900px,-173px 1100px}}
+.video-home-ui{position:absolute;inset:0;z-index:10;pointer-events:none}
+.home-corner-logo{position:absolute;top:clamp(16px,3vh,32px);left:clamp(16px,3vw,42px);display:block;width:clamp(44px,5vw,64px);pointer-events:auto;filter:drop-shadow(0 0 16px rgba(255,215,80,.35));transition:transform .25s ease,filter .25s ease}
+.home-corner-logo img{display:block;width:100%;height:auto}
+.home-corner-logo:hover{transform:scale(1.08);filter:drop-shadow(0 0 24px rgba(255,215,80,.75))}
+.video-home-actions{position:absolute;left:50%;bottom:clamp(48px,9vh,92px);transform:translateX(-50%);pointer-events:auto}
+.video-start-btn{display:flex;align-items:center;justify-content:center;gap:10px;min-width:210px;padding:14px 28px;border-radius:999px;text-decoration:none;font:700 15px Poppins,sans-serif;color:#081020;background:linear-gradient(100deg,#63f2cf,#ffe36d,#ff8bd8);box-shadow:0 0 20px rgba(255,219,91,.45),0 12px 40px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.6);transition:transform .25s ease,box-shadow .25s ease}
+.video-start-btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 0 35px rgba(255,219,91,.75),0 16px 45px rgba(0,0,0,.4)}
+.video-start-btn:active{transform:scale(.97)}
+.video-home-hint{position:absolute;left:50%;bottom:clamp(20px,3.5vh,38px);transform:translateX(-50%);padding:5px 12px;border-radius:20px;color:rgba(255,255,255,.82);font:500 10px Poppins,sans-serif;text-align:center;white-space:nowrap;text-shadow:0 1px 8px #000;transition:opacity .35s ease}
+.video-home-stage.repeat-active .video-home-hint{opacity:0}
+.sound-toggle{position:absolute;right:clamp(14px,3vw,38px);bottom:clamp(18px,3vh,30px);z-index:20;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(3,8,20,.55);color:#fff;cursor:pointer;backdrop-filter:blur(8px);font-size:17px}
+.sound-toggle:hover{background:rgba(40,65,110,.75);box-shadow:0 0 20px rgba(89,224,255,.35)}
+@media(max-width:700px){
+  .quest-video{object-position:center center}
+  .home-corner-logo{top:14px;left:16px;width:48px}
+  .video-home-actions{bottom:10vh}
+  .video-start-btn{min-width:190px;padding:13px 24px;font-size:14px}
+  .video-home-hint{bottom:5vh;font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.video-home-stars{animation:none}.video-start-btn{transition:none}}
