@@ -2,126 +2,98 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="Coding Quest — The Magical World of Coding. Explore Python, file handling, data analysis, SQL and computer networks.">
 <title>Coding Quest | The Magical World of Coding</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/coding-quest-home.css">
 </head>
-
 <body class="home-page">
-
-<div class="background" aria-hidden="true">
-    <div class="stars"></div>
-    <div class="castle"></div>
-</div>
-
+<div class="background" aria-hidden="true"></div>
 <div class="home-sparkles" aria-hidden="true"></div>
 <div class="shooting-star shooting-star-one" aria-hidden="true"></div>
 <div class="shooting-star shooting-star-two" aria-hidden="true"></div>
 
 <header class="home-header">
-    <a class="home-brand" href="index.html" aria-label="Coding Quest Home">
-        <img class="home-brand-mark" src="assets/coding-quest-logo.svg" alt="Coding Quest logo">
-        <h1>Coding Quest</h1>
-    </a>
-
-    <nav class="home-nav" aria-label="Main navigation">
-        <a href="dashboard.html" class="nav-dashboard">🗺️ Dashboard</a>
-        <a href="#realms">Realms</a>
-        <a href="#about">About</a>
-    </nav>
+  <a class="home-brand" href="index.html" aria-label="Coding Quest Home">
+    <img class="home-brand-mark" src="assets/coding-quest-logo.svg" alt="Coding Quest logo">
+    <h1>Coding Quest</h1>
+  </a>
+  <nav class="home-nav" aria-label="Main navigation">
+    <a class="nav-dashboard" href="dashboard.html">🗺️ Dashboard</a>
+    <a href="dashboard.html">Adventure</a>
+  </nav>
 </header>
 
-<main class="magic-stage" id="about">
+<main class="magic-stage" aria-label="Coding Quest magical entrance">
+  <section class="quest-title" aria-labelledby="quest-title">
+    <div class="eyebrow">✨ WELCOME, YOUNG CODER ✨</div>
+    <h2 id="quest-title">Coding Quest</h2>
+    <p>The Magical World of Coding</p>
+  </section>
 
-    <div class="magic-orbit magic-orbit-outer" aria-hidden="true"></div>
-    <div class="magic-orbit magic-orbit-inner" aria-hidden="true"></div>
+  <div class="pyro" aria-hidden="true">
+    <div class="pyro-hat"></div>
+    <div class="pyro-head"><span class="pyro-eye a"></span><span class="pyro-eye b"></span></div>
+    <div class="pyro-body"></div>
+    <div class="pyro-wand"></div>
+    <div class="pyro-label">Master Pyro</div>
+  </div>
 
-    <div class="magic-chest-wrap" aria-hidden="true">
-        <div class="magic-chest">
-            <div class="chest-glow"></div>
-            <div class="chest-lid"></div>
-            <div class="chest-body"></div>
-            <div class="chest-lock">✦</div>
-            <div class="chest-light"></div>
-        </div>
+  <div class="chest-zone" aria-label="Open the Coding Quest treasure chest">
+    <div class="chest-glow3d"></div>
+    <div class="chest-shadow"></div>
+    <div class="chest-3d">
+      <div class="chest-body3d"></div>
+      <div class="chest-band"></div>
+      <div class="chest-lid3d"></div>
+      <div class="chest-lock3d">✦</div>
+      <div class="chest-light3d"></div>
     </div>
+  </div>
 
-    <div class="magic-wand" aria-hidden="true">
-        <span class="wand-stick"></span>
-        <span class="wand-star">✦</span>
-        <span class="wand-spark spark-a">✦</span>
-        <span class="wand-spark spark-b">✧</span>
-        <span class="wand-spark spark-c">•</span>
+  <div class="magic-ring" aria-hidden="true"></div>
+
+  <!-- These magical objects burst from the chest. They are clickable shortcuts. -->
+  <div class="magic-item i-python" data-href="dashboard.html" role="link" tabindex="0" aria-label="Python"><span>🐍</span><small>Python</small></div>
+  <div class="magic-item i-pandas" data-href="dashboard.html" role="link" tabindex="0" aria-label="Pandas"><span>🐼</span><small>Pandas</small></div>
+  <div class="magic-item i-chart" data-href="dashboard.html" role="link" tabindex="0" aria-label="Charts"><span>📊</span><small>Charts</small></div>
+  <div class="magic-item i-sql" data-href="dashboard.html" role="link" tabindex="0" aria-label="SQL"><span>🗄️</span><small>SQL</small></div>
+  <div class="magic-item i-spider" data-href="spider-web/index.html" role="link" tabindex="0" aria-label="Computer Networks"><span>🕸️</span><small>Networks</small></div>
+  <div class="magic-item i-if" data-href="dashboard.html" role="link" tabindex="0" aria-label="If keyword"><span>if</span><small>if</small></div>
+  <div class="magic-item i-else" data-href="dashboard.html" role="link" tabindex="0" aria-label="Else keyword"><span>else</span><small>else</small></div>
+  <div class="magic-item i-def" data-href="dashboard.html" role="link" tabindex="0" aria-label="Def keyword"><span>def</span><small>def</small></div>
+  <div class="magic-item i-list" data-href="dashboard.html" role="link" tabindex="0" aria-label="Lists"><span>📋</span><small>Lists</small></div>
+  <div class="magic-item i-csv" data-href="dashboard.html" role="link" tabindex="0" aria-label="CSV"><span>📄</span><small>CSV</small></div>
+  <div class="magic-item i-num" data-href="dashboard.html" role="link" tabindex="0" aria-label="Numbers"><span>123</span><small>Numbers</small></div>
+  <div class="magic-item i-star" data-href="dashboard.html" role="link" tabindex="0" aria-label="Stars"><span>⭐</span><small>Stars</small></div>
+  <div class="magic-item i-badge" data-href="dashboard.html" role="link" tabindex="0" aria-label="Badges"><span>🏅</span><small>Badges</small></div>
+  <div class="magic-item i-bracket" data-href="dashboard.html" role="link" tabindex="0" aria-label="Code"><span>{ }</span><small>Code</small></div>
+  <div class="magic-item i-loop" data-href="dashboard.html" role="link" tabindex="0" aria-label="Loops"><span>🔁</span><small>Loops</small></div>
+  <div class="magic-item i-zero" data-href="dashboard.html" role="link" tabindex="0" aria-label="Zero"><span>0</span><small>Zero</small></div>
+  <div class="magic-item i-one" data-href="dashboard.html" role="link" tabindex="0" aria-label="One"><span>1</span><small>One</small></div>
+  <div class="magic-item i-csv2" data-href="dashboard.html" role="link" tabindex="0" aria-label="Data"><span>🧮</span><small>Data</small></div>
+  <div class="magic-item i-py" data-href="dashboard.html" role="link" tabindex="0" aria-label="Python code"><span>🐍</span><small>Code</small></div>
+
+  <section class="portal-core" aria-label="Adventure controls">
+    <p class="tagline">Master your magic. Explore Python, files, data, SQL and networks — then become a Coding Champion.</p>
+    <div class="portal-actions">
+      <a href="dashboard.html" class="btn primary">✨ Start Adventure</a>
+      <a href="dashboard.html" class="btn secondary">▶ Continue Adventure</a>
     </div>
+  </section>
 
-    <div class="magic-burst" aria-hidden="true">
-        <span>✦</span><span>✧</span><span>✦</span><span>✧</span><span>✦</span><span>✧</span>
-    </div>
-
-    <div id="realms" aria-label="Five learning realms">
-        <a class="realm realm-python" href="dashboard.html" aria-label="Basic Python — Python Foundations">
-            <span class="realm-icon">🐍</span>
-            <strong>Basic Python</strong>
-            <small>Python Foundations</small>
-        </a>
-
-        <a class="realm realm-files" href="dashboard.html" aria-label="File Handling">
-            <span class="realm-icon">📜</span>
-            <strong>File Handling</strong>
-            <small>Text • CSV • Pickle</small>
-        </a>
-
-        <a class="realm realm-data" href="dashboard.html" aria-label="Data Analysis">
-            <span class="realm-icon">📊</span>
-            <strong>Data Analysis</strong>
-            <small>Pandas • NumPy • Charts</small>
-        </a>
-
-        <a class="realm realm-sql" href="dashboard.html" aria-label="SQL">
-            <span class="realm-icon">🐉</span>
-            <strong>SQL</strong>
-            <small>Databases & Queries</small>
-        </a>
-
-        <a class="realm realm-network" href="dashboard.html" aria-label="Computer Networks">
-            <span class="realm-icon">🕷️</span>
-            <strong>Networks</strong>
-            <small>Devices • Protocols • Web</small>
-        </a>
-    </div>
-
-    <section class="portal-core" aria-labelledby="portal-title">
-        <div class="portal-title-small">✨ THE ADVENTURE BEGINS ✨</div>
-        <img class="portal-logo" src="assets/coding-quest-logo.svg" alt="Coding Quest fantasy emblem">
-        <h2 id="portal-title">The Magical World of Coding</h2>
-        <p class="tagline">
-            Five realms await. Choose your path, master your magic,
-            and become a Coding Champion.
-        </p>
-
-        <div class="portal-actions">
-            <a href="dashboard.html" class="btn primary">✨ Start Adventure</a>
-            <a href="dashboard.html" class="btn secondary">▶ Continue</a>
-        </div>
-    </section>
-
-    <div class="home-status" aria-label="Adventure progress">
-        <span>🧙 Explorer</span>
-        <span>Level 1</span>
-        <div class="progress-mini" aria-hidden="true"><span></span></div>
-        <span>0 / 13 Kingdoms</span>
-    </div>
-
-    <div class="home-footer-note">✨ One quest • 13 kingdoms • endless discovery</div>
+  <div class="home-status" aria-label="Adventure progress">
+    <span>🧙 Explorer</span><span>Level 1</span>
+    <div class="progress-mini" aria-hidden="true"><span></span></div>
+    <span>0 / 13 Kingdoms</span>
+  </div>
 </main>
 
 <script src="js/app.js"></script>
-<script src="js/home-magic.js"></script>
+<script src="js/coding-quest-home.js"></script>
 </body>
 </html>
