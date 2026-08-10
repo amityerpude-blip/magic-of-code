@@ -5,8 +5,6 @@
 
 "use strict";
 
-/* Capture the script URL while this file is executing.
-   document.currentScript is not reliable inside DOMContentLoaded. */
 const AUDIO_SCRIPT_URL = document.currentScript
     ? document.currentScript.src
     : null;
@@ -57,12 +55,9 @@ const AudioManager = {
             this.rootPath=new URL("../",AUDIO_SCRIPT_URL).href;
         }
         else{
-            console.warn("AudioManager: shared script URL could not be resolved.");
             this.rootPath=new URL("./",window.location.href).href;
         }
 
-        /* URLs are prepared here, but audio objects are created lazily.
-           This avoids unnecessary 404 requests for sounds a page never uses. */
         Object.keys(this.files).forEach(key=>{
             this.sounds[key]=null;
         });
@@ -93,7 +88,6 @@ const AudioManager = {
 
     playAmbient(file){
         if(!this.enabled)return;
-
         if(this.ambient)this.ambient.pause();
 
         this.ambient=new Audio(
