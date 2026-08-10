@@ -21,8 +21,6 @@ window.addEventListener("load",async()=>{
     initializeEffects();
     initializeButtons(KINGDOM_DATA);
     await initializeSQLEngine();
-    const runButton=document.querySelector("#codingSection .codingButtons button");
-    if(runButton)runButton.onclick=runSQLCode;
     hideLoading();
 });
 </script>
