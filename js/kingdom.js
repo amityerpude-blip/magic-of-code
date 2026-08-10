@@ -45,11 +45,11 @@ async function initializeKingdom(data){
     initializeQuiz(data);
     initializeEffects();
     if(typeof initializeStorage==="function")initializeStorage(data);
-    // Remember the exact kingdom folder so Dashboard can resume here.
     if(typeof saveCurrentKingdom==="function")saveCurrentKingdom(getCurrentKingdomFolder());
     initializeButtons(data);
     startKingdomAmbientMusic();
     hideLoading();
+    if(typeof showDailyMissionPopup==="function")setTimeout(showDailyMissionPopup,650);
 }
 function startKingdomAmbientMusic(){
     if(window.AudioManager)AudioManager.playAmbient("assets/audio/common/ambient.mp3");
