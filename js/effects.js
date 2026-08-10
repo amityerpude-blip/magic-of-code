@@ -7,6 +7,7 @@
 
 ====================================================*/
 
+"use strict";
 
 /*====================================================
             INITIALIZE EFFECTS
@@ -14,16 +15,13 @@
 
 function initializeEffects(){
 
-initializeParticles();
+    initializeParticles();
 
-initializeAudio();
+    initializeAudio();
 
-initializeHoverEffects();
-
-initializeButtons();
+    initializeHoverEffects();
 
 }
-
 
 /*====================================================
             PARTICLE ENGINE
@@ -31,14 +29,13 @@ initializeButtons();
 
 function initializeParticles(){
 
-const container=document.getElementById("particleContainer");
+    const container=document.getElementById("particleContainer");
 
-if(!container)return;
+    if(!container)return;
 
-setInterval(createParticle,800);
+    setInterval(createParticle,800);
 
 }
-
 
 /*====================================================
             CREATE PARTICLE
@@ -46,32 +43,31 @@ setInterval(createParticle,800);
 
 function createParticle(){
 
-const container=document.getElementById("particleContainer");
+    const container=document.getElementById("particleContainer");
 
-if(!container)return;
+    if(!container)return;
 
-const particle=document.createElement("div");
+    const particle=document.createElement("div");
 
-particle.className="magicParticle";
+    particle.className="magicParticle";
 
-particle.innerHTML=randomParticle();
+    particle.innerHTML=randomParticle();
 
-particle.style.left=Math.random()*100+"vw";
+    particle.style.left=Math.random()*100+"vw";
 
-particle.style.fontSize=(18+Math.random()*20)+"px";
+    particle.style.fontSize=(18+Math.random()*20)+"px";
 
-particle.style.animationDuration=(6+Math.random()*5)+"s";
+    particle.style.animationDuration=(6+Math.random()*5)+"s";
 
-container.appendChild(particle);
+    container.appendChild(particle);
 
-particle.addEventListener("animationend",()=>{
+    particle.addEventListener("animationend",()=>{
 
-particle.remove();
+        particle.remove();
 
-});
+    });
 
 }
-
 
 /*====================================================
             RANDOM PARTICLE
@@ -79,91 +75,59 @@ particle.remove();
 
 function randomParticle(){
 
-const particles=[
+    const particles=[
+        "✨",
+        "⭐",
+        "💫",
+        "🌟",
+        "🍃",
+        "🌸",
+        "🍀",
+        "🫧"
+    ];
 
-"✨",
-
-"⭐",
-
-"💫",
-
-"🌟",
-
-"🍃",
-
-"🌸",
-
-"🍀",
-
-"🫧"
-
-];
-
-return particles[
-
-Math.floor(
-
-Math.random()*particles.length
-
-)
-
-];
+    return particles[
+        Math.floor(Math.random()*particles.length)
+    ];
 
 }
 
-
 /*====================================================
-            BUTTON SOUND
+            SHARED AUDIO
 ====================================================*/
 
 function initializeAudio(){
 
-document.querySelectorAll("button")
+    if(!window.AudioManager){
+        console.warn("AudioManager is not available.");
+        return;
+    }
 
-.forEach(button=>{
+    document.querySelectorAll("button").forEach(button=>{
 
-button.addEventListener("click",playButtonSound);
+        button.addEventListener("click",playButtonSound);
 
-button.addEventListener("mouseenter",playHoverSound);
+        button.addEventListener("mouseenter",playHoverSound);
 
-});
+    });
 
 }
-
-
-/*====================================================
-            CLICK SOUND
-====================================================*/
 
 function playButtonSound(){
 
-const audio=document.getElementById("buttonSound");
-
-if(!audio)return;
-
-audio.currentTime=0;
-
-audio.play().catch(()=>{});
+    if(window.AudioManager){
+        AudioManager.play("button");
+    }
 
 }
-
-
-/*====================================================
-            HOVER SOUND
-====================================================*/
 
 function playHoverSound(){
 
-const audio=document.getElementById("hoverSound");
-
-if(!audio)return;
-
-audio.currentTime=0;
-
-audio.play().catch(()=>{});
+    if(window.AudioManager){
+        AudioManager.play("hover");
+    }
 
 }
-
 
 /*====================================================
             BUTTON MAGIC
@@ -171,26 +135,23 @@ audio.play().catch(()=>{});
 
 function initializeHoverEffects(){
 
-document.querySelectorAll("button")
+    document.querySelectorAll("button").forEach(button=>{
 
-.forEach(button=>{
+        button.addEventListener("mouseenter",()=>{
 
-button.addEventListener("mouseenter",()=>{
+            button.classList.add("magicGlow");
 
-button.classList.add("magicGlow");
+        });
 
-});
+        button.addEventListener("mouseleave",()=>{
 
-button.addEventListener("mouseleave",()=>{
+            button.classList.remove("magicGlow");
 
-button.classList.remove("magicGlow");
+        });
 
-});
-
-});
+    });
 
 }
-
 
 /*====================================================
             REWARD POPUP
@@ -198,24 +159,26 @@ button.classList.remove("magicGlow");
 
 function showReward(text){
 
-const popup=document.getElementById("rewardPopup");
+    const popup=document.getElementById("rewardPopup");
+    const reward=document.getElementById("rewardText");
 
-const reward=document.getElementById("rewardText");
+    if(!popup)return;
 
-if(!popup)return;
+    if(reward) reward.innerHTML=text;
 
-reward.innerHTML=text;
+    popup.classList.add("show");
 
-popup.classList.add("show");
+    if(window.AudioManager){
+        AudioManager.play("reward");
+    }
 
-setTimeout(()=>{
+    setTimeout(()=>{
 
-popup.classList.remove("show");
+        popup.classList.remove("show");
 
-},2500);
+    },2500);
 
 }
-
 
 /*====================================================
             CLOSE REWARD
@@ -223,14 +186,11 @@ popup.classList.remove("show");
 
 function closeReward(){
 
-document
+    const popup=document.getElementById("rewardPopup");
 
-.getElementById("rewardPopup")
-
-.classList.remove("show");
+    if(popup) popup.classList.remove("show");
 
 }
-
 
 /*====================================================
             SCREEN FLASH
@@ -238,16 +198,15 @@ document
 
 function screenFlash(){
 
-document.body.classList.add("screenFlash");
+    document.body.classList.add("screenFlash");
 
-setTimeout(()=>{
+    setTimeout(()=>{
 
-document.body.classList.remove("screenFlash");
+        document.body.classList.remove("screenFlash");
 
-},500);
+    },500);
 
 }
-
 
 /*====================================================
             MAGIC CONFETTI
@@ -255,26 +214,30 @@ document.body.classList.remove("screenFlash");
 
 function celebrate(){
 
-for(let i=0;i<50;i++){
+    if(window.AudioManager){
+        AudioManager.play("victory");
+    }
 
-const star=document.createElement("div");
+    for(let i=0;i<50;i++){
 
-star.className="confetti";
+        const star=document.createElement("div");
 
-star.innerHTML=randomParticle();
+        star.className="confetti";
 
-star.style.left=Math.random()*100+"vw";
+        star.innerHTML=randomParticle();
 
-star.style.animationDelay=(Math.random()*2)+"s";
+        star.style.left=Math.random()*100+"vw";
 
-document.body.appendChild(star);
+        star.style.animationDelay=(Math.random()*2)+"s";
 
-setTimeout(()=>{
+        document.body.appendChild(star);
 
-star.remove();
+        setTimeout(()=>{
 
-},5000);
+            star.remove();
 
-}
+        },5000);
+
+    }
 
 }
