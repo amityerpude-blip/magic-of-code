@@ -5,6 +5,7 @@
 "use strict";
 
 const DASHBOARD_STORAGE_KEY="magicOfCodePlayer";
+const DASHBOARD_AMBIENT="assets/audio/ambience/ambience2.mp3";
 
 function getDashboardPlayer(){
     let player=null;
@@ -37,10 +38,58 @@ function getContinueFolder(player){
     return worlds[Math.min(completed,worlds.length-1)].folder;
 }
 
-document.addEventListener("DOMContentLoaded",()=>{loadWorlds();loadPlayer();updateOverallProgress();initializeContinueAdventure();});
+function startDashboardMusic(){
+    if(!window.AudioManager)return;
+    AudioManager.playAmbient(DASHBOARD_AMBIENT).then(started=>{
+        if(started)updateDashboardAudioUI();
+    });
+}
+
+function updateDashboardAudioUI(){
+    const bird=document.getElementById("dashboardAudioBird");
+    const mute=document.getElementById("dashboardMuteButton");
+    const slider=document.getElementById("dashboardVolumeSlider");
+    if(bird){bird.textContent=AudioManager.enabled?"🐦":"🐦🔇";bird.classList.toggle("audioPlaying",!!AudioManager.ambientStarted);}
+    if(mute)mute.textContent=AudioManager.enabled?"🔊":"🔇";
+    if(slider)slider.value=String(AudioManager.volume);
+}
+
+function toggleDashboardAudioPanel(event){
+    if(event)event.stopPropagation();
+    const panel=document.getElementById("dashboardAudioPanel");
+    if(panel)panel.classList.toggle("open");
+    updateDashboardAudioUI();
+    if(!AudioManager.ambientStarted)startDashboardMusic();
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+    loadWorlds();
+    loadPlayer();
+    updateOverallProgress();
+    initializeContinueAdventure();
+    if(window.AudioManager){
+        AudioManager.init();
+        startDashboardMusic();
+        document.getElementById("dashboardAudioBird")?.addEventListener("click",toggleDashboardAudioPanel);
+        document.getElementById("dashboardMuteButton")?.addEventListener("click",event=>{event.stopPropagation();AudioManager.toggle();updateDashboardAudioUI();});
+        document.getElementById("dashboardVolumeSlider")?.addEventListener("input",event=>AudioManager.setVolume(event.target.value));
+        document.addEventListener("click",event=>{
+            const wrap=document.getElementById("dashboardAudio");
+            if(wrap&&!wrap.contains(event.target))document.getElementById("dashboardAudioPanel")?.classList.remove("open");
+        });
+        // Browsers may block autoplay. Retry on the first real user interaction.
+        const resume=()=>{
+            if(!AudioManager.ambientStarted)startDashboardMusic();
+            document.removeEventListener("pointerdown",resume);
+            document.removeEventListener("keydown",resume);
+        };
+        document.addEventListener("pointerdown",resume,{once:true});
+        document.addEventListener("keydown",resume,{once:true});
+        updateDashboardAudioUI();
+    }
+});
 
 function loadWorlds(){const worldGrid=document.getElementById("worldGrid");if(!worldGrid){console.error("worldGrid not found");return;}worldGrid.innerHTML="";worlds.forEach(world=>{worldGrid.innerHTML+=createWorldCard(world);});}
-
 function createWorldCard(world){return `<div class="worldCard ${world.rarity}"><img src="${world.image}" alt="${world.name}"><div class="worldContent"><h3>${world.name}</h3><p>${world.topic}</p><button class="btn btn-primary" onclick="openWorld('${world.folder}')">Enter World</button></div></div>`;}
 function openWorld(folder){window.location.href=folder+"/index.html";}
 
