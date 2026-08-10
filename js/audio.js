@@ -1,9 +1,15 @@
 /*====================================================
         CODING QUEST AUDIO MANAGER
-        Shared audio system
+        One shared audio library for every kingdom
 ====================================================*/
 
 "use strict";
+
+/* Capture the script URL while this file is executing.
+   document.currentScript is not reliable inside DOMContentLoaded. */
+const AUDIO_SCRIPT_URL = document.currentScript
+    ? document.currentScript.src
+    : null;
 
 const AudioManager = {
 
@@ -20,7 +26,7 @@ const AudioManager = {
         success:"success.mp3",
         wrong:"wrong.mp3",
         error:"error.mp3",
-        pageFlip:"page-flip.mp3",
+        pageFlip:"transition.mp3",
         magic:"magic.mp3",
         levelUp:"level-up.mp3",
         victory:"victory.mp3",
@@ -32,74 +38,63 @@ const AudioManager = {
         spellCast:"spell-cast.mp3",
         monsterHit:"monster-hit.mp3",
         monsterDefeat:"monster-defeat.mp3",
-        click:"click.mp3",
+        click:"button.mp3",
         notification:"notification.mp3",
-        transition:"magic-transition.mp3"
+        transition:"transition.mp3"
     },
 
     resolveAsset(file){
-
         return new URL(
             "assets/audio/common/" + file,
             this.rootPath
         ).href;
-
     },
 
     init(){
+        if(this.initialized)return;
 
-        if(this.initialized) return;
-
-        /* Resolve the repository root from this shared script itself.
-           This keeps the same library working from every kingdom folder. */
-        const script=document.currentScript;
-
-        if(script && script.src){
-            this.rootPath=new URL("../",script.src).href;
+        if(AUDIO_SCRIPT_URL){
+            this.rootPath=new URL("../",AUDIO_SCRIPT_URL).href;
         }
         else{
-            this.rootPath=new URL("../",window.location.href).href;
+            console.warn("AudioManager: shared script URL could not be resolved.");
+            this.rootPath=new URL("./",window.location.href).href;
         }
 
+        /* URLs are prepared here, but audio objects are created lazily.
+           This avoids unnecessary 404 requests for sounds a page never uses. */
         Object.keys(this.files).forEach(key=>{
-
-            const audio=new Audio(
-                this.resolveAsset(this.files[key])
-            );
-
-            audio.preload="auto";
-            audio.volume=this.volume;
-            this.sounds[key]=audio;
-
+            this.sounds[key]=null;
         });
 
         this.initialized=true;
-
+        console.log("🔊 Shared Audio Library Ready");
     },
 
     play(name){
-
         if(!this.enabled)return;
-
         if(!this.initialized)this.init();
 
-        const audio=this.sounds[name];
+        const file=this.files[name];
+        if(!file)return;
 
-        if(!audio)return;
+        let audio=this.sounds[name];
+
+        if(!audio){
+            audio=new Audio(this.resolveAsset(file));
+            audio.preload="auto";
+            audio.volume=this.volume;
+            this.sounds[name]=audio;
+        }
 
         audio.currentTime=0;
-
         audio.play().catch(()=>{});
-
     },
 
     playAmbient(file){
-
         if(!this.enabled)return;
 
-        if(this.ambient){
-            this.ambient.pause();
-        }
+        if(this.ambient)this.ambient.pause();
 
         this.ambient=new Audio(
             file.startsWith("http")
@@ -110,24 +105,18 @@ const AudioManager = {
         this.ambient.loop=true;
         this.ambient.volume=0.25;
         this.ambient.play().catch(()=>{});
-
     },
 
     stopAmbient(){
-
         if(this.ambient){
             this.ambient.pause();
             this.ambient.currentTime=0;
         }
-
     },
 
     toggle(){
-
         this.enabled=!this.enabled;
-
         return this.enabled;
-
     }
 };
 
