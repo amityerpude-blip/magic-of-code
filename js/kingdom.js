@@ -42,39 +42,24 @@ function getKingdomNavigation(){
     };
 }
 
-function goToDashboard(){
-    window.location.href="../dashboard.html";
-}
+function goToDashboard(){window.location.href="../dashboard.html";}
 
 function goToNextKingdom(){
     const nav=getKingdomNavigation();
-    if(nav.next){
-        window.location.href="../"+nav.next.folder+"/index.html";
-    }else{
-        window.location.href="../dashboard.html";
-    }
+    if(nav.next){window.location.href="../"+nav.next.folder+"/index.html";}
+    else{window.location.href="../dashboard.html";}
 }
 
 function goToPreviousKingdom(){
     const nav=getKingdomNavigation();
-    if(nav.previous){
-        window.location.href="../"+nav.previous.folder+"/index.html";
-    }
+    if(nav.previous){window.location.href="../"+nav.previous.folder+"/index.html";}
 }
-
-/*====================================================
-                LOAD KINGDOM
-====================================================*/
 
 function loadKingdom(data){
-const root = document.getElementById("kingdomRoot");
-root.innerHTML = LoadingComponent() + HeroComponent(data) + NavigationComponent(data) + ComicComponent(data) + AnimationComponent(data) + NotesComponent(data) + CodingComponent(data) + QuizComponent(data) + ChallengeComponent(data) + FooterComponent(data) + RewardPopupComponent() + ParticleComponent() + AudioComponent(data);
+const root=document.getElementById("kingdomRoot");
+root.innerHTML=LoadingComponent()+HeroComponent(data)+NavigationComponent(data)+ComicComponent(data)+AnimationComponent(data)+NotesComponent(data)+CodingComponent(data)+QuizComponent(data)+ChallengeComponent(data)+FooterComponent(data)+RewardPopupComponent()+ParticleComponent()+AudioComponent(data);
 initializeKingdom(data);
 }
-
-/*====================================================
-            INITIALIZE KINGDOM
-====================================================*/
 
 console.log("initializeKingdom started");
 
@@ -96,21 +81,29 @@ async function initializeKingdom(data){
     }
 
     initializeButtons(data);
+
+    // Start shared background music for every kingdom
+    startKingdomAmbientMusic();
+
     hideLoading();
 }
 
-/*====================================================
-            BUTTON EVENTS
-====================================================*/
+function startKingdomAmbientMusic(){
+    if(window.AudioManager){
+        AudioManager.playAmbient("assets/audio/common/ambient.mp3");
+    }
+
+    // Browser autoplay unlock after first interaction
+    document.addEventListener("click",()=>{
+        if(window.AudioManager && !AudioManager.ambient){
+            AudioManager.playAmbient("assets/audio/common/ambient.mp3");
+        }
+    },{once:true});
+}
 
 function initializeButtons(data){
-
 const startButton=document.getElementById("beginAdventure");
-if(startButton){
-    startButton.onclick=()=>{
-        document.getElementById("kingdomMap").scrollIntoView({behavior:"smooth",block:"start"});
-    };
-}
+if(startButton){startButton.onclick=()=>{document.getElementById("kingdomMap").scrollIntoView({behavior:"smooth",block:"start"});};}
 
 const dashboardButton=document.getElementById("dashboardKingdom");
 if(dashboardButton) dashboardButton.onclick=goToDashboard;
@@ -122,34 +115,15 @@ const nextButton=document.getElementById("nextKingdom");
 if(nextButton) nextButton.onclick=goToNextKingdom;
 
 const nav=getKingdomNavigation();
-
-if(previousButton && !nav.previous){
-    previousButton.disabled=true;
-    previousButton.classList.add("disabled");
-}
-
-if(nextButton && nav.isLast){
-    nextButton.textContent="🏠 Back to Dashboard";
-}
+if(previousButton && !nav.previous){previousButton.disabled=true;previousButton.classList.add("disabled");}
+if(nextButton && nav.isLast){nextButton.textContent="🏠 Back to Dashboard";}
 
 const finishButton=document.getElementById("completeKingdom");
-if(finishButton){
-    finishButton.onclick=()=>{
-        showReward("🏆 Kingdom Completed!");
-        saveProgress(data.id);
-    };
+if(finishButton){finishButton.onclick=()=>{showReward("🏆 Kingdom Completed!");saveProgress(data.id);};}
 }
-}
-
-/*====================================================
-            LOADING SCREEN
-====================================================*/
 
 function hideLoading(){
 const loader=document.getElementById("loadingScreen");
 if(!loader)return;
-setTimeout(()=>{
-    loader.style.opacity="0";
-    setTimeout(()=>{ loader.remove(); },600);
-},500);
+setTimeout(()=>{loader.style.opacity="0";setTimeout(()=>{loader.remove();},600);},500);
 }
