@@ -16,10 +16,14 @@
         <span>🏆 <b id="headerBadges">0</b></span>
         <span>📚 <b id="headerKingdoms">0/13</b></span>
     </div>
-    <div class="headerRight">
-        <div class="levelBox">Level <span id="playerLevel">1</span></div>
+    <div class="headerProgress" aria-label="Overall adventure progress">
+        <div class="headerProgressLabel"><span>🌟 Progress</span><b id="headerProgressText">0%</b></div>
+        <div class="headerProgressTrack"><div id="headerProgressBar" class="headerProgressBar"></div></div>
     </div>
+    <button class="headerMissionButton" id="headerDailyMission" type="button" aria-label="Open daily mission">🎯</button>
+    <div class="headerRight"><div class="levelBox">Level <span id="playerLevel">1</span></div></div>
 </header>
+
 <section class="heroSection">
     <div class="heroText">
         <h1>Welcome Back, Explorer!</h1>
@@ -28,23 +32,12 @@
     </div>
     <div class="heroImage"><img src="assets/characters/pyro.png" alt="Master Pyro"></div>
 </section>
+
 <section class="worldSection">
     <div class="sectionHeading"><h2>🌍 The 13 Learning Kingdoms</h2><p>Explore the complete adventure map. Each kingdom focuses on a different skill.</p></div>
     <div id="worldGrid" class="worldGrid"></div>
 </section>
-<section class="dashboardInfo">
-    <div class="infoCard"><h2>📈 Player Progress</h2><div class="playerStats">
-        <div class="statItem">⭐<h3 id="xp">0</h3><p>XP</p></div>
-        <div class="statItem">🪙<h3 id="coins">0</h3><p>Coins</p></div>
-        <div class="statItem">🏆<h3 id="badges">0</h3><p>Badges</p></div>
-        <div class="statItem">📚<h3 id="completedWorlds">0 / 13</h3><p>Kingdoms</p></div>
-    </div></div>
-    <div class="infoCard"><h2>🎯 Daily Mission</h2><ul class="missionList"><li>✅ Read 5 Comic Pages</li><li>✅ Solve 3 Quiz Questions</li><li>✅ Complete One Coding Challenge</li></ul><div class="missionReward">Reward ⭐150 XP &nbsp; 🪙50 Coins</div></div>
-</section>
-<section class="dashboardInfo">
-    <div class="infoCard"><h2>🏆 Latest Badge</h2><div class="badgeBox"><img src="images/badges/python-beginner.png" alt="Badge"><h3>Python Beginner</h3><p>Awarded for completing Python Village.</p></div></div>
-    <div class="infoCard"><h2>🌟 Overall Progress</h2><div class="progress"><div id="overallProgress" class="progress-bar"></div></div><h3 id="progressText">0% Completed</h3></div>
-</section>
+
 <div class="dashboardAudio" id="dashboardAudio">
     <div class="dashboardAudioPanel" id="dashboardAudioPanel">
         <label>🎵 Magic Music</label>
@@ -55,6 +48,7 @@
     </div>
     <button class="dashboardAudioBird" id="dashboardAudioBird" type="button" aria-label="Play or mute dashboard music">🐦</button>
 </div>
+
 <footer>Python Quest<br>Developed by <b>Amit Yerpude</b></footer>
 <script src="js/app.js"></script>
 <script src="js/worlds.js"></script>
