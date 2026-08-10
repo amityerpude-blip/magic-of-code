@@ -29,6 +29,7 @@ function updateComic(){
     if(!image)return;
     image.src=comicFolder+comicPage+".png";
     if(counter)counter.innerHTML=`📖 Page ${comicPage} / ${comicTotal}`;
+    if(typeof recordComicPage==="function")recordComicPage(comicPage);
     playPageSound();
 }
 
