@@ -31,7 +31,7 @@ return `<section id="notesSection" class="lessonContent"><h2>📚 ${data.notes.t
 }
 
 function CodingComponent(data){
-return `<section id="codingSection" class="lessonContent"><h2>🧪 ${data.coding.title}</h2><p>${data.coding.description}</p><div class="codingContainer"><textarea id="codeEditor" spellcheck="false">${data.coding.defaultCode}</textarea><div class="codingButtons">${data.coding.challenges.map(challenge=>`<button onclick="loadChallenge('${challenge.id}')">${challenge.icon} ${challenge.title}</button>`).join("")}</div><pre id="output">✨ Awaiting your spell...</pre></div></section>`;
+return `<section id="codingSection" class="lessonContent"><h2>🧪 ${data.coding.title}</h2><p>${data.coding.description}</p><div class="codingContainer"><textarea id="codeEditor" spellcheck="false">${data.coding.defaultCode}</textarea><div class="codingActions"><button class="runCodeButton" onclick="runPythonCode()">▶ Run Spell</button><button class="clearCodeButton" onclick="clearCode()">🧹 Clear</button></div><div class="codingButtons">${data.coding.challenges.map(challenge=>`<button onclick="loadChallenge('${challenge.id}')">${challenge.icon} ${challenge.title}</button>`).join("")}</div><pre id="output">✨ Awaiting your spell...</pre></div></section>`;
 }
 
 function QuizComponent(data){
