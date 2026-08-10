@@ -11,67 +11,128 @@ const AudioManager = {
     ambient: null,
     enabled: true,
     volume: 0.35,
+    initialized: false,
+    rootPath: "",
 
     files:{
-        hover:"assets/audio/common/hover.mp3",
-        button:"assets/audio/common/button.mp3",
-        success:"assets/audio/common/success.mp3",
-        wrong:"assets/audio/common/wrong.mp3",
-        error:"assets/audio/common/error.mp3",
-        pageFlip:"assets/audio/common/page-flip.mp3",
-        magic:"assets/audio/common/magic.mp3",
-        levelUp:"assets/audio/common/level-up.mp3",
-        victory:"assets/audio/common/victory.mp3",
-        defeat:"assets/audio/common/defeat.mp3",
-        coin:"assets/audio/common/coin.mp3",
-        badge:"assets/audio/common/badge.mp3",
-        chestOpen:"assets/audio/common/chest-open.mp3",
-        reward:"assets/audio/common/reward.mp3",
-        spellCast:"assets/audio/common/spell-cast.mp3",
-        monsterHit:"assets/audio/common/monster-hit.mp3",
-        monsterDefeat:"assets/audio/common/monster-defeat.mp3",
-        click:"assets/audio/common/click.mp3",
-        notification:"assets/audio/common/notification.mp3",
-        transition:"assets/audio/common/magic-transition.mp3"
+        hover:"hover.mp3",
+        button:"button.mp3",
+        success:"success.mp3",
+        wrong:"wrong.mp3",
+        error:"error.mp3",
+        pageFlip:"page-flip.mp3",
+        magic:"magic.mp3",
+        levelUp:"level-up.mp3",
+        victory:"victory.mp3",
+        defeat:"defeat.mp3",
+        coin:"coin.mp3",
+        badge:"badge.mp3",
+        chestOpen:"chest-open.mp3",
+        reward:"reward.mp3",
+        spellCast:"spell-cast.mp3",
+        monsterHit:"monster-hit.mp3",
+        monsterDefeat:"monster-defeat.mp3",
+        click:"click.mp3",
+        notification:"notification.mp3",
+        transition:"magic-transition.mp3"
+    },
+
+    resolveAsset(file){
+
+        return new URL(
+            "assets/audio/common/" + file,
+            this.rootPath
+        ).href;
+
     },
 
     init(){
+
+        if(this.initialized) return;
+
+        /* Resolve the repository root from this shared script itself.
+           This keeps the same library working from every kingdom folder. */
+        const script=document.currentScript;
+
+        if(script && script.src){
+            this.rootPath=new URL("../",script.src).href;
+        }
+        else{
+            this.rootPath=new URL("../",window.location.href).href;
+        }
+
         Object.keys(this.files).forEach(key=>{
-            const audio=new Audio(this.files[key]);
+
+            const audio=new Audio(
+                this.resolveAsset(this.files[key])
+            );
+
+            audio.preload="auto";
             audio.volume=this.volume;
             this.sounds[key]=audio;
+
         });
+
+        this.initialized=true;
+
     },
 
     play(name){
-        if(!this.enabled || !this.sounds[name]) return;
-        this.sounds[name].currentTime=0;
-        this.sounds[name].play().catch(()=>{});
+
+        if(!this.enabled)return;
+
+        if(!this.initialized)this.init();
+
+        const audio=this.sounds[name];
+
+        if(!audio)return;
+
+        audio.currentTime=0;
+
+        audio.play().catch(()=>{});
+
     },
 
     playAmbient(file){
-        if(!this.enabled) return;
-        if(this.ambient) this.ambient.pause();
-        this.ambient=new Audio(file);
-        this.ambient.loop=true;
-        this.ambient.volume=0.25;
-        this.ambient.play().catch(()=>{});
-    },
 
-    stopAmbient(){
+        if(!this.enabled)return;
+
         if(this.ambient){
             this.ambient.pause();
         }
+
+        this.ambient=new Audio(
+            file.startsWith("http")
+                ? file
+                : new URL(file,this.rootPath).href
+        );
+
+        this.ambient.loop=true;
+        this.ambient.volume=0.25;
+        this.ambient.play().catch(()=>{});
+
+    },
+
+    stopAmbient(){
+
+        if(this.ambient){
+            this.ambient.pause();
+            this.ambient.currentTime=0;
+        }
+
     },
 
     toggle(){
+
         this.enabled=!this.enabled;
+
         return this.enabled;
+
     }
 };
+
+window.AudioManager=AudioManager;
 
 document.addEventListener("DOMContentLoaded",()=>{
     AudioManager.init();
 });
-
-window.AudioManager=AudioManager;
