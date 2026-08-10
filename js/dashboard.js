@@ -40,9 +40,7 @@ function getContinueFolder(player){
 
 function startDashboardMusic(){
     if(!window.AudioManager)return;
-    AudioManager.playAmbient(DASHBOARD_AMBIENT).then(started=>{
-        if(started)updateDashboardAudioUI();
-    });
+    AudioManager.playAmbient(DASHBOARD_AMBIENT).then(started=>{if(started)updateDashboardAudioUI();});
 }
 
 function updateDashboardAudioUI(){
@@ -65,24 +63,16 @@ function toggleDashboardAudioPanel(event){
 document.addEventListener("DOMContentLoaded",()=>{
     loadWorlds();
     loadPlayer();
-    updateOverallProgress();
     initializeContinueAdventure();
+    initializeDailyMissionButton();
     if(window.AudioManager){
         AudioManager.init();
         startDashboardMusic();
         document.getElementById("dashboardAudioBird")?.addEventListener("click",toggleDashboardAudioPanel);
         document.getElementById("dashboardMuteButton")?.addEventListener("click",event=>{event.stopPropagation();AudioManager.toggle();updateDashboardAudioUI();});
         document.getElementById("dashboardVolumeSlider")?.addEventListener("input",event=>AudioManager.setVolume(event.target.value));
-        document.addEventListener("click",event=>{
-            const wrap=document.getElementById("dashboardAudio");
-            if(wrap&&!wrap.contains(event.target))document.getElementById("dashboardAudioPanel")?.classList.remove("open");
-        });
-        // Browsers may block autoplay. Retry on the first real user interaction.
-        const resume=()=>{
-            if(!AudioManager.ambientStarted)startDashboardMusic();
-            document.removeEventListener("pointerdown",resume);
-            document.removeEventListener("keydown",resume);
-        };
+        document.addEventListener("click",event=>{const wrap=document.getElementById("dashboardAudio");if(wrap&&!wrap.contains(event.target))document.getElementById("dashboardAudioPanel")?.classList.remove("open");});
+        const resume=()=>{if(!AudioManager.ambientStarted)startDashboardMusic();document.removeEventListener("pointerdown",resume);document.removeEventListener("keydown",resume);};
         document.addEventListener("pointerdown",resume,{once:true});
         document.addEventListener("keydown",resume,{once:true});
         updateDashboardAudioUI();
@@ -96,24 +86,25 @@ function openWorld(folder){window.location.href=folder+"/index.html";}
 function loadPlayer(){
     const player=getDashboardPlayer();
     const completed=getCompletedCount(player);
-    document.getElementById("xp").textContent=player.xp;
-    document.getElementById("coins").textContent=player.coins;
-    document.getElementById("badges").textContent=player.badges;
-    document.getElementById("completedWorlds").textContent=completed+" / "+worlds.length;
     document.getElementById("playerLevel").textContent=player.level;
     document.getElementById("headerXP").textContent=player.xp;
     document.getElementById("headerCoins").textContent=player.coins;
     document.getElementById("headerBadges").textContent=player.badges;
     document.getElementById("headerKingdoms").textContent=completed+"/"+worlds.length;
+    updateHeaderProgress(player);
 }
 
-function updateOverallProgress(){
-    const player=getDashboardPlayer();
+function updateHeaderProgress(player=getDashboardPlayer()){
     const percent=Math.round((getCompletedCount(player)/worlds.length)*100);
-    const bar=document.getElementById("overallProgress");
-    const text=document.getElementById("progressText");
+    const bar=document.getElementById("headerProgressBar");
+    const text=document.getElementById("headerProgressText");
     if(bar)bar.style.width=percent+"%";
-    if(text)text.textContent=percent+"% Completed";
+    if(text)text.textContent=percent+"%";
+}
+
+function initializeDailyMissionButton(){
+    const button=document.getElementById("headerDailyMission");
+    if(button)button.addEventListener("click",()=>{if(typeof showDailyMissionPopup==="function")showDailyMissionPopup();});
 }
 
 function initializeContinueAdventure(){
