@@ -13,6 +13,7 @@ const AudioManager = {
 
     sounds: {},
     ambient: null,
+    ambientStarted: false,
     enabled: true,
     volume: 0.35,
     initialized: false,
@@ -86,30 +87,54 @@ const AudioManager = {
         audio.play().catch(()=>{});
     },
 
-    playAmbient(file){
-        if(!this.enabled)return;
-        if(this.ambient)this.ambient.pause();
+    playAmbient(file="ambient.mp3"){
+        if(!this.enabled)return Promise.resolve(false);
+        if(!this.initialized)this.init();
 
-        this.ambient=new Audio(
-            file.startsWith("http")
-                ? file
-                : new URL(file,this.rootPath).href
-        );
+        const source=file.startsWith("http")
+            ? file
+            : new URL(file,this.rootPath).href;
 
-        this.ambient.loop=true;
-        this.ambient.volume=0.25;
-        this.ambient.play().catch(()=>{});
+        if(this.ambient && this.ambient.src!==source){
+            this.ambient.pause();
+            this.ambient=null;
+            this.ambientStarted=false;
+        }
+
+        if(!this.ambient){
+            this.ambient=new Audio(source);
+            this.ambient.preload="auto";
+            this.ambient.loop=true;
+            this.ambient.volume=0.25;
+        }
+
+        const audio=this.ambient;
+
+        return audio.play().then(()=>{
+            this.ambientStarted=true;
+            console.log("🎵 Shared background music started:",source);
+            return true;
+        }).catch(error=>{
+            /* Chrome/Edge normally land here when autoplay is blocked.
+               Keep the Audio object available, but mark it as not started
+               so the first user interaction can retry play(). */
+            this.ambientStarted=false;
+            console.log("🎵 Background music waiting for user interaction.");
+            return false;
+        });
     },
 
     stopAmbient(){
         if(this.ambient){
             this.ambient.pause();
             this.ambient.currentTime=0;
+            this.ambientStarted=false;
         }
     },
 
     toggle(){
         this.enabled=!this.enabled;
+        if(!this.enabled)this.stopAmbient();
         return this.enabled;
     }
 };
