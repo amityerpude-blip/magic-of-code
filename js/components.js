@@ -31,7 +31,19 @@ return `<section id="notesSection" class="lessonContent"><h2>📚 ${data.notes.t
 }
 
 function CodingComponent(data){
-return `<section id="codingSection" class="lessonContent"><h2>🧪 ${data.coding.title}</h2><p>${data.coding.description}</p><div class="codingContainer"><textarea id="codeEditor" spellcheck="false">${data.coding.defaultCode}</textarea><div class="codingActions"><button class="runCodeButton" onclick="runPythonCode()">▶ Run Spell</button><button class="clearCodeButton" onclick="clearCode()">🧹 Clear</button></div><div class="codingButtons">${data.coding.challenges.map(challenge=>`<button onclick="loadChallenge('${challenge.id}')">${challenge.icon} ${challenge.title}</button>`).join("")}</div><pre id="output">✨ Awaiting your spell...</pre></div></section>`;
+return `<section id="codingSection" class="lessonContent"><h2>🧪 ${data.coding.title}</h2><p>${data.coding.description}</p><div class="codingContainer"><textarea id="codeEditor" spellcheck="false">${data.coding.defaultCode}</textarea><style>
+.codingActions{display:flex;justify-content:center;align-items:center;gap:14px;margin:18px 0 10px;flex-wrap:wrap;}
+.codingActions button{border:none;cursor:pointer;position:relative;overflow:hidden;min-width:150px;padding:13px 24px;border-radius:999px;font-family:Poppins,sans-serif;font-size:15px;font-weight:700;letter-spacing:.2px;transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;}
+.codingActions button::after{content:"";position:absolute;top:0;left:-90%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:left .55s ease;}
+.codingActions button:hover::after{left:140%;}
+.codingActions button:hover{transform:translateY(-3px) scale(1.02);filter:brightness(1.08);}
+.codingActions button:active{transform:translateY(1px) scale(.98);}
+.runCodeButton{background:linear-gradient(135deg,#00d4ff,#4776ff 55%,#8b5cf6);color:#fff;box-shadow:0 8px 22px rgba(71,118,255,.42),0 0 18px rgba(0,212,255,.22);}
+.runCodeButton:hover{box-shadow:0 12px 30px rgba(71,118,255,.58),0 0 28px rgba(0,212,255,.35);}
+.clearCodeButton{background:linear-gradient(135deg,#26344d,#172033);color:#e8eefc;border:1px solid rgba(255,255,255,.18)!important;box-shadow:0 7px 18px rgba(0,0,0,.28);}
+.clearCodeButton:hover{box-shadow:0 10px 24px rgba(0,0,0,.38);}
+@media(max-width:600px){.codingActions{gap:10px}.codingActions button{min-width:135px;flex:1;}.codingActions{padding:0 4px;}}
+</style><div class="codingActions"><button class="runCodeButton" onclick="runPythonCode()">⚡ Run Spell</button><button class="clearCodeButton" onclick="clearCode()">🧹 Reset Spell</button></div><div class="codingButtons">${data.coding.challenges.map(challenge=>`<button onclick="loadChallenge('${challenge.id}')">${challenge.icon} ${challenge.title}</button>`).join("")}</div><pre id="output">✨ Awaiting your spell...</pre></div></section>`;
 }
 
 function QuizComponent(data){
