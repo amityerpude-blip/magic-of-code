@@ -15,7 +15,7 @@
     <div id="kingdomContainer"></div>
 
     <script src="../data/spider-web-nexus.js"></script>
-
+    <script src="../js/audio.js"></script>
     <script src="../js/storage.js"></script>
     <script src="../js/effects.js"></script>
     <script src="../js/navigation.js"></script>
@@ -24,11 +24,7 @@
     <script src="../js/components.js"></script>
     <script src="../js/spider-web-components.js"></script>
 
-    <!-- Spider Web Nexus has its own kingdom controller.
-         The shared kingdom.js is intentionally NOT loaded here. -->
     <script src="../js/spider-web-kingdom.js"></script>
-
-    <!-- Network simulator logic and interaction patches. -->
     <script src="../js/network.js"></script>
     <script src="../js/spider-web-switching-visual-patch.js"></script>
     <script src="../js/spider-web-message-segment-patch.js"></script>
@@ -42,14 +38,11 @@
                 console.error("🕸 KINGDOM_DATA failed to load.");
                 return;
             }
-
             if (typeof renderKingdom !== "function") {
                 console.error("renderKingdom is not available.");
                 return;
             }
-
             renderKingdom(KINGDOM_DATA);
-
             if (typeof initializeSpiderWebKingdom === "function") {
                 await initializeSpiderWebKingdom(KINGDOM_DATA);
             } else {
