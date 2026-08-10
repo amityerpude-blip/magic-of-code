@@ -42,26 +42,14 @@ function ChallengeComponent(data){
 return `<section id="challengeSection" class="lessonContent"><h2>🏆 ${data.challenge.title}</h2><p>${data.challenge.description}</p><div class="challengeCard"><h3>${data.challenge.icon} ${data.challenge.heading}</h3><p>${data.challenge.story}</p><ul>${data.challenge.tasks.map(task=>`<li>${task}</li>`).join("")}</ul><button id="completeKingdom">👑 Complete Kingdom</button></div></section>`;
 }
 
-/*====================================================
-                KINGDOM FOOTER
-
-        Shared navigation for every kingdom:
-        Dashboard → Previous → Next Kingdom
-====================================================*/
 function FooterComponent(data){
-return `<footer class="kingdomFooter">
-<h3>🗺️ Continue Your Adventure</h3>
-<p>You have reached the end of <b>${data.title}</b>.</p>
-<div class="kingdomFooterActions">
-<button id="dashboardKingdom" class="kingdomNavButton dashboardNavButton">🏠 Dashboard</button>
-<button id="previousKingdom" class="kingdomNavButton previousNavButton">⬅ Previous Kingdom</button>
-<button id="nextKingdom" class="kingdomNavButton nextNavButton">Next Kingdom ➡</button>
-</div>
-</footer>`;
+return `<footer class="kingdomFooter"><h3>🗺️ Continue Your Adventure</h3><p>You have reached the end of <b>${data.title}</b>.</p><div class="kingdomFooterActions"><button id="dashboardKingdom" class="kingdomNavButton dashboardNavButton">🏠 Dashboard</button><button id="previousKingdom" class="kingdomNavButton previousNavButton">⬅ Previous Kingdom</button><button id="nextKingdom" class="kingdomNavButton nextNavButton">Next Kingdom ➡</button></div></footer>`;
 }
 
-function AudioComponent(data){
-return `<audio id="magicSound"><source src="${data.audio.magic}" type="audio/mpeg"></audio><audio id="buttonSound"><source src="${data.audio.button}" type="audio/mpeg"></audio><audio id="pageFlip"><source src="${data.audio.page}" type="audio/mpeg"></audio>`;
+/* Shared AudioManager owns all common sounds now.
+   No kingdom page creates legacy <audio> elements. */
+function AudioComponent(){
+return "";
 }
 
 function RewardPopupComponent(){
