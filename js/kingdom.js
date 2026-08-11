@@ -38,21 +38,22 @@ function goToNextKingdom(){const nav=getKingdomNavigation();if(nav.next)window.l
 function goToPreviousKingdom(){const nav=getKingdomNavigation();if(nav.previous)window.location.href="../"+nav.previous.folder+"/index.html";}
 
 /*
-   Some browsers/cache states can lose the emoji from older kingdom data.
-   Keep Spell Forge visually consistent in every kingdom without changing
-   the kingdom data files themselves.
+   Force the Spell Forge identity in the shared renderer.
+   Some kingdom data files/cache versions may omit the emoji, so we
+   deliberately set it here instead of relying on the data file.
 */
 function ensureSpellForgeEmoji(){
-    const forgeTiles=document.querySelectorAll('.magicTile[data-section="codingSection"] .tileIcon');
-    forgeTiles.forEach(tile=>{
-        const text=(tile.textContent||"").trim();
-        if(!text || text.length===0) tile.textContent="🧪";
+    document.querySelectorAll('.magicTile[data-section="codingSection"] .tileIcon').forEach(tile=>{
+        tile.textContent="🧪";
     });
 
     const forgeHeading=document.querySelector('#codingSection h2');
     if(forgeHeading){
-        const text=(forgeHeading.textContent||"").trim();
-        if(text && !text.startsWith("🧪")) forgeHeading.textContent="🧪 "+text;
+        const cleanTitle=(forgeHeading.textContent||"").replace(/^\s*🧪\s*/u,"").trim();
+        forgeHeading.textContent="🧪 Spell Forge";
+        if(cleanTitle && cleanTitle.toLowerCase()!=="spell forge"){
+            forgeHeading.textContent="🧪 "+cleanTitle;
+        }
     }
 }
 
