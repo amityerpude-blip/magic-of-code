@@ -36,7 +36,15 @@ function getKingdomNavigation(){
 function goToDashboard(){window.location.href="../dashboard.html";}
 function goToNextKingdom(){const nav=getKingdomNavigation();if(nav.next)window.location.href="../"+nav.next.folder+"/index.html";else window.location.href="../dashboard.html";}
 function goToPreviousKingdom(){const nav=getKingdomNavigation();if(nav.previous)window.location.href="../"+nav.previous.folder+"/index.html";}
-function loadKingdom(data){const root=document.getElementById("kingdomRoot");root.innerHTML=LoadingComponent()+HeroComponent(data)+NavigationComponent(data)+ComicComponent(data)+AnimationComponent(data)+NotesComponent(data)+CodingComponent(data)+QuizComponent(data)+ChallengeComponent(data)+FooterComponent(data)+RewardPopupComponent()+ParticleComponent()+AudioComponent(data);initializeKingdom(data);}
+function loadKingdom(data){
+    if(typeof renderKingdom==="function"){
+        renderKingdom(data);
+    }else{
+        const root=document.getElementById("kingdomRoot")||document.getElementById("kingdomContainer");
+        if(root)root.innerHTML=LoadingComponent()+QuestHeaderComponent()+HeroComponent(data)+NavigationComponent(data)+ComicComponent(data)+AnimationComponent(data)+NotesComponent(data)+CodingComponent(data)+QuizComponent(data)+ChallengeComponent(data)+FooterComponent(data)+RewardPopupComponent()+ParticleComponent();
+    }
+    initializeKingdom(data);
+}
 console.log("initializeKingdom started");
 async function initializeKingdom(data){
     initializeNavigation();
@@ -50,6 +58,7 @@ async function initializeKingdom(data){
     startKingdomAmbientMusic();
     hideLoading();
     if(typeof showDailyMissionPopup==="function")setTimeout(showDailyMissionPopup,650);
+    if(typeof updateQuestHeader==="function")setTimeout(updateQuestHeader,100);
 }
 function startKingdomAmbientMusic(){
     if(window.AudioManager)AudioManager.playAmbient("assets/audio/common/ambient.mp3");
