@@ -36,6 +36,26 @@ function getKingdomNavigation(){
 function goToDashboard(){window.location.href="../dashboard.html";}
 function goToNextKingdom(){const nav=getKingdomNavigation();if(nav.next)window.location.href="../"+nav.next.folder+"/index.html";else window.location.href="../dashboard.html";}
 function goToPreviousKingdom(){const nav=getKingdomNavigation();if(nav.previous)window.location.href="../"+nav.previous.folder+"/index.html";}
+
+/*
+   Some browsers/cache states can lose the emoji from older kingdom data.
+   Keep Spell Forge visually consistent in every kingdom without changing
+   the kingdom data files themselves.
+*/
+function ensureSpellForgeEmoji(){
+    const forgeTiles=document.querySelectorAll('.magicTile[data-section="codingSection"] .tileIcon');
+    forgeTiles.forEach(tile=>{
+        const text=(tile.textContent||"").trim();
+        if(!text || text.length===0) tile.textContent="🧪";
+    });
+
+    const forgeHeading=document.querySelector('#codingSection h2');
+    if(forgeHeading){
+        const text=(forgeHeading.textContent||"").trim();
+        if(text && !text.startsWith("🧪")) forgeHeading.textContent="🧪 "+text;
+    }
+}
+
 function loadKingdom(data){
     if(typeof renderKingdom==="function"){
         renderKingdom(data);
@@ -43,11 +63,13 @@ function loadKingdom(data){
         const root=document.getElementById("kingdomRoot")||document.getElementById("kingdomContainer");
         if(root)root.innerHTML=LoadingComponent()+QuestHeaderComponent()+HeroComponent(data)+NavigationComponent(data)+ComicComponent(data)+AnimationComponent(data)+NotesComponent(data)+CodingComponent(data)+QuizComponent(data)+ChallengeComponent(data)+FooterComponent(data)+RewardPopupComponent()+ParticleComponent();
     }
+    ensureSpellForgeEmoji();
     initializeKingdom(data);
 }
 console.log("initializeKingdom started");
 async function initializeKingdom(data){
     initializeNavigation();
+    ensureSpellForgeEmoji();
     initializeComic(data);
     if(data.coding){await initializeCoding(data);}else if(typeof initializeNetworkSimulator==="function"){await initializeNetworkSimulator(data);}
     initializeQuiz(data);
