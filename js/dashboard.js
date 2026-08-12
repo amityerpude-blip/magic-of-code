@@ -1,5 +1,5 @@
 /*====================================================
-                PYTHON QUEST
+                CODING QUEST
             DASHBOARD CONTROLLER
 ====================================================*/
 "use strict";
@@ -31,7 +31,7 @@ function getContinueFolder(player){
     if(last){
         const exact=worlds.find(w=>w.folder===last||String(w.id)===last||w.name.toLowerCase()===last.toLowerCase());
         if(exact)return exact.folder;
-        const routeFallback={python:"python-village",decision:"decision-valley",loops:"looping-forest",loop:"looping-forest",functions:"function-tower",function:"function-tower",exceptions:"exception-temple",exception:"exception-temple",text:"text-file-library",csv:"csv-kingdom",pickle:"pickle-kingdom",pandas:"pandas-paradise",charts:"chart-peaks",chart:"chart-peaks",numpy:"numpy-caverns",sql:"dragon-sql",network:"spider-web"};
+        const routeFallback={python:"python-village",decision:"decision-valley",loops:"looping-forest",loop:"looping-forest",collections:"magical-collections",magicalcollections:"magical-collections",functions:"function-tower",function:"function-tower",exceptions:"exception-temple",exception:"exception-temple",text:"text-file-library",csv:"csv-kingdom",pickle:"pickle-kingdom",pandas:"pandas-paradise",charts:"chart-peaks",chart:"chart-peaks",numpy:"numpy-caverns",stack:"stack-tower",stacktower:"stack-tower",sql:"dragon-sql",network:"spider-web"};
         if(routeFallback[last])return routeFallback[last];
     }
     const completed=getCompletedCount(player);
