@@ -1,5 +1,5 @@
 /*====================================================
-                PYTHON QUEST
+                CODING QUEST
                 WORLDS DATABASE
 ====================================================*/
 
@@ -39,6 +39,16 @@ const worlds = [
 
 {
     id:4,
+    name:"Magical Collections Kingdom",
+    topic:"String • List • Tuple • Dictionary",
+    folder:"magical-collections",
+    image:"images/worlds/pandas-forest.png",
+    difficulty:"Intermediate",
+    rarity:"rare"
+},
+
+{
+    id:5,
     name:"Wizard's Function Tower",
     topic:"Functions",
     folder:"function-tower",
@@ -48,7 +58,7 @@ const worlds = [
 },
 
 {
-    id:5,
+    id:6,
     name:"Temple of Protection",
     topic:"Exception Handling",
     folder:"exception-temple",
@@ -58,7 +68,7 @@ const worlds = [
 },
 
 {
-    id:6,
+    id:7,
     name:"Library of Living Scrolls",
     topic:"Text File Handling",
     folder:"text-file-library",
@@ -68,7 +78,7 @@ const worlds = [
 },
 
 {
-    id:7,
+    id:8,
     name:"CSV Kingdom",
     topic:"CSV Files",
     folder:"csv-kingdom",
@@ -78,7 +88,7 @@ const worlds = [
 },
 
 {
-    id:8,
+    id:9,
     name:"Pickle Kingdom",
     topic:"Pickle Module",
     folder:"pickle-kingdom",
@@ -88,7 +98,7 @@ const worlds = [
 },
 
 {
-    id:9,
+    id:10,
     name:"Pandas Paradise",
     topic:"Pandas Library",
     folder:"pandas-paradise",
@@ -98,7 +108,7 @@ const worlds = [
 },
 
 {
-    id:10,
+    id:11,
     name:"Crystal Chart Peaks",
     topic:"Matplotlib",
     folder:"chart-peaks",
@@ -108,7 +118,7 @@ const worlds = [
 },
 
 {
-    id:11,
+    id:12,
     name:"NumPy Crystal Caverns",
     topic:"NumPy",
     folder:"numpy-caverns",
@@ -118,7 +128,17 @@ const worlds = [
 },
 
 {
-    id:12,
+    id:13,
+    name:"Stack Tower",
+    topic:"Stack • LIFO",
+    folder:"stack-tower",
+    image:"images/worlds/function-tower.png",
+    difficulty:"Advanced",
+    rarity:"epic"
+},
+
+{
+    id:14,
     name:"Dragon SQL Citadel",
     topic:"SQL",
     folder:"dragon-sql",
@@ -128,7 +148,7 @@ const worlds = [
 },
 
 {
-    id:13,
+    id:15,
     name:"Spider Web Nexus",
     topic:"Computer Networks",
     folder:"spider-web",
