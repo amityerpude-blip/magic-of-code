@@ -25,12 +25,6 @@ const KINGDOM_ROUTE = [
     { folder:"spider-web", name:"Spider Web Nexus" }
 ];
 
-/*====================================================
-        STANDARD SIX KINGDOM TILE ICONS
-        Applied to every kingdom at runtime so a
-        missing/unsupported data-file icon can never
-        become a blank rectangle.
-====================================================*/
 const KINGDOM_TILE_ICONS = {
     comicSection:"📖",
     animationSection:"🎬",
@@ -40,9 +34,10 @@ const KINGDOM_TILE_ICONS = {
     challengeSection:"🏆"
 };
 
+const SPELL_FORGE_TWEMOJI="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.3/assets/svg/1f9ea.svg";
+
 function normalizeKingdomSections(data){
     if(!data || !Array.isArray(data.sections)) return;
-
     data.sections.forEach(section=>{
         if(!section) return;
         const standardIcon=KINGDOM_TILE_ICONS[section.id];
@@ -51,16 +46,16 @@ function normalizeKingdomSections(data){
     });
 }
 
-/*
-   Some kingdom pages render KINGDOM_DATA directly before calling
-   initializeKingdom(). Normalize the already-rendered DOM as well,
-   so every kingdom gets the same six icons even when its data file
-   was created before the common icon standard was introduced.
-*/
 function normalizeRenderedTileIcons(){
     Object.entries(KINGDOM_TILE_ICONS).forEach(([sectionId,icon])=>{
         document.querySelectorAll(`.magicTile[data-section="${sectionId}"] .tileIcon`).forEach(tile=>{
-            tile.textContent=icon;
+            if(sectionId==="codingSection"){
+                tile.innerHTML=`<img class="spellForgeEmoji" src="${SPELL_FORGE_TWEMOJI}" alt="🧪" aria-label="Spell Forge">`;
+                const img=tile.querySelector("img");
+                if(img)img.onerror=()=>{tile.textContent="🔮";};
+            }else{
+                tile.textContent=icon;
+            }
         });
     });
 }
@@ -79,38 +74,25 @@ function goToDashboard(){window.location.href="../dashboard.html";}
 function goToNextKingdom(){const nav=getKingdomNavigation();if(nav.next)window.location.href="../"+nav.next.folder+"/index.html";else window.location.href="../dashboard.html";}
 function goToPreviousKingdom(){const nav=getKingdomNavigation();if(nav.previous)window.location.href="../"+nav.previous.folder+"/index.html";}
 
-/*
-   Force the Spell Forge identity in the shared renderer.
-   The previous external Twemoji URL was version-pinned to an
-   unavailable asset on some clients. Use the current asset and
-   fall back to Unicode text if the image cannot load.
-*/
 function ensureSpellForgeEmoji(){
     normalizeRenderedTileIcons();
 
-    const spellForgeSrc="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.3/assets/svg/1f9ea.svg";
-
-    document.querySelectorAll('.magicTile[data-section="codingSection"] .tileIcon, #codingSection h2').forEach(node=>{
-        const image=node.querySelector?.('.spellForgeEmoji');
+    document.querySelectorAll('#codingSection h2').forEach(heading=>{
+        const image=heading.querySelector('.spellForgeEmoji');
         if(image){
-            image.src=spellForgeSrc;
+            image.src=SPELL_FORGE_TWEMOJI;
             image.alt="🧪";
             image.setAttribute("aria-label","Spell Forge");
             image.onerror=()=>{
                 const fallback=document.createElement("span");
-                fallback.className="spellForgeTextEmoji";
-                fallback.textContent="🧪";
+                fallback.textContent="🔮 Spell Forge";
                 image.replaceWith(fallback);
             };
-        }else if(node.classList.contains("tileIcon")){
-            node.textContent="🧪";
         }
     });
 
     document.querySelectorAll('.clearCodeButton').forEach(button=>{
-        if(/Reset Spell/i.test(button.textContent||"")){
-            button.textContent="↺ Reset Spell";
-        }
+        if(/Reset Spell/i.test(button.textContent||""))button.textContent="↺ Reset Spell";
     });
 }
 
@@ -125,7 +107,9 @@ function loadKingdom(data){
     ensureSpellForgeEmoji();
     initializeKingdom(data);
 }
+
 console.log("initializeKingdom started");
+
 async function initializeKingdom(data){
     normalizeKingdomSections(data);
     normalizeRenderedTileIcons();
@@ -143,10 +127,12 @@ async function initializeKingdom(data){
     if(typeof showDailyMissionPopup==="function")setTimeout(showDailyMissionPopup,650);
     if(typeof updateQuestHeader==="function")setTimeout(updateQuestHeader,100);
 }
+
 function startKingdomAmbientMusic(){
     if(window.AudioManager)AudioManager.playAmbient("assets/audio/common/ambient.mp3");
     document.addEventListener("click",()=>{if(window.AudioManager&&!AudioManager.ambientStarted)AudioManager.playAmbient("assets/audio/common/ambient.mp3");},{once:true});
 }
+
 function initializeButtons(data){
     const startButton=document.getElementById("beginAdventure");if(startButton)startButton.onclick=()=>document.getElementById("kingdomMap").scrollIntoView({behavior:"smooth",block:"start"});
     const dashboardButton=document.getElementById("dashboardKingdom");if(dashboardButton)dashboardButton.onclick=goToDashboard;
@@ -158,4 +144,5 @@ function initializeButtons(data){
     const finishButton=document.getElementById("completeKingdom");
     if(finishButton){finishButton.onclick=()=>{showReward("🏆 Kingdom Completed!");if(typeof saveProgress==="function")saveProgress(data.id);else if(typeof completeKingdom==="function")completeKingdom(data.id);};}
 }
+
 function hideLoading(){const loader=document.getElementById("loadingScreen");if(!loader)return;setTimeout(()=>{loader.style.opacity="0";setTimeout(()=>loader.remove(),600);},500);}
