@@ -42,7 +42,8 @@ const worlds = [
     name:"Magical Collections Kingdom",
     topic:"String • List • Tuple • Dictionary",
     folder:"magical-collections",
-    image:"images/worlds/pandas-forest.png",
+    image:"",
+    visual:"collections",
     difficulty:"Intermediate",
     rarity:"rare"
 },
@@ -132,7 +133,8 @@ const worlds = [
     name:"Stack Tower",
     topic:"Stack • LIFO",
     folder:"stack-tower",
-    image:"images/worlds/function-tower.png",
+    image:"",
+    visual:"stack",
     difficulty:"Advanced",
     rarity:"epic"
 },
