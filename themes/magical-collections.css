@@ -1,1 +1,48 @@
-body{background:radial-gradient(circle at 20% 10%,rgba(124,92,255,.35),transparent 32%),radial-gradient(circle at 80% 25%,rgba(0,210,255,.2),transparent 28%),linear-gradient(135deg,#10213f,#172b4d 55%,#241d45);color:#eef5ff}.heroSection{background:linear-gradient(135deg,rgba(28,38,68,.96),rgba(55,42,95,.9));border-color:rgba(184,150,255,.3)}.lessonContent h2,.kingdomNavigation h2{color:#ffd75a}.codingContainer,.quizContainer,.challengeCard,.notesContainer{border-color:rgba(160,125,255,.35)}.magicTile{border-color:rgba(255,213,79,.25)}.magicTile:hover,.magicTile.active{box-shadow:0 0 25px rgba(124,92,255,.35)}.kingdomFooter{background:rgba(8,18,38,.72)}
+/* Magical Collections theme */
+
+/*
+   Emoji compatibility fix.
+   The shared kingdom stylesheet uses Poppins globally. Poppins does not
+   contain the emoji glyphs used throughout Coding Quest, which can cause
+   Chrome/Windows to display an empty square (tofu) instead of the emoji.
+   Keep Poppins for normal text, but provide an emoji-capable fallback.
+*/
+body,
+body *{
+    font-family:"Poppins","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji","Apple Color Emoji",sans-serif;
+}
+
+body{
+    background:radial-gradient(circle at 20% 10%,rgba(124,92,255,.35),transparent 32%),radial-gradient(circle at 80% 25%,rgba(0,210,255,.2),transparent 28%),linear-gradient(135deg,#10213f,#172b4d 55%,#241d45);
+    color:#eef5ff;
+}
+
+.heroSection{
+    background:linear-gradient(135deg,rgba(28,38,68,.96),rgba(55,42,95,.9));
+    border-color:rgba(184,150,255,.3);
+}
+
+.lessonContent h2,
+.kingdomNavigation h2{
+    color:#ffd75a;
+}
+
+.codingContainer,
+.quizContainer,
+.challengeCard,
+.notesContainer{
+    border-color:rgba(160,125,255,.35);
+}
+
+.magicTile{
+    border-color:rgba(255,213,79,.25);
+}
+
+.magicTile:hover,
+.magicTile.active{
+    box-shadow:0 0 25px rgba(124,92,255,.35);
+}
+
+.kingdomFooter{
+    background:rgba(8,18,38,.72);
+}
