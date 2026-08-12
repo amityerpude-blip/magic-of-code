@@ -80,7 +80,37 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 
 function loadWorlds(){const worldGrid=document.getElementById("worldGrid");if(!worldGrid){console.error("worldGrid not found");return;}worldGrid.innerHTML="";worlds.forEach(world=>{worldGrid.innerHTML+=createWorldCard(world);});}
-function createWorldCard(world){return `<div class="worldCard ${world.rarity}"><img src="${world.image}" alt="${world.name}"><div class="worldContent"><h3>${world.name}</h3><p>${world.topic}</p><button class="btn btn-primary" onclick="openWorld('${world.folder}')">Enter World</button></div></div>`;}
+
+function createWorldCard(world){
+    const artwork=world.visual?createWorldVisual(world.visual):`<img src="${world.image}" alt="${world.name}" loading="lazy">`;
+    return `<div class="worldCard ${world.rarity}">${artwork}<div class="worldContent"><h3>${world.name}</h3><p>${world.topic}</p><button class="btn btn-primary" onclick="openWorld('${world.folder}')">Enter World</button></div></div>`;
+}
+
+function createWorldVisual(type){
+    if(type==="collections"){
+        return `<div class="worldVisual collectionsVisual" aria-label="Magical Collections artwork">
+            <div class="collectionsGlow"></div>
+            <div class="collectionSymbol stringSymbol">STR</div>
+            <div class="collectionSymbol listSymbol">LIST</div>
+            <div class="collectionSymbol tupleSymbol">( )</div>
+            <div class="collectionSymbol dictSymbol">K:V</div>
+            <div class="visualTitle">MAGICAL<br>COLLECTIONS</div>
+        </div>`;
+    }
+    if(type==="stack"){
+        return `<div class="worldVisual stackVisual" aria-label="Stack Tower artwork">
+            <div class="stackTowerGlow"></div>
+            <div class="stackBlock block4">DATA</div>
+            <div class="stackBlock block3">ITEM</div>
+            <div class="stackBlock block2">ITEM</div>
+            <div class="stackBlock block1">TOP</div>
+            <div class="stackLabel">STACK TOWER</div>
+            <div class="stackLifo">LIFO</div>
+        </div>`;
+    }
+    return `<div class="worldVisual" aria-label="${type}"></div>`;
+}
+
 function openWorld(folder){window.location.href=folder+"/index.html";}
 
 function loadPlayer(){
