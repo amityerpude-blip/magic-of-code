@@ -109,7 +109,7 @@ description:
 
 "After mastering data storage, Dino reaches a mountain filled with glowing crystals. Each crystal reveals hidden patterns inside data. Master Graphos teaches Dino that data becomes meaningful only when it is visualized.",
 
-folder:"assets/comic/",
+folder:"assets /comic/",
 
 totalPages:16
 
