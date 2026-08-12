@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧩 Magical Collections | Coding Quest</title>
+<link rel="stylesheet" href="../css/kingdom.css">
+<link rel="stylesheet" href="../themes/magical-collections.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="loadingScreen" id="loadingScreen"><div class="loader">🧩</div><h2>Loading Magical Collections...</h2></div>
+<div id="particleContainer"></div>
+<div id="kingdomContainer"></div>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
+<script src="../data/magical-collections.js"></script>
+<script src="../js/audio.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/effects.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/comicEngine.js"></script>
+<script src="../js/codingEngine.js"></script>
+<script src="../js/quizEngine.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/kingdom.js"></script>
+<script>window.addEventListener('load',async()=>{renderKingdom(KINGDOM_DATA);await initializeKingdom(KINGDOM_DATA);});</script>
+</body>
+</html>
