@@ -51,6 +51,20 @@ function normalizeKingdomSections(data){
     });
 }
 
+/*
+   Some kingdom pages render KINGDOM_DATA directly before calling
+   initializeKingdom(). Normalize the already-rendered DOM as well,
+   so every kingdom gets the same six icons even when its data file
+   was created before the common icon standard was introduced.
+*/
+function normalizeRenderedTileIcons(){
+    Object.entries(KINGDOM_TILE_ICONS).forEach(([sectionId,icon])=>{
+        document.querySelectorAll(`.magicTile[data-section="${sectionId}"] .tileIcon`).forEach(tile=>{
+            tile.textContent=icon;
+        });
+    });
+}
+
 function getCurrentKingdomFolder(){
     const parts=window.location.pathname.split("/").filter(Boolean);
     const known=KINGDOM_ROUTE.map(item=>item.folder);
@@ -72,6 +86,8 @@ function goToPreviousKingdom(){const nav=getKingdomNavigation();if(nav.previous)
    fall back to Unicode text if the image cannot load.
 */
 function ensureSpellForgeEmoji(){
+    normalizeRenderedTileIcons();
+
     const spellForgeSrc="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.3/assets/svg/1f9ea.svg";
 
     document.querySelectorAll('.magicTile[data-section="codingSection"] .tileIcon, #codingSection h2').forEach(node=>{
@@ -88,8 +104,6 @@ function ensureSpellForgeEmoji(){
             };
         }else if(node.classList.contains("tileIcon")){
             node.textContent="🧪";
-        }else if(node.id==="codingSection"){
-            node.textContent="🧪 Spell Forge";
         }
     });
 
@@ -114,6 +128,7 @@ function loadKingdom(data){
 console.log("initializeKingdom started");
 async function initializeKingdom(data){
     normalizeKingdomSections(data);
+    normalizeRenderedTileIcons();
     initializeNavigation();
     ensureSpellForgeEmoji();
     initializeComic(data);
