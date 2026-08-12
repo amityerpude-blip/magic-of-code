@@ -11,6 +11,7 @@ const KINGDOM_ROUTE = [
     { folder:"python-village", name:"Python Village" },
     { folder:"decision-valley", name:"Valley of Decisions" },
     { folder:"looping-forest", name:"Looping Forest" },
+    { folder:"magical-collections", name:"Magical Collections Kingdom" },
     { folder:"function-tower", name:"Wizard's Function Tower" },
     { folder:"exception-temple", name:"Temple of Protection" },
     { folder:"text-file-library", name:"Library of Living Scrolls" },
@@ -19,9 +20,36 @@ const KINGDOM_ROUTE = [
     { folder:"pandas-paradise", name:"Pandas Paradise" },
     { folder:"chart-peaks", name:"Crystal Chart Peaks" },
     { folder:"numpy-caverns", name:"NumPy Crystal Caverns" },
+    { folder:"stack-tower", name:"Stack Tower" },
     { folder:"dragon-sql", name:"Dragon SQL Citadel" },
     { folder:"spider-web", name:"Spider Web Nexus" }
 ];
+
+/*====================================================
+        STANDARD SIX KINGDOM TILE ICONS
+        Applied to every kingdom at runtime so a
+        missing/unsupported data-file icon can never
+        become a blank rectangle.
+====================================================*/
+const KINGDOM_TILE_ICONS = {
+    comicSection:"📖",
+    animationSection:"🎬",
+    notesSection:"📚",
+    codingSection:"🧪",
+    quizSection:"👾",
+    challengeSection:"🏆"
+};
+
+function normalizeKingdomSections(data){
+    if(!data || !Array.isArray(data.sections)) return;
+
+    data.sections.forEach(section=>{
+        if(!section) return;
+        const standardIcon=KINGDOM_TILE_ICONS[section.id];
+        if(standardIcon) section.icon=standardIcon;
+        if(section.id==="codingSection") section.title="Spell Forge";
+    });
+}
 
 function getCurrentKingdomFolder(){
     const parts=window.location.pathname.split("/").filter(Boolean);
@@ -39,25 +67,41 @@ function goToPreviousKingdom(){const nav=getKingdomNavigation();if(nav.previous)
 
 /*
    Force the Spell Forge identity in the shared renderer.
-   Some kingdom data files/cache versions may omit the emoji, so we
-   deliberately set it here instead of relying on the data file.
+   The previous external Twemoji URL was version-pinned to an
+   unavailable asset on some clients. Use the current asset and
+   fall back to Unicode text if the image cannot load.
 */
 function ensureSpellForgeEmoji(){
-    document.querySelectorAll('.magicTile[data-section="codingSection"] .tileIcon').forEach(tile=>{
-        tile.textContent="🧪";
+    const spellForgeSrc="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.3/assets/svg/1f9ea.svg";
+
+    document.querySelectorAll('.magicTile[data-section="codingSection"] .tileIcon, #codingSection h2').forEach(node=>{
+        const image=node.querySelector?.('.spellForgeEmoji');
+        if(image){
+            image.src=spellForgeSrc;
+            image.alt="🧪";
+            image.setAttribute("aria-label","Spell Forge");
+            image.onerror=()=>{
+                const fallback=document.createElement("span");
+                fallback.className="spellForgeTextEmoji";
+                fallback.textContent="🧪";
+                image.replaceWith(fallback);
+            };
+        }else if(node.classList.contains("tileIcon")){
+            node.textContent="🧪";
+        }else if(node.id==="codingSection"){
+            node.textContent="🧪 Spell Forge";
+        }
     });
 
-    const forgeHeading=document.querySelector('#codingSection h2');
-    if(forgeHeading){
-        const cleanTitle=(forgeHeading.textContent||"").replace(/^\s*🧪\s*/u,"").trim();
-        forgeHeading.textContent="🧪 Spell Forge";
-        if(cleanTitle && cleanTitle.toLowerCase()!=="spell forge"){
-            forgeHeading.textContent="🧪 "+cleanTitle;
+    document.querySelectorAll('.clearCodeButton').forEach(button=>{
+        if(/Reset Spell/i.test(button.textContent||"")){
+            button.textContent="↺ Reset Spell";
         }
-    }
+    });
 }
 
 function loadKingdom(data){
+    normalizeKingdomSections(data);
     if(typeof renderKingdom==="function"){
         renderKingdom(data);
     }else{
@@ -69,6 +113,7 @@ function loadKingdom(data){
 }
 console.log("initializeKingdom started");
 async function initializeKingdom(data){
+    normalizeKingdomSections(data);
     initializeNavigation();
     ensureSpellForgeEmoji();
     initializeComic(data);
