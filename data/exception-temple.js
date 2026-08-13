@@ -128,8 +128,7 @@ description:
 "Watch Master Aegis explain how Python handles runtime errors using try, except, else and finally.",
 
 type:"youtube",
-
-source:"https://www.youtube.com/embed/NIWwJbo-9_8"
+source:"https://www.youtube.com/embed/qEZ6tBIPw7c"
 
 },
 
