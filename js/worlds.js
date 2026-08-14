@@ -42,8 +42,7 @@ const worlds = [
     name:"Magical Collections Kingdom",
     topic:"String • List • Tuple • Dictionary",
     folder:"magical-collections",
-    image:"",
-    visual:"collections",
+    image:"assets/kingdoms/magical-collections.png",
     difficulty:"Intermediate",
     rarity:"rare"
 },
@@ -53,7 +52,7 @@ const worlds = [
     name:"Wizard's Function Tower",
     topic:"Functions",
     folder:"function-tower",
-    image:"images/worlds/function-tower.png",
+    image:"assets/kingdoms/function-tower.png",
     difficulty:"Intermediate",
     rarity:"rare"
 },
@@ -63,7 +62,7 @@ const worlds = [
     name:"Temple of Protection",
     topic:"Exception Handling",
     folder:"exception-temple",
-    image:"images/worlds/exception-temple.png",
+    image:"assets/kingdoms/exception-temple.png",
     difficulty:"Intermediate",
     rarity:"rare"
 },
@@ -73,7 +72,7 @@ const worlds = [
     name:"Library of Living Scrolls",
     topic:"Text File Handling",
     folder:"text-file-library",
-    image:"images/worlds/text-file-library.png",
+    image:"assets/kingdoms/text-file-library.png",
     difficulty:"Intermediate",
     rarity:"rare"
 },
@@ -83,7 +82,7 @@ const worlds = [
     name:"CSV Kingdom",
     topic:"CSV Files",
     folder:"csv-kingdom",
-    image:"images/worlds/csv-kingdom.png",
+    image:"assets/kingdoms/csv-kingdom.png",
     difficulty:"Intermediate",
     rarity:"rare"
 },
@@ -93,7 +92,7 @@ const worlds = [
     name:"Pickle Kingdom",
     topic:"Pickle Module",
     folder:"pickle-kingdom",
-    image:"images/worlds/pickle-kingdom.png",
+    image:"assets/kingdoms/pickle-kingdom.png",
     difficulty:"Intermediate",
     rarity:"epic"
 },
@@ -103,7 +102,7 @@ const worlds = [
     name:"Pandas Paradise",
     topic:"Pandas Library",
     folder:"pandas-paradise",
-    image:"images/worlds/pandas-forest.png",
+    image:"assets/kingdoms/pandas-forest.png",
     difficulty:"Advanced",
     rarity:"epic"
 },
@@ -113,7 +112,7 @@ const worlds = [
     name:"Crystal Chart Peaks",
     topic:"Matplotlib",
     folder:"chart-peaks",
-    image:"images/worlds/chart-peaks.png",
+    image:"assets/kingdoms/chart-peaks.png",
     difficulty:"Advanced",
     rarity:"epic"
 },
@@ -123,7 +122,7 @@ const worlds = [
     name:"NumPy Crystal Caverns",
     topic:"NumPy",
     folder:"numpy-caverns",
-    image:"images/worlds/numpy-caverns.png",
+    image:"assets/kingdoms/numpy-caverns.png",
     difficulty:"Advanced",
     rarity:"epic"
 },
@@ -133,8 +132,7 @@ const worlds = [
     name:"Stack Tower",
     topic:"Stack • LIFO",
     folder:"stack-tower",
-    image:"",
-    visual:"stack",
+    image:"assets/kingdoms/stack-tower.png",
     difficulty:"Advanced",
     rarity:"epic"
 },
@@ -144,7 +142,7 @@ const worlds = [
     name:"Dragon SQL Citadel",
     topic:"SQL",
     folder:"dragon-sql",
-    image:"images/worlds/dragon-sql.png",
+    image:"assets/kingdoms/dragon-sql.png",
     difficulty:"Expert",
     rarity:"legendary"
 },
@@ -154,7 +152,7 @@ const worlds = [
     name:"Spider Web Nexus",
     topic:"Computer Networks",
     folder:"spider-web",
-    image:"images/worlds/spider-web.png",
+    image:"assets/kingdoms/spider-web.png",
     difficulty:"Expert",
     rarity:"legendary"
 }
