@@ -17,7 +17,7 @@ sections:[
 {id:"codingSection",icon:"🧪",title:"Spell Forge",subtitle:"Practice Collection Spells"},
 {id:"quizSection",icon:"👾",title:"Monster Hunt",subtitle:"Test Your Collection Knowledge"},
 {id:"challengeSection",icon:"🏆",title:"Guardian Battle",subtitle:"Complete the Collection Quest"}],
-comic:{title:"📖 Dino and the Four Collection Keepers",description:"Dino discovers four magical vaults: the String Scroll, List Basket, Tuple Chest and Dictionary Hall.",folder:"../python-village/assets/comic/",totalPages:1},
+comic:{title:"📖 Dino and the Four Collection Keepers",description:"Dino discovers four magical vaults: the String Scroll, List Basket, Tuple Chest and Dictionary Hall.",folder:"../magical-collections/assets/comic/",totalPages:27},
 animation:{title:"🎬 Magical Collections Journey",description:"Explore how Python collections store and organize information.",type:"youtube",source:"https://www.youtube.com/embed/rfscVS0vtbw"},
 notes:{title:"📚 Wisdom Grove of Collections",description:"Master the four core collection types used throughout Python programming.",cards:[
 {icon:"🔤",title:"Strings",text:"A string is an immutable sequence of characters. Example: name='Dino'. Strings support indexing, slicing, concatenation and useful methods such as upper(), lower(), replace() and split()."},
