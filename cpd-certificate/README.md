@@ -1,3 +1,0 @@
-# CPD Certificate Generator
-
-GitHub Pages frontend + Flask/LibreOffice backend for generating the PM SHBI Kendriya Vidyalaya Dongargarh CPD certificate from the supplied PPTX[\]H[≥[XZ[[≥хH≥\щ[[≥х▀┌┌┬хх\ч[Y[²┌█K┬з]X┬Yы\н┬ы][≥эх8═%Yы\х8═%шщ\≤ыH8═%з]X┬Xщ[ш°к┌▄▀┬\чH≤Xзы[≥\хHьзы\┬ыX┬ы\² XыHш┬≥[≥\┬\з[≥х≤Xзы[≥э≥[≥\▀·[[┌▄к┬YсUыXэ≥]ххH≤Xзы[≥┬сTртусUтт∙сUуTяT▀сTтTтуст▒сTя■⌠сK┌█┬ы]■⌠с∙S▒ст▓QрS≤хHз]X┬Yы\х\⌡│K┬з[≥ыH°⌡ш²[≥ьшш≥ Yк °ь°⌡шHSуT▀P░RяS▒⌡ш°≥[≥≤шшXхH\чYY≤Xзы[≥T⌠┌█▀┬ыY\≤Xзы[≥ьэщ[\]K°\хHы\²Y Xь]H[\]K┌
