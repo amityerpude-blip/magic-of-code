@@ -7,15 +7,24 @@ from pptx import Presentation
 ROOT=Path(__file__).parent; TEMPLATE=ROOT/'cpd_template.pptx'; OUT=ROOT/'generated'; OUT.mkdir(exist_ok=True)
 app=Flask(__name__); CORS(app,resources={r'/api/*':{'origins':os.getenv('FRONTEND_ORIGIN','*')}})
 FIELDS=['email','name','hname','post','hpost','training','htraining','fromdate','todate','participant','hparticipant','hour']
-def replace(shape,m):
+def fmtdate(x):
+ try:
+  y,m,d=x.split('-'); return f'{d}-{m}-{y}'
+ except: return x
+def replace_shape(shape,m):
  if not getattr(shape,'has_text_frame',False): return
  for p in shape.text_frame.paragraphs:
-  for r in p.runs:
-   for a,b in m.items(): r.text=r.text.replace(a,b)
+  text=''.join(r.text for r in p.runs)
+  new=text
+  for a,b in m.items(): new=new.replace(a,b)
+  if new!=text and p.runs:
+   p.runs[0].text=new
+   for r in p.runs[1:]: r.text=''
 def make_pptx(d,out):
  prs=Presentation(TEMPLATE); m={f'<<{k}>>':str(d[k]) for k in FIELDS if k!='email'}
+ m['<<fromdate>>']=fmtdate(d['fromdate']);m['<<todate>>']=fmtdate(d['todate'])
  for s in prs.slides:
-  for sh in s.shapes: replace(sh,m)
+  for sh in s.shapes: replace_shape(sh,m)
  prs.save(out)
 def pdf(p):
  o=p.parent/'pdf';o.mkdir(exist_ok=True)
