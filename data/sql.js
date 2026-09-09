@@ -88,7 +88,7 @@ subtitle:"Practice SQL queries"
 
 {
 id:"quizSection",
-icon:"🧩",
+icon:"👾",
 title:"Monster Hunt",
 subtitle:"Solve practice challenges"
 },
