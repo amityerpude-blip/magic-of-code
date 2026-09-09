@@ -81,7 +81,7 @@ subtitle:"Learn important concepts"
 
 {
 id:"codingSection",
-icon:"🧪",
+icon:"🗄️",
 title:"Spell Forge",
 subtitle:"Practice SQL queries"
 },
