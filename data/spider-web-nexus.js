@@ -21,7 +21,8 @@ const KINGDOM_DATA = {
     comic: {
         title:"The Broken Web",
         description:"Master Spider discovers that the magical web connecting every kingdom has been damaged. Dino must learn Computer Networks to reconnect every magical kingdom.",
-        folder:"assets/comic/",totalPages:44
+        folder:"assets/comic/",
+        totalPages:44
     },
 
     animation: {
