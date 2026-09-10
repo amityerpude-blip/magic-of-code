@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KVS CPD Certificate Generator</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+*{box-sizing:border-box}body{margin:0;background:#eef1f5;color:#222;font-family:Arial,sans-serif}.app{max-width:1250px;margin:auto;padding:20px}.toolbar{background:#fff;border:1px solid #d7dce3;border-radius:12px;padding:16px;margin-bottom:18px;box-shadow:0 3px 12px #00000010}.toolbar h1{margin:0 0 5px;color:#173c75;font-size:24px}.toolbar p{margin:0 0 14px;color:#666}.formgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.field label{display:block;font-size:12px;font-weight:bold;color:#445;margin-bottom:4px}.field input,.field select{width:100%;padding:9px 10px;border:1px solid #cbd2dc;border-radius:7px;font-size:14px;background:#fff}.actions{display:flex;gap:10px;margin-top:13px;flex-wrap:wrap}.btn{border:0;border-radius:7px;padding:10px 17px;font-weight:bold;cursor:pointer}.primary{background:#174b8f;color:white}.secondary{background:#e9edf3;color:#173c75}.certificate{position:relative;width:100%;aspect-ratio:1.4142/1;background:#fff;overflow:hidden;box-shadow:0 8px 30px #0002;border:1px solid #ddd}.topwave,.bottomwave{position:absolute;left:0;width:100%;height:82px;overflow:hidden}.topwave{top:0}.bottomwave{bottom:0;transform:rotate(180deg)}.topwave:before,.bottomwave:before{content:"";position:absolute;width:120%;height:75px;left:-8%;top:-40px;border-radius:0 0 55% 55%;background:#173f78;transform:rotate(-3deg)}.topwave:after,.bottomwave:after{content:"";position:absolute;width:120%;height:55px;left:-7%;top:-18px;border-radius:0 0 55% 55%;background:#c49a43;transform:rotate(-3deg)}.logo{position:absolute;top:33px;left:5%;width:76px;height:76px;border:3px solid #173f78;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;color:#173f78;font-weight:700;font-size:28px;z-index:2}.logo small{display:block;font-size:7px;line-height:8px;text-align:center}.head{position:absolute;top:43px;left:15%;right:6%;text-align:center;color:#173f78;z-index:2}.hi{font-family:'Noto Sans Devanagari',Arial;font-weight:700;font-size:clamp(14px,2vw,24px)}.en{font-weight:700;font-size:clamp(13px,1.8vw,23px);letter-spacing:.4px}.title{position:absolute;top:18%;left:0;right:0;text-align:center;color:#22833d;font-family:'Noto Sans Devanagari',Arial;font-weight:700;font-size:clamp(22px,3.2vw,39px);z-index:2}.year{position:absolute;top:26%;left:0;right:0;text-align:center;font-size:clamp(12px,1.4vw,18px);z-index:2}.body{position:absolute;top:31%;left:8%;right:8%;text-align:center;font-family:'Noto Sans Devanagari',Arial;font-size:clamp(10px,1.35vw,17px);line-height:1.8;z-index:2}.body .enbody{font-family:Arial,sans-serif;margin-top:7px;line-height:1.65}.line{font-weight:600;border-bottom:1px dotted #555;padding:0 7px;display:inline-block;min-width:100px}.wide{min-width:260px}.activity{min-width:360px;max-width:65%}.footer{position:absolute;bottom:7%;right:8%;text-align:center;font-family:'Noto Sans Devanagari',Arial;font-size:clamp(10px,1.2vw,16px);font-weight:600;z-index:2}.hint{position:absolute;bottom:2%;left:8%;font-size:9px;color:#777;z-index:2}
+@media(max-width:800px){.formgrid{grid-template-columns:1fr 1fr}.certificate{min-width:700px}.preview{overflow:auto}.app{padding:10px}}
+@media(max-width:550px){.formgrid{grid-template-columns:1fr}}
+@media print{body{background:#fff}.app{max-width:none;padding:0}.toolbar{display:none}.certificate{box-shadow:none;border:0;width:100vw;height:70.71vw;aspect-ratio:auto}.preview{overflow:visible}@page{size:A4 landscape;margin:0}}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="toolbar">
+<h1>KVS CPD Certificate Generator</h1>
+<p>Certificate layout follows the KVS CPD certificate format. Fill the fields and print/save as PDF.</p>
+<div class="formgrid">
+<div class="field"><label>Year</label><input id="year" value="2026"></div>
+<div class="field"><label>Name</label><input id="name" placeholder="Mr./Mrs./Ms./Dr."></div>
+<div class="field"><label>Designation</label><input id="designation" value="PGT Computer Science"></div>
+<div class="field"><label>Vidyalaya</label><input id="school" value="PM SHRI Kendriya Vidyalaya Dongargarh"></div>
+<div class="field"><label>Regional Office</label><input id="region" value="Raipur"></div>
+<div class="field"><label>Training / Workshop / Activity</label><input id="activity" placeholder="Name of training programme / workshop"></div>
+<div class="field"><label>Mode</label><select id="mode"><option>Online</option><option>Offline</option></select></div>
+<div class="field"><label>Hours</label><input id="hours" value="6"></div>
+<div class="field"><label>Role</label><select id="role"><option>Participant</option><option>Resource Person</option></select></div>
+</div>
+<div class="actions"><button class="btn primary" onclick="window.print()">🖨 Print / Save PDF</button><button class="btn secondary" onclick="clearFields()">↺ Reset</button></div>
+</div>
+<div class="preview">
+<div class="certificate" id="certificate">
+<div class="topwave"></div><div class="bottomwave"></div>
+<div class="logo"><div><small>भारत सरकार</small>✦<small>KVS</small></div></div>
+<div class="head"><div class="hi">केन्द्रीय विद्यालय संगठन, नई दिल्ली</div><div class="en">KENDRIYA VIDYALAYA SANGATHAN, NEW DELHI</div></div>
+<div class="title">प्रमाण-पत्र / Certificate</div>
+<div class="year">वर्ष / Year <span class="line" id="vyear">2026</span></div>
+<div class="body">
+<div>प्रमाणित किया जाता है कि श्री/श्रीमती/सुश्री/डॉ. <span class="line wide" id="vname">________________________</span> पदनाम <span class="line" id="vdesignation">PGT Computer Science</span></div>
+<div>पीएम श्री / केन्द्रीय विद्यालय <span class="line wide" id="vschool">PM SHRI Kendriya Vidyalaya Dongargarh</span> क्षेत्रीय कार्यालय <span class="line" id="vregion">Raipur</span> ने आभासी / मुखाभिमुख रूप में आयोजित</div>
+<div><span class="line activity" id="vactivity">________________________________________</span> प्रशिक्षण कार्यक्रम / कार्यशाला / गतिविधि ( पेपर प्रकाशन / प्रश्नपत्र सेटिंग / प्रकाशन का संपादन इत्यादि ) में <span class="line" id="vhours">6</span> घंटे हेतु प्रतिभागी / संसाधक के रूप में प्रतिभागिता की।</div>
+<div class="enbody">This is to certify that Mr/Mrs/Ms/Dr. <span class="line wide" id="vname2">________________________</span> Designation <span class="line" id="vdesignation2">PGT Computer Science</span> of PM Shri / Kendriya Vidyalaya <span class="line wide" id="vschool2">PM SHRI Kendriya Vidyalaya Dongargarh</span> Regional Office <span class="line" id="vregion2">Raipur</span> has attended</div>
+<div class="enbody"><span class="line activity" id="vactivity2">________________________________________</span> Training Programme / Workshop / Activities (Paper Publishing / Question Paper Setting / Editing a Publication etc.) in <span class="line" id="vmode">Online</span> / Offline Mode for <span class="line" id="vhours2">6</span> hours as a <span class="line" id="vrole">Participant</span> / Resource Person.</div>
+</div>
+<div class="footer">प्राचार्य / Principal</div>
+<div class="hint">KVS CPD Certificate Template • Editable preview</div>
+</div>
+</div>
+</div>
+<script>
+const ids=['year','name','designation','school','region','activity','mode','hours','role'];
+const map={year:['vyear'],name:['vname','vname2'],designation:['vdesignation','vdesignation2'],school:['vschool','vschool2'],region:['vregion','vregion2'],activity:['vactivity','vactivity2'],hours:['vhours','vhours2'],mode:['vmode'],role:['vrole']};
+function update(){ids.forEach(id=>{const el=document.getElementById(id);let val=el.value.trim();if(!val) val=id==='name'||id==='activity'?'________________________':'';(map[id]||[]).forEach(x=>document.getElementById(x).textContent=val)});}
+ids.forEach(id=>document.getElementById(id).addEventListener('input',update));ids.forEach(id=>document.getElementById(id).addEventListener('change',update));
+function clearFields(){document.getElementById('year').value='2026';document.getElementById('name').value='';document.getElementById('designation').value='PGT Computer Science';document.getElementById('school').value='PM SHRI Kendriya Vidyalaya Dongargarh';document.getElementById('region').value='Raipur';document.getElementById('activity').value='';document.getElementById('mode').value='Online';document.getElementById('hours').value='6';document.getElementById('role').value='Participant';update();}
+update();
+</script>
+</body>
+</html>
